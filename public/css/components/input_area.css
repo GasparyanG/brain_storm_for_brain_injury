@@ -15,7 +15,7 @@
 
 #form_container .raw_input {
     display: block;
-    border: none;
+    border: 1px solid transparent;
     border-bottom: 1px solid var(--input-color);
     width: 54vw;
     font-size: var(--input-font-size);
@@ -29,7 +29,9 @@
     margin-left: 23vw;
 }
 
-#form_container .raw_input:active, #form_container .raw_input:focus {
+#form_container .raw_input:active,
+#form_container .raw_input:focus {
+    outline: none;
     border: none;
     border-bottom: 2px solid var(--input-color-active);
     color: var(--input-color-active);
