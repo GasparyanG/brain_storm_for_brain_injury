@@ -11,6 +11,16 @@
     --question-sm-number-size: 13px;
     --quesiton-font-size: 20px;
     --quesiton-sm-font-size: 15px;
+
+    /*  Margin, Padding  */
+    --input-margin-left: 2rem;
+    --input-margin-bottom: 2rem;
+
+    /*  Checkboxes  */
+    --ck-font-size: 1.5rem;
+    --ck-box-size: 1.5rem;
+    --sm-ck-font-size: 1rem;
+    --sm-ck-box-size: 1rem;
 }
 
 #form_container .raw_input {
@@ -19,10 +29,16 @@
     border-bottom: 1px solid var(--input-color);
     width: 54vw;
     font-size: var(--input-font-size);
-    margin-left: 2rem;
-    margin-bottom: 2rem;
+    margin-left: var(--input-margin-left);
+    margin-bottom: var(--input-margin-bottom);
     color: var(--input-color);
 }
+
+#form_container .concern_questions .raw_input {
+    margin-left: 0;
+}
+
+/* ----------------------------------------- RAW INPUT -----------------------------------------*/
 
 /* Contents Position */
 #form_container .layer_content {
@@ -96,5 +112,34 @@
 
     #form_container .input_label {
         font-size: var(--quesiton-sm-font-size);
+    }
+}
+
+
+/* ----------------------------------------- CHECKBOX ----------------------------------------- */
+.checkbox_container {
+    margin-left: var(--input-margin-left);
+}
+
+/* Checkbox decoration */
+.checkbox_input {
+    cursor: pointer;
+    width: var(--ck-box-size);
+    height: var(--ck-box-size);
+}
+
+.checkbox_label {
+    color: var(--input-color-active);
+    font-size: var(--ck-font-size);
+}
+
+@media only screen and (max-width: 550px) {
+    .checkbox_input {
+        width: var(--sm-ck-box-size);
+        height: var(--sm-ck-box-size);
+    }
+
+    .checkbox_label {
+        font-size: var(--sm-ck-font-size);
     }
 }
