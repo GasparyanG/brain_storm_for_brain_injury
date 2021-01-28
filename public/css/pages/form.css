@@ -1,3 +1,8 @@
+:root {
+    --header-font-size: 30px;
+    --headr-sm-font-size: 20px;
+}
+
 #form_container {
     overflow: hidden;
     width: 100vw;
@@ -6,16 +11,24 @@
 
 #form_container .layers_container {
     height: inherit;
+    width: inherit;
+}
+
+/* Layer Containers */
+.layers_container .form_layer {
+    height: inherit;
+    width: inherit;
+    position: absolute;
 }
 
 /* Demographic Information Section */
 .layer_header {
-    font-size: 30px;
+    font-size: var(--header-font-size);
     margin-bottom: 2rem;
     color: var(--input-color-active);
 }
 
-.demographic_information {
+.form_layer {
     display: flex;
     height: inherit;
     flex-direction: column;
@@ -25,6 +38,6 @@
 
 @media only screen and (max-width: 550px) {
     .layer_header {
-        font-size: 20px;
+        font-size: var(--headr-sm-font-size);
     }
 }

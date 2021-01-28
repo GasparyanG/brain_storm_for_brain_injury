@@ -18,10 +18,66 @@ var InjuryIdentifier = function (_React$Component) {
     _createClass(InjuryIdentifier, [{
         key: "render",
         value: function render() {
+            var svgArrow = React.createElement(
+                "svg",
+                { height: "10", width: "11" },
+                React.createElement("path", { d: "M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z" }),
+                React.createElement("path", { d: "M8 4v2H0V4z" })
+            );
+
             return React.createElement(
                 "section",
-                { className: "injury_identification hidden" },
-                "coming soon"
+                { className: "injury_identification form_layer" },
+                React.createElement(
+                    "div",
+                    { className: "layer_content" },
+                    React.createElement(
+                        "div",
+                        { className: "layer_header" },
+                        "Now, let's fill some information about your injury."
+                    ),
+                    React.createElement(
+                        "div",
+                        { className: "questions" },
+                        React.createElement(
+                            "label",
+                            { className: "input_label", htmlFor: "injury_date" },
+                            React.createElement(
+                                "span",
+                                { className: "question_number" },
+                                "1 ",
+                                svgArrow
+                            ),
+                            React.createElement(
+                                "strong",
+                                null,
+                                "When was"
+                            ),
+                            " your brain injury?"
+                        ),
+                        React.createElement("input", { onChange: this.props.handler, className: "raw_input",
+                            name: "injury_date", id: "injury_date", type: "text", defaultValue: this.props.formState.name, placeholder: "Type your answer here..." }),
+                        React.createElement(
+                            "label",
+                            { className: "input_label", htmlFor: "injury_cause" },
+                            React.createElement(
+                                "span",
+                                { className: "question_number" },
+                                "3 ",
+                                svgArrow
+                            ),
+                            "What was ",
+                            React.createElement(
+                                "strong",
+                                null,
+                                "the cause"
+                            ),
+                            " of injury?"
+                        ),
+                        React.createElement("input", { onChange: this.props.handler, className: "raw_input",
+                            name: "injury_cause", id: "injury_cause", type: "text", defaultValue: this.props.formState.location, placeholder: "Type your answer here..." })
+                    )
+                )
             );
         }
     }]);
