@@ -20,10 +20,14 @@ var Concerns = function (_React$Component) {
             var concerns = [].concat(_toConsumableArray(_this.props.formState.concerns));
             if (concerns.includes(e.target.dataset.value)) {
                 var index = concerns.indexOf(e.target.dataset.value);
-                if (index > -1) concerns.slice(index, 1);
+                if (index > -1) {
+                    concerns.splice(index, 1);
+                }
             } else {
                 concerns.push(e.target.dataset.value);
             }
+
+            console.log(concerns);
 
             _this.props.checkboxHandler("concerns", concerns);
         };
@@ -44,10 +48,17 @@ var Concerns = function (_React$Component) {
         key: "createCheckbox",
         value: function createCheckbox(key) {
             var value = this.state.concerns[key];
+
+            var checked = this.props.formState.concerns.includes(key) ? "checked" : "";
+            var checkbox = React.createElement("input", { onChange: this.onCheck, className: "checkbox_input", type: "checkbox",
+                id: "c_" + key, name: "c_" + key, "data-value": key, value: value });
+            if (checked === "checked") checkbox = React.createElement("input", { onChange: this.onCheck, className: "checkbox_input", type: "checkbox",
+                id: "c_" + key, name: "c_" + key, "data-value": key, value: value, checked: true });
+
             return React.createElement(
                 "div",
                 { key: value + "_" + key },
-                React.createElement("input", { onChange: this.onCheck, className: "checkbox_input", type: "checkbox", id: "c_" + key, name: "c_" + key, "data-value": key, value: value }),
+                checkbox,
                 React.createElement(
                     "label",
                     { className: "checkbox_label", htmlFor: "c_" + key },

@@ -16,20 +16,31 @@ class Concerns extends React.Component {
         let concerns = [...this.props.formState.concerns];
         if (concerns.includes(e.target.dataset.value)) {
             let index = concerns.indexOf(e.target.dataset.value);
-            if (index > -1)
-                concerns.slice(index, 1);
+            if (index > -1) {
+                concerns.splice(index, 1);
+            }
         } else {
             concerns.push(e.target.dataset.value);
         }
+
+        console.log(concerns);
 
         this.props.checkboxHandler("concerns", concerns);
     }
 
     createCheckbox(key) {
         let value = this.state.concerns[key];
+
+        let checked = (this.props.formState.concerns.includes(key)) ? "checked": "";
+        let checkbox = (<input onChange={this.onCheck} className="checkbox_input" type="checkbox"
+                               id={"c_" + key} name={"c_" + key} data-value={key} value={value}/>);
+        if (checked === "checked")
+            checkbox = (<input onChange={this.onCheck} className="checkbox_input" type="checkbox"
+                               id={"c_" + key} name={"c_" + key} data-value={key} value={value} checked/>);
+
         return (
             <div key={value + "_" + key}>
-                <input onChange={this.onCheck} className="checkbox_input" type="checkbox" id={"c_" + key} name={"c_" + key} data-value={key} value={value}/>
+                {checkbox}
                 <label className="checkbox_label" htmlFor={"c_" + key}> {value}</label>
             </div>
         );
