@@ -1,3 +1,9 @@
+:root {
+    --tiny-screen-size: 550px;          /* -inf - 550px */
+    --small-screen-size: 750px;         /* 551 - 750px */
+    --medium-screen-size: 1000px;       /* 751 - 1001px */
+}
+
 body {
     margin: 0;
     font-family: "Karla", sans-serif;

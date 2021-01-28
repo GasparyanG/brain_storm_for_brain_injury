@@ -18,59 +18,85 @@ var DemographicLayer = function (_React$Component) {
     _createClass(DemographicLayer, [{
         key: "render",
         value: function render() {
+            var svgArrow = React.createElement(
+                "svg",
+                { height: "10", width: "11" },
+                React.createElement("path", { d: "M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z" }),
+                React.createElement("path", { d: "M8 4v2H0V4z" })
+            );
+
             return React.createElement(
                 "section",
                 { className: "demographic_information form_layer" },
                 React.createElement(
-                    "h1",
-                    { className: "layer_header" },
-                    "Hi, tell me about you a little bit."
-                ),
-                React.createElement(
                     "div",
-                    { className: "questions" },
+                    { className: "layer_content" },
                     React.createElement(
-                        "label",
-                        { className: "input_label", htmlFor: "name" },
-                        React.createElement(
-                            "span",
-                            { className: "question_number" },
-                            "1 \u2192"
-                        ),
-                        "What is your ",
-                        React.createElement(
-                            "strong",
-                            null,
-                            "name"
-                        ),
-                        "?"
+                        "div",
+                        { className: "layer_header" },
+                        "Hi, tell me about you a little bit."
                     ),
-                    React.createElement("input", { onChange: this.props.handler, className: "raw_input",
-                        name: "name", id: "name", type: "text", defaultValue: this.props.formState.name }),
                     React.createElement(
-                        "label",
-                        { className: "input_label", htmlFor: "age" },
+                        "div",
+                        { className: "questions" },
                         React.createElement(
-                            "span",
-                            { className: "question_number" },
-                            "2 \u2192"
+                            "label",
+                            { className: "input_label", htmlFor: "name" },
+                            React.createElement(
+                                "span",
+                                { className: "question_number" },
+                                "1 ",
+                                svgArrow
+                            ),
+                            "What is your ",
+                            React.createElement(
+                                "strong",
+                                null,
+                                "name"
+                            ),
+                            "?"
                         ),
-                        "When did you born?"
-                    ),
-                    React.createElement("input", { onChange: this.props.handler, className: "raw_input",
-                        name: "age", id: "age", type: "text", defaultValue: this.props.formState.age }),
-                    React.createElement(
-                        "label",
-                        { className: "input_label", htmlFor: "location" },
+                        React.createElement("input", { onChange: this.props.handler, className: "raw_input",
+                            name: "name", id: "name", type: "text", defaultValue: this.props.formState.name, placeholder: "Type your answer here..." }),
                         React.createElement(
-                            "span",
-                            { className: "question_number" },
-                            "3 \u2192"
+                            "label",
+                            { className: "input_label", htmlFor: "age" },
+                            React.createElement(
+                                "span",
+                                { className: "question_number" },
+                                "2 ",
+                                svgArrow
+                            ),
+                            "When did you ",
+                            React.createElement(
+                                "strong",
+                                null,
+                                "born"
+                            ),
+                            "?"
                         ),
-                        "Where do you live?"
-                    ),
-                    React.createElement("input", { onChange: this.props.handler, className: "raw_input",
-                        name: "location", id: "location", type: "text", defaultValue: this.props.formState.location })
+                        React.createElement("input", { onChange: this.props.handler, className: "raw_input",
+                            name: "age", id: "age", type: "text", defaultValue: this.props.formState.age, placeholder: "Type your answer here..." }),
+                        React.createElement(
+                            "label",
+                            { className: "input_label", htmlFor: "location" },
+                            React.createElement(
+                                "span",
+                                { className: "question_number" },
+                                "3 ",
+                                svgArrow
+                            ),
+                            "Where do you ",
+                            React.createElement(
+                                "strong",
+                                null,
+                                "live"
+                            ),
+                            "?"
+                        ),
+                        React.createElement("input", { onChange: this.props.handler, className: "raw_input",
+                            name: "location", id: "location", type: "text", defaultValue: this.props.formState.location, placeholder: "Type your answer here..." })
+                    )
                 )
             );
         }

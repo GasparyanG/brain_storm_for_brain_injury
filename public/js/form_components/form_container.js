@@ -73,7 +73,7 @@ var Form = function (_React$Component) {
             if (this.state.liked) {
                 return React.createElement(
                     "div",
-                    null,
+                    { className: "layers_container" },
                     React.createElement(DemographicLayer, { handler: this.handler, formState: this.state.form }),
                     React.createElement(InjuryIdentifier, { handler: this.handler, formState: this.state.form }),
                     React.createElement(Concerns, { handler: this.handler, formState: this.state.form })

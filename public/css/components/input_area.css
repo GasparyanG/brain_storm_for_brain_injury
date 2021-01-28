@@ -1,17 +1,32 @@
 :root {
+    /* Colors */
     --input-color: rgba(31, 127, 255, 0.4);
     --input-color-active: rgba(31, 127, 255, 1);
+    --question-color: rgb(68, 68, 68);
+
+    /* Font Sizes */
+    --input-font-size: 30px;
+    --input-sm-font-size: 20px;
+    --question-number-size: 18px;
+    --question-sm-number-size: 13px;
+    --quesiton-font-size: 20px;
+    --quesiton-sm-font-size: 15px;
 }
 
 #form_container .raw_input {
     display: block;
     border: none;
     border-bottom: 1px solid var(--input-color);
-    width: 50%;
-    font-size: 30px;
+    width: 54vw;
+    font-size: var(--input-font-size);
     margin-left: 2rem;
     margin-bottom: 2rem;
     color: var(--input-color);
+}
+
+/* Contents Position */
+#form_container .layer_content {
+    margin-left: 23vw;
 }
 
 #form_container .raw_input:active, #form_container .raw_input:focus {
@@ -20,12 +35,64 @@
     color: var(--input-color-active);
 }
 
+#form_container .raw_input::placeholder {
+    color: var(--input-color);
+}
+
 /* Input Label */
 #form_container .input_label {
-    font-size: 22px;
-    line-height: 24px;
+    font-size: var(--quesiton-font-size);
+    color: var(--question-color);
 }
 
 #form_container .question_number {
+    margin-right: 0.5rem;
     font-weight: 500;
+    color: var(--input-color-active);
+    font-size: var(--question-number-size);
+}
+
+/* -------------------------- RESPONSIVENESS ------------------------------ */
+
+/* Medium Screen */
+@media only screen and (min-width: 751px) and (max-width: 1000px) {
+    #form_container .raw_input {
+        width: 60vw;
+    }
+
+    #form_container .layer_content {
+        margin-left: 20vw;
+    }
+}
+
+/* Small Screen */
+@media only screen and (min-width: 551px) and (max-width: 750px) {
+    #form_container .raw_input {
+        width: 70vw;
+    }
+
+    #form_container .layer_content {
+        margin-left: 10vw;
+    }
+}
+
+
+/* Tiny Screen */
+@media only screen and (max-width: 550px) {
+    #form_container .raw_input {
+        width: 70vw;
+        font-size: var(--input-sm-font-size);
+    }
+
+    #form_container .layer_content {
+        margin-left: 10vw;
+    }
+
+    #form_container .question_number {
+        font-size: var(--question-sm-number-size);
+    }
+
+    #form_container .input_label {
+        font-size: var(--quesiton-sm-font-size);
+    }
 }

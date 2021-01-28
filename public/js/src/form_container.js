@@ -56,7 +56,7 @@ class Form extends React.Component {
     render() {
         if (this.state.liked) {
             return (
-                <div>
+                <div className="layers_container">
                     <DemographicLayer handler={this.handler} formState={this.state.form}/>
                     <InjuryIdentifier handler={this.handler} formState={this.state.form}/>
                     <Concerns handler={this.handler}  formState={this.state.form}/>
