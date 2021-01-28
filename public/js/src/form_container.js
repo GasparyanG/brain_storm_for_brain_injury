@@ -10,7 +10,7 @@ class Form extends React.Component {
         this.checkboxHandler = this.onCheckboxCheck.bind(this);
 
         // Update local storage periodically.
-        setInterval(this.updateStorage, 30000);
+        setInterval(this.updateStorage, 5000);
     }
 
     updateStorage = () => {
@@ -24,6 +24,7 @@ class Form extends React.Component {
                 date_of_birth: "",
                 location: "",
                 concerns: [],
+                concerns_other: "",
                 injury_date: "",
                 injury_reason: ""
             }
@@ -59,7 +60,7 @@ class Form extends React.Component {
             <div className="layers_container">
                 <DemographicLayer handler={this.handler} formState={this.state.form}/>
                 <InjuryIdentifier handler={this.handler} formState={this.state.form}/>
-                <Concerns checkboxHandler={this.checkboxHandler}  formState={this.state.form}/>
+                <Concerns handler={this.handler} checkboxHandler={this.checkboxHandler}  formState={this.state.form}/>
             </div>
         );
     }

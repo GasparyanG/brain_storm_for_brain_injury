@@ -46,7 +46,7 @@ var Form = function (_React$Component) {
         _this.checkboxHandler = _this.onCheckboxCheck.bind(_this);
 
         // Update local storage periodically.
-        setInterval(_this.updateStorage, 30000);
+        setInterval(_this.updateStorage, 5000);
         return _this;
     }
 
@@ -59,6 +59,7 @@ var Form = function (_React$Component) {
                     date_of_birth: "",
                     location: "",
                     concerns: [],
+                    concerns_other: "",
                     injury_date: "",
                     injury_reason: ""
                 }
@@ -76,7 +77,7 @@ var Form = function (_React$Component) {
                 { className: "layers_container" },
                 React.createElement(DemographicLayer, { handler: this.handler, formState: this.state.form }),
                 React.createElement(InjuryIdentifier, { handler: this.handler, formState: this.state.form }),
-                React.createElement(Concerns, { checkboxHandler: this.checkboxHandler, formState: this.state.form })
+                React.createElement(Concerns, { handler: this.handler, checkboxHandler: this.checkboxHandler, formState: this.state.form })
             );
         }
     }]);

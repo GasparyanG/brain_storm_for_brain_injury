@@ -131,7 +131,7 @@ var Concerns = function (_React$Component) {
                             { className: "checkbox_container" },
                             checkboxItems,
                             React.createElement("input", { onChange: this.props.handler, className: "raw_input",
-                                name: "concern_other", id: "concern_other", type: "text", defaultValue: this.props.formState.name, placeholder: "Other" })
+                                name: "concerns_other", id: "concerns_other", type: "text", defaultValue: this.props.formState.concerns_other, placeholder: "Other" })
                         )
                     )
                 )
