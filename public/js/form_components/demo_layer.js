@@ -31,11 +31,11 @@ var DemographicLayer = function (_React$Component) {
                     { className: "questions" },
                     React.createElement(
                         "label",
-                        { htmlFor: "name" },
+                        { className: "input_label", htmlFor: "name" },
                         React.createElement(
                             "span",
                             { className: "question_number" },
-                            "1 ->"
+                            "1 \u2192"
                         ),
                         "What is your ",
                         React.createElement(
@@ -49,11 +49,11 @@ var DemographicLayer = function (_React$Component) {
                         name: "name", id: "name", type: "text", defaultValue: this.props.formState.name }),
                     React.createElement(
                         "label",
-                        { htmlFor: "age" },
+                        { className: "input_label", htmlFor: "age" },
                         React.createElement(
                             "span",
                             { className: "question_number" },
-                            "2 ->"
+                            "2 \u2192"
                         ),
                         "When did you born?"
                     ),
@@ -61,11 +61,11 @@ var DemographicLayer = function (_React$Component) {
                         name: "age", id: "age", type: "text", defaultValue: this.props.formState.age }),
                     React.createElement(
                         "label",
-                        { htmlFor: "location" },
+                        { className: "input_label", htmlFor: "location" },
                         React.createElement(
                             "span",
                             { className: "question_number" },
-                            "3 ->"
+                            "3 \u2192"
                         ),
                         "Where do you live?"
                     ),

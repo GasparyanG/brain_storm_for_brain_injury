@@ -1,0 +1,31 @@
+:root {
+    --input-color: rgba(31, 127, 255, 0.4);
+    --input-color-active: rgba(31, 127, 255, 1);
+}
+
+#form_container .raw_input {
+    display: block;
+    border: none;
+    border-bottom: 1px solid var(--input-color);
+    width: 50%;
+    font-size: 30px;
+    margin-left: 2rem;
+    margin-bottom: 2rem;
+    color: var(--input-color);
+}
+
+#form_container .raw_input:active, #form_container .raw_input:focus {
+    border: none;
+    border-bottom: 2px solid var(--input-color-active);
+    color: var(--input-color-active);
+}
+
+/* Input Label */
+#form_container .input_label {
+    font-size: 22px;
+    line-height: 24px;
+}
+
+#form_container .question_number {
+    font-weight: 500;
+}
