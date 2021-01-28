@@ -45,7 +45,7 @@ var InjuryIdentifier = function (_React$Component) {
                             React.createElement(
                                 "span",
                                 { className: "question_number" },
-                                "1 ",
+                                "4 ",
                                 svgArrow
                             ),
                             React.createElement(
@@ -56,14 +56,14 @@ var InjuryIdentifier = function (_React$Component) {
                             " your brain injury?"
                         ),
                         React.createElement("input", { onChange: this.props.handler, className: "raw_input",
-                            name: "injury_date", id: "injury_date", type: "text", defaultValue: this.props.formState.name, placeholder: "Type your answer here..." }),
+                            name: "injury_date", id: "injury_date", type: "text", defaultValue: this.props.formState.injury_date, placeholder: "Type your answer here..." }),
                         React.createElement(
                             "label",
                             { className: "input_label", htmlFor: "injury_cause" },
                             React.createElement(
                                 "span",
                                 { className: "question_number" },
-                                "3 ",
+                                "5 ",
                                 svgArrow
                             ),
                             "What was ",
@@ -75,7 +75,7 @@ var InjuryIdentifier = function (_React$Component) {
                             " of injury?"
                         ),
                         React.createElement("input", { onChange: this.props.handler, className: "raw_input",
-                            name: "injury_cause", id: "injury_cause", type: "text", defaultValue: this.props.formState.location, placeholder: "Type your answer here..." })
+                            name: "injury_cause", id: "injury_cause", type: "text", defaultValue: this.props.formState.injury_reason, placeholder: "Type your answer here..." })
                     )
                 )
             );

@@ -14,9 +14,9 @@ class DemographicLayer extends React.Component {
                         <label className="input_label" htmlFor="name"><span className="question_number">1 {svgArrow}</span>What is your <strong>name</strong>?</label>
                         <input onChange={this.props.handler} className="raw_input"
                                name="name" id="name" type="text" defaultValue={this.props.formState.name} placeholder="Type your answer here..."/>
-                        <label className="input_label" htmlFor="age"><span className="question_number">2 {svgArrow}</span>When did you <strong>born</strong>?</label>
+                        <label className="input_label" htmlFor="date_of_birth"><span className="question_number">2 {svgArrow}</span>When did you <strong>born</strong>?</label>
                         <input onChange={this.props.handler} className="raw_input"
-                               name="age" id="age" type="text" defaultValue={this.props.formState.age} placeholder="Type your answer here..."/>
+                               name="date_of_birth" id="date_of_birth" type="text" defaultValue={this.props.formState.age} placeholder="Type your answer here..."/>
                         <label className="input_label" htmlFor="location"><span className="question_number">3 {svgArrow}</span>Where do you <strong>live</strong>?</label>
                         <input onChange={this.props.handler} className="raw_input"
                                name="location" id="location" type="text" defaultValue={this.props.formState.location} placeholder="Type your answer here..."/>

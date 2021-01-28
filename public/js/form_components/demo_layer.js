@@ -60,7 +60,7 @@ var DemographicLayer = function (_React$Component) {
                             name: "name", id: "name", type: "text", defaultValue: this.props.formState.name, placeholder: "Type your answer here..." }),
                         React.createElement(
                             "label",
-                            { className: "input_label", htmlFor: "age" },
+                            { className: "input_label", htmlFor: "date_of_birth" },
                             React.createElement(
                                 "span",
                                 { className: "question_number" },
@@ -76,7 +76,7 @@ var DemographicLayer = function (_React$Component) {
                             "?"
                         ),
                         React.createElement("input", { onChange: this.props.handler, className: "raw_input",
-                            name: "age", id: "age", type: "text", defaultValue: this.props.formState.age, placeholder: "Type your answer here..." }),
+                            name: "date_of_birth", id: "date_of_birth", type: "text", defaultValue: this.props.formState.age, placeholder: "Type your answer here..." }),
                         React.createElement(
                             "label",
                             { className: "input_label", htmlFor: "location" },

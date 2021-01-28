@@ -11,12 +11,12 @@ class InjuryIdentifier extends React.Component {
                 <div className="layer_content">
                     <div className="layer_header">Now, let's fill some information about your injury.</div>
                     <div className="questions">
-                        <label className="input_label" htmlFor="injury_date"><span className="question_number">1 {svgArrow}</span><strong>When was</strong> your brain injury?</label>
+                        <label className="input_label" htmlFor="injury_date"><span className="question_number">4 {svgArrow}</span><strong>When was</strong> your brain injury?</label>
                         <input onChange={this.props.handler} className="raw_input"
-                               name="injury_date" id="injury_date" type="text" defaultValue={this.props.formState.name} placeholder="Type your answer here..."/>
-                        <label className="input_label" htmlFor="injury_cause"><span className="question_number">3 {svgArrow}</span>What was <strong>the cause</strong> of injury?</label>
+                               name="injury_date" id="injury_date" type="text" defaultValue={this.props.formState.injury_date} placeholder="Type your answer here..."/>
+                        <label className="input_label" htmlFor="injury_cause"><span className="question_number">5 {svgArrow}</span>What was <strong>the cause</strong> of injury?</label>
                         <input onChange={this.props.handler} className="raw_input"
-                               name="injury_cause" id="injury_cause" type="text" defaultValue={this.props.formState.location} placeholder="Type your answer here..."/>
+                               name="injury_cause" id="injury_cause" type="text" defaultValue={this.props.formState.injury_reason} placeholder="Type your answer here..."/>
                     </div>
                 </div>
             </section>

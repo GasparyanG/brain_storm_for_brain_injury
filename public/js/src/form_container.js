@@ -7,6 +7,7 @@ class Form extends React.Component {
         super(props);
         this.state = this.populateState();
         this.handler = this.onValueChange.bind(this);
+        this.checkboxHandler = this.onCheckboxCheck.bind(this);
 
         // Update local storage periodically.
         setInterval(this.updateStorage, 30000);
@@ -18,11 +19,13 @@ class Form extends React.Component {
 
     populateState() {
         let defaultState = {
-            liked: false,
             form: {
                 name: "",
-                age: "",
-                location: ""
+                date_of_birth: "",
+                location: "",
+                concerns: [],
+                injury_date: "",
+                injury_reason: ""
             }
         };
 
@@ -32,10 +35,8 @@ class Form extends React.Component {
         return defaultState;
     }
 
-    handleClick = () => {
-        this.setState(this.state = {
-            liked: true
-        });
+    onCheckboxCheck = (field, value) => {
+        this.onChange(field, value);
     }
 
     onValueChange = (event) => {
@@ -54,20 +55,12 @@ class Form extends React.Component {
     }
 
     render() {
-        if (this.state.liked) {
-            return (
-                <div className="layers_container">
-                    <DemographicLayer handler={this.handler} formState={this.state.form}/>
-                    <InjuryIdentifier handler={this.handler} formState={this.state.form}/>
-                    <Concerns handler={this.handler}  formState={this.state.form}/>
-                </div>
-            );
-        }
-
         return (
-            <button onClick={this.handleClick}>
-                Like
-            </button>
+            <div className="layers_container">
+                <DemographicLayer handler={this.handler} formState={this.state.form}/>
+                <InjuryIdentifier handler={this.handler} formState={this.state.form}/>
+                <Concerns checkboxHandler={this.checkboxHandler}  formState={this.state.form}/>
+            </div>
         );
     }
 }

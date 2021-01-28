@@ -22,10 +22,8 @@ var Form = function (_React$Component) {
             window.localStorage.setItem("form", JSON.stringify(_this.state));
         };
 
-        _this.handleClick = function () {
-            _this.setState(_this.state = {
-                liked: true
-            });
+        _this.onCheckboxCheck = function (field, value) {
+            _this.onChange(field, value);
         };
 
         _this.onValueChange = function (event) {
@@ -45,6 +43,7 @@ var Form = function (_React$Component) {
 
         _this.state = _this.populateState();
         _this.handler = _this.onValueChange.bind(_this);
+        _this.checkboxHandler = _this.onCheckboxCheck.bind(_this);
 
         // Update local storage periodically.
         setInterval(_this.updateStorage, 30000);
@@ -55,11 +54,13 @@ var Form = function (_React$Component) {
         key: "populateState",
         value: function populateState() {
             var defaultState = {
-                liked: false,
                 form: {
                     name: "",
-                    age: "",
-                    location: ""
+                    date_of_birth: "",
+                    location: "",
+                    concerns: [],
+                    injury_date: "",
+                    injury_reason: ""
                 }
             };
 
@@ -70,20 +71,12 @@ var Form = function (_React$Component) {
     }, {
         key: "render",
         value: function render() {
-            if (this.state.liked) {
-                return React.createElement(
-                    "div",
-                    { className: "layers_container" },
-                    React.createElement(DemographicLayer, { handler: this.handler, formState: this.state.form }),
-                    React.createElement(InjuryIdentifier, { handler: this.handler, formState: this.state.form }),
-                    React.createElement(Concerns, { handler: this.handler, formState: this.state.form })
-                );
-            }
-
             return React.createElement(
-                "button",
-                { onClick: this.handleClick },
-                "Like"
+                "div",
+                { className: "layers_container" },
+                React.createElement(DemographicLayer, { handler: this.handler, formState: this.state.form }),
+                React.createElement(InjuryIdentifier, { handler: this.handler, formState: this.state.form }),
+                React.createElement(Concerns, { checkboxHandler: this.checkboxHandler, formState: this.state.form })
             );
         }
     }]);
