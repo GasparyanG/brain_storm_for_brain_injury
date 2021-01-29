@@ -42,3 +42,18 @@
 #form_container .raw_button:hover {
     background-color: rgb(81, 152, 190);
 }
+
+
+/* -------------------------- RESPONSIVENESS ------------------------------ */
+@media only screen and (max-width: 550px) {
+    #form_container .raw_button {
+        font-size: 10px;
+        min-height: 30px;
+        width: 30px;
+        padding: 2px 4px;
+    }
+
+    .action_prompt {
+        font-size: 15px;
+    }
+}

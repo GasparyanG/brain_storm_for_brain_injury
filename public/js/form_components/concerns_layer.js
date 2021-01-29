@@ -173,21 +173,8 @@ var Concerns = function (_React$Component) {
                 React.createElement(
                     "strong",
                     null,
-                    "greatest concerns"
-                ),
-                " (check ",
-                React.createElement(
-                    "strong",
-                    null,
-                    "up to four"
-                ),
-                " and ",
-                React.createElement(
-                    "strong",
-                    null,
-                    "star"
-                ),
-                " the most troubling one)"
+                    "greatest concerns."
+                )
             );
             if (this.props.formState.name !== "") label = React.createElement(
                 "label",
@@ -203,26 +190,13 @@ var Concerns = function (_React$Component) {
                 React.createElement(
                     "strong",
                     null,
-                    "greatest concerns"
-                ),
-                " (check ",
-                React.createElement(
-                    "strong",
-                    null,
-                    "up to four"
-                ),
-                " and ",
-                React.createElement(
-                    "strong",
-                    null,
-                    "star"
-                ),
-                " the most troubling one)"
+                    "greatest concerns."
+                )
             );
 
             return React.createElement(
                 "section",
-                { className: "concerns form_layer" },
+                { className: "concerns form_layer hidden" },
                 React.createElement(
                     "div",
                     { className: "layer_content" },
@@ -230,6 +204,23 @@ var Concerns = function (_React$Component) {
                         "div",
                         { className: "questions concern_questions" },
                         label,
+                        React.createElement(
+                            "div",
+                            { className: "question_usage_hint" },
+                            "Check ",
+                            React.createElement(
+                                "strong",
+                                null,
+                                "up to four"
+                            ),
+                            " and ",
+                            React.createElement(
+                                "strong",
+                                null,
+                                "star"
+                            ),
+                            " the most troubling one."
+                        ),
                         React.createElement(
                             "div",
                             { className: "choices_section" },

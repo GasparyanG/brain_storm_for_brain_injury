@@ -1,6 +1,8 @@
 :root {
     --date-margin-right: 3rem;
     --date-input-width: 50px;
+    --sm-date-margin-right: 2rem;
+    --sm-date-input-width: 40px;
 }
 
 #form_container .date_input_section {
@@ -48,4 +50,26 @@
     margin-left: calc(var(--date-input-width) + (var(--date-margin-right)/2));
     margin-top: calc(50px / 2);
     transform: skew(-10deg);
+}
+
+
+/* -------------------------- RESPONSIVENESS ------------------------------ */
+@media only screen and (max-width: 550px) {
+    #form_container .date_section_name {
+        font-size: 15px;
+    }
+
+    #form_container .date_input_section .raw_date_input {
+        font-size: 20px;
+        width: var(--sm-date-input-width);
+        margin-right: var(--sm-date-margin-right);
+        height: 30px;
+    }
+
+    #form_container .date_input_section .date_input_part_dash::after {
+        width: 2px;
+        height: calc(var(--sm-date-input-width) - 20px);
+        margin-left: calc(var(--sm-date-input-width) + (var(--date-margin-right)/2));
+        margin-top: calc(40px / 2);
+    }
 }

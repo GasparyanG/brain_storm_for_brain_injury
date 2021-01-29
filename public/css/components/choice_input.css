@@ -4,8 +4,12 @@
     --choice-color: rgb(52, 113, 130);
     --choice-shadow-color: rgba(52, 113, 130, 0.8);
     --choice-hover-background-color: rgba(52, 113, 130, 0.3);
+
+    /* Letter box sizes */
     --letter-box-width: 25px;
     --letter-box-height: 25px;
+    --md-letter-box-width: 20px;
+    --md-letter-box-height: 20px;
 }
 
 /* Choice animation */
@@ -119,4 +123,48 @@
     background-color: var(--choice-color);
     color: white;
     border-radius: var(--box-radius);
+}
+
+/* -------------------------------------------- RESPONSIVENESS -------------------------------------------- */
+
+@media only screen and (min-width: 801px) and (max-width: 900px) {
+    #form_container .choice_part {
+        font-size: 15px;
+        width: 47%;
+    }
+
+    #form_container .choice_other_raw_input {
+        font-size: 15px;
+    }
+
+    #form_container .choice_letter {
+        width: var(--md-letter-box-width);
+        height: var(--md-letter-box-height);
+        font-size: 13px;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    #form_container .choices_section {
+        flex-direction: column;
+        max-height: calc(100vh/2);
+        overflow-y: scroll;
+        flex-wrap: nowrap;
+        border-bottom: 2px dashed blueviolet;
+    }
+
+    #form_container .choice_part {
+        font-size: 15px;
+        width: 90%;
+    }
+
+    #form_container .choice_other_raw_input {
+        font-size: 15px;
+    }
+
+    #form_container .choice_letter {
+        width: var(--md-letter-box-width);
+        height: var(--md-letter-box-height);
+        font-size: 13px;
+    }
 }
