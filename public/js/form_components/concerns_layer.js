@@ -60,10 +60,12 @@ var Concerns = function (_React$Component) {
         key: "createCheckbox",
         value: function createCheckbox(key) {
             var value = this.state.concerns[key];
+            var checked = "";
+            if (this.props.formState.concerns.includes(key)) checked = CSSClasses.choice_is_made;
 
             return React.createElement(
                 "div",
-                { key: value + ' ' + key, className: "choice_part", onClick: this.onCheck, "data-value": key },
+                { key: value + ' ' + key, className: "choice_part " + checked, onClick: this.onCheck, "data-value": key },
                 React.createElement(
                     "div",
                     { className: "choice_letter" },

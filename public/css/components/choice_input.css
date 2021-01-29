@@ -3,6 +3,13 @@
     --choice-background-color: rgba(52, 113, 130, 0.1);
     --choice-color: rgb(52, 113, 130);
     --choice-shadow-color: rgba(52, 113, 130, 0.8);
+    --choice-hover-background-color: rgba(52, 113, 130, 0.3)
+}
+
+/* Choice animation */
+@keyframes choice_blinking {
+    from {background-color: var(--choice-background-color)}
+    to {background-color: var(--choice-hover-background-color)}
 }
 
 #form_container .choices_section {
@@ -35,6 +42,9 @@
     font-size: 20px;
 }
 
+#form_container .choice_part:hover {
+    background-color: var(--choice-hover-background-color);
+}
 
 /* Choice letter decoration */
 #form_container .choice_letter {
@@ -70,6 +80,7 @@
 /* Choice decoration */
 #form_container .choice_is_made {
     box-shadow: var(--choice-color) 0px 0px 0px 2px inset;
+    animation: 0.25s ease 0s 2 normal none running choice_blinking;
 }
 
 #form_container .choice_is_made .choice_letter {

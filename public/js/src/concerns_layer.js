@@ -45,9 +45,12 @@ class Concerns extends React.Component {
 
     createCheckbox(key) {
         let value = this.state.concerns[key];
+        let checked = "";
+        if (this.props.formState.concerns.includes(key))
+            checked = CSSClasses.choice_is_made;
 
         return (
-            <div key={value + ' ' + key} className="choice_part" onClick={this.onCheck} data-value={key}>
+            <div key={value + ' ' + key} className={"choice_part " + checked} onClick={this.onCheck} data-value={key}>
                 <div className="choice_letter">{this.letters[key]}</div>
                 <div className="choice_name">{value}</div>
             </div>
