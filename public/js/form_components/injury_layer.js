@@ -57,7 +57,7 @@ var DateOfInjury = function (_React$Component) {
 
             return React.createElement(
                 "section",
-                { className: "date_of_injury form_layer hidden" },
+                { className: "date_of_injury form_layer" },
                 React.createElement(
                     "div",
                     { className: "layer_content" },
@@ -73,30 +73,30 @@ var DateOfInjury = function (_React$Component) {
                                 { className: "date_input_part date_input_part_dash date_input_month" },
                                 React.createElement(
                                     "label",
-                                    { className: "date_section_name" },
+                                    { htmlFor: "injury_date_month", className: "date_section_name" },
                                     "Month"
                                 ),
-                                React.createElement("input", { className: "raw_date_input", type: "text" })
+                                React.createElement("input", { onChange: this.props.handler, id: "injury_date_month", name: "injury_date_month", className: "raw_date_input", type: "text" })
                             ),
                             React.createElement(
                                 "div",
                                 { className: "date_input_part date_input_part_dash date_input_day" },
                                 React.createElement(
                                     "label",
-                                    { className: "date_section_name" },
+                                    { htmlFor: "injury_date_day", className: "date_section_name" },
                                     "Day"
                                 ),
-                                React.createElement("input", { className: "raw_date_input", type: "text" })
+                                React.createElement("input", { onChange: this.props.handler, id: "injury_date_day", name: "injury_date_day", className: "raw_date_input", type: "text" })
                             ),
                             React.createElement(
                                 "div",
                                 { className: "date_input_part date_input_year" },
                                 React.createElement(
                                     "label",
-                                    { className: "date_section_name" },
+                                    { htmlFor: "injury_date_year", className: "date_section_name" },
                                     "Year"
                                 ),
-                                React.createElement("input", { className: "raw_date_input", type: "text" })
+                                React.createElement("input", { onChange: this.props.handler, id: "injury_date_year", name: "injury_date_year", className: "raw_date_input", type: "text" })
                             )
                         ),
                         React.createElement(RegularButton, null)

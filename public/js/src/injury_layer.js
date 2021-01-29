@@ -14,22 +14,22 @@ class DateOfInjury extends React.Component {
 
 
         return (
-            <section className="date_of_injury form_layer hidden">
+            <section className="date_of_injury form_layer">
                 <div className="layer_content">
                     <div className="questions">
                         {label}
                         <div className="date_input_section">
                             <div className="date_input_part date_input_part_dash date_input_month">
-                                <label className="date_section_name">Month</label>
-                                <input className="raw_date_input" type="text"/>
+                                <label htmlFor="injury_date_month" className="date_section_name">Month</label>
+                                <input onChange={this.props.handler} id="injury_date_month" name="injury_date_month" className="raw_date_input" type="text"/>
                             </div>
                             <div className="date_input_part date_input_part_dash date_input_day">
-                                <label className="date_section_name">Day</label>
-                                <input className="raw_date_input" type="text"/>
+                                <label htmlFor="injury_date_day" className="date_section_name">Day</label>
+                                <input onChange={this.props.handler} id="injury_date_day" name="injury_date_day" className="raw_date_input" type="text"/>
                             </div>
                             <div className="date_input_part date_input_year">
-                                <label className="date_section_name">Year</label>
-                                <input className="raw_date_input" type="text"/>
+                                <label htmlFor="injury_date_year" className="date_section_name">Year</label>
+                                <input onChange={this.props.handler} id="injury_date_year" name="injury_date_year" className="raw_date_input" type="text"/>
                             </div>
                         </div>
                         <RegularButton/>

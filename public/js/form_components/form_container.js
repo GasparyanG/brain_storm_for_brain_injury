@@ -67,11 +67,13 @@ var Form = function (_React$Component) {
             var defaultState = {
                 form: {
                     name: "",
-                    date_of_birth: "",
+                    age: "",
                     location: "",
                     concerns: [],
                     concerns_other: "",
-                    injury_date: "",
+                    injury_date_day: "",
+                    injury_date_month: "",
+                    injury_date_yer: "",
                     injury_reason: ""
                 }
             };

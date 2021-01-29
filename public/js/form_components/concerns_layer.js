@@ -40,7 +40,7 @@ var Concerns = function (_React$Component) {
             var element = void 0;
             if (e.target.hasAttribute("data-value")) element = e.target;else if (e.target.parentNode.hasAttribute("data-value")) element = e.target.parentNode;else if (e.target.parentNode.parentNode.hasAttribute("data-value")) element = e.target.parentNode.parentNode;
 
-            if (element.querySelectorAll("." + CSSClasses.choice_other_raw_input)) {
+            if (element.querySelector("." + CSSClasses.choice_other_raw_input)) {
                 return _this.displayOtherInput(element);
             }
 
@@ -222,7 +222,7 @@ var Concerns = function (_React$Component) {
 
             return React.createElement(
                 "section",
-                { className: "concerns form_layer" },
+                { className: "concerns form_layer hidden" },
                 React.createElement(
                     "div",
                     { className: "layer_content" },

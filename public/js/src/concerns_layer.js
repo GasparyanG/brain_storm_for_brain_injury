@@ -34,7 +34,7 @@ class Concerns extends React.Component {
         choiceOtherInput.classList.toggle(CSSClasses.hidden_element);
         choiceLetter.classList.toggle(CSSClasses.hidden_element);
         checkElement.classList.toggle(CSSClasses.hidden_element);
-        
+
         this.state.other_input_disabled = !checkElement.classList.contains(CSSClasses.hidden_element);
     }
 
@@ -48,7 +48,7 @@ class Concerns extends React.Component {
         else if (e.target.parentNode.parentNode.hasAttribute("data-value"))
             element = e.target.parentNode.parentNode;
 
-        if (element.querySelectorAll("." + CSSClasses.choice_other_raw_input)) {
+        if (element.querySelector("." + CSSClasses.choice_other_raw_input)) {
             return this.displayOtherInput(element);
         }
 
@@ -132,7 +132,7 @@ class Concerns extends React.Component {
                 <span className="question_number">5 {this.props.svgArrow}</span>{this.props.formState.name}, check your <strong>greatest concerns</strong> (check <strong>up to four</strong> and <strong>star</strong> the most troubling one)</label>);
 
         return (
-            <section className="concerns form_layer">
+            <section className="concerns form_layer hidden">
                 <div className="layer_content">
                     <div className="questions concern_questions">
                         {label}
