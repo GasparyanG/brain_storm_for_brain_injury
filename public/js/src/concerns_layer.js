@@ -22,8 +22,7 @@ class Concerns extends React.Component {
     }
 
     displayOtherInput = (element) => {
-        if (!this.state.permit_is_pressed && this.state.other_input_disabled) return;
-        this.state.other_input_disabled = true;
+        if (this.state.other_input_disabled) return;
 
         let choiceName = element.querySelector("." + CSSClasses.default_choice_name);
         let choiceOtherInput = element.querySelector("." + CSSClasses.choice_other_raw_input);
@@ -35,6 +34,8 @@ class Concerns extends React.Component {
         choiceOtherInput.classList.toggle(CSSClasses.hidden_element);
         choiceLetter.classList.toggle(CSSClasses.hidden_element);
         checkElement.classList.toggle(CSSClasses.hidden_element);
+        
+        this.state.other_input_disabled = !checkElement.classList.contains(CSSClasses.hidden_element);
     }
 
     onCheck = (e) => {

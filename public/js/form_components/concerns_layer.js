@@ -19,8 +19,7 @@ var Concerns = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (Concerns.__proto__ || Object.getPrototypeOf(Concerns)).call(this, props));
 
         _this.displayOtherInput = function (element) {
-            if (!_this.state.permit_is_pressed && _this.state.other_input_disabled) return;
-            _this.state.other_input_disabled = true;
+            if (_this.state.other_input_disabled) return;
 
             var choiceName = element.querySelector("." + CSSClasses.default_choice_name);
             var choiceOtherInput = element.querySelector("." + CSSClasses.choice_other_raw_input);
@@ -32,6 +31,8 @@ var Concerns = function (_React$Component) {
             choiceOtherInput.classList.toggle(CSSClasses.hidden_element);
             choiceLetter.classList.toggle(CSSClasses.hidden_element);
             checkElement.classList.toggle(CSSClasses.hidden_element);
+
+            _this.state.other_input_disabled = !checkElement.classList.contains(CSSClasses.hidden_element);
         };
 
         _this.onCheck = function (e) {

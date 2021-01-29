@@ -68,11 +68,12 @@
 
 /* Choice's 'other' input decoration */
 #form_container .choice_other_raw_input {
-    border: 1px solid transparent;
-    background-color: var(--choice-background-color);
+    background-color: transparent;
     color: var(--choice-color);
     font-size: 20px;
     margin-left: 1rem;
+    border: none;
+    outline: none;
 }
 
 #form_container .choice_other_raw_input:hover,
