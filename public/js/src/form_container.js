@@ -1,6 +1,7 @@
 import {Name, Age, Location} from "./demo_layer"
 import {DateOfInjury, CauseOfInjury} from "./injury_layer";
 import {Concerns} from "./concerns_layer";
+import {Navigation} from "./navigation_buttons";
 
 class Form extends React.Component {
     constructor(props) {
@@ -74,6 +75,7 @@ class Form extends React.Component {
                     checkboxHandler={this.checkboxHandler} onValueUpdate={this.onValueUpdate}/>
                 <Concerns svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}
                     checkboxHandler={this.checkboxHandler} onValueUpdate={this.onValueUpdate}/>
+                <Navigation/>
             </div>
         );
     }

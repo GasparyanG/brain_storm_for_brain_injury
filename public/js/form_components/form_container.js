@@ -9,6 +9,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 import { Name, Age, Location } from "./demo_layer";
 import { DateOfInjury, CauseOfInjury } from "./injury_layer";
 import { Concerns } from "./concerns_layer";
+import { Navigation } from "./navigation_buttons";
 
 var Form = function (_React$Component) {
     _inherits(Form, _React$Component);
@@ -95,7 +96,8 @@ var Form = function (_React$Component) {
                 React.createElement(CauseOfInjury, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
                     checkboxHandler: this.checkboxHandler, onValueUpdate: this.onValueUpdate }),
                 React.createElement(Concerns, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
-                    checkboxHandler: this.checkboxHandler, onValueUpdate: this.onValueUpdate })
+                    checkboxHandler: this.checkboxHandler, onValueUpdate: this.onValueUpdate }),
+                React.createElement(Navigation, null)
             );
         }
     }]);

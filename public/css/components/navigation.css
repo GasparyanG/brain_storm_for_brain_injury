@@ -1,0 +1,45 @@
+#form_container .navigation_buttons {
+    display: flex;
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+}
+
+#form_container .navigation_buttons .nav_btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+    border: 1px solid transparent;
+    margin: 0px;
+    padding: 0px;
+    width: 36px;
+    min-width: 36px;
+    height: 32px;
+    -webkit-box-pack: center;
+    background-color: rgb(50, 134, 179);
+    color: white;
+    border-radius: 0px;
+}
+
+#form_container .nav_btn:hover {
+    background-color: rgb(81, 152, 190);
+}
+
+/* Navigation Icons */
+#form_container .nav-icon svg {
+    fill: white;
+}
+
+/* Navigation Buttons */
+#form_container .navigation_buttons .navigation_to_prev {
+    border-radius: 4px 0 0 4px;
+    margin-right: 1px;
+}
+
+#form_container .navigation_buttons .navigation_to_next {
+    border-radius: 0 4px 4px 0;
+}
+
