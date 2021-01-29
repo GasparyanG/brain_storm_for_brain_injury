@@ -14,7 +14,7 @@ class DateOfInjury extends React.Component {
 
 
         return (
-            <section className="date_of_injury form_layer">
+            <section className="date_of_injury form_layer hidden">
                 <div className="layer_content">
                     <div className="questions">
                         {label}

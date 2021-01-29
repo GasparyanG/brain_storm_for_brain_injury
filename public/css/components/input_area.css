@@ -2,7 +2,7 @@
     display: block;
     border: 1px solid transparent;
     border-bottom: 1px solid var(--input-color);
-    width: 54vw;
+    width: 40vw;
     font-size: var(--input-font-size);
     margin-left: var(--input-margin-left);
     color: var(--input-color);
@@ -61,7 +61,7 @@
 /* Small Screen */
 @media only screen and (min-width: 551px) and (max-width: 750px) {
     #form_container .raw_input {
-        width: 70vw;
+        width: 60vw;
     }
 
     #form_container .layer_content {
@@ -73,7 +73,7 @@
 /* Tiny Screen */
 @media only screen and (max-width: 550px) {
     #form_container .raw_input {
-        width: 70vw;
+        width: 60vw;
         font-size: var(--input-sm-font-size);
     }
 

@@ -7,7 +7,7 @@ class Name extends React.Component {
 
     render() {
         return (
-            <section className="user_name form_layer hidden">
+            <section className="user_name form_layer">
                 <div className="layer_content">
                     <div className="questions">
                         <label className="input_label" htmlFor="name"><span className="question_number">1 {this.props.svgArrow}</span>Let's start with your <strong>name</strong>.</label>
