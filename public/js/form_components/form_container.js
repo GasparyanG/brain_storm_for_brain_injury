@@ -92,7 +92,8 @@ var Form = function (_React$Component) {
                 React.createElement(Age, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form }),
                 React.createElement(Location, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form }),
                 React.createElement(DateOfInjury, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form }),
-                React.createElement(CauseOfInjury, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form }),
+                React.createElement(CauseOfInjury, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
+                    checkboxHandler: this.checkboxHandler, onValueUpdate: this.onValueUpdate }),
                 React.createElement(Concerns, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
                     checkboxHandler: this.checkboxHandler, onValueUpdate: this.onValueUpdate })
             );

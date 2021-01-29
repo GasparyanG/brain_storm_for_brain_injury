@@ -6,7 +6,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-import { RegularButton } from "./helper_components";
+import { CSSClasses, RegularButton } from "./helper_components";
 
 var DateOfInjury = function (_React$Component) {
     _inherits(DateOfInjury, _React$Component);
@@ -57,7 +57,7 @@ var DateOfInjury = function (_React$Component) {
 
             return React.createElement(
                 "section",
-                { className: "date_of_injury form_layer" },
+                { className: "date_of_injury form_layer hidden" },
                 React.createElement(
                     "div",
                     { className: "layer_content" },
@@ -115,10 +115,124 @@ var CauseOfInjury = function (_React$Component2) {
     function CauseOfInjury(props) {
         _classCallCheck(this, CauseOfInjury);
 
-        return _possibleConstructorReturn(this, (CauseOfInjury.__proto__ || Object.getPrototypeOf(CauseOfInjury)).call(this, props));
+        var _this2 = _possibleConstructorReturn(this, (CauseOfInjury.__proto__ || Object.getPrototypeOf(CauseOfInjury)).call(this, props));
+
+        _this2.displayOtherInput = function (element) {
+            if (_this2.state.other_input_disabled) return;
+
+            var choiceName = element.querySelector("." + CSSClasses.default_choice_name);
+            var choiceOtherInput = element.querySelector("." + CSSClasses.choice_other_raw_input);
+            var choiceLetter = element.querySelector("." + CSSClasses.choice_letter);
+            var checkElement = element.querySelector("." + CSSClasses.enabled_other_input);
+            if (!choiceName || !choiceOtherInput || !choiceLetter) return;
+
+            choiceName.classList.toggle(CSSClasses.hidden_element);
+            choiceOtherInput.classList.toggle(CSSClasses.hidden_element);
+            choiceLetter.classList.toggle(CSSClasses.hidden_element);
+            checkElement.classList.toggle(CSSClasses.hidden_element);
+
+            _this2.state.other_input_disabled = !checkElement.classList.contains(CSSClasses.hidden_element);
+        };
+
+        _this2.onCheck = function (e) {
+            // Functionality
+            var element = void 0;
+            if (e.target.hasAttribute("data-value")) element = e.target;else if (e.target.parentNode.hasAttribute("data-value")) element = e.target.parentNode;else if (e.target.parentNode.parentNode.hasAttribute("data-value")) element = e.target.parentNode.parentNode;
+
+            if (element.querySelector("." + CSSClasses.choice_other_raw_input)) {
+                return _this2.displayOtherInput(element);
+            }
+
+            _this2.props.checkboxHandler("injury_reason", element.dataset.value);
+
+            // Design
+            element.classList.toggle(CSSClasses.choice_is_made);
+        };
+
+        _this2.unCheck = function (e) {
+            if (!e.target.classList.contains(CSSClasses.enabled_other_input)) return;
+
+            // Remove from choices
+            _this2.props.onValueUpdate(CSSClasses.concerns_other, "");
+
+            // Remove decoration
+            var parentElement = e.target.parentNode.classList.remove(CSSClasses.choice_is_made);
+
+            _this2.state.other_input_disabled = false;
+        };
+
+        _this2.otherInputRendering = function () {
+            var valueToDisplay = "";
+            var checked = "";
+            if (_this2.props.formState.injury_reason !== "") {
+                valueToDisplay = _this2.props.formState.concerns_other;
+                checked = CSSClasses.choice_is_made;
+            }
+
+            return React.createElement(
+                "div",
+                { className: "choice_part " + checked, "data-value": "6", onClick: _this2.onCheck },
+                React.createElement(
+                    "div",
+                    { className: "choice_letter" },
+                    "N"
+                ),
+                React.createElement(
+                    "div",
+                    { className: "choice_name" },
+                    React.createElement(
+                        "span",
+                        { className: "default_choice_name" },
+                        "Other"
+                    ),
+                    React.createElement("input", { onChange: _this2.props.handler, id: "injury_reason", name: "injury_reason", className: "choice_other_raw_input hidden", defaultValue: valueToDisplay, type: "text", placeholder: "Type your answer..." })
+                ),
+                React.createElement(
+                    "div",
+                    { className: "enabled_other_input hidden", onClick: _this2.unCheck },
+                    "\u2713"
+                )
+            );
+        };
+
+        _this2.state = {
+            concerns: {
+                1: "Traumatic brain injury", 2: "Stroke", 3: "Cerebral palsy",
+                4: "Tumor", 5: "Infection"
+            },
+
+            other_input_disabled: false
+        };
+
+        _this2.letters = {
+            1: 'A', 2: 'B', 3: 'C', 4: 'D', 5: 'E', 6: 'F'
+        };
+        return _this2;
     }
 
     _createClass(CauseOfInjury, [{
+        key: "createCheckbox",
+        value: function createCheckbox(key) {
+            var value = this.state.concerns[key];
+            var checked = "";
+            if (this.props.formState.concerns.includes(key)) checked = CSSClasses.choice_is_made;
+
+            return React.createElement(
+                "div",
+                { key: value + ' ' + key, className: "choice_part " + checked, onClick: this.onCheck, "data-value": key },
+                React.createElement(
+                    "div",
+                    { className: "choice_letter" },
+                    this.letters[key]
+                ),
+                React.createElement(
+                    "div",
+                    { className: "choice_name" },
+                    value
+                )
+            );
+        }
+    }, {
         key: "render",
         value: function render() {
             var label = React.createElement(
@@ -157,9 +271,16 @@ var CauseOfInjury = function (_React$Component2) {
                 " of injury?"
             );
 
+            var checkboxItems = [];
+            for (var key in this.state.concerns) {
+                checkboxItems.push(this.createCheckbox(key));
+            }
+
+            var otherInput = this.otherInputRendering();
+
             return React.createElement(
                 "section",
-                { className: "cause_of_injury form_layer hidden" },
+                { className: "cause_of_injury form_layer" },
                 React.createElement(
                     "div",
                     { className: "layer_content" },
@@ -170,95 +291,8 @@ var CauseOfInjury = function (_React$Component2) {
                         React.createElement(
                             "div",
                             { className: "choices_section" },
-                            React.createElement(
-                                "div",
-                                { className: "choice_part" },
-                                React.createElement(
-                                    "div",
-                                    { className: "choice_letter" },
-                                    "A"
-                                ),
-                                React.createElement(
-                                    "div",
-                                    { className: "choice_name" },
-                                    "Traumatic brain injury"
-                                )
-                            ),
-                            React.createElement(
-                                "div",
-                                { className: "choice_part" },
-                                React.createElement(
-                                    "div",
-                                    { className: "choice_letter" },
-                                    "B"
-                                ),
-                                React.createElement(
-                                    "div",
-                                    { className: "choice_name" },
-                                    "Stroke"
-                                )
-                            ),
-                            React.createElement(
-                                "div",
-                                { className: "choice_part" },
-                                React.createElement(
-                                    "div",
-                                    { className: "choice_letter" },
-                                    "C"
-                                ),
-                                React.createElement(
-                                    "div",
-                                    { className: "choice_name" },
-                                    "Cerebral palsy"
-                                )
-                            ),
-                            React.createElement(
-                                "div",
-                                { className: "choice_part" },
-                                React.createElement(
-                                    "div",
-                                    { className: "choice_letter" },
-                                    "D"
-                                ),
-                                React.createElement(
-                                    "div",
-                                    { className: "choice_name" },
-                                    "Tumor"
-                                )
-                            ),
-                            React.createElement(
-                                "div",
-                                { className: "choice_part" },
-                                React.createElement(
-                                    "div",
-                                    { className: "choice_letter" },
-                                    "E"
-                                ),
-                                React.createElement(
-                                    "div",
-                                    { className: "choice_name" },
-                                    "Infection"
-                                )
-                            ),
-                            React.createElement(
-                                "div",
-                                { className: "choice_part" },
-                                React.createElement(
-                                    "div",
-                                    { className: "choice_letter" },
-                                    "F"
-                                ),
-                                React.createElement(
-                                    "div",
-                                    { className: "choice_name" },
-                                    React.createElement(
-                                        "span",
-                                        null,
-                                        "Other"
-                                    ),
-                                    React.createElement("input", { className: "choice_other_raw_input hidden", type: "text", placeholder: "Type your answer..." })
-                                )
-                            )
+                            checkboxItems,
+                            otherInput
                         )
                     )
                 )
