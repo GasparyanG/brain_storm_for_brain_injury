@@ -52,7 +52,7 @@ var DateOfInjury = function (_React$Component) {
                     null,
                     "when was"
                 ),
-                " your brain injury??"
+                " your brain injury?"
             );
 
             return React.createElement(
@@ -280,7 +280,7 @@ var CauseOfInjury = function (_React$Component2) {
 
             return React.createElement(
                 "section",
-                { className: "cause_of_injury form_layer" },
+                { className: "cause_of_injury form_layer hidden" },
                 React.createElement(
                     "div",
                     { className: "layer_content" },

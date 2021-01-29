@@ -47,7 +47,7 @@ var Name = function (_React$Component) {
                             "."
                         ),
                         React.createElement("input", { onChange: this.props.handler, className: "raw_input",
-                            name: "name", id: "name", type: "text", defaultValue: this.props.formState.name, placeholder: "Type your answer here..." }),
+                            name: "name", id: "name", type: "text", defaultValue: this.props.formState.name, placeholder: "Type here..." }),
                         React.createElement(RegularButton, null)
                     )
                 )
@@ -72,7 +72,7 @@ var Age = function (_React$Component2) {
         value: function render() {
             var label = React.createElement(
                 "label",
-                { className: "input_label", htmlFor: "date_of_birth" },
+                { className: "input_label", htmlFor: "age" },
                 React.createElement(
                     "span",
                     { className: "question_number" },
@@ -89,7 +89,7 @@ var Age = function (_React$Component2) {
             );
             if (this.props.formState.name !== "") label = React.createElement(
                 "label",
-                { className: "input_label", htmlFor: "date_of_birth" },
+                { className: "input_label", htmlFor: "age" },
                 React.createElement(
                     "span",
                     { className: "question_number" },
@@ -117,7 +117,7 @@ var Age = function (_React$Component2) {
                         { className: "questions" },
                         label,
                         React.createElement("input", { onChange: this.props.handler, className: "raw_input",
-                            name: "date_of_birth", id: "date_of_birth", type: "text", defaultValue: this.props.formState.age, placeholder: "Type your answer here..." }),
+                            name: "age", id: "age", type: "text", defaultValue: this.props.formState.age, placeholder: "Type your answer here..." }),
                         React.createElement(RegularButton, null)
                     )
                 )

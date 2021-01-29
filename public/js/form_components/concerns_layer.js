@@ -222,7 +222,7 @@ var Concerns = function (_React$Component) {
 
             return React.createElement(
                 "section",
-                { className: "concerns form_layer hidden" },
+                { className: "concerns form_layer" },
                 React.createElement(
                     "div",
                     { className: "layer_content" },

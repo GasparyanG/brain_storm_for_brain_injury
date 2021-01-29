@@ -10,7 +10,7 @@ class DateOfInjury extends React.Component {
             <span className="question_number">4 {this.props.svgArrow}</span><strong>When was</strong> your brain injury?</label>);
         if (this.props.formState.name !== "")
             label = (<label className="input_label" htmlFor="injury_date">
-                <span className="question_number">4 {this.props.svgArrow}</span>{this.props.formState.name}, <strong>when was</strong> your brain injury??</label>);
+                <span className="question_number">4 {this.props.svgArrow}</span>{this.props.formState.name}, <strong>when was</strong> your brain injury?</label>);
 
 
         return (
@@ -155,7 +155,7 @@ class CauseOfInjury extends React.Component {
         const otherInput = this.otherInputRendering();
 
         return (
-            <section className="cause_of_injury form_layer">
+            <section className="cause_of_injury form_layer hidden">
                 <div className="layer_content">
                     <div className="questions">
                         {label}

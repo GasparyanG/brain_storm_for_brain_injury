@@ -132,7 +132,7 @@ class Concerns extends React.Component {
                 <span className="question_number">5 {this.props.svgArrow}</span>{this.props.formState.name}, check your <strong>greatest concerns</strong> (check <strong>up to four</strong> and <strong>star</strong> the most troubling one)</label>);
 
         return (
-            <section className="concerns form_layer hidden">
+            <section className="concerns form_layer">
                 <div className="layer_content">
                     <div className="questions concern_questions">
                         {label}
