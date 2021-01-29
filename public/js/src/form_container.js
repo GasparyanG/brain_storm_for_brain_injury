@@ -1,5 +1,5 @@
 import {Name, Age, Location} from "./demo_layer"
-import {InjuryIdentifier} from "./injury_layer";
+import {DateOfInjury, CauseOfInjury} from "./injury_layer";
 import {Concerns} from "./concerns_layer";
 
 class Form extends React.Component {
