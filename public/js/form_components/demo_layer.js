@@ -39,7 +39,26 @@ var Name = function (_React$Component) {
                             "Let's start with your name"
                         ),
                         React.createElement("input", { onChange: this.props.handler, className: "raw_input",
-                            name: "name", id: "name", type: "text", defaultValue: this.props.formState.name, placeholder: "Type your answer here..." })
+                            name: "name", id: "name", type: "text", defaultValue: this.props.formState.name, placeholder: "Type your answer here..." }),
+                        React.createElement(
+                            "div",
+                            { className: "action_box" },
+                            React.createElement("input", { className: "raw_button", type: "button", value: "OK" }),
+                            React.createElement(
+                                "span",
+                                { className: "action_prompt" },
+                                React.createElement(
+                                    "span",
+                                    { className: "prompt_part pp_press" },
+                                    "press"
+                                ),
+                                React.createElement(
+                                    "span",
+                                    { className: "prompt_part pp_enter" },
+                                    "Enter \u21B5"
+                                )
+                            )
+                        )
                     )
                 )
             );

@@ -1,0 +1,27 @@
+:root {
+    /* Colors */
+    --input-color: rgba(31, 127, 255, 0.4);
+    --input-color-active: rgba(31, 127, 255, 1);
+    --question-color: rgb(68, 68, 68);
+
+    /* Font Sizes */
+    --input-font-size: 30px;
+    --input-sm-font-size: 20px;
+    --question-number-size: 18px;
+    --question-sm-number-size: 13px;
+    --quesiton-font-size: 20px;
+    --quesiton-sm-font-size: 15px;
+
+    /*  Margin, Padding  */
+    --input-margin-left: 2rem;
+    --input-margin-bottom: 2rem;
+
+    /*  Checkboxes  */
+    --ck-font-size: 1.5rem;
+    --ck-box-size: 1.5rem;
+    --sm-ck-font-size: 1rem;
+    --sm-ck-box-size: 1rem;
+
+    /*  Buttons  */
+    --button_margin-top: 1rem;
+}

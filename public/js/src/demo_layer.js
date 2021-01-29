@@ -11,6 +11,13 @@ class Name extends React.Component {
                         <label className="input_label" htmlFor="name"><span className="question_number">1 {this.props.svgArrow}</span>Let's start with your name</label>
                         <input onChange={this.props.handler} className="raw_input"
                                name="name" id="name" type="text" defaultValue={this.props.formState.name} placeholder="Type your answer here..."/>
+                        <div className="action_box">
+                            <input className="raw_button" type="button" value="OK"/>
+                            <span className="action_prompt">
+                                <span className="prompt_part pp_press">press</span>
+                                <span className="prompt_part pp_enter">Enter ↵</span>
+                            </span>
+                        </div>
                     </div>
                 </div>
             </section>
