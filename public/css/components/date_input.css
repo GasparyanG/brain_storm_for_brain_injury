@@ -1,0 +1,52 @@
+:root {
+    --date-margin-right: 3rem;
+    --date-input-width: 50px;
+}
+
+#form_container .date_input_section {
+    margin-top: var(--input-margin-top);
+    margin-left: var(--input-margin-left);
+    display: flex;
+}
+
+#form_container .date_input_section .date_input_part {
+    display: flex;
+    flex-direction: column;
+}
+
+/* For Now always check with input_area.css - later on add SCSS */
+#form_container .date_input_section .raw_date_input {
+    border: 1px solid transparent;
+    border-bottom: 1px solid var(--input-color);
+    font-size: var(--input-font-size);
+    color: var(--input-color);
+    width: var(--date-input-width);
+    margin-right: var(--date-margin-right);
+    height: 40px;
+}
+
+/* Date part name */
+#form_container .date_section_name {
+    font-weight: 300;
+    font-size: 18px;
+}
+
+#form_container .date_input_section .raw_date_input:active,
+#form_container .date_input_section .raw_date_input:focus {
+    outline: none;
+    border: none;
+    border-bottom: 2px solid var(--input-color-active);
+    color: var(--input-color-active);
+}
+
+#form_container .date_input_section .date_input_part_dash::after {
+    content: "";
+    width: 3px;
+    height: calc(var(--date-input-width) - 20px);
+    background-color: black;
+    position: absolute;
+    margin-left: calc(var(--date-input-width) + (var(--date-margin-right)/2));
+    margin-top: calc(50px / 2);
+    transform: skew(-10deg);
+}
+

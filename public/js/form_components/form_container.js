@@ -85,7 +85,8 @@ var Form = function (_React$Component) {
                 { className: "layers_container" },
                 React.createElement(Name, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form }),
                 React.createElement(Age, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form }),
-                React.createElement(Location, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form })
+                React.createElement(Location, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form }),
+                React.createElement(DateOfInjury, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form })
             );
         }
     }]);

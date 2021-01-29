@@ -6,24 +6,33 @@ class DateOfInjury extends React.Component {
     }
 
     render () {
-        let label = (<label className="input_label" htmlFor="date_of_birth">
-            <span className="question_number">2 {this.props.svgArrow}</span><strong>When was</strong> your brain injury?</label>);
+        let label = (<label className="input_label" htmlFor="injury_date">
+            <span className="question_number">4 {this.props.svgArrow}</span><strong>When was</strong> your brain injury?</label>);
         if (this.props.formState.name !== "")
-            label = (<label className="input_label" htmlFor="date_of_birth">
-                <span className="question_number">2 {this.props.svgArrow}</span>{this.props.formState.name}, <strong>when was</strong> your brain injury??</label>);
+            label = (<label className="input_label" htmlFor="injury_date">
+                <span className="question_number">4 {this.props.svgArrow}</span>{this.props.formState.name}, <strong>when was</strong> your brain injury??</label>);
 
 
         return (
-            <section className="injury_identification form_layer">
+            <section className="date_of_injury form_layer">
                 <div className="layer_content">
                     <div className="questions">
                         {label}
-                        <input onChange={this.props.handler} className="raw_input"
-                               name="location" id="location" type="text" defaultValue={this.props.formState.location} placeholder="Type your answer here..."/>
+                        <div className="date_input_section">
+                            <div className="date_input_part date_input_part_dash date_input_month">
+                                <label className="date_section_name">Month</label>
+                                <input className="raw_date_input" type="text"/>
+                            </div>
+                            <div className="date_input_part date_input_part_dash date_input_day">
+                                <label className="date_section_name">Day</label>
+                                <input className="raw_date_input" type="text"/>
+                            </div>
+                            <div className="date_input_part date_input_year">
+                                <label className="date_section_name">Year</label>
+                                <input className="raw_date_input" type="text"/>
+                            </div>
+                        </div>
                         <RegularButton/>
-                        <label className="input_label" htmlFor="injury_date"><span className="question_number">4 {svgArrow}</span><strong>When was</strong> your brain injury?</label>
-                        <input onChange={this.props.handler} className="raw_input"
-                               name="injury_date" id="injury_date" type="text" defaultValue={this.props.formState.injury_date} placeholder="Type your answer here..."/>
                     </div>
                 </div>
             </section>
@@ -37,19 +46,20 @@ class CauseOfInjury extends React.Component {
     }
 
     render () {
-        let label = (<label className="input_label" htmlFor="date_of_birth">
-            <span className="question_number">2 {this.props.svgArrow}</span>Where do you <strong>live</strong>?</label>);
+        let label = (<label className="input_label" htmlFor="injury_reason">
+            <span className="question_number">5 {this.props.svgArrow}</span>What was <strong>the cause</strong> of injury?</label>);
         if (this.props.formState.name !== "")
-            label = (<label className="input_label" htmlFor="date_of_birth">
-                <span className="question_number">2 {this.props.svgArrow}</span>{this.props.formState.name}, where do you <strong>live</strong>?</label>);
+            label = (<label className="input_label" htmlFor="injury_reason">
+                <span className="question_number">5 {this.props.svgArrow}</span>{this.props.formState.name}, what was <strong>the cause</strong> of injury?</label>);
 
         return (
-            <section className="injury_identification form_layer">
+            <section className="cause_of_injury form_layer hidden">
                 <div className="layer_content">
                     <div className="questions">
-                        <label className="input_label" htmlFor="injury_cause"><span className="question_number">5 {svgArrow}</span>What was <strong>the cause</strong> of injury?</label>
+                        {label}
                         <input onChange={this.props.handler} className="raw_input"
-                               name="injury_cause" id="injury_cause" type="text" defaultValue={this.props.formState.injury_reason} placeholder="Type your answer here..."/>
+                               name="injury_reason" id="injury_reason" type="text" defaultValue={this.props.formState.location} placeholder="Type your answer here..."/>
+                        <RegularButton/>
                     </div>
                 </div>
             </section>

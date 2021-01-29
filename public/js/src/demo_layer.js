@@ -60,7 +60,7 @@ class Location extends React.Component {
                 <span className="question_number">2 {this.props.svgArrow}</span>{this.props.formState.name}, where do you <strong>live</strong>?</label>);
 
         return (
-            <section className="user_location form_layer">
+            <section className="user_location form_layer hidden">
                 <div className="layer_content">
                     <div className="questions">
                         {label}

@@ -64,6 +64,7 @@ class Form extends React.Component {
                 <Name svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}/>
                 <Age svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}/>
                 <Location svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}/>
+                <DateOfInjury svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}/>
             </div>
         );
     }

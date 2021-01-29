@@ -22,11 +22,11 @@ var DateOfInjury = function (_React$Component) {
         value: function render() {
             var label = React.createElement(
                 "label",
-                { className: "input_label", htmlFor: "date_of_birth" },
+                { className: "input_label", htmlFor: "injury_date" },
                 React.createElement(
                     "span",
                     { className: "question_number" },
-                    "2 ",
+                    "4 ",
                     this.props.svgArrow
                 ),
                 React.createElement(
@@ -38,11 +38,11 @@ var DateOfInjury = function (_React$Component) {
             );
             if (this.props.formState.name !== "") label = React.createElement(
                 "label",
-                { className: "input_label", htmlFor: "date_of_birth" },
+                { className: "input_label", htmlFor: "injury_date" },
                 React.createElement(
                     "span",
                     { className: "question_number" },
-                    "2 ",
+                    "4 ",
                     this.props.svgArrow
                 ),
                 this.props.formState.name,
@@ -57,7 +57,7 @@ var DateOfInjury = function (_React$Component) {
 
             return React.createElement(
                 "section",
-                { className: "injury_identification form_layer" },
+                { className: "date_of_injury form_layer" },
                 React.createElement(
                     "div",
                     { className: "layer_content" },
@@ -65,27 +65,41 @@ var DateOfInjury = function (_React$Component) {
                         "div",
                         { className: "questions" },
                         label,
-                        React.createElement("input", { onChange: this.props.handler, className: "raw_input",
-                            name: "location", id: "location", type: "text", defaultValue: this.props.formState.location, placeholder: "Type your answer here..." }),
-                        React.createElement(RegularButton, null),
                         React.createElement(
-                            "label",
-                            { className: "input_label", htmlFor: "injury_date" },
+                            "div",
+                            { className: "date_input_section" },
                             React.createElement(
-                                "span",
-                                { className: "question_number" },
-                                "4 ",
-                                svgArrow
+                                "div",
+                                { className: "date_input_part date_input_part_dash date_input_month" },
+                                React.createElement(
+                                    "label",
+                                    { className: "date_section_name" },
+                                    "Month"
+                                ),
+                                React.createElement("input", { className: "raw_date_input", type: "text" })
                             ),
                             React.createElement(
-                                "strong",
-                                null,
-                                "When was"
+                                "div",
+                                { className: "date_input_part date_input_part_dash date_input_day" },
+                                React.createElement(
+                                    "label",
+                                    { className: "date_section_name" },
+                                    "Day"
+                                ),
+                                React.createElement("input", { className: "raw_date_input", type: "text" })
                             ),
-                            " your brain injury?"
+                            React.createElement(
+                                "div",
+                                { className: "date_input_part date_input_year" },
+                                React.createElement(
+                                    "label",
+                                    { className: "date_section_name" },
+                                    "Year"
+                                ),
+                                React.createElement("input", { className: "raw_date_input", type: "text" })
+                            )
                         ),
-                        React.createElement("input", { onChange: this.props.handler, className: "raw_input",
-                            name: "injury_date", id: "injury_date", type: "text", defaultValue: this.props.formState.injury_date, placeholder: "Type your answer here..." })
+                        React.createElement(RegularButton, null)
                     )
                 )
             );
@@ -109,68 +123,53 @@ var CauseOfInjury = function (_React$Component2) {
         value: function render() {
             var label = React.createElement(
                 "label",
-                { className: "input_label", htmlFor: "date_of_birth" },
+                { className: "input_label", htmlFor: "injury_reason" },
                 React.createElement(
                     "span",
                     { className: "question_number" },
-                    "2 ",
+                    "5 ",
                     this.props.svgArrow
                 ),
-                "Where do you ",
+                "What was ",
                 React.createElement(
                     "strong",
                     null,
-                    "live"
+                    "the cause"
                 ),
-                "?"
+                " of injury?"
             );
             if (this.props.formState.name !== "") label = React.createElement(
                 "label",
-                { className: "input_label", htmlFor: "date_of_birth" },
+                { className: "input_label", htmlFor: "injury_reason" },
                 React.createElement(
                     "span",
                     { className: "question_number" },
-                    "2 ",
+                    "5 ",
                     this.props.svgArrow
                 ),
                 this.props.formState.name,
-                ", where do you ",
+                ", what was ",
                 React.createElement(
                     "strong",
                     null,
-                    "live"
+                    "the cause"
                 ),
-                "?"
+                " of injury?"
             );
 
             return React.createElement(
                 "section",
-                { className: "injury_identification form_layer" },
+                { className: "cause_of_injury form_layer hidden" },
                 React.createElement(
                     "div",
                     { className: "layer_content" },
                     React.createElement(
                         "div",
                         { className: "questions" },
-                        React.createElement(
-                            "label",
-                            { className: "input_label", htmlFor: "injury_cause" },
-                            React.createElement(
-                                "span",
-                                { className: "question_number" },
-                                "5 ",
-                                svgArrow
-                            ),
-                            "What was ",
-                            React.createElement(
-                                "strong",
-                                null,
-                                "the cause"
-                            ),
-                            " of injury?"
-                        ),
+                        label,
                         React.createElement("input", { onChange: this.props.handler, className: "raw_input",
-                            name: "injury_cause", id: "injury_cause", type: "text", defaultValue: this.props.formState.injury_reason, placeholder: "Type your answer here..." })
+                            name: "injury_reason", id: "injury_reason", type: "text", defaultValue: this.props.formState.location, placeholder: "Type your answer here..." }),
+                        React.createElement(RegularButton, null)
                     )
                 )
             );

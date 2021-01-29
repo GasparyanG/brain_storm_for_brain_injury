@@ -178,7 +178,7 @@ var Location = function (_React$Component3) {
 
             return React.createElement(
                 "section",
-                { className: "user_location form_layer" },
+                { className: "user_location form_layer hidden" },
                 React.createElement(
                     "div",
                     { className: "layer_content" },
