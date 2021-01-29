@@ -57,7 +57,7 @@ var DateOfInjury = function (_React$Component) {
 
             return React.createElement(
                 "section",
-                { className: "date_of_injury form_layer" },
+                { className: "date_of_injury form_layer hidden" },
                 React.createElement(
                     "div",
                     { className: "layer_content" },
@@ -159,7 +159,7 @@ var CauseOfInjury = function (_React$Component2) {
 
             return React.createElement(
                 "section",
-                { className: "cause_of_injury form_layer hidden" },
+                { className: "cause_of_injury form_layer" },
                 React.createElement(
                     "div",
                     { className: "layer_content" },
@@ -167,9 +167,94 @@ var CauseOfInjury = function (_React$Component2) {
                         "div",
                         { className: "questions" },
                         label,
-                        React.createElement("input", { onChange: this.props.handler, className: "raw_input",
-                            name: "injury_reason", id: "injury_reason", type: "text", defaultValue: this.props.formState.location, placeholder: "Type your answer here..." }),
-                        React.createElement(RegularButton, null)
+                        React.createElement(
+                            "div",
+                            { className: "choices_section" },
+                            React.createElement(
+                                "div",
+                                { className: "choice_part" },
+                                React.createElement(
+                                    "div",
+                                    { className: "choice_letter" },
+                                    "A"
+                                ),
+                                React.createElement(
+                                    "div",
+                                    { className: "choice_name" },
+                                    "Traumatic brain injury"
+                                )
+                            ),
+                            React.createElement(
+                                "div",
+                                { className: "choice_part" },
+                                React.createElement(
+                                    "div",
+                                    { className: "choice_letter" },
+                                    "B"
+                                ),
+                                React.createElement(
+                                    "div",
+                                    { className: "choice_name" },
+                                    "Stroke"
+                                )
+                            ),
+                            React.createElement(
+                                "div",
+                                { className: "choice_part" },
+                                React.createElement(
+                                    "div",
+                                    { className: "choice_letter" },
+                                    "C"
+                                ),
+                                React.createElement(
+                                    "div",
+                                    { className: "choice_name" },
+                                    "Cerebral palsy"
+                                )
+                            ),
+                            React.createElement(
+                                "div",
+                                { className: "choice_part" },
+                                React.createElement(
+                                    "div",
+                                    { className: "choice_letter" },
+                                    "D"
+                                ),
+                                React.createElement(
+                                    "div",
+                                    { className: "choice_name" },
+                                    "Tumor"
+                                )
+                            ),
+                            React.createElement(
+                                "div",
+                                { className: "choice_part" },
+                                React.createElement(
+                                    "div",
+                                    { className: "choice_letter" },
+                                    "E"
+                                ),
+                                React.createElement(
+                                    "div",
+                                    { className: "choice_name" },
+                                    "Infection"
+                                )
+                            ),
+                            React.createElement(
+                                "div",
+                                { className: "choice_part" },
+                                React.createElement(
+                                    "div",
+                                    { className: "choice_letter" },
+                                    "F"
+                                ),
+                                React.createElement(
+                                    "div",
+                                    { className: "choice_name" },
+                                    React.createElement("input", { type: "text", placeholder: "Other" })
+                                )
+                            )
+                        )
                     )
                 )
             );

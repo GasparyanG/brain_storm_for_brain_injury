@@ -14,7 +14,7 @@ class DateOfInjury extends React.Component {
 
 
         return (
-            <section className="date_of_injury form_layer">
+            <section className="date_of_injury form_layer hidden">
                 <div className="layer_content">
                     <div className="questions">
                         {label}
@@ -53,19 +53,43 @@ class CauseOfInjury extends React.Component {
                 <span className="question_number">5 {this.props.svgArrow}</span>{this.props.formState.name}, what was <strong>the cause</strong> of injury?</label>);
 
         return (
-            <section className="cause_of_injury form_layer hidden">
+            <section className="cause_of_injury form_layer">
                 <div className="layer_content">
                     <div className="questions">
                         {label}
-                        <input onChange={this.props.handler} className="raw_input"
-                               name="injury_reason" id="injury_reason" type="text" defaultValue={this.props.formState.location} placeholder="Type your answer here..."/>
-                        <RegularButton/>
+                        <div className="choices_section">
+                            <div className="choice_part">
+                                <div className="choice_letter">A</div>
+                                <div className="choice_name">Traumatic brain injury</div>
+                            </div>
+                            <div className="choice_part">
+                                <div className="choice_letter">B</div>
+                                <div className="choice_name">Stroke</div>
+                            </div>
+                            <div className="choice_part">
+                                <div className="choice_letter">C</div>
+                                <div className="choice_name">Cerebral palsy</div>
+                            </div>
+                            <div className="choice_part">
+                                <div className="choice_letter">D</div>
+                                <div className="choice_name">Tumor</div>
+                            </div>
+                            <div className="choice_part">
+                                <div className="choice_letter">E</div>
+                                <div className="choice_name">Infection</div>
+                            </div>
+                            <div className="choice_part">
+                                <div className="choice_letter">F</div>
+                                <div className="choice_name">
+                                    <input type="text" placeholder="Other"/>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
         )
     }
 }
-
 
 export {DateOfInjury, CauseOfInjury};

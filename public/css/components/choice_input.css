@@ -1,0 +1,49 @@
+:root {
+    --box-radius: 4px;
+}
+
+#form_container .choices_section {
+    margin-left: var(--input-margin-left);
+    margin-top: var(--input-margin-top);
+    width: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#form_container .choice_part {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    border-radius: var(--box-radius);
+    background-color: rgba(52, 113, 130, 0.1);
+    color: rgb(52, 113, 130);
+    min-width: 75px;
+    min-height: 40px;
+    outline: 0;
+    padding: 4px;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-out;
+    width: 48%;
+    cursor: pointer;
+    opacity: 1;
+    margin-bottom: 1rem;
+    box-shadow: rgba(52, 113, 130, 0.8) 0px 0px 0px 2px inset;
+}
+
+
+/* Choice letter decoration */
+#form_container .choice_letter {
+    display: flex;
+    margin-right: 1rem;
+    margin-left: 1rem;
+    background-color: white;
+    border-radius: var(--box-radius);
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Choice's 'other' input decoration */
