@@ -81,7 +81,8 @@ class CauseOfInjury extends React.Component {
                             <div className="choice_part">
                                 <div className="choice_letter">F</div>
                                 <div className="choice_name">
-                                    <input type="text" placeholder="Other"/>
+                                    <span>Other</span>
+                                    <input className="choice_other_raw_input hidden" type="text" placeholder="Type your answer..."/>
                                 </div>
                             </div>
                         </div>

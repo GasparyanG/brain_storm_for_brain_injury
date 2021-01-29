@@ -251,7 +251,12 @@ var CauseOfInjury = function (_React$Component2) {
                                 React.createElement(
                                     "div",
                                     { className: "choice_name" },
-                                    React.createElement("input", { type: "text", placeholder: "Other" })
+                                    React.createElement(
+                                        "span",
+                                        null,
+                                        "Other"
+                                    ),
+                                    React.createElement("input", { className: "choice_other_raw_input hidden", type: "text", placeholder: "Type your answer..." })
                                 )
                             )
                         )

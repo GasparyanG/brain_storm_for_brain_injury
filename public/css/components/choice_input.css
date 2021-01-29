@@ -1,5 +1,8 @@
 :root {
     --box-radius: 4px;
+    --choice-background-color: rgba(52, 113, 130, 0.1);
+    --choice-color: rgb(52, 113, 130);
+    --choice-shadow-color: rgba(52, 113, 130, 0.8);
 }
 
 #form_container .choices_section {
@@ -16,8 +19,9 @@
     -webkit-box-align: center;
     align-items: center;
     border-radius: var(--box-radius);
-    background-color: rgba(52, 113, 130, 0.1);
-    color: rgb(52, 113, 130);
+    box-shadow: var(--choice-shadow-color) 0px 0px 0px 2px inset;
+    background-color: var(--choice-background-color);
+    color: var(--choice-color);
     min-width: 75px;
     min-height: 40px;
     outline: 0;
@@ -28,7 +32,7 @@
     cursor: pointer;
     opacity: 1;
     margin-bottom: 1rem;
-    box-shadow: rgba(52, 113, 130, 0.8) 0px 0px 0px 2px inset;
+    font-size: 20px;
 }
 
 
@@ -44,6 +48,21 @@
     text-align: center;
     justify-content: center;
     align-items: center;
+    font-size: 15px;
+    font-weight: 700;
+    border-color: var(--choice-shadow-color);
 }
 
 /* Choice's 'other' input decoration */
+#form_container .choice_other_raw_input {
+    border: 1px solid transparent;
+    background-color: var(--choice-background-color);
+    color: var(--choice-color);
+    font-size: 20px;
+}
+
+#form_container .choice_other_raw_input:hover,
+#form_container .choice_other_raw_input:active {
+    border: none;
+    outline: none;
+}
