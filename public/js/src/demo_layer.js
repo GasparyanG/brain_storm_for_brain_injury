@@ -10,7 +10,7 @@ class Name extends React.Component {
             <section className="user_name form_layer hidden">
                 <div className="layer_content">
                     <div className="questions">
-                        <label className="input_label" htmlFor="name"><span className="question_number">1 {this.props.svgArrow}</span>Let's start with your <strong>name</strong>.</label>
+                        <label className="input_label" htmlFor="name"><span className="question_number">1 {this.props.svgArrow}</span><span>Let's start with your <strong>name</strong>.</span></label>
                         <input onChange={this.props.handler} className="raw_input"
                                name="name" id="name" type="text" defaultValue={this.props.formState.name} placeholder="Type here..."/>
                         <RegularButton/>
@@ -27,9 +27,9 @@ class Age extends React.Component {
     }
 
     render() {
-        let label = (<label className="input_label" htmlFor="age"><span className="question_number">2 {this.props.svgArrow}</span>How <strong>old</strong> are you?</label>);
+        let label = (<label className="input_label" htmlFor="age"><span className="question_number">2 {this.props.svgArrow}</span><span>How <strong>old</strong> are you?</span></label>);
         if (this.props.formState.name !== "")
-            label = (<label className="input_label" htmlFor="age"><span className="question_number">2 {this.props.svgArrow}</span>{this.props.formState.name}, how <strong>old</strong> are you?</label>);
+            label = (<label className="input_label" htmlFor="age"><span className="question_number">2 {this.props.svgArrow}</span><span>{this.props.formState.name}, how <strong>old</strong> are you?</span></label>);
 
         return (
             <section className="user_age form_layer hidden">
@@ -54,10 +54,10 @@ class Location extends React.Component {
 
     render() {
         let label = (<label className="input_label" htmlFor="date_of_birth">
-            <span className="question_number">2 {this.props.svgArrow}</span>Where do you <strong>live</strong>?</label>);
+            <span className="question_number">2 {this.props.svgArrow}</span><span>Where do you <strong>live</strong>?</span></label>);
         if (this.props.formState.name !== "")
             label = (<label className="input_label" htmlFor="date_of_birth">
-                <span className="question_number">2 {this.props.svgArrow}</span>{this.props.formState.name}, where do you <strong>live</strong>?</label>);
+                <span className="question_number">2 {this.props.svgArrow}</span><span>{this.props.formState.name}, where do you <strong>live</strong>?</span></label>);
 
         return (
             <section className="user_location form_layer hidden">

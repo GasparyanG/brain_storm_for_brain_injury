@@ -30,9 +30,12 @@
 #form_container .input_label {
     font-size: var(--quesiton-font-size);
     color: var(--question-color);
+    display: flex;
 }
 
 #form_container .question_number {
+    white-space: nowrap;
+    align-self: flex-start;
     margin-right: 0.5rem;
     font-weight: 500;
     color: var(--input-color-active);

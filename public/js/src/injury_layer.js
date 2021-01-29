@@ -7,10 +7,10 @@ class DateOfInjury extends React.Component {
 
     render () {
         let label = (<label className="input_label" htmlFor="injury_date">
-            <span className="question_number">4 {this.props.svgArrow}</span><strong>When was</strong> your brain injury?</label>);
+            <span className="question_number">4 {this.props.svgArrow}</span><span><strong>When was</strong> your brain injury?</span></label>);
         if (this.props.formState.name !== "")
             label = (<label className="input_label" htmlFor="injury_date">
-                <span className="question_number">4 {this.props.svgArrow}</span>{this.props.formState.name}, <strong>when was</strong> your brain injury?</label>);
+                <span className="question_number">4 {this.props.svgArrow}</span><span>{this.props.formState.name}, <strong>when was</strong> your brain injury?</span></label>);
 
 
         return (
@@ -142,10 +142,10 @@ class CauseOfInjury extends React.Component {
 
     render () {
         let label = (<label className="input_label" htmlFor="injury_reason">
-            <span className="question_number">5 {this.props.svgArrow}</span>What was <strong>the cause</strong> of injury?</label>);
+            <span className="question_number">5 {this.props.svgArrow}</span><span>What was <strong>the cause</strong> of injury?</span></label>);
         if (this.props.formState.name !== "")
             label = (<label className="input_label" htmlFor="injury_reason">
-                <span className="question_number">5 {this.props.svgArrow}</span>{this.props.formState.name}, what was <strong>the cause</strong> of injury?</label>);
+                <span className="question_number">5 {this.props.svgArrow}</span><span>{this.props.formState.name}, what was <strong>the cause</strong> of injury?</span></label>);
 
         let checkboxItems = [];
         for (let key in this.state.concerns) {

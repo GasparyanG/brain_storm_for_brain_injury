@@ -169,11 +169,15 @@ var Concerns = function (_React$Component) {
                     "5 ",
                     this.props.svgArrow
                 ),
-                "Check your ",
                 React.createElement(
-                    "strong",
+                    "span",
                     null,
-                    "greatest concerns."
+                    "Check your ",
+                    React.createElement(
+                        "strong",
+                        null,
+                        "greatest concerns."
+                    )
                 )
             );
             if (this.props.formState.name !== "") label = React.createElement(
@@ -185,18 +189,22 @@ var Concerns = function (_React$Component) {
                     "5 ",
                     this.props.svgArrow
                 ),
-                this.props.formState.name,
-                ", check your ",
                 React.createElement(
-                    "strong",
+                    "span",
                     null,
-                    "greatest concerns."
+                    this.props.formState.name,
+                    ", check your ",
+                    React.createElement(
+                        "strong",
+                        null,
+                        "greatest concerns."
+                    )
                 )
             );
 
             return React.createElement(
                 "section",
-                { className: "concerns form_layer" },
+                { className: "concerns form_layer hidden" },
                 React.createElement(
                     "div",
                     { className: "layer_content" },

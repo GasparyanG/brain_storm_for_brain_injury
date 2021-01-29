@@ -30,11 +30,15 @@ var DateOfInjury = function (_React$Component) {
                     this.props.svgArrow
                 ),
                 React.createElement(
-                    "strong",
+                    "span",
                     null,
-                    "When was"
-                ),
-                " your brain injury?"
+                    React.createElement(
+                        "strong",
+                        null,
+                        "When was"
+                    ),
+                    " your brain injury?"
+                )
             );
             if (this.props.formState.name !== "") label = React.createElement(
                 "label",
@@ -45,14 +49,18 @@ var DateOfInjury = function (_React$Component) {
                     "4 ",
                     this.props.svgArrow
                 ),
-                this.props.formState.name,
-                ", ",
                 React.createElement(
-                    "strong",
+                    "span",
                     null,
-                    "when was"
-                ),
-                " your brain injury?"
+                    this.props.formState.name,
+                    ", ",
+                    React.createElement(
+                        "strong",
+                        null,
+                        "when was"
+                    ),
+                    " your brain injury?"
+                )
             );
 
             return React.createElement(
@@ -244,13 +252,17 @@ var CauseOfInjury = function (_React$Component2) {
                     "5 ",
                     this.props.svgArrow
                 ),
-                "What was ",
                 React.createElement(
-                    "strong",
+                    "span",
                     null,
-                    "the cause"
-                ),
-                " of injury?"
+                    "What was ",
+                    React.createElement(
+                        "strong",
+                        null,
+                        "the cause"
+                    ),
+                    " of injury?"
+                )
             );
             if (this.props.formState.name !== "") label = React.createElement(
                 "label",
@@ -261,14 +273,18 @@ var CauseOfInjury = function (_React$Component2) {
                     "5 ",
                     this.props.svgArrow
                 ),
-                this.props.formState.name,
-                ", what was ",
                 React.createElement(
-                    "strong",
+                    "span",
                     null,
-                    "the cause"
-                ),
-                " of injury?"
+                    this.props.formState.name,
+                    ", what was ",
+                    React.createElement(
+                        "strong",
+                        null,
+                        "the cause"
+                    ),
+                    " of injury?"
+                )
             );
 
             var checkboxItems = [];

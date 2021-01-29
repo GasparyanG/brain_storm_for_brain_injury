@@ -126,13 +126,13 @@ class Concerns extends React.Component {
         const otherInput = this.otherInputRendering();
 
         let label = (<label className="input_label" htmlFor="injury_date">
-            <span className="question_number">5 {this.props.svgArrow}</span>Check your <strong>greatest concerns.</strong></label>);
+            <span className="question_number">5 {this.props.svgArrow}</span><span>Check your <strong>greatest concerns.</strong></span></label>);
         if (this.props.formState.name !== "")
             label = (<label className="input_label" htmlFor="injury_date">
-                <span className="question_number">5 {this.props.svgArrow}</span>{this.props.formState.name}, check your <strong>greatest concerns.</strong></label>);
+                <span className="question_number">5 {this.props.svgArrow}</span><span>{this.props.formState.name}, check your <strong>greatest concerns.</strong></span></label>);
 
         return (
-            <section className="concerns form_layer">
+            <section className="concerns form_layer hidden">
                 <div className="layer_content">
                     <div className="questions concern_questions">
                         {label}

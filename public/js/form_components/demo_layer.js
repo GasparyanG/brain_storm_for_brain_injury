@@ -38,13 +38,17 @@ var Name = function (_React$Component) {
                                 "1 ",
                                 this.props.svgArrow
                             ),
-                            "Let's start with your ",
                             React.createElement(
-                                "strong",
+                                "span",
                                 null,
-                                "name"
-                            ),
-                            "."
+                                "Let's start with your ",
+                                React.createElement(
+                                    "strong",
+                                    null,
+                                    "name"
+                                ),
+                                "."
+                            )
                         ),
                         React.createElement("input", { onChange: this.props.handler, className: "raw_input",
                             name: "name", id: "name", type: "text", defaultValue: this.props.formState.name, placeholder: "Type here..." }),
@@ -79,13 +83,17 @@ var Age = function (_React$Component2) {
                     "2 ",
                     this.props.svgArrow
                 ),
-                "How ",
                 React.createElement(
-                    "strong",
+                    "span",
                     null,
-                    "old"
-                ),
-                " are you?"
+                    "How ",
+                    React.createElement(
+                        "strong",
+                        null,
+                        "old"
+                    ),
+                    " are you?"
+                )
             );
             if (this.props.formState.name !== "") label = React.createElement(
                 "label",
@@ -96,14 +104,18 @@ var Age = function (_React$Component2) {
                     "2 ",
                     this.props.svgArrow
                 ),
-                this.props.formState.name,
-                ", how ",
                 React.createElement(
-                    "strong",
+                    "span",
                     null,
-                    "old"
-                ),
-                " are you?"
+                    this.props.formState.name,
+                    ", how ",
+                    React.createElement(
+                        "strong",
+                        null,
+                        "old"
+                    ),
+                    " are you?"
+                )
             );
 
             return React.createElement(
@@ -149,13 +161,17 @@ var Location = function (_React$Component3) {
                     "2 ",
                     this.props.svgArrow
                 ),
-                "Where do you ",
                 React.createElement(
-                    "strong",
+                    "span",
                     null,
-                    "live"
-                ),
-                "?"
+                    "Where do you ",
+                    React.createElement(
+                        "strong",
+                        null,
+                        "live"
+                    ),
+                    "?"
+                )
             );
             if (this.props.formState.name !== "") label = React.createElement(
                 "label",
@@ -166,14 +182,18 @@ var Location = function (_React$Component3) {
                     "2 ",
                     this.props.svgArrow
                 ),
-                this.props.formState.name,
-                ", where do you ",
                 React.createElement(
-                    "strong",
+                    "span",
                     null,
-                    "live"
-                ),
-                "?"
+                    this.props.formState.name,
+                    ", where do you ",
+                    React.createElement(
+                        "strong",
+                        null,
+                        "live"
+                    ),
+                    "?"
+                )
             );
 
             return React.createElement(
