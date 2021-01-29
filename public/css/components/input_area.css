@@ -2,7 +2,7 @@
     display: block;
     border: 1px solid transparent;
     border-bottom: 1px solid var(--input-color);
-    width: 40vw;
+    width: 100%;
     font-size: var(--input-font-size);
     margin-left: var(--input-margin-left);
     color: var(--input-color);
@@ -14,12 +14,6 @@
 }
 
 /* ----------------------------------------- RAW INPUT -----------------------------------------*/
-
-/* Contents Position */
-#form_container .layer_content {
-    margin-left: 23vw;
-}
-
 #form_container .raw_input:active,
 #form_container .raw_input:focus {
     outline: none;
@@ -47,38 +41,10 @@
 
 /* -------------------------- RESPONSIVENESS ------------------------------ */
 
-/* Medium Screen */
-@media only screen and (min-width: 751px) and (max-width: 1000px) {
-    #form_container .raw_input {
-        width: 60vw;
-    }
-
-    #form_container .layer_content {
-        margin-left: 20vw;
-    }
-}
-
-/* Small Screen */
-@media only screen and (min-width: 551px) and (max-width: 750px) {
-    #form_container .raw_input {
-        width: 60vw;
-    }
-
-    #form_container .layer_content {
-        margin-left: 20vw;
-    }
-}
-
-
 /* Tiny Screen */
 @media only screen and (max-width: 550px) {
     #form_container .raw_input {
-        width: 60vw;
         font-size: var(--input-sm-font-size);
-    }
-
-    #form_container .layer_content {
-        margin-left: 10vw;
     }
 
     #form_container .question_number {

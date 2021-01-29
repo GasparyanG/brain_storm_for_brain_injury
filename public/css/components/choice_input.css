@@ -21,7 +21,7 @@
 #form_container .choices_section {
     margin-left: var(--input-margin-left);
     margin-top: var(--input-margin-top);
-    width: 70%;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
