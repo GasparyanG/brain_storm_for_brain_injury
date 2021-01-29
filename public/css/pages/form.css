@@ -2,6 +2,8 @@
     overflow: hidden;
     width: 100vw;
     height: 100vh;
+    background-image: url("/public/images/default-background.jpeg");
+    background-repeat: repeat;
 }
 
 #form_container .layers_container {

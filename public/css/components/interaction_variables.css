@@ -1,7 +1,7 @@
 :root {
     /* Colors */
-    --input-color: rgba(31, 127, 255, 0.4);
-    --input-color-active: rgba(31, 127, 255, 1);
+    --input-color: rgb(52, 113, 130);
+    --input-color-active: rgb(52, 113, 130);
     --question-color: rgb(68, 68, 68);
 
     /* Font Sizes */

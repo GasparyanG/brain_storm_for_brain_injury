@@ -25,6 +25,7 @@
     width: var(--date-input-width);
     margin-right: var(--date-margin-right);
     height: 40px;
+    background-color: transparent;
 }
 
 /* Date part name */

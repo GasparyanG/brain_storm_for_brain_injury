@@ -7,6 +7,7 @@
     margin-left: var(--input-margin-left);
     color: var(--input-color);
     margin-top: var(--input-margin-top);
+    background-color: transparent;
 }
 
 #form_container .concern_questions .raw_input {
