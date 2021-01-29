@@ -53,6 +53,7 @@ class Concerns extends React.Component {
         }
 
         // Don't let to make more than 4 choices
+        // Coming soon!
 
         let concerns = [...this.props.formState.concerns];
         if (concerns.includes(element.dataset.value)) {
@@ -126,13 +127,13 @@ class Concerns extends React.Component {
         const otherInput = this.otherInputRendering();
 
         let label = (<label className="input_label" htmlFor="injury_date">
-            <span className="question_number">5 {this.props.svgArrow}</span><span>Check your <strong>greatest concerns.</strong></span></label>);
+            <span className="question_number">6 {this.props.svgArrow}</span><span>Check your <strong>greatest concerns.</strong></span></label>);
         if (this.props.formState.name !== "")
             label = (<label className="input_label" htmlFor="injury_date">
-                <span className="question_number">5 {this.props.svgArrow}</span><span>{this.props.formState.name}, check your <strong>greatest concerns.</strong></span></label>);
+                <span className="question_number">6 {this.props.svgArrow}</span><span>{this.props.formState.name}, check your <strong>greatest concerns.</strong></span></label>);
 
         return (
-            <section className="concerns form_layer hidden">
+            <section className="concerns form_layer">
                 <div className="layer_content">
                     <div className="questions concern_questions">
                         {label}

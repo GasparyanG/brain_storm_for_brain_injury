@@ -14,7 +14,7 @@ class DateOfInjury extends React.Component {
 
 
         return (
-            <section className="date_of_injury form_layer hidden">
+            <section className="date_of_injury form_layer">
                 <div className="layer_content">
                     <div className="questions">
                         {label}
@@ -155,7 +155,7 @@ class CauseOfInjury extends React.Component {
         const otherInput = this.otherInputRendering();
 
         return (
-            <section className="cause_of_injury form_layer hidden">
+            <section className="cause_of_injury form_layer">
                 <div className="layer_content">
                     <div className="questions">
                         {label}

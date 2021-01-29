@@ -7,7 +7,7 @@ class Name extends React.Component {
 
     render() {
         return (
-            <section className="user_name form_layer hidden">
+            <section className="user_name form_layer">
                 <div className="layer_content">
                     <div className="questions">
                         <label className="input_label" htmlFor="name"><span className="question_number">1 {this.props.svgArrow}</span><span>Let's start with your <strong>name</strong>.</span></label>
@@ -32,7 +32,7 @@ class Age extends React.Component {
             label = (<label className="input_label" htmlFor="age"><span className="question_number">2 {this.props.svgArrow}</span><span>{this.props.formState.name}, how <strong>old</strong> are you?</span></label>);
 
         return (
-            <section className="user_age form_layer hidden">
+            <section className="user_age form_layer">
                 <div className="layer_content">
                     <div className="questions">
                         {label}
@@ -60,7 +60,7 @@ class Location extends React.Component {
                 <span className="question_number">2 {this.props.svgArrow}</span><span>{this.props.formState.name}, where do you <strong>live</strong>?</span></label>);
 
         return (
-            <section className="user_location form_layer hidden">
+            <section className="user_location form_layer">
                 <div className="layer_content">
                     <div className="questions">
                         {label}

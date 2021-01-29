@@ -65,7 +65,7 @@ var DateOfInjury = function (_React$Component) {
 
             return React.createElement(
                 "section",
-                { className: "date_of_injury form_layer hidden" },
+                { className: "date_of_injury form_layer" },
                 React.createElement(
                     "div",
                     { className: "layer_content" },
@@ -296,7 +296,7 @@ var CauseOfInjury = function (_React$Component2) {
 
             return React.createElement(
                 "section",
-                { className: "cause_of_injury form_layer hidden" },
+                { className: "cause_of_injury form_layer" },
                 React.createElement(
                     "div",
                     { className: "layer_content" },

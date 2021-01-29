@@ -22,7 +22,7 @@ var Name = function (_React$Component) {
         value: function render() {
             return React.createElement(
                 "section",
-                { className: "user_name form_layer hidden" },
+                { className: "user_name form_layer" },
                 React.createElement(
                     "div",
                     { className: "layer_content" },
@@ -120,7 +120,7 @@ var Age = function (_React$Component2) {
 
             return React.createElement(
                 "section",
-                { className: "user_age form_layer hidden" },
+                { className: "user_age form_layer" },
                 React.createElement(
                     "div",
                     { className: "layer_content" },
@@ -198,7 +198,7 @@ var Location = function (_React$Component3) {
 
             return React.createElement(
                 "section",
-                { className: "user_location form_layer hidden" },
+                { className: "user_location form_layer" },
                 React.createElement(
                     "div",
                     { className: "layer_content" },

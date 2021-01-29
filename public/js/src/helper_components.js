@@ -20,7 +20,8 @@ const CSSClasses = {
     choice_letter: "choice_letter",
     enabled_other_input: "enabled_other_input",
     concerns_other: "concerns_other",
-    injury_reason: "injury_reason"
+    injury_reason: "injury_reason",
+    form_layer: "form_layer"
 };
 
 export {RegularButton, CSSClasses};

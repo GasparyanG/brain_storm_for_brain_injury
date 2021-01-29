@@ -45,6 +45,7 @@ var Concerns = function (_React$Component) {
             }
 
             // Don't let to make more than 4 choices
+            // Coming soon!
 
             var concerns = [].concat(_toConsumableArray(_this.props.formState.concerns));
             if (concerns.includes(element.dataset.value)) {
@@ -166,7 +167,7 @@ var Concerns = function (_React$Component) {
                 React.createElement(
                     "span",
                     { className: "question_number" },
-                    "5 ",
+                    "6 ",
                     this.props.svgArrow
                 ),
                 React.createElement(
@@ -186,7 +187,7 @@ var Concerns = function (_React$Component) {
                 React.createElement(
                     "span",
                     { className: "question_number" },
-                    "5 ",
+                    "6 ",
                     this.props.svgArrow
                 ),
                 React.createElement(
@@ -204,7 +205,7 @@ var Concerns = function (_React$Component) {
 
             return React.createElement(
                 "section",
-                { className: "concerns form_layer hidden" },
+                { className: "concerns form_layer" },
                 React.createElement(
                     "div",
                     { className: "layer_content" },

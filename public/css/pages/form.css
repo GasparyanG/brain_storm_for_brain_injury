@@ -13,7 +13,8 @@
 .layers_container .form_layer {
     height: inherit;
     width: inherit;
-    position: absolute;
+    position: relative;
+    transition: transform 1s;
 }
 
 .form_layer {
