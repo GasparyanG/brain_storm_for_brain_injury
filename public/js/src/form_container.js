@@ -1,4 +1,4 @@
-import {DemographicLayer} from "./demo_layer"
+import {Name, Age, Location} from "./demo_layer"
 import {InjuryIdentifier} from "./injury_layer";
 import {Concerns} from "./concerns_layer";
 
@@ -8,6 +8,9 @@ class Form extends React.Component {
         this.state = this.populateState();
         this.handler = this.onValueChange.bind(this);
         this.checkboxHandler = this.onCheckboxCheck.bind(this);
+
+        // Common Components
+        this.svgArrow = (<svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>);
 
         // Update local storage periodically.
         setInterval(this.updateStorage, 5000);
@@ -58,9 +61,9 @@ class Form extends React.Component {
     render() {
         return (
             <div className="layers_container">
-                <DemographicLayer handler={this.handler} formState={this.state.form}/>
-                <InjuryIdentifier handler={this.handler} formState={this.state.form}/>
-                <Concerns handler={this.handler} checkboxHandler={this.checkboxHandler}  formState={this.state.form}/>
+                <Name svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}/>
+                <Age svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}/>
+                <Location svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}/>
             </div>
         );
     }

@@ -32,6 +32,7 @@
     margin-left: var(--input-margin-left);
     margin-bottom: var(--input-margin-bottom);
     color: var(--input-color);
+    margin-top: 2rem;
 }
 
 #form_container .concern_questions .raw_input {

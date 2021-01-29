@@ -6,36 +6,24 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var DemographicLayer = function (_React$Component) {
-    _inherits(DemographicLayer, _React$Component);
+var Name = function (_React$Component) {
+    _inherits(Name, _React$Component);
 
-    function DemographicLayer(props) {
-        _classCallCheck(this, DemographicLayer);
+    function Name(props) {
+        _classCallCheck(this, Name);
 
-        return _possibleConstructorReturn(this, (DemographicLayer.__proto__ || Object.getPrototypeOf(DemographicLayer)).call(this, props));
+        return _possibleConstructorReturn(this, (Name.__proto__ || Object.getPrototypeOf(Name)).call(this, props));
     }
 
-    _createClass(DemographicLayer, [{
+    _createClass(Name, [{
         key: "render",
         value: function render() {
-            var svgArrow = React.createElement(
-                "svg",
-                { height: "10", width: "11" },
-                React.createElement("path", { d: "M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z" }),
-                React.createElement("path", { d: "M8 4v2H0V4z" })
-            );
-
             return React.createElement(
                 "section",
-                { className: "demographic_information form_layer" },
+                { className: "user_name form_layer" },
                 React.createElement(
                     "div",
                     { className: "layer_content" },
-                    React.createElement(
-                        "div",
-                        { className: "layer_header" },
-                        "Hi, tell me about you a little bit."
-                    ),
                     React.createElement(
                         "div",
                         { className: "questions" },
@@ -46,18 +34,42 @@ var DemographicLayer = function (_React$Component) {
                                 "span",
                                 { className: "question_number" },
                                 "1 ",
-                                svgArrow
+                                this.props.svgArrow
                             ),
-                            "What is your ",
-                            React.createElement(
-                                "strong",
-                                null,
-                                "name"
-                            ),
-                            "?"
+                            "Let's start with your name"
                         ),
                         React.createElement("input", { onChange: this.props.handler, className: "raw_input",
-                            name: "name", id: "name", type: "text", defaultValue: this.props.formState.name, placeholder: "Type your answer here..." }),
+                            name: "name", id: "name", type: "text", defaultValue: this.props.formState.name, placeholder: "Type your answer here..." })
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Name;
+}(React.Component);
+
+var Age = function (_React$Component2) {
+    _inherits(Age, _React$Component2);
+
+    function Age(props) {
+        _classCallCheck(this, Age);
+
+        return _possibleConstructorReturn(this, (Age.__proto__ || Object.getPrototypeOf(Age)).call(this, props));
+    }
+
+    _createClass(Age, [{
+        key: "render",
+        value: function render() {
+            return React.createElement(
+                "section",
+                { className: "user_age form_layer hidden" },
+                React.createElement(
+                    "div",
+                    { className: "layer_content" },
+                    React.createElement(
+                        "div",
+                        { className: "questions" },
                         React.createElement(
                             "label",
                             { className: "input_label", htmlFor: "date_of_birth" },
@@ -65,7 +77,7 @@ var DemographicLayer = function (_React$Component) {
                                 "span",
                                 { className: "question_number" },
                                 "2 ",
-                                svgArrow
+                                this.props.svgArrow
                             ),
                             "When did you ",
                             React.createElement(
@@ -76,7 +88,37 @@ var DemographicLayer = function (_React$Component) {
                             "?"
                         ),
                         React.createElement("input", { onChange: this.props.handler, className: "raw_input",
-                            name: "date_of_birth", id: "date_of_birth", type: "text", defaultValue: this.props.formState.age, placeholder: "Type your answer here..." }),
+                            name: "date_of_birth", id: "date_of_birth", type: "text", defaultValue: this.props.formState.age, placeholder: "Type your answer here..." })
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Age;
+}(React.Component);
+
+var Location = function (_React$Component3) {
+    _inherits(Location, _React$Component3);
+
+    function Location(props) {
+        _classCallCheck(this, Location);
+
+        return _possibleConstructorReturn(this, (Location.__proto__ || Object.getPrototypeOf(Location)).call(this, props));
+    }
+
+    _createClass(Location, [{
+        key: "render",
+        value: function render() {
+            return React.createElement(
+                "section",
+                { className: "user_location form_layer hidden" },
+                React.createElement(
+                    "div",
+                    { className: "layer_content" },
+                    React.createElement(
+                        "div",
+                        { className: "questions" },
                         React.createElement(
                             "label",
                             { className: "input_label", htmlFor: "location" },
@@ -84,7 +126,7 @@ var DemographicLayer = function (_React$Component) {
                                 "span",
                                 { className: "question_number" },
                                 "3 ",
-                                svgArrow
+                                this.props.svgArrow
                             ),
                             "Where do you ",
                             React.createElement(
@@ -102,7 +144,7 @@ var DemographicLayer = function (_React$Component) {
         }
     }]);
 
-    return DemographicLayer;
+    return Location;
 }(React.Component);
 
-export { DemographicLayer };
+export { Name, Age, Location };

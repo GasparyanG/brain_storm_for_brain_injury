@@ -6,7 +6,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-import { DemographicLayer } from "./demo_layer";
+import { Name, Age, Location } from "./demo_layer";
 import { InjuryIdentifier } from "./injury_layer";
 import { Concerns } from "./concerns_layer";
 
@@ -45,6 +45,14 @@ var Form = function (_React$Component) {
         _this.handler = _this.onValueChange.bind(_this);
         _this.checkboxHandler = _this.onCheckboxCheck.bind(_this);
 
+        // Common Components
+        _this.svgArrow = React.createElement(
+            "svg",
+            { height: "10", width: "11" },
+            React.createElement("path", { d: "M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z" }),
+            React.createElement("path", { d: "M8 4v2H0V4z" })
+        );
+
         // Update local storage periodically.
         setInterval(_this.updateStorage, 5000);
         return _this;
@@ -75,9 +83,9 @@ var Form = function (_React$Component) {
             return React.createElement(
                 "div",
                 { className: "layers_container" },
-                React.createElement(DemographicLayer, { handler: this.handler, formState: this.state.form }),
-                React.createElement(InjuryIdentifier, { handler: this.handler, formState: this.state.form }),
-                React.createElement(Concerns, { handler: this.handler, checkboxHandler: this.checkboxHandler, formState: this.state.form })
+                React.createElement(Name, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form }),
+                React.createElement(Age, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form }),
+                React.createElement(Location, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form })
             );
         }
     }]);

@@ -1,7 +1,9 @@
-:root {
-    --header-font-size: 30px;
-    --headr-sm-font-size: 20px;
-}
+/* REMOVE */
+/*:root {*/
+/*    --header-font-size: 30px;*/
+/*    --headr-sm-font-size: 20px;*/
+/*}*/
+/* END */
 
 #form_container {
     overflow: hidden;
@@ -21,12 +23,16 @@
     position: absolute;
 }
 
+/* REMOVE */
+
 /* Demographic Information Section */
-.layer_header {
-    font-size: var(--header-font-size);
-    margin-bottom: 2rem;
-    color: var(--input-color-active);
-}
+/*.layer_header {*/
+/*    font-size: var(--header-font-size);*/
+/*    margin-bottom: 2rem;*/
+/*    color: var(--input-color-active);*/
+/*}*/
+
+/* END */
 
 .form_layer {
     display: flex;
@@ -35,9 +41,12 @@
     justify-content: center;
 }
 
+/* REMOVE */
 
-@media only screen and (max-width: 550px) {
-    .layer_header {
-        font-size: var(--headr-sm-font-size);
-    }
-}
+/*@media only screen and (max-width: 550px) {*/
+/*    .layer_header {*/
+/*        font-size: var(--headr-sm-font-size);*/
+/*    }*/
+/*}*/
+
+/* END */
