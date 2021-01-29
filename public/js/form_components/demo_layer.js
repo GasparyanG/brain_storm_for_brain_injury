@@ -6,6 +6,28 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+function RegularButton(props) {
+    return React.createElement(
+        "div",
+        { className: "action_box" },
+        React.createElement("input", { className: "raw_button", type: "button", value: "OK" }),
+        React.createElement(
+            "span",
+            { className: "action_prompt" },
+            React.createElement(
+                "span",
+                { className: "prompt_part pp_press" },
+                "press"
+            ),
+            React.createElement(
+                "span",
+                { className: "prompt_part pp_enter" },
+                "Enter \u21B5"
+            )
+        )
+    );
+}
+
 var Name = function (_React$Component) {
     _inherits(Name, _React$Component);
 
@@ -20,7 +42,7 @@ var Name = function (_React$Component) {
         value: function render() {
             return React.createElement(
                 "section",
-                { className: "user_name form_layer" },
+                { className: "user_name form_layer hidden" },
                 React.createElement(
                     "div",
                     { className: "layer_content" },
@@ -36,29 +58,17 @@ var Name = function (_React$Component) {
                                 "1 ",
                                 this.props.svgArrow
                             ),
-                            "Let's start with your name"
+                            "Let's start with your ",
+                            React.createElement(
+                                "strong",
+                                null,
+                                "name"
+                            ),
+                            "."
                         ),
                         React.createElement("input", { onChange: this.props.handler, className: "raw_input",
                             name: "name", id: "name", type: "text", defaultValue: this.props.formState.name, placeholder: "Type your answer here..." }),
-                        React.createElement(
-                            "div",
-                            { className: "action_box" },
-                            React.createElement("input", { className: "raw_button", type: "button", value: "OK" }),
-                            React.createElement(
-                                "span",
-                                { className: "action_prompt" },
-                                React.createElement(
-                                    "span",
-                                    { className: "prompt_part pp_press" },
-                                    "press"
-                                ),
-                                React.createElement(
-                                    "span",
-                                    { className: "prompt_part pp_enter" },
-                                    "Enter \u21B5"
-                                )
-                            )
-                        )
+                        React.createElement(RegularButton, null)
                     )
                 )
             );
@@ -80,6 +90,42 @@ var Age = function (_React$Component2) {
     _createClass(Age, [{
         key: "render",
         value: function render() {
+            var label = React.createElement(
+                "label",
+                { className: "input_label", htmlFor: "date_of_birth" },
+                React.createElement(
+                    "span",
+                    { className: "question_number" },
+                    "2 ",
+                    this.props.svgArrow
+                ),
+                "How ",
+                React.createElement(
+                    "strong",
+                    null,
+                    "old"
+                ),
+                " are you?"
+            );
+            if (this.props.formState.name !== "") label = React.createElement(
+                "label",
+                { className: "input_label", htmlFor: "date_of_birth" },
+                React.createElement(
+                    "span",
+                    { className: "question_number" },
+                    "2 ",
+                    this.props.svgArrow
+                ),
+                this.props.formState.name,
+                ", how ",
+                React.createElement(
+                    "strong",
+                    null,
+                    "old"
+                ),
+                " are you?"
+            );
+
             return React.createElement(
                 "section",
                 { className: "user_age form_layer hidden" },
@@ -89,25 +135,10 @@ var Age = function (_React$Component2) {
                     React.createElement(
                         "div",
                         { className: "questions" },
-                        React.createElement(
-                            "label",
-                            { className: "input_label", htmlFor: "date_of_birth" },
-                            React.createElement(
-                                "span",
-                                { className: "question_number" },
-                                "2 ",
-                                this.props.svgArrow
-                            ),
-                            "When did you ",
-                            React.createElement(
-                                "strong",
-                                null,
-                                "born"
-                            ),
-                            "?"
-                        ),
+                        label,
                         React.createElement("input", { onChange: this.props.handler, className: "raw_input",
-                            name: "date_of_birth", id: "date_of_birth", type: "text", defaultValue: this.props.formState.age, placeholder: "Type your answer here..." })
+                            name: "date_of_birth", id: "date_of_birth", type: "text", defaultValue: this.props.formState.age, placeholder: "Type your answer here..." }),
+                        React.createElement(RegularButton, null)
                     )
                 )
             );
@@ -129,34 +160,55 @@ var Location = function (_React$Component3) {
     _createClass(Location, [{
         key: "render",
         value: function render() {
+            var label = React.createElement(
+                "label",
+                { className: "input_label", htmlFor: "date_of_birth" },
+                React.createElement(
+                    "span",
+                    { className: "question_number" },
+                    "2 ",
+                    this.props.svgArrow
+                ),
+                "Where do you ",
+                React.createElement(
+                    "strong",
+                    null,
+                    "live"
+                ),
+                "?"
+            );
+            if (this.props.formState.name !== "") label = React.createElement(
+                "label",
+                { className: "input_label", htmlFor: "date_of_birth" },
+                React.createElement(
+                    "span",
+                    { className: "question_number" },
+                    "2 ",
+                    this.props.svgArrow
+                ),
+                this.props.formState.name,
+                ", where do you ",
+                React.createElement(
+                    "strong",
+                    null,
+                    "live"
+                ),
+                "?"
+            );
+
             return React.createElement(
                 "section",
-                { className: "user_location form_layer hidden" },
+                { className: "user_location form_layer" },
                 React.createElement(
                     "div",
                     { className: "layer_content" },
                     React.createElement(
                         "div",
                         { className: "questions" },
-                        React.createElement(
-                            "label",
-                            { className: "input_label", htmlFor: "location" },
-                            React.createElement(
-                                "span",
-                                { className: "question_number" },
-                                "3 ",
-                                this.props.svgArrow
-                            ),
-                            "Where do you ",
-                            React.createElement(
-                                "strong",
-                                null,
-                                "live"
-                            ),
-                            "?"
-                        ),
+                        label,
                         React.createElement("input", { onChange: this.props.handler, className: "raw_input",
-                            name: "location", id: "location", type: "text", defaultValue: this.props.formState.location, placeholder: "Type your answer here..." })
+                            name: "location", id: "location", type: "text", defaultValue: this.props.formState.location, placeholder: "Type your answer here..." }),
+                        React.createElement(RegularButton, null)
                     )
                 )
             );
