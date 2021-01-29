@@ -33,7 +33,7 @@ class Form extends React.Component {
                 concerns_other: "",
                 injury_date_day: "",
                 injury_date_month: "",
-                injury_date_yer: "",
+                injury_date_year: "",
                 injury_reason: ""
             }
         };

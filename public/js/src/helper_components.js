@@ -19,7 +19,8 @@ const CSSClasses = {
     hidden_element: "hidden",
     choice_letter: "choice_letter",
     enabled_other_input: "enabled_other_input",
-    concerns_other: "concerns_other"
+    concerns_other: "concerns_other",
+    injury_reason: "injury_reason"
 };
 
 export {RegularButton, CSSClasses};

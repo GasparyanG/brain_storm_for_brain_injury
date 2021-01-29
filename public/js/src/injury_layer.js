@@ -94,10 +94,10 @@ class CauseOfInjury extends React.Component {
         element.classList.toggle(CSSClasses.choice_is_made);
     }
 
-        createCheckbox(key) {
+    createCheckbox(key) {
         let value = this.state.concerns[key];
         let checked = "";
-        if (this.props.formState.concerns.includes(key))
+        if (this.props.formState.injury_reason === key)
             checked = CSSClasses.choice_is_made;
 
         return (
@@ -112,7 +112,7 @@ class CauseOfInjury extends React.Component {
         if (!e.target.classList.contains(CSSClasses.enabled_other_input)) return;
 
         // Remove from choices
-        this.props.onValueUpdate(CSSClasses.concerns_other, "");
+        this.props.onValueUpdate(CSSClasses.injury_reason, "");
 
         // Remove decoration
         let parentElement = e.target.parentNode.classList.remove(CSSClasses.choice_is_made);
@@ -123,8 +123,8 @@ class CauseOfInjury extends React.Component {
     otherInputRendering = () => {
         let valueToDisplay = "";
         let checked = "";
-        if (this.props.formState.injury_reason !== "") {
-            valueToDisplay = this.props.formState.concerns_other;
+        if (this.props.formState.injury_reason !== "" && this.props.formState.injury_reason.length > 1) {
+            valueToDisplay = this.props.formState.injury_reason;
             checked = CSSClasses.choice_is_made;
         }
 
@@ -163,35 +163,6 @@ class CauseOfInjury extends React.Component {
                             {checkboxItems}
                             {otherInput}
                         </div>
-                        {/*<div className="choices_section">*/}
-                        {/*    <div className="choice_part">*/}
-                        {/*        <div className="choice_letter">A</div>*/}
-                        {/*        <div className="choice_name">Traumatic brain injury</div>*/}
-                        {/*    </div>*/}
-                        {/*    <div className="choice_part">*/}
-                        {/*        <div className="choice_letter">B</div>*/}
-                        {/*        <div className="choice_name">Stroke</div>*/}
-                        {/*    </div>*/}
-                        {/*    <div className="choice_part">*/}
-                        {/*        <div className="choice_letter">C</div>*/}
-                        {/*        <div className="choice_name">Cerebral palsy</div>*/}
-                        {/*    </div>*/}
-                        {/*    <div className="choice_part">*/}
-                        {/*        <div className="choice_letter">D</div>*/}
-                        {/*        <div className="choice_name">Tumor</div>*/}
-                        {/*    </div>*/}
-                        {/*    <div className="choice_part">*/}
-                        {/*        <div className="choice_letter">E</div>*/}
-                        {/*        <div className="choice_name">Infection</div>*/}
-                        {/*    </div>*/}
-                        {/*    <div className="choice_part">*/}
-                        {/*        <div className="choice_letter">F</div>*/}
-                        {/*        <div className="choice_name">*/}
-                        {/*            <span>Other</span>*/}
-                        {/*            <input className="choice_other_raw_input hidden" type="text" placeholder="Type your answer..."/>*/}
-                        {/*        </div>*/}
-                        {/*    </div>*/}
-                        {/*</div>*/}
                     </div>
                 </div>
             </section>

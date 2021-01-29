@@ -153,7 +153,7 @@ var CauseOfInjury = function (_React$Component2) {
             if (!e.target.classList.contains(CSSClasses.enabled_other_input)) return;
 
             // Remove from choices
-            _this2.props.onValueUpdate(CSSClasses.concerns_other, "");
+            _this2.props.onValueUpdate(CSSClasses.injury_reason, "");
 
             // Remove decoration
             var parentElement = e.target.parentNode.classList.remove(CSSClasses.choice_is_made);
@@ -164,8 +164,8 @@ var CauseOfInjury = function (_React$Component2) {
         _this2.otherInputRendering = function () {
             var valueToDisplay = "";
             var checked = "";
-            if (_this2.props.formState.injury_reason !== "") {
-                valueToDisplay = _this2.props.formState.concerns_other;
+            if (_this2.props.formState.injury_reason !== "" && _this2.props.formState.injury_reason.length > 1) {
+                valueToDisplay = _this2.props.formState.injury_reason;
                 checked = CSSClasses.choice_is_made;
             }
 
@@ -215,7 +215,7 @@ var CauseOfInjury = function (_React$Component2) {
         value: function createCheckbox(key) {
             var value = this.state.concerns[key];
             var checked = "";
-            if (this.props.formState.concerns.includes(key)) checked = CSSClasses.choice_is_made;
+            if (this.props.formState.injury_reason === key) checked = CSSClasses.choice_is_made;
 
             return React.createElement(
                 "div",
