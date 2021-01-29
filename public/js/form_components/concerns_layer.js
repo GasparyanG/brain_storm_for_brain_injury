@@ -8,7 +8,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-import { CSSClasses } from "../form_components/helper_components";
+import { CSSClasses } from "./helper_components";
 
 var Concerns = function (_React$Component) {
     _inherits(Concerns, _React$Component);
@@ -18,10 +18,32 @@ var Concerns = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (Concerns.__proto__ || Object.getPrototypeOf(Concerns)).call(this, props));
 
+        _this.displayOtherInput = function (element) {
+            if (!_this.state.permit_is_pressed && _this.state.other_input_disabled) return;
+            _this.state.other_input_disabled = true;
+
+            var choiceName = element.querySelector("." + CSSClasses.default_choice_name);
+            var choiceOtherInput = element.querySelector("." + CSSClasses.choice_other_raw_input);
+            var choiceLetter = element.querySelector("." + CSSClasses.choice_letter);
+            var checkElement = element.querySelector("." + CSSClasses.enabled_other_input);
+            if (!choiceName || !choiceOtherInput || !choiceLetter) return;
+
+            choiceName.classList.toggle(CSSClasses.hidden_element);
+            choiceOtherInput.classList.toggle(CSSClasses.hidden_element);
+            choiceLetter.classList.toggle(CSSClasses.hidden_element);
+            checkElement.classList.toggle(CSSClasses.hidden_element);
+        };
+
         _this.onCheck = function (e) {
             // Functionality
             var element = void 0;
-            if (e.target.hasAttribute("data-value")) element = e.target;else if (e.target.parentNode.hasAttribute("data-value")) element = e.target.parentNode;
+            if (e.target.hasAttribute("data-value")) element = e.target;else if (e.target.parentNode.hasAttribute("data-value")) element = e.target.parentNode;else if (e.target.parentNode.parentNode.hasAttribute("data-value")) element = e.target.parentNode.parentNode;
+
+            if (element.querySelectorAll("." + CSSClasses.choice_other_raw_input)) {
+                return _this.displayOtherInput(element);
+            }
+
+            // Don't let to make more than 4 choices
 
             var concerns = [].concat(_toConsumableArray(_this.props.formState.concerns));
             if (concerns.includes(element.dataset.value)) {
@@ -39,6 +61,52 @@ var Concerns = function (_React$Component) {
             element.classList.toggle(CSSClasses.choice_is_made);
         };
 
+        _this.unCheck = function (e) {
+            if (!e.target.classList.contains(CSSClasses.enabled_other_input)) return;
+
+            // Remove from choices
+            _this.props.onValueUpdate(CSSClasses.concerns_other, "");
+
+            // Remove decoration
+            var parentElement = e.target.parentNode.classList.remove(CSSClasses.choice_is_made);
+
+            _this.state.other_input_disabled = false;
+        };
+
+        _this.otherInputRendering = function () {
+            var valueToDisplay = "";
+            var checked = "";
+            if (_this.props.formState.concerns_other !== "") {
+                valueToDisplay = _this.props.formState.concerns_other;
+                checked = CSSClasses.choice_is_made;
+            }
+
+            return React.createElement(
+                "div",
+                { className: "choice_part " + checked, "data-value": "14", onClick: _this.onCheck },
+                React.createElement(
+                    "div",
+                    { className: "choice_letter" },
+                    "N"
+                ),
+                React.createElement(
+                    "div",
+                    { className: "choice_name" },
+                    React.createElement(
+                        "span",
+                        { className: "default_choice_name" },
+                        "Other"
+                    ),
+                    React.createElement("input", { onChange: _this.props.handler, id: "concerns_other", name: "concerns_other", className: "choice_other_raw_input hidden", defaultValue: valueToDisplay, type: "text", placeholder: "Type your answer..." })
+                ),
+                React.createElement(
+                    "div",
+                    { className: "enabled_other_input hidden", onClick: _this.unCheck },
+                    "\u2713"
+                )
+            );
+        };
+
         _this.state = {
             concerns: {
                 1: "Headaches", 2: "Pain", 3: "Fatigue",
@@ -46,7 +114,9 @@ var Concerns = function (_React$Component) {
                 7: "Hearing problems", 8: "Light or sound sensitivity", 9: "Trouble sleeping",
                 10: "Thinking difficulties", 11: "Speaking or understanding difficulties", 12: "Mood difficulties",
                 13: "Depression or anxiety"
-            }
+            },
+
+            other_input_disabled: false
         };
 
         _this.letters = {
@@ -86,6 +156,8 @@ var Concerns = function (_React$Component) {
             for (var key in this.state.concerns) {
                 checkboxItems.push(this.createCheckbox(key));
             }
+
+            var otherInput = this.otherInputRendering();
 
             var label = React.createElement(
                 "label",
@@ -161,25 +233,7 @@ var Concerns = function (_React$Component) {
                             "div",
                             { className: "choices_section" },
                             checkboxItems,
-                            React.createElement(
-                                "div",
-                                { className: "choice_part" },
-                                React.createElement(
-                                    "div",
-                                    { className: "choice_letter" },
-                                    "N"
-                                ),
-                                React.createElement(
-                                    "div",
-                                    { className: "choice_name" },
-                                    React.createElement(
-                                        "span",
-                                        null,
-                                        "Other"
-                                    ),
-                                    React.createElement("input", { className: "choice_other_raw_input hidden", type: "text", placeholder: "Type your answer..." })
-                                )
-                            )
+                            otherInput
                         )
                     )
                 )

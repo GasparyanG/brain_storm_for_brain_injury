@@ -3,7 +3,9 @@
     --choice-background-color: rgba(52, 113, 130, 0.1);
     --choice-color: rgb(52, 113, 130);
     --choice-shadow-color: rgba(52, 113, 130, 0.8);
-    --choice-hover-background-color: rgba(52, 113, 130, 0.3)
+    --choice-hover-background-color: rgba(52, 113, 130, 0.3);
+    --letter-box-width: 25px;
+    --letter-box-height: 25px;
 }
 
 /* Choice animation */
@@ -22,6 +24,7 @@
 }
 
 #form_container .choice_part {
+    position: relative;
     display: flex;
     -webkit-box-align: center;
     align-items: center;
@@ -53,8 +56,8 @@
     margin-left: 1rem;
     background-color: white;
     border-radius: var(--box-radius);
-    width: 25px;
-    height: 25px;
+    width: var(--letter-box-width);
+    height: var(--letter-box-height);
     text-align: center;
     justify-content: center;
     align-items: center;
@@ -69,6 +72,7 @@
     background-color: var(--choice-background-color);
     color: var(--choice-color);
     font-size: 20px;
+    margin-left: 1rem;
 }
 
 #form_container .choice_other_raw_input:hover,
@@ -86,4 +90,32 @@
 #form_container .choice_is_made .choice_letter {
     color: white;
     background-color: var(--choice-color);
+}
+
+/* Checkmark design */
+#form_container .enabled_other_input {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 0.5rem;
+    font-family: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition-duration: 0.1s;
+    transition-property: background-color, color, border-color, opacity, box-shadow;
+    transition-timing-function: ease-out;
+    outline: none;
+    border: 1px solid transparent;
+    margin: 0px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 12px 0px;
+    padding: 0px;
+    width: var(--letter-box-width);
+    min-width: var(--letter-box-width);
+    height: var(--letter-box-height);
+    -webkit-box-pack: center;
+    background-color: var(--choice-color);
+    color: white;
+    border-radius: var(--box-radius);
 }

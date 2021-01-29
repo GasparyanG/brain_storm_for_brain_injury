@@ -42,8 +42,11 @@ var Form = function (_React$Component) {
         };
 
         _this.state = _this.populateState();
+
+        // Event bindings.
         _this.handler = _this.onValueChange.bind(_this);
         _this.checkboxHandler = _this.onCheckboxCheck.bind(_this);
+        _this.onValueUpdate = _this.onChange.bind(_this);
 
         // Common Components
         _this.svgArrow = React.createElement(
@@ -89,7 +92,7 @@ var Form = function (_React$Component) {
                 React.createElement(DateOfInjury, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form }),
                 React.createElement(CauseOfInjury, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form }),
                 React.createElement(Concerns, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
-                    checkboxHandler: this.checkboxHandler })
+                    checkboxHandler: this.checkboxHandler, onValueUpdate: this.onValueUpdate })
             );
         }
     }]);

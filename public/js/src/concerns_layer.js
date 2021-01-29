@@ -1,4 +1,4 @@
-import { CSSClasses } from "../form_components/helper_components";
+import {CSSClasses} from "./helper_components";
 
 class Concerns extends React.Component {
     constructor(props) {
@@ -10,7 +10,9 @@ class Concerns extends React.Component {
                 7: "Hearing problems",          8: "Light or sound sensitivity",                9: "Trouble sleeping",
                 10: "Thinking difficulties",    11: "Speaking or understanding difficulties",   12: "Mood difficulties",
                 13: "Depression or anxiety"
-            }
+            },
+
+            other_input_disabled: false
         }
 
         this.letters = {
@@ -19,13 +21,37 @@ class Concerns extends React.Component {
         }
     }
 
+    displayOtherInput = (element) => {
+        if (!this.state.permit_is_pressed && this.state.other_input_disabled) return;
+        this.state.other_input_disabled = true;
+
+        let choiceName = element.querySelector("." + CSSClasses.default_choice_name);
+        let choiceOtherInput = element.querySelector("." + CSSClasses.choice_other_raw_input);
+        let choiceLetter = element.querySelector("." + CSSClasses.choice_letter);
+        let checkElement = element.querySelector("." + CSSClasses.enabled_other_input);
+        if (!choiceName || !choiceOtherInput || !choiceLetter) return;
+
+        choiceName.classList.toggle(CSSClasses.hidden_element);
+        choiceOtherInput.classList.toggle(CSSClasses.hidden_element);
+        choiceLetter.classList.toggle(CSSClasses.hidden_element);
+        checkElement.classList.toggle(CSSClasses.hidden_element);
+    }
+
     onCheck = (e) => {
         // Functionality
         let element;
         if (e.target.hasAttribute("data-value"))
             element = e.target;
         else if (e.target.parentNode.hasAttribute("data-value"))
-            element = e.target.parentNode
+            element = e.target.parentNode;
+        else if (e.target.parentNode.parentNode.hasAttribute("data-value"))
+            element = e.target.parentNode.parentNode;
+
+        if (element.querySelectorAll("." + CSSClasses.choice_other_raw_input)) {
+            return this.displayOtherInput(element);
+        }
+
+        // Don't let to make more than 4 choices
 
         let concerns = [...this.props.formState.concerns];
         if (concerns.includes(element.dataset.value)) {
@@ -57,12 +83,46 @@ class Concerns extends React.Component {
         );
     }
 
+    unCheck = (e) => {
+        if (!e.target.classList.contains(CSSClasses.enabled_other_input)) return;
+
+        // Remove from choices
+        this.props.onValueUpdate(CSSClasses.concerns_other, "");
+
+        // Remove decoration
+        let parentElement = e.target.parentNode.classList.remove(CSSClasses.choice_is_made);
+
+        this.state.other_input_disabled = false;
+    }
+
+    otherInputRendering = () => {
+        let valueToDisplay = "";
+        let checked = "";
+        if (this.props.formState.concerns_other !== "") {
+            valueToDisplay = this.props.formState.concerns_other;
+            checked = CSSClasses.choice_is_made;
+        }
+
+        return (
+            <div className={"choice_part " + checked} data-value="14" onClick={this.onCheck}>
+                <div className="choice_letter">N</div>
+                <div className="choice_name">
+                    <span className="default_choice_name">Other</span>
+                    <input onChange={this.props.handler} id="concerns_other" name="concerns_other" className="choice_other_raw_input hidden" defaultValue={valueToDisplay} type="text" placeholder="Type your answer..."/>
+                </div>
+                <div className="enabled_other_input hidden" onClick={this.unCheck}>✓</div>
+            </div>
+        );
+    }
+
     render () {
         // Prepare Checkbox array
         const checkboxItems = [];
         for (let key in this.state.concerns) {
             checkboxItems.push(this.createCheckbox(key));
         }
+
+        const otherInput = this.otherInputRendering();
 
         let label = (<label className="input_label" htmlFor="injury_date">
             <span className="question_number">5 {this.props.svgArrow}</span>Check your <strong>greatest concerns</strong> (check <strong>up to four</strong> and <strong>star</strong> the most troubling one)</label>);
@@ -77,13 +137,7 @@ class Concerns extends React.Component {
                         {label}
                         <div className="choices_section">
                             {checkboxItems}
-                            <div className="choice_part">
-                                <div className="choice_letter">N</div>
-                                <div className="choice_name">
-                                    <span>Other</span>
-                                    <input className="choice_other_raw_input hidden" type="text" placeholder="Type your answer..."/>
-                                </div>
-                            </div>
+                            {otherInput}
                         </div>
                     </div>
                 </div>
