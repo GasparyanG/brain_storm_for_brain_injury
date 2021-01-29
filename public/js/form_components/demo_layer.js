@@ -158,7 +158,7 @@ var Location = function (_React$Component3) {
                 React.createElement(
                     "span",
                     { className: "question_number" },
-                    "2 ",
+                    "3 ",
                     this.props.svgArrow
                 ),
                 React.createElement(
@@ -179,7 +179,7 @@ var Location = function (_React$Component3) {
                 React.createElement(
                     "span",
                     { className: "question_number" },
-                    "2 ",
+                    "3 ",
                     this.props.svgArrow
                 ),
                 React.createElement(

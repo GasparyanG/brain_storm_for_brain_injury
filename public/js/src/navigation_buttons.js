@@ -1,4 +1,4 @@
-import {CSSClasses} from "./helper_components";
+import {CSSClasses, debounce} from "./helper_components";
 
 class Navigation extends React.Component {
     constructor(props) {
@@ -6,8 +6,29 @@ class Navigation extends React.Component {
 
         this.state = {
             current_position: 0,
-            max_number_of_pages: 5
+            max_number_of_pages: 5,
         }
+
+        this.addOnScroll();
+    }
+
+    handleOnScroll = (e) => {
+        let evt=window.event || e; //equalize event object
+        let delta=evt.detail? evt.detail*(-120) : evt.wheelDelta; //check for detail first so Opera uses that instead of wheelDelta
+
+        if (delta < 0)
+            this.changeToNextLayer();
+        else
+            this.changeToPrevLayer();
+    }
+
+    addOnScroll = () => {
+        let returnedFucntion = debounce(this.handleOnScroll, 20);
+
+        // IE9, Chrome, Safari, Opera
+        document.body.addEventListener("mousewheel", returnedFucntion);
+        // Firefox
+        document.body.addEventListener("DOMMouseScroll", returnedFucntion);
     }
 
     changeToPrevLayer = () => {

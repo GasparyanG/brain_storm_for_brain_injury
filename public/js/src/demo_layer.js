@@ -54,10 +54,10 @@ class Location extends React.Component {
 
     render() {
         let label = (<label className="input_label" htmlFor="date_of_birth">
-            <span className="question_number">2 {this.props.svgArrow}</span><span>Where do you <strong>live</strong>?</span></label>);
+            <span className="question_number">3 {this.props.svgArrow}</span><span>Where do you <strong>live</strong>?</span></label>);
         if (this.props.formState.name !== "")
             label = (<label className="input_label" htmlFor="date_of_birth">
-                <span className="question_number">2 {this.props.svgArrow}</span><span>{this.props.formState.name}, where do you <strong>live</strong>?</span></label>);
+                <span className="question_number">3 {this.props.svgArrow}</span><span>{this.props.formState.name}, where do you <strong>live</strong>?</span></label>);
 
         return (
             <section className="user_location form_layer">

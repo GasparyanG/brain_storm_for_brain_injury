@@ -6,7 +6,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-import { CSSClasses } from "./helper_components";
+import { CSSClasses, debounce } from "./helper_components";
 
 var Navigation = function (_React$Component) {
     _inherits(Navigation, _React$Component);
@@ -15,6 +15,22 @@ var Navigation = function (_React$Component) {
         _classCallCheck(this, Navigation);
 
         var _this = _possibleConstructorReturn(this, (Navigation.__proto__ || Object.getPrototypeOf(Navigation)).call(this, props));
+
+        _this.handleOnScroll = function (e) {
+            var evt = window.event || e; //equalize event object
+            var delta = evt.detail ? evt.detail * -120 : evt.wheelDelta; //check for detail first so Opera uses that instead of wheelDelta
+
+            if (delta < 0) _this.changeToNextLayer();else _this.changeToPrevLayer();
+        };
+
+        _this.addOnScroll = function () {
+            var returnedFucntion = debounce(_this.handleOnScroll, 20);
+
+            // IE9, Chrome, Safari, Opera
+            document.body.addEventListener("mousewheel", returnedFucntion);
+            // Firefox
+            document.body.addEventListener("DOMMouseScroll", returnedFucntion);
+        };
 
         _this.changeToPrevLayer = function () {
             if (_this.state.current_position === 0) return;else _this.state.current_position--;
@@ -38,6 +54,8 @@ var Navigation = function (_React$Component) {
             current_position: 0,
             max_number_of_pages: 5
         };
+
+        _this.addOnScroll();
         return _this;
     }
 
