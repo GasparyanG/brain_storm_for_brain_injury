@@ -1,3 +1,5 @@
+import { CSSClasses } from "../form_components/helper_components";
+
 class Concerns extends React.Component {
     constructor(props) {
         super(props);
@@ -18,27 +20,34 @@ class Concerns extends React.Component {
     }
 
     onCheck = (e) => {
+        // Functionality
+        let element;
+        if (e.target.hasAttribute("data-value"))
+            element = e.target;
+        else if (e.target.parentNode.hasAttribute("data-value"))
+            element = e.target.parentNode
+
         let concerns = [...this.props.formState.concerns];
-        if (concerns.includes(e.target.dataset.value)) {
-            let index = concerns.indexOf(e.target.dataset.value);
+        if (concerns.includes(element.dataset.value)) {
+            let index = concerns.indexOf(element.dataset.value);
             if (index > -1) {
                 concerns.splice(index, 1);
             }
         } else {
-            concerns.push(e.target.dataset.value);
+            concerns.push(element.dataset.value);
         }
 
-        console.log(concerns);
-
         this.props.checkboxHandler("concerns", concerns);
+
+        // Design
+        element.classList.toggle(CSSClasses.choice_is_made);
     }
 
     createCheckbox(key) {
         let value = this.state.concerns[key];
 
-
         return (
-            <div key={value + ' ' + key} className="choice_part">
+            <div key={value + ' ' + key} className="choice_part" onClick={this.onCheck} data-value={key}>
                 <div className="choice_letter">{this.letters[key]}</div>
                 <div className="choice_name">{value}</div>
             </div>

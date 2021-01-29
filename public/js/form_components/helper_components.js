@@ -20,4 +20,9 @@ function RegularButton(props) {
     );
 }
 
-export { RegularButton };
+
+const CSSClasses = {
+    choice_is_made: "choice_is_made"
+};
+
+export { RegularButton, CSSClasses };

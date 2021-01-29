@@ -66,3 +66,13 @@
     border: none;
     outline: none;
 }
+
+/* Choice decoration */
+#form_container .choice_is_made {
+    box-shadow: var(--choice-color) 0px 0px 0px 2px inset;
+}
+
+#form_container .choice_is_made .choice_letter {
+    color: white;
+    background-color: var(--choice-color);
+}

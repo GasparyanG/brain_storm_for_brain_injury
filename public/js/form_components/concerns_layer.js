@@ -8,6 +8,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+import { CSSClasses } from "../form_components/helper_components";
+
 var Concerns = function (_React$Component) {
     _inherits(Concerns, _React$Component);
 
@@ -17,19 +19,24 @@ var Concerns = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (Concerns.__proto__ || Object.getPrototypeOf(Concerns)).call(this, props));
 
         _this.onCheck = function (e) {
+            // Functionality
+            var element = void 0;
+            if (e.target.hasAttribute("data-value")) element = e.target;else if (e.target.parentNode.hasAttribute("data-value")) element = e.target.parentNode;
+
             var concerns = [].concat(_toConsumableArray(_this.props.formState.concerns));
-            if (concerns.includes(e.target.dataset.value)) {
-                var index = concerns.indexOf(e.target.dataset.value);
+            if (concerns.includes(element.dataset.value)) {
+                var index = concerns.indexOf(element.dataset.value);
                 if (index > -1) {
                     concerns.splice(index, 1);
                 }
             } else {
-                concerns.push(e.target.dataset.value);
+                concerns.push(element.dataset.value);
             }
 
-            console.log(concerns);
-
             _this.props.checkboxHandler("concerns", concerns);
+
+            // Design
+            element.classList.toggle(CSSClasses.choice_is_made);
         };
 
         _this.state = {
@@ -56,7 +63,7 @@ var Concerns = function (_React$Component) {
 
             return React.createElement(
                 "div",
-                { key: value + ' ' + key, className: "choice_part" },
+                { key: value + ' ' + key, className: "choice_part", onClick: this.onCheck, "data-value": key },
                 React.createElement(
                     "div",
                     { className: "choice_letter" },
