@@ -10,6 +10,11 @@ class Concerns extends React.Component {
                 13: "Depression or anxiety"
             }
         }
+
+        this.letters = {
+            1: 'A', 2: 'B', 3: 'C', 4: 'D', 5: 'E', 6: 'F',
+            7: 'G', 8: 'H', 9: 'I', 10: 'J', 11: 'K', 12: 'L', 13: 'M'
+        }
     }
 
     onCheck = (e) => {
@@ -31,40 +36,42 @@ class Concerns extends React.Component {
     createCheckbox(key) {
         let value = this.state.concerns[key];
 
-        let checked = (this.props.formState.concerns.includes(key)) ? "checked": "";
-        let checkbox = (<input onChange={this.onCheck} className="checkbox_input" type="checkbox"
-                               id={"c_" + key} name={"c_" + key} data-value={key} value={value}/>);
-        if (checked === "checked")
-            checkbox = (<input onChange={this.onCheck} className="checkbox_input" type="checkbox"
-                               id={"c_" + key} name={"c_" + key} data-value={key} value={value} checked/>);
 
         return (
-            <div key={value + "_" + key}>
-                {checkbox}
-                <label className="checkbox_label" htmlFor={"c_" + key}> {value}</label>
+            <div key={value + ' ' + key} className="choice_part">
+                <div className="choice_letter">{this.letters[key]}</div>
+                <div className="choice_name">{value}</div>
             </div>
         );
     }
 
     render () {
-        let svgArrow = (<svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>);
-
         // Prepare Checkbox array
         const checkboxItems = [];
         for (let key in this.state.concerns) {
             checkboxItems.push(this.createCheckbox(key));
         }
 
+        let label = (<label className="input_label" htmlFor="injury_date">
+            <span className="question_number">5 {this.props.svgArrow}</span>Check your <strong>greatest concerns</strong> (check <strong>up to four</strong> and <strong>star</strong> the most troubling one)</label>);
+        if (this.props.formState.name !== "")
+            label = (<label className="input_label" htmlFor="injury_date">
+                <span className="question_number">5 {this.props.svgArrow}</span>{this.props.formState.name}, check your <strong>greatest concerns</strong> (check <strong>up to four</strong> and <strong>star</strong> the most troubling one)</label>);
+
         return (
             <section className="concerns form_layer">
                 <div className="layer_content">
-                    <div className="layer_header">Finally, concerns.</div>
                     <div className="questions concern_questions">
-                        <label className="input_label" htmlFor="injury_date"><span className="question_number">6 {svgArrow}</span>Check your <strong>greatest concerns</strong> (check <strong>up to four</strong> and <strong>star</strong> the most troubling one)</label>
-                        <div className="checkbox_container">
+                        {label}
+                        <div className="choices_section">
                             {checkboxItems}
-                            <input onChange={this.props.handler} className="raw_input"
-                                   name="concerns_other" id="concerns_other" type="text" defaultValue={this.props.formState.concerns_other} placeholder="Other"/>
+                            <div className="choice_part">
+                                <div className="choice_letter">N</div>
+                                <div className="choice_name">
+                                    <span>Other</span>
+                                    <input className="choice_other_raw_input hidden" type="text" placeholder="Type your answer..."/>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

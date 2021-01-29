@@ -41,6 +41,11 @@ var Concerns = function (_React$Component) {
                 13: "Depression or anxiety"
             }
         };
+
+        _this.letters = {
+            1: 'A', 2: 'B', 3: 'C', 4: 'D', 5: 'E', 6: 'F',
+            7: 'G', 8: 'H', 9: 'I', 10: 'J', 11: 'K', 12: 'L', 13: 'M'
+        };
         return _this;
     }
 
@@ -49,20 +54,17 @@ var Concerns = function (_React$Component) {
         value: function createCheckbox(key) {
             var value = this.state.concerns[key];
 
-            var checked = this.props.formState.concerns.includes(key) ? "checked" : "";
-            var checkbox = React.createElement("input", { onChange: this.onCheck, className: "checkbox_input", type: "checkbox",
-                id: "c_" + key, name: "c_" + key, "data-value": key, value: value });
-            if (checked === "checked") checkbox = React.createElement("input", { onChange: this.onCheck, className: "checkbox_input", type: "checkbox",
-                id: "c_" + key, name: "c_" + key, "data-value": key, value: value, checked: true });
-
             return React.createElement(
                 "div",
-                { key: value + "_" + key },
-                checkbox,
+                { key: value + ' ' + key, className: "choice_part" },
                 React.createElement(
-                    "label",
-                    { className: "checkbox_label", htmlFor: "c_" + key },
-                    " ",
+                    "div",
+                    { className: "choice_letter" },
+                    this.letters[key]
+                ),
+                React.createElement(
+                    "div",
+                    { className: "choice_name" },
                     value
                 )
             );
@@ -70,18 +72,71 @@ var Concerns = function (_React$Component) {
     }, {
         key: "render",
         value: function render() {
-            var svgArrow = React.createElement(
-                "svg",
-                { height: "10", width: "11" },
-                React.createElement("path", { d: "M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z" }),
-                React.createElement("path", { d: "M8 4v2H0V4z" })
-            );
-
             // Prepare Checkbox array
             var checkboxItems = [];
             for (var key in this.state.concerns) {
                 checkboxItems.push(this.createCheckbox(key));
             }
+
+            var label = React.createElement(
+                "label",
+                { className: "input_label", htmlFor: "injury_date" },
+                React.createElement(
+                    "span",
+                    { className: "question_number" },
+                    "5 ",
+                    this.props.svgArrow
+                ),
+                "Check your ",
+                React.createElement(
+                    "strong",
+                    null,
+                    "greatest concerns"
+                ),
+                " (check ",
+                React.createElement(
+                    "strong",
+                    null,
+                    "up to four"
+                ),
+                " and ",
+                React.createElement(
+                    "strong",
+                    null,
+                    "star"
+                ),
+                " the most troubling one)"
+            );
+            if (this.props.formState.name !== "") label = React.createElement(
+                "label",
+                { className: "input_label", htmlFor: "injury_date" },
+                React.createElement(
+                    "span",
+                    { className: "question_number" },
+                    "5 ",
+                    this.props.svgArrow
+                ),
+                this.props.formState.name,
+                ", check your ",
+                React.createElement(
+                    "strong",
+                    null,
+                    "greatest concerns"
+                ),
+                " (check ",
+                React.createElement(
+                    "strong",
+                    null,
+                    "up to four"
+                ),
+                " and ",
+                React.createElement(
+                    "strong",
+                    null,
+                    "star"
+                ),
+                " the most troubling one)"
+            );
 
             return React.createElement(
                 "section",
@@ -91,47 +146,31 @@ var Concerns = function (_React$Component) {
                     { className: "layer_content" },
                     React.createElement(
                         "div",
-                        { className: "layer_header" },
-                        "Finally, concerns."
-                    ),
-                    React.createElement(
-                        "div",
                         { className: "questions concern_questions" },
-                        React.createElement(
-                            "label",
-                            { className: "input_label", htmlFor: "injury_date" },
-                            React.createElement(
-                                "span",
-                                { className: "question_number" },
-                                "6 ",
-                                svgArrow
-                            ),
-                            "Check your ",
-                            React.createElement(
-                                "strong",
-                                null,
-                                "greatest concerns"
-                            ),
-                            " (check ",
-                            React.createElement(
-                                "strong",
-                                null,
-                                "up to four"
-                            ),
-                            " and ",
-                            React.createElement(
-                                "strong",
-                                null,
-                                "star"
-                            ),
-                            " the most troubling one)"
-                        ),
+                        label,
                         React.createElement(
                             "div",
-                            { className: "checkbox_container" },
+                            { className: "choices_section" },
                             checkboxItems,
-                            React.createElement("input", { onChange: this.props.handler, className: "raw_input",
-                                name: "concerns_other", id: "concerns_other", type: "text", defaultValue: this.props.formState.concerns_other, placeholder: "Other" })
+                            React.createElement(
+                                "div",
+                                { className: "choice_part" },
+                                React.createElement(
+                                    "div",
+                                    { className: "choice_letter" },
+                                    "N"
+                                ),
+                                React.createElement(
+                                    "div",
+                                    { className: "choice_name" },
+                                    React.createElement(
+                                        "span",
+                                        null,
+                                        "Other"
+                                    ),
+                                    React.createElement("input", { className: "choice_other_raw_input hidden", type: "text", placeholder: "Type your answer..." })
+                                )
+                            )
                         )
                     )
                 )

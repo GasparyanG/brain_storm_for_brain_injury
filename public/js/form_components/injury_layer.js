@@ -159,7 +159,7 @@ var CauseOfInjury = function (_React$Component2) {
 
             return React.createElement(
                 "section",
-                { className: "cause_of_injury form_layer" },
+                { className: "cause_of_injury form_layer hidden" },
                 React.createElement(
                     "div",
                     { className: "layer_content" },

@@ -53,7 +53,7 @@ class CauseOfInjury extends React.Component {
                 <span className="question_number">5 {this.props.svgArrow}</span>{this.props.formState.name}, what was <strong>the cause</strong> of injury?</label>);
 
         return (
-            <section className="cause_of_injury form_layer">
+            <section className="cause_of_injury form_layer hidden">
                 <div className="layer_content">
                     <div className="questions">
                         {label}
