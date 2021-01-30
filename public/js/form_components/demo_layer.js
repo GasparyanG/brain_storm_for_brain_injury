@@ -6,7 +6,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-import { CSSClasses, RegularButton } from "./helper_components";
+import { CSSClasses, ErrorMessage, RegularButton } from "./helper_components";
 
 var Name = function (_React$Component) {
     _inherits(Name, _React$Component);
@@ -39,13 +39,20 @@ var Name = function (_React$Component) {
             return false;
         };
 
+        _this.hintOrAction = function (field) {
+            var isValid = _this.validateInput();
+            if (_this.props.errors.hasOwnProperty(field)) return React.createElement(ErrorMessage, { errors: _this.props.errors, field: field });
+
+            return React.createElement(RegularButton, { errors: _this.props.errors, isValid: isValid, formState: _this.props.formState, handleOk: _this.handleOk });
+        };
+
         return _this;
     }
 
     _createClass(Name, [{
         key: "render",
         value: function render() {
-            var isValid = this.validateInput();
+            var validityElement = this.hintOrAction(CSSClasses.name);
 
             return React.createElement(
                 "section",
@@ -79,7 +86,7 @@ var Name = function (_React$Component) {
                         ),
                         React.createElement("input", { onChange: this.props.handler, onKeyUp: this.handleEnter, className: "raw_input",
                             name: "name", id: "name", type: "text", defaultValue: this.props.formState.name, placeholder: "Type here..." }),
-                        React.createElement(RegularButton, { isValid: isValid, formState: this.props.formState, handleOk: this.handleOk })
+                        validityElement
                     )
                 )
             );

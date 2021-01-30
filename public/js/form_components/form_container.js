@@ -11,7 +11,7 @@ import { DateOfInjury, CauseOfInjury } from "./injury_layer";
 import { Concerns } from "./concerns_layer";
 import { Navigation } from "./navigation_buttons";
 import { ProgressBar } from "./progress_bar";
-import { CSSClasses, SymbolicConstants } from "./helper_components";
+import { CSSClasses, DefaultErrorMessages, SymbolicConstants } from "./helper_components";
 
 var Form = function (_React$Component) {
     _inherits(Form, _React$Component);
@@ -106,6 +106,12 @@ var Form = function (_React$Component) {
                     injury_date_month: "",
                     injury_date_year: "",
                     injury_reason: ""
+                },
+
+                errors: {
+                    name: {
+                        message: DefaultErrorMessages.name
+                    }
                 }
             };
 
@@ -127,19 +133,19 @@ var Form = function (_React$Component) {
                 { className: "layers_container" },
                 React.createElement(ProgressBar, { formState: this.state.form }),
                 React.createElement(Name, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
-                    changeToNext: this.changeToNext }),
+                    changeToNext: this.changeToNext, errors: this.state.errors }),
                 React.createElement(Age, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
-                    changeToNext: this.changeToNext, changeToPrev: this.changeToPrev }),
+                    changeToNext: this.changeToNext, changeToPrev: this.changeToPrev, errors: this.state.errors }),
                 React.createElement(Location, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
-                    changeToNext: this.changeToNext, changeToPrev: this.changeToPrev }),
+                    changeToNext: this.changeToNext, changeToPrev: this.changeToPrev, errors: this.state.errors }),
                 React.createElement(DateOfInjury, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
-                    changeToNext: this.changeToNext, changeToPrev: this.changeToPrev }),
+                    changeToNext: this.changeToNext, changeToPrev: this.changeToPrev, errors: this.state.errors }),
                 React.createElement(CauseOfInjury, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
                     checkboxHandler: this.checkboxHandler, onValueUpdate: this.onValueUpdate,
-                    changeToNext: this.changeToNext, changeToPrev: this.changeToPrev }),
+                    changeToNext: this.changeToNext, changeToPrev: this.changeToPrev, errors: this.state.errors }),
                 React.createElement(Concerns, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
                     checkboxHandler: this.checkboxHandler, onValueUpdate: this.onValueUpdate,
-                    changeToNext: this.changeToNext, changeToPrev: this.changeToPrev }),
+                    changeToNext: this.changeToNext, changeToPrev: this.changeToPrev, errors: this.state.errors }),
                 React.createElement(Navigation, { changeToNext: this.changeToNext, changeToPrev: this.changeToPrev })
             );
         }

@@ -23,6 +23,31 @@ function RegularButton(props) {
     );
 }
 
+function ErrorMessage(props) {
+    return React.createElement(
+        "div",
+        { className: "error_message_component" },
+        React.createElement(
+            "div",
+            { className: "error_message_parts" },
+            React.createElement(
+                "span",
+                { className: "error_message_icon" },
+                React.createElement(
+                    "i",
+                    { className: "material-icons" },
+                    "warning"
+                )
+            ),
+            React.createElement(
+                "span",
+                { className: "error_message" },
+                props.errors[props.field].message
+            )
+        )
+    );
+}
+
 function debounce(func, wait, immediate) {
     var timeout;
     return function () {
@@ -87,4 +112,8 @@ var SymbolicConstants = {
     max_number_of_pages_human: 6
 };
 
-export { RegularButton, CSSClasses, debounce, SymbolicConstants };
+var DefaultErrorMessages = {
+    name: "Name is required"
+};
+
+export { RegularButton, ErrorMessage, CSSClasses, debounce, SymbolicConstants, DefaultErrorMessages };

@@ -1,4 +1,4 @@
-import {CSSClasses, RegularButton} from "./helper_components";
+import {CSSClasses, ErrorMessage, RegularButton} from "./helper_components";
 
 class Name extends React.Component {
     constructor(props) {
@@ -29,17 +29,28 @@ class Name extends React.Component {
         return false;
     }
 
-    render() {
+    hintOrAction = (field) => {
         let isValid = this.validateInput();
+        if (this.props.errors.hasOwnProperty(field))
+            return <ErrorMessage errors={this.props.errors} field={field}/>
+
+        return (
+            <RegularButton errors={this.props.errors} isValid={isValid} formState={this.props.formState} handleOk={this.handleOk}/>
+        );
+    }
+
+    render() {
+        let validityElement = this.hintOrAction(CSSClasses.name);
 
         return (
             <section className="user_name form_layer">
                 <div className="layer_content">
                     <div className="questions">
-                        <label className="input_label" htmlFor="name"><span className="question_number">1 {this.props.svgArrow}</span><span>Let's start with your <strong>name</strong>.</span></label>
+                        <label className="input_label" htmlFor="name"><span className="question_number">1 {this.props.svgArrow}</span>
+                            <span>Let's start with your <strong>name</strong>.</span></label>
                         <input onChange={this.props.handler} onKeyUp={this.handleEnter} className="raw_input"
                                name="name" id="name" type="text" defaultValue={this.props.formState.name} placeholder="Type here..."/>
-                        <RegularButton isValid={isValid} formState={this.props.formState} handleOk={this.handleOk}/>
+                        {validityElement}
                     </div>
                 </div>
             </section>

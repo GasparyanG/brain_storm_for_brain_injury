@@ -14,6 +14,21 @@ function RegularButton(props) {
     );
 }
 
+function ErrorMessage(props) {
+    return (
+        <div className="error_message_component">
+            <div className="error_message_parts">
+                <span className="error_message_icon">
+                    <i className="material-icons">warning</i>
+                </span>
+                    <span className="error_message">
+                    {props.errors[props.field].message}
+                </span>
+            </div>
+        </div>
+    );
+}
+
 function debounce(func, wait, immediate) {
     var timeout;
     return function() {
@@ -77,4 +92,15 @@ const SymbolicConstants = {
     max_number_of_pages_human: 6
 }
 
-export {RegularButton, CSSClasses, debounce, SymbolicConstants};
+const DefaultErrorMessages = {
+    name: "Name is required"
+}
+
+export {
+    RegularButton,
+    ErrorMessage,
+    CSSClasses,
+    debounce,
+    SymbolicConstants,
+    DefaultErrorMessages
+};
