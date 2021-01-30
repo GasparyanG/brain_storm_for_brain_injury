@@ -41,6 +41,7 @@ class Form extends React.Component {
                 age: "",
                 location: "",
                 concerns: [],
+                solid_concern: "",
                 concerns_other: "",
                 injury_date_day: "",
                 injury_date_month: "",

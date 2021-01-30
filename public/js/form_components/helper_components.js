@@ -45,11 +45,15 @@ var CSSClasses = {
     hidden_element: "hidden",
     choice_letter: "choice_letter",
     enabled_other_input: "enabled_other_input",
-    concerns_other: "concerns_other",
-    injury_reason: "injury_reason",
     form_layer: "form_layer",
     solid_choice: "solid_choice",
-    solid_choice_is_made: "solid_choice_is_made"
+    solid_choice_is_made: "solid_choice_is_made",
+    better_choice_exists: "better_choice_exists",
+
+    // Form Keys
+    solid_concern: "solid_concern",
+    concerns_other: "concerns_other",
+    injury_reason: "injury_reason"
 };
 
 // Symbolic Constants Configuration

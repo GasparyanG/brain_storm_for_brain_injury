@@ -66,11 +66,32 @@ var Concerns = function (_React$Component) {
             element.classList.toggle(CSSClasses.choice_is_made);
         };
 
+        _this.isSolidChoice = function (checkedElement) {
+            return !!checkedElement.querySelector("." + CSSClasses.solid_choice_is_made);
+        };
+
+        _this.displaySolidChoice = function (checkedElement) {
+            if (_this.isSolidChoice(checkedElement)) return;
+            checkedElement.classList.remove(CSSClasses.better_choice_exists);
+        };
+
+        _this.hideSolidChoice = function (checkedElement) {
+            if (_this.isSolidChoice(checkedElement)) return;
+            checkedElement.classList.add(CSSClasses.better_choice_exists);
+        };
+
         _this.makeSolidChoice = function (e) {
             if (!e.target.classList.contains(CSSClasses.solid_choice)) return;
-            e.target.classList.toggle("solid_choice_is_made");
+            e.target.classList.toggle(CSSClasses.solid_choice_is_made);
 
             // Update state about solid choice.
+            _this.props.checkboxHandler(CSSClasses.solid_concern, e.target.dataset.solid_value);
+
+            // Update solid choice button for other elements.
+            var choices = document.querySelectorAll("." + CSSClasses.choice_is_made);
+            for (var i = 0; i < choices.length; i++) {
+                if (!e.target.classList.contains(CSSClasses.solid_choice_is_made)) _this.displaySolidChoice(choices[i]);else _this.hideSolidChoice(choices[i]);
+            }
         };
 
         _this.unCheck = function (e) {
@@ -136,7 +157,7 @@ var Concerns = function (_React$Component) {
                     ),
                     React.createElement(
                         "div",
-                        { onClick: _this.makeSolidChoice, className: "solid_choice" },
+                        { onClick: _this.makeSolidChoice, "data-solid_value": "14", className: "solid_choice" },
                         "\u2605"
                     )
                 )
@@ -184,7 +205,7 @@ var Concerns = function (_React$Component) {
                 ),
                 React.createElement(
                     "div",
-                    { onClick: this.makeSolidChoice, className: "solid_choice" },
+                    { onClick: this.makeSolidChoice, "data-solid_value": key, className: "solid_choice" },
                     "\u2605"
                 )
             );

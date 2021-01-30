@@ -74,11 +74,35 @@ class Concerns extends React.Component {
         element.classList.toggle(CSSClasses.choice_is_made);
     }
 
+    isSolidChoice = (checkedElement) => {
+        return !!checkedElement.querySelector("." + CSSClasses.solid_choice_is_made);
+    }
+
+    displaySolidChoice = (checkedElement) => {
+        if (this.isSolidChoice(checkedElement)) return;
+        checkedElement.classList.remove(CSSClasses.better_choice_exists);
+    }
+
+    hideSolidChoice = (checkedElement) => {
+        if (this.isSolidChoice(checkedElement)) return;
+        checkedElement.classList.add(CSSClasses.better_choice_exists);
+    }
+
     makeSolidChoice = (e) => {
         if (!e.target.classList.contains(CSSClasses.solid_choice)) return;
-        e.target.classList.toggle("solid_choice_is_made");
+        e.target.classList.toggle(CSSClasses.solid_choice_is_made);
 
         // Update state about solid choice.
+        this.props.checkboxHandler(CSSClasses.solid_concern, e.target.dataset.solid_value);
+
+        // Update solid choice button for other elements.
+        let choices = document.querySelectorAll("." + CSSClasses.choice_is_made);
+        for (let i = 0; i < choices.length; i++) {
+            if (!e.target.classList.contains(CSSClasses.solid_choice_is_made))
+                this.displaySolidChoice(choices[i]);
+            else
+                this.hideSolidChoice(choices[i]);
+        }
     }
 
     createCheckbox(key) {
@@ -91,7 +115,7 @@ class Concerns extends React.Component {
             <div key={value + ' ' + key} className={"choice_part " + checked} onClick={this.onCheck} data-value={key}>
                 <div className="choice_letter">{this.letters[key]}</div>
                 <div className="choice_name">{value}</div>
-                <div onClick={this.makeSolidChoice} className="solid_choice">★</div>
+                <div onClick={this.makeSolidChoice} data-solid_value={key} className="solid_choice">★</div>
             </div>
         );
     }
@@ -140,7 +164,7 @@ class Concerns extends React.Component {
                 </div>
                 <div className="other_input_interaction">
                     <div className="enabled_other_input hidden" onClick={this.unCheck}>✓</div>
-                    <div onClick={this.makeSolidChoice} className="solid_choice">★</div>
+                    <div onClick={this.makeSolidChoice} data-solid_value="14" className="solid_choice">★</div>
                 </div>
             </div>
         );
