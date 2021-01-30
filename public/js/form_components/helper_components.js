@@ -64,6 +64,7 @@ var SymbolicConstants = {
 
     // External Support
     debounce_wait: 20,
+    completed_progress: 100,
 
     // Events
     enter_key_code: 13,

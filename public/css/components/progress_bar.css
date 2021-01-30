@@ -6,7 +6,7 @@
     display: flex;
     width: 70%;
     position: absolute;
-    left: calc(50% - var(--progress-hint-width));
+    left: calc(50% + var(--progress-hint-width));
     height: 3px;
     transform: translateX(-50%);
     top: 1rem;
@@ -21,6 +21,7 @@
 }
 
 #form_container .form_progress_amount {
+    white-space: nowrap;
     font-style: italic;
     color: var(--input-color);
     width: var(--progress-hint-width);

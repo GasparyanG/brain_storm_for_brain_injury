@@ -110,7 +110,7 @@ var DateOfInjury = function (_React$Component) {
                                     { htmlFor: "injury_date_month", className: "date_section_name" },
                                     "Month"
                                 ),
-                                React.createElement("input", { onChange: this.props.handler, onKeyUp: this.handleEnter,
+                                React.createElement("input", { onChange: this.props.handler, onKeyUp: this.handleEnter, defaultValue: this.props.formState.injury_date_month,
                                     id: "injury_date_month", name: "injury_date_month", className: "raw_date_input date_month", type: "text" })
                             ),
                             React.createElement(
@@ -121,7 +121,7 @@ var DateOfInjury = function (_React$Component) {
                                     { htmlFor: "injury_date_day", className: "date_section_name" },
                                     "Day"
                                 ),
-                                React.createElement("input", { onChange: this.props.handler, onKeyUp: this.handleEnter,
+                                React.createElement("input", { onChange: this.props.handler, onKeyUp: this.handleEnter, defaultValue: this.props.formState.injury_date_day,
                                     id: "injury_date_day", name: "injury_date_day", className: "raw_date_input date_day", type: "text" })
                             ),
                             React.createElement(
@@ -132,7 +132,7 @@ var DateOfInjury = function (_React$Component) {
                                     { htmlFor: "injury_date_year", className: "date_section_name" },
                                     "Year"
                                 ),
-                                React.createElement("input", { onChange: this.props.handler, onKeyUp: this.handleEnter,
+                                React.createElement("input", { onChange: this.props.handler, onKeyUp: this.handleEnter, defaultValue: this.props.formState.injury_date_year,
                                     id: "injury_date_year", name: "injury_date_year", className: "raw_date_input date_year", type: "text" })
                             )
                         ),
