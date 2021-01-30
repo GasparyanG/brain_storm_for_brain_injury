@@ -103,7 +103,9 @@ class Concerns extends React.Component {
         this.props.onValueUpdate(CSSClasses.concerns_other, "");
 
         // Remove decoration
-        let parentElement = e.target.parentNode.classList.remove(CSSClasses.choice_is_made);
+        e.target.parentNode.classList.remove(CSSClasses.choice_is_made);
+        let starElement = e.target.parentNode.parentElement.querySelector("." + CSSClasses.solid_choice);
+        starElement.classList.remove(CSSClasses.solid_choice_is_made);
 
         this.state.other_input_disabled = false;
     }

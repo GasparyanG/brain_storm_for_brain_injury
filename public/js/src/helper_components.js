@@ -37,7 +37,8 @@ const CSSClasses = {
     concerns_other: "concerns_other",
     injury_reason: "injury_reason",
     form_layer: "form_layer",
-    solid_choice: "solid_choice"
+    solid_choice: "solid_choice",
+    solid_choice_is_made: "solid_choice_is_made"
 };
 
 // Symbolic Constants Configuration

@@ -80,7 +80,9 @@ var Concerns = function (_React$Component) {
             _this.props.onValueUpdate(CSSClasses.concerns_other, "");
 
             // Remove decoration
-            var parentElement = e.target.parentNode.classList.remove(CSSClasses.choice_is_made);
+            e.target.parentNode.classList.remove(CSSClasses.choice_is_made);
+            var starElement = e.target.parentNode.parentElement.querySelector("." + CSSClasses.solid_choice);
+            starElement.classList.remove(CSSClasses.solid_choice_is_made);
 
             _this.state.other_input_disabled = false;
         };
