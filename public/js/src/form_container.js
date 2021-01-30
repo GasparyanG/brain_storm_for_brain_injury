@@ -50,8 +50,13 @@ class Form extends React.Component {
         };
 
         let state = window.localStorage.getItem("form");
-        if (state !== "undefined" && state !== "null")
-            return JSON.parse(state);
+        if (state !== "undefined" && state !== "null") {
+            state = JSON.parse(state);
+            // Don't remember postion of page
+            state.navigation.current_position = 0;
+
+            return state;
+        }
         return defaultState;
     }
 
@@ -75,33 +80,36 @@ class Form extends React.Component {
     }
 
     changeToNextLayer = () => {
-        if (this.state.current_position === this.state.max_number_of_pages)
+        if (this.state.navigation.current_position === this.state.navigation.max_number_of_pages)
             return;
         else
-            this.state.current_position++;
+            this.state.navigation.current_position++;
 
         const layers = document.querySelectorAll("." + CSSClasses.form_layer);
         for(let i = 0; i < layers.length; i++) {
-            layers[i].style.setProperty("transform", `${"translateY(calc("  + this.state.current_position + "*-100vh))"}`);
+            layers[i].style.setProperty("transform",
+                `${"translateY(calc("  + this.state.navigation.current_position + "*-100vh))"}`);
         }
     }
 
     changeToPrevLayer = () => {
-        if (this.state.current_position === 0)
+        if (this.state.navigation.current_position === 0)
             return;
         else
-            this.state.current_position--;
+            this.state.navigation.current_position--;
 
         const layers = document.querySelectorAll("." + CSSClasses.form_layer);
         for(let i = 0; i < layers.length; i++) {
-            layers[i].style.setProperty("transform", `${"translateY("  + (((this.state.current_position + 1) * -100) + 100) + "vh)"}`);
+            layers[i].style.setProperty("transform",
+                `${"translateY("  + (((this.state.navigation.current_position + 1) * -100) + 100) + "vh)"}`);
         }
     }
 
     render() {
         return (
             <div className="layers_container">
-                <Name svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}/>
+                <Name svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}
+                      changeToNext={this.changToNext}/>
                 <Age svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}/>
                 <Location svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}/>
                 <DateOfInjury svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}/>

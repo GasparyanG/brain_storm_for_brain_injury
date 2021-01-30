@@ -44,20 +44,20 @@ var Form = function (_React$Component) {
         };
 
         _this.changeToNextLayer = function () {
-            if (_this.state.current_position === _this.state.max_number_of_pages) return;else _this.state.current_position++;
+            if (_this.state.navigation.current_position === _this.state.navigation.max_number_of_pages) return;else _this.state.navigation.current_position++;
 
             var layers = document.querySelectorAll("." + CSSClasses.form_layer);
             for (var i = 0; i < layers.length; i++) {
-                layers[i].style.setProperty("transform", "" + ("translateY(calc(" + _this.state.current_position + "*-100vh))"));
+                layers[i].style.setProperty("transform", "" + ("translateY(calc(" + _this.state.navigation.current_position + "*-100vh))"));
             }
         };
 
         _this.changeToPrevLayer = function () {
-            if (_this.state.current_position === 0) return;else _this.state.current_position--;
+            if (_this.state.navigation.current_position === 0) return;else _this.state.navigation.current_position--;
 
             var layers = document.querySelectorAll("." + CSSClasses.form_layer);
             for (var i = 0; i < layers.length; i++) {
-                layers[i].style.setProperty("transform", "" + ("translateY(" + ((_this.state.current_position + 1) * -100 + 100) + "vh)"));
+                layers[i].style.setProperty("transform", "" + ("translateY(" + ((_this.state.navigation.current_position + 1) * -100 + 100) + "vh)"));
             }
         };
 
@@ -108,7 +108,13 @@ var Form = function (_React$Component) {
             };
 
             var state = window.localStorage.getItem("form");
-            if (state !== "undefined" && state !== "null") return JSON.parse(state);
+            if (state !== "undefined" && state !== "null") {
+                state = JSON.parse(state);
+                // Don't remember postion of page
+                state.navigation.current_position = 0;
+
+                return state;
+            }
             return defaultState;
         }
     }, {
@@ -117,7 +123,8 @@ var Form = function (_React$Component) {
             return React.createElement(
                 "div",
                 { className: "layers_container" },
-                React.createElement(Name, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form }),
+                React.createElement(Name, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
+                    changeToNext: this.changToNext }),
                 React.createElement(Age, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form }),
                 React.createElement(Location, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form }),
                 React.createElement(DateOfInjury, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form }),
