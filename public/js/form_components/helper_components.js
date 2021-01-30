@@ -2,7 +2,7 @@ function RegularButton(props) {
     return React.createElement(
         "div",
         { className: "action_box" },
-        React.createElement("input", { className: "raw_button", type: "button", value: "OK" }),
+        React.createElement("input", { onClick: props.handleOk, className: "raw_button", type: "button", value: "OK" }),
         React.createElement(
             "span",
             { className: "action_prompt" },

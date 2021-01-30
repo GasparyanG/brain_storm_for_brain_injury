@@ -20,39 +20,16 @@ var Navigation = function (_React$Component) {
             var evt = window.event || e; //equalize event object
             var delta = evt.detail ? evt.detail * -120 : evt.wheelDelta; //check for detail first so Opera uses that instead of wheelDelta
 
-            if (delta < 0) _this.changeToNextLayer();else _this.changeToPrevLayer();
+            if (delta < 0) _this.props.changeToNext();else _this.props.changeToPrev();
         };
 
         _this.addOnScroll = function () {
-            var returnedFucntion = debounce(_this.handleOnScroll, 20);
+            var scrollHandler = debounce(_this.handleOnScroll, 20);
 
             // IE9, Chrome, Safari, Opera
-            document.body.addEventListener("mousewheel", returnedFucntion);
+            document.body.addEventListener("mousewheel", scrollHandler);
             // Firefox
-            document.body.addEventListener("DOMMouseScroll", returnedFucntion);
-        };
-
-        _this.changeToPrevLayer = function () {
-            if (_this.state.current_position === 0) return;else _this.state.current_position--;
-
-            var layers = document.querySelectorAll("." + CSSClasses.form_layer);
-            for (var i = 0; i < layers.length; i++) {
-                layers[i].style.setProperty("transform", "" + ("translateY(" + ((_this.state.current_position + 1) * -100 + 100) + "vh)"));
-            }
-        };
-
-        _this.changeToNextLayer = function () {
-            if (_this.state.current_position === _this.state.max_number_of_pages) return;else _this.state.current_position++;
-
-            var layers = document.querySelectorAll("." + CSSClasses.form_layer);
-            for (var i = 0; i < layers.length; i++) {
-                layers[i].style.setProperty("transform", "" + ("translateY(calc(" + _this.state.current_position + "*-100vh))"));
-            }
-        };
-
-        _this.state = {
-            current_position: 0,
-            max_number_of_pages: 5
+            document.body.addEventListener("DOMMouseScroll", scrollHandler);
         };
 
         _this.addOnScroll();
@@ -67,7 +44,7 @@ var Navigation = function (_React$Component) {
                 { className: "navigation_buttons" },
                 React.createElement(
                     "div",
-                    { onClick: this.changeToPrevLayer, className: "nav_btn navigation_to_prev" },
+                    { onClick: this.props.changeToPrev, className: "nav_btn navigation_to_prev" },
                     React.createElement(
                         "span",
                         { className: "nav-icon" },
@@ -80,7 +57,7 @@ var Navigation = function (_React$Component) {
                 ),
                 React.createElement(
                     "div",
-                    { onClick: this.changeToNextLayer, className: "nav_btn navigation_to_next" },
+                    { onClick: this.props.changeToNext, className: "nav_btn navigation_to_next" },
                     React.createElement(
                         "span",
                         { className: "nav-icon" },

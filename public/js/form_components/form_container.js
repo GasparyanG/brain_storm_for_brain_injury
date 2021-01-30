@@ -10,6 +10,7 @@ import { Name, Age, Location } from "./demo_layer";
 import { DateOfInjury, CauseOfInjury } from "./injury_layer";
 import { Concerns } from "./concerns_layer";
 import { Navigation } from "./navigation_buttons";
+import { CSSClasses } from "./helper_components";
 
 var Form = function (_React$Component) {
     _inherits(Form, _React$Component);
@@ -42,12 +43,34 @@ var Form = function (_React$Component) {
             _this.setState(items);
         };
 
+        _this.changeToNextLayer = function () {
+            if (_this.state.current_position === _this.state.max_number_of_pages) return;else _this.state.current_position++;
+
+            var layers = document.querySelectorAll("." + CSSClasses.form_layer);
+            for (var i = 0; i < layers.length; i++) {
+                layers[i].style.setProperty("transform", "" + ("translateY(calc(" + _this.state.current_position + "*-100vh))"));
+            }
+        };
+
+        _this.changeToPrevLayer = function () {
+            if (_this.state.current_position === 0) return;else _this.state.current_position--;
+
+            var layers = document.querySelectorAll("." + CSSClasses.form_layer);
+            for (var i = 0; i < layers.length; i++) {
+                layers[i].style.setProperty("transform", "" + ("translateY(" + ((_this.state.current_position + 1) * -100 + 100) + "vh)"));
+            }
+        };
+
         _this.state = _this.populateState();
 
         // Event bindings.
         _this.handler = _this.onValueChange.bind(_this);
         _this.checkboxHandler = _this.onCheckboxCheck.bind(_this);
         _this.onValueUpdate = _this.onChange.bind(_this);
+
+        // Navigation
+        _this.changToNext = _this.changeToNextLayer.bind(_this);
+        _this.changToPrev = _this.changeToPrevLayer.bind(_this);
 
         // Common Components
         _this.svgArrow = React.createElement(
@@ -66,6 +89,11 @@ var Form = function (_React$Component) {
         key: "populateState",
         value: function populateState() {
             var defaultState = {
+                navigation: {
+                    current_position: 0,
+                    max_number_of_pages: 5
+                },
+
                 form: {
                     name: "",
                     age: "",
@@ -97,7 +125,7 @@ var Form = function (_React$Component) {
                     checkboxHandler: this.checkboxHandler, onValueUpdate: this.onValueUpdate }),
                 React.createElement(Concerns, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
                     checkboxHandler: this.checkboxHandler, onValueUpdate: this.onValueUpdate }),
-                React.createElement(Navigation, null)
+                React.createElement(Navigation, { changeToNext: this.changToNext, changeToPrev: this.changToPrev })
             );
         }
     }]);

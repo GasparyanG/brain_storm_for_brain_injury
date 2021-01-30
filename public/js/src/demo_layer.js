@@ -5,6 +5,11 @@ class Name extends React.Component {
         super(props);
     }
 
+    handleOk() {
+        // Checking goes here
+
+    }
+
     render() {
         return (
             <section className="user_name form_layer">
@@ -13,7 +18,7 @@ class Name extends React.Component {
                         <label className="input_label" htmlFor="name"><span className="question_number">1 {this.props.svgArrow}</span><span>Let's start with your <strong>name</strong>.</span></label>
                         <input onChange={this.props.handler} className="raw_input"
                                name="name" id="name" type="text" defaultValue={this.props.formState.name} placeholder="Type here..."/>
-                        <RegularButton/>
+                        <RegularButton handleOk={this.handleOk}/>
                     </div>
                 </div>
             </section>

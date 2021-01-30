@@ -18,6 +18,12 @@ var Name = function (_React$Component) {
     }
 
     _createClass(Name, [{
+        key: "handleOk",
+        value: function handleOk() {
+            // Checking goes here
+
+        }
+    }, {
         key: "render",
         value: function render() {
             return React.createElement(
@@ -52,7 +58,7 @@ var Name = function (_React$Component) {
                         ),
                         React.createElement("input", { onChange: this.props.handler, className: "raw_input",
                             name: "name", id: "name", type: "text", defaultValue: this.props.formState.name, placeholder: "Type here..." }),
-                        React.createElement(RegularButton, null)
+                        React.createElement(RegularButton, { handleOk: this.handleOk })
                     )
                 )
             );
