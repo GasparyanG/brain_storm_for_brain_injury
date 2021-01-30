@@ -64,6 +64,10 @@ var Concerns = function (_React$Component) {
 
             // Design
             element.classList.toggle(CSSClasses.choice_is_made);
+            var solidChoice = element.querySelector("." + CSSClasses.solid_choice);
+            if (solidChoice.classList.contains(CSSClasses.solid_choice_is_made)) {
+                _this.makeSolidChoiceElement(solidChoice);
+            }
         };
 
         _this.isSolidChoice = function (checkedElement) {
@@ -82,18 +86,22 @@ var Concerns = function (_React$Component) {
             starEl.classList.add(CSSClasses.hidden_element);
         };
 
-        _this.makeSolidChoice = function (e) {
-            if (!e.target.classList.contains(CSSClasses.solid_choice)) return;
-            e.target.classList.toggle(CSSClasses.solid_choice_is_made);
+        _this.makeSolidChoiceElement = function (element) {
+            if (!element.classList.contains(CSSClasses.solid_choice)) return;
+            element.classList.toggle(CSSClasses.solid_choice_is_made);
 
             // Update state about solid choice.
-            if (e.target.classList.contains(CSSClasses.solid_choice_is_made)) _this.props.checkboxHandler(CSSClasses.solid_concern, e.target.dataset.solid_value);else _this.props.checkboxHandler(CSSClasses.solid_concern, "");
+            if (element.classList.contains(CSSClasses.solid_choice_is_made)) _this.props.checkboxHandler(CSSClasses.solid_concern, element.dataset.solid_value);else _this.props.checkboxHandler(CSSClasses.solid_concern, "");
 
             // Update solid choice button for other elements.
             var choices = document.querySelectorAll(".concerns ." + CSSClasses.choice_is_made);
             for (var i = 0; i < choices.length; i++) {
                 if (_this.props.formState.solid_concern === "") _this.displaySolidChoice(choices[i]);else _this.hideSolidChoice(choices[i]);
             }
+        };
+
+        _this.makeSolidChoice = function (e) {
+            _this.makeSolidChoiceElement(e.target);
         };
 
         _this.unCheck = function (e) {

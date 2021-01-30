@@ -72,6 +72,10 @@ class Concerns extends React.Component {
 
         // Design
         element.classList.toggle(CSSClasses.choice_is_made);
+        let solidChoice = element.querySelector("." + CSSClasses.solid_choice);
+        if (solidChoice.classList.contains(CSSClasses.solid_choice_is_made)) {
+            this.makeSolidChoiceElement(solidChoice);
+        }
     }
 
     isSolidChoice = (checkedElement) => {
@@ -90,13 +94,13 @@ class Concerns extends React.Component {
         starEl.classList.add(CSSClasses.hidden_element);
     }
 
-    makeSolidChoice = (e) => {
-        if (!e.target.classList.contains(CSSClasses.solid_choice)) return;
-        e.target.classList.toggle(CSSClasses.solid_choice_is_made);
+    makeSolidChoiceElement = (element) => {
+        if (!element.classList.contains(CSSClasses.solid_choice)) return;
+        element.classList.toggle(CSSClasses.solid_choice_is_made);
 
         // Update state about solid choice.
-        if (e.target.classList.contains(CSSClasses.solid_choice_is_made))
-            this.props.checkboxHandler(CSSClasses.solid_concern, e.target.dataset.solid_value);
+        if (element.classList.contains(CSSClasses.solid_choice_is_made))
+            this.props.checkboxHandler(CSSClasses.solid_concern, element.dataset.solid_value);
         else
             this.props.checkboxHandler(CSSClasses.solid_concern, "");
 
@@ -108,6 +112,10 @@ class Concerns extends React.Component {
             else
                 this.hideSolidChoice(choices[i]);
         }
+    }
+
+    makeSolidChoice = (e) => {
+        this.makeSolidChoiceElement(e.target);
     }
 
     createCheckbox(key) {
