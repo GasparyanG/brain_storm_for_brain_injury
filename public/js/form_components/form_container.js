@@ -136,10 +136,10 @@ var Form = function (_React$Component) {
                     changeToNext: this.changeToNext, changeToPrev: this.changeToPrev }),
                 React.createElement(CauseOfInjury, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
                     checkboxHandler: this.checkboxHandler, onValueUpdate: this.onValueUpdate,
-                    changeToNext: this.changeToNext }),
+                    changeToNext: this.changeToNext, changeToPrev: this.changeToPrev }),
                 React.createElement(Concerns, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
                     checkboxHandler: this.checkboxHandler, onValueUpdate: this.onValueUpdate,
-                    changeToNext: this.changeToNext }),
+                    changeToNext: this.changeToNext, changeToPrev: this.changeToPrev }),
                 React.createElement(Navigation, { changeToNext: this.changeToNext, changeToPrev: this.changeToPrev })
             );
         }

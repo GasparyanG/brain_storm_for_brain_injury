@@ -127,11 +127,11 @@ class Form extends React.Component {
 
                 <CauseOfInjury svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}
                     checkboxHandler={this.checkboxHandler} onValueUpdate={this.onValueUpdate}
-                   changeToNext={this.changeToNext}/>
+                   changeToNext={this.changeToNext} changeToPrev={this.changeToPrev}/>
 
                 <Concerns svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}
                     checkboxHandler={this.checkboxHandler} onValueUpdate={this.onValueUpdate}
-                    changeToNext={this.changeToNext}/>
+                    changeToNext={this.changeToNext} changeToPrev={this.changeToPrev}/>
 
                 <Navigation changeToNext={this.changeToNext} changeToPrev={this.changeToPrev}/>
             </div>

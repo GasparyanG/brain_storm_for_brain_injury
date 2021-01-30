@@ -209,10 +209,14 @@ var CauseOfInjury = function (_React$Component2) {
             _this2.state.other_input_disabled = false;
         };
 
+        _this2.validateDate = function () {
+            return !(_this2.props.formState.injury_date_day == "" || _this2.props.formState.injury_date_month == "" || _this2.props.formState.injury_date_year == "");
+        };
+
         _this2.handleOk = function () {
             // Validation goes here.
 
-            _this2.props.changeToNext();
+            if (!_this2.validateDate()) _this2.props.changeToPrev();else _this2.props.changeToNext();
         };
 
         _this2.handleEnter = function (e) {

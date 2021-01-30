@@ -168,10 +168,21 @@ class CauseOfInjury extends React.Component {
         this.state.other_input_disabled = false;
     }
 
+    validateDate = () => {
+        return !(
+            this.props.formState.injury_date_day == ""
+            || this.props.formState.injury_date_month == ""
+            || this.props.formState.injury_date_year == ""
+        );
+    }
+
     handleOk = () => {
         // Validation goes here.
 
-        this.props.changeToNext();
+        if (!this.validateDate())
+            this.props.changeToPrev();
+        else
+            this.props.changeToNext();
     }
 
     handleEnter = (e) => {
@@ -198,6 +209,8 @@ class CauseOfInjury extends React.Component {
             </div>
         );
     }
+
+
 
     render () {
         let label = (<label className="input_label" htmlFor="injury_reason">

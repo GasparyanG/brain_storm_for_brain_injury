@@ -121,7 +121,7 @@ var Concerns = function (_React$Component) {
         _this.handleOk = function () {
             // Validation goes here.
 
-            _this.props.changeToNext();
+            if (_this.props.formState[_this.prev_layer] == "") _this.props.changeToPrev();
         };
 
         _this.handleEnter = function (e) {
@@ -193,6 +193,8 @@ var Concerns = function (_React$Component) {
             1: 'A', 2: 'B', 3: 'C', 4: 'D', 5: 'E', 6: 'F',
             7: 'G', 8: 'H', 9: 'I', 10: 'J', 11: 'K', 12: 'L', 13: 'M'
         };
+
+        _this.prev_layer = CSSClasses.injury_reason;
         return _this;
     }
 
