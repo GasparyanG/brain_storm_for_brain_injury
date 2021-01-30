@@ -2,6 +2,7 @@ import {Name, Age, Location} from "./demo_layer"
 import {DateOfInjury, CauseOfInjury} from "./injury_layer";
 import {Concerns} from "./concerns_layer";
 import {Navigation} from "./navigation_buttons";
+import {ProgressBar} from "./progress_bar";
 import {CSSClasses, SymbolicConstants} from "./helper_components";
 
 class Form extends React.Component {
@@ -110,6 +111,8 @@ class Form extends React.Component {
     render() {
         return (
             <div className="layers_container">
+                <ProgressBar formState={this.state.form} />
+
                 <Name svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}
                       changeToNext={this.changToNext}/>
 

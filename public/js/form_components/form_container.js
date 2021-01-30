@@ -10,6 +10,7 @@ import { Name, Age, Location } from "./demo_layer";
 import { DateOfInjury, CauseOfInjury } from "./injury_layer";
 import { Concerns } from "./concerns_layer";
 import { Navigation } from "./navigation_buttons";
+import { ProgressBar } from "./progress_bar";
 import { CSSClasses, SymbolicConstants } from "./helper_components";
 
 var Form = function (_React$Component) {
@@ -124,6 +125,7 @@ var Form = function (_React$Component) {
             return React.createElement(
                 "div",
                 { className: "layers_container" },
+                React.createElement(ProgressBar, { formState: this.state.form }),
                 React.createElement(Name, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
                     changeToNext: this.changToNext }),
                 React.createElement(Age, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
