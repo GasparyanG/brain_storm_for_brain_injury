@@ -19,7 +19,8 @@ var DateOfInjury = function (_React$Component) {
         _this.handleOk = function () {
             // Validation goes here.
 
-            _this.props.changeToNext();
+            // Dispatch.
+            if (_this.props.formState[_this.prev_layer] == "") _this.props.changeToPrev();else _this.props.changeToNext();
         };
 
         _this.handleEnter = function (e) {
@@ -44,6 +45,7 @@ var DateOfInjury = function (_React$Component) {
             return !(_this.props.formState.injury_date_day == "" || _this.props.formState.injury_date_month == "" || _this.props.formState.injury_date_year == "");
         };
 
+        _this.prev_layer = CSSClasses.location;
         return _this;
     }
 

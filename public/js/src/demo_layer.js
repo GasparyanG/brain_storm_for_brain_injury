@@ -50,12 +50,17 @@ class Name extends React.Component {
 class Age extends React.Component {
     constructor(props) {
         super(props);
+
+        this.prev_layer = CSSClasses.name;
     }
 
     handleOk = () => {
         // Validation goes here.
 
-        this.props.changeToNext();
+        if (this.props.formState[this.prev_layer] == "")
+            this.props.changeToPrev()
+        else
+            this.props.changeToNext();
     }
 
     handleEnter = (e) => {
@@ -94,12 +99,17 @@ class Age extends React.Component {
 class Location extends React.Component {
     constructor(props) {
         super(props);
+
+        this.prev_layer = CSSClasses.age;
     }
 
     handleOk = () => {
         // Validation goes here.
 
-        this.props.changeToNext();
+        if (this.props.formState[this.prev_layer] == "")
+            this.props.changeToPrev()
+        else
+            this.props.changeToNext();
     }
 
     handleEnter = (e) => {

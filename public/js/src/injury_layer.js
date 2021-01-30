@@ -3,12 +3,18 @@ import {CSSClasses, RegularButton, SymbolicConstants} from "./helper_components"
 class DateOfInjury extends React.Component {
     constructor(props) {
         super(props);
+
+        this.prev_layer = CSSClasses.location;
     }
 
     handleOk = () => {
         // Validation goes here.
 
-        this.props.changeToNext();
+        // Dispatch.
+        if (this.props.formState[this.prev_layer] == "")
+            this.props.changeToPrev();
+        else
+            this.props.changeToNext();
     }
 
     handleEnter = (e) => {

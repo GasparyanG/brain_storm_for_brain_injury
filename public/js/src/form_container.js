@@ -16,8 +16,8 @@ class Form extends React.Component {
         this.onValueUpdate =this.onChange.bind(this);
 
         // Navigation
-        this.changToNext = this.changeToNextLayer.bind(this);
-        this.changToPrev = this.changeToPrevLayer.bind(this);
+        this.changeToNext = this.changeToNextLayer.bind(this);
+        this.changeToPrev = this.changeToPrevLayer.bind(this);
 
         // Common Components
         this.svgArrow = (<svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>);
@@ -114,26 +114,26 @@ class Form extends React.Component {
                 <ProgressBar formState={this.state.form} />
 
                 <Name svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}
-                      changeToNext={this.changToNext}/>
+                      changeToNext={this.changeToNext}/>
 
                 <Age svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}
-                     changeToNext={this.changToNext}/>
+                     changeToNext={this.changeToNext} changeToPrev={this.changeToPrev}/>
 
                 <Location svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}
-                      changeToNext={this.changToNext}/>
+                      changeToNext={this.changeToNext} changeToPrev={this.changeToPrev}/>
 
                 <DateOfInjury svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}
-                      changeToNext={this.changToNext}/>
+                      changeToNext={this.changeToNext} changeToPrev={this.changeToPrev}/>
 
                 <CauseOfInjury svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}
                     checkboxHandler={this.checkboxHandler} onValueUpdate={this.onValueUpdate}
-                   changeToNext={this.changToNext}/>
+                   changeToNext={this.changeToNext}/>
 
                 <Concerns svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}
                     checkboxHandler={this.checkboxHandler} onValueUpdate={this.onValueUpdate}
-                    changeToNext={this.changToNext}/>
+                    changeToNext={this.changeToNext}/>
 
-                <Navigation changeToNext={this.changToNext} changeToPrev={this.changToPrev}/>
+                <Navigation changeToNext={this.changeToNext} changeToPrev={this.changeToPrev}/>
             </div>
         );
     }

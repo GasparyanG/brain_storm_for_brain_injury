@@ -70,8 +70,8 @@ var Form = function (_React$Component) {
         _this.onValueUpdate = _this.onChange.bind(_this);
 
         // Navigation
-        _this.changToNext = _this.changeToNextLayer.bind(_this);
-        _this.changToPrev = _this.changeToPrevLayer.bind(_this);
+        _this.changeToNext = _this.changeToNextLayer.bind(_this);
+        _this.changeToPrev = _this.changeToPrevLayer.bind(_this);
 
         // Common Components
         _this.svgArrow = React.createElement(
@@ -127,20 +127,20 @@ var Form = function (_React$Component) {
                 { className: "layers_container" },
                 React.createElement(ProgressBar, { formState: this.state.form }),
                 React.createElement(Name, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
-                    changeToNext: this.changToNext }),
+                    changeToNext: this.changeToNext }),
                 React.createElement(Age, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
-                    changeToNext: this.changToNext }),
+                    changeToNext: this.changeToNext, changeToPrev: this.changeToPrev }),
                 React.createElement(Location, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
-                    changeToNext: this.changToNext }),
+                    changeToNext: this.changeToNext, changeToPrev: this.changeToPrev }),
                 React.createElement(DateOfInjury, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
-                    changeToNext: this.changToNext }),
+                    changeToNext: this.changeToNext, changeToPrev: this.changeToPrev }),
                 React.createElement(CauseOfInjury, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
                     checkboxHandler: this.checkboxHandler, onValueUpdate: this.onValueUpdate,
-                    changeToNext: this.changToNext }),
+                    changeToNext: this.changeToNext }),
                 React.createElement(Concerns, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
                     checkboxHandler: this.checkboxHandler, onValueUpdate: this.onValueUpdate,
-                    changeToNext: this.changToNext }),
-                React.createElement(Navigation, { changeToNext: this.changToNext, changeToPrev: this.changToPrev })
+                    changeToNext: this.changeToNext }),
+                React.createElement(Navigation, { changeToNext: this.changeToNext, changeToPrev: this.changeToPrev })
             );
         }
     }]);

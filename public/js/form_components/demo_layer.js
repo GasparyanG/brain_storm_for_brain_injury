@@ -100,7 +100,7 @@ var Age = function (_React$Component2) {
         _this2.handleOk = function () {
             // Validation goes here.
 
-            _this2.props.changeToNext();
+            if (_this2.props.formState[_this2.prev_layer] == "") _this2.props.changeToPrev();else _this2.props.changeToNext();
         };
 
         _this2.handleEnter = function (e) {
@@ -112,6 +112,7 @@ var Age = function (_React$Component2) {
             return false;
         };
 
+        _this2.prev_layer = CSSClasses.name;
         return _this2;
     }
 
@@ -197,7 +198,7 @@ var Location = function (_React$Component3) {
         _this3.handleOk = function () {
             // Validation goes here.
 
-            _this3.props.changeToNext();
+            if (_this3.props.formState[_this3.prev_layer] == "") _this3.props.changeToPrev();else _this3.props.changeToNext();
         };
 
         _this3.handleEnter = function (e) {
@@ -210,6 +211,7 @@ var Location = function (_React$Component3) {
             return false;
         };
 
+        _this3.prev_layer = CSSClasses.age;
         return _this3;
     }
 
