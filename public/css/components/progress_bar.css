@@ -1,5 +1,6 @@
 :root {
     --progress-hint-width: 100px;
+    --sm-progress-hint-width: 50px;
 }
 
 #form_container .form_progress_section {
@@ -27,3 +28,28 @@
     width: var(--progress-hint-width);
     align-self: center;
 }
+
+/* ---------------------------------- RESPONSIVENESS ------------------------------------ */
+@media only screen and (max-width: 750px) {
+    #form_container .form_progress_section {
+        left: 15%;
+        transform: translateX(0);
+    }
+
+    #form_container .form_progress_amount {
+        width: var(--sm-progress-hint-width);
+        font-size: 10px;
+    }
+}
+
+@media only screen and (min-width: 751px) and (max-width: 1250px) {
+    #form_container .form_progress_section {
+        left: 15%;
+        transform: translateX(0);
+    }
+
+    #form_container .form_progress_amount {
+        font-size: 15px;
+    }
+}
+
