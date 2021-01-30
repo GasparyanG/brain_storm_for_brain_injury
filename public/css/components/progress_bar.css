@@ -1,5 +1,28 @@
-#form_container .form_progress_indicator {
+:root {
+    --progress-hint-width: 100px;
+}
+
+#form_container .form_progress_section {
+    display: flex;
+    width: 70%;
     position: absolute;
-    background-color: var(--button-background-color);
+    left: calc(50% - var(--progress-hint-width));
+    height: 3px;
+    transform: translateX(-50%);
     top: 1rem;
+}
+
+#form_container .form_progress_indicator {
+    background-color: var(--button-background-color);
+    height: inherit;
+    transition: width 2s;
+    align-self: center;
+    margin-right: .2rem;
+}
+
+#form_container .form_progress_amount {
+    font-style: italic;
+    color: var(--input-color);
+    width: var(--progress-hint-width);
+    align-self: center;
 }

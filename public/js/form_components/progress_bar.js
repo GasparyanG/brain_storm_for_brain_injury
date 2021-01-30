@@ -18,10 +18,20 @@ var ProgressBar = function (_React$Component) {
     _createClass(ProgressBar, [{
         key: "render",
         value: function render() {
+            // Compute progress here.
+            var progress = 50;
+
             return React.createElement(
                 "div",
-                { className: "form_progress_indicator" },
-                "hello there"
+                { className: "form_progress_section" },
+                React.createElement("div", { className: "form_progress_indicator", style: { width: progress + "%" } }),
+                React.createElement(
+                    "div",
+                    { className: "form_progress_amount" },
+                    "progress ",
+                    progress,
+                    "%"
+                )
             );
         }
     }]);
