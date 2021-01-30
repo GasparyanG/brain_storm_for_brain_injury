@@ -1,4 +1,4 @@
-import {SymbolicConstants} from "./helper_components";
+import {CSSClasses, SymbolicConstants} from "./helper_components";
 
 class ProgressBar extends React.Component {
     constructor(props) {
@@ -17,17 +17,24 @@ class ProgressBar extends React.Component {
         return !(this.props.formState[field] == "");
     }
 
+    progressComputation = () => {
+        let progress = 0;
+        let progressStep =
+            Math.ceil(SymbolicConstants.completed_progress/SymbolicConstants.max_number_of_pages_human);
+
+        progress += !this.stringValues(CSSClasses.name) ? 0 : progressStep;
+        progress += !this.stringValues(CSSClasses.age) ? 0 : progressStep;
+        progress += !this.stringValues(CSSClasses.location) ? 0 : progressStep;
+        progress += !this.stringValues(CSSClasses.injury_reason) ? 0 : progressStep;
+        progress += !this.dateProgress() ? 0 : progressStep;
+        progress += this.props.formState.concerns.length === 0 ? 0 : progressStep;
+
+        return progress;
+    }
+
     render() {
        // Compute progress here.
-        let progress = 0;
-        let progressStep = Math.ceil(SymbolicConstants.completed_progress/SymbolicConstants.max_number_of_pages);
-
-        progress += !this.stringValues("name") ? 0 : progressStep;
-        progress += !this.stringValues("age") ? 0 : progressStep;
-        progress += !this.stringValues("location") ? 0 : progressStep;
-        progress += !this.dateProgress() ? 0 : progressStep;
-        progress += !this.stringValues("location") ? 0 : progressStep;
-        progress += this.props.formState.concerns.length === 0 ? 0 : progressStep;
+        let progress = this.progressComputation();
 
         let progressHintContent = "progress " + progress + "%";
         if (progress >= SymbolicConstants.completed_progress)

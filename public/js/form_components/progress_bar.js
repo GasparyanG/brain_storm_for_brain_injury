@@ -6,7 +6,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-import { SymbolicConstants } from "./helper_components";
+import { CSSClasses, SymbolicConstants } from "./helper_components";
 
 var ProgressBar = function (_React$Component) {
     _inherits(ProgressBar, _React$Component);
@@ -24,6 +24,20 @@ var ProgressBar = function (_React$Component) {
             return !(_this.props.formState[field] == "");
         };
 
+        _this.progressComputation = function () {
+            var progress = 0;
+            var progressStep = Math.ceil(SymbolicConstants.completed_progress / SymbolicConstants.max_number_of_pages_human);
+
+            progress += !_this.stringValues(CSSClasses.name) ? 0 : progressStep;
+            progress += !_this.stringValues(CSSClasses.age) ? 0 : progressStep;
+            progress += !_this.stringValues(CSSClasses.location) ? 0 : progressStep;
+            progress += !_this.stringValues(CSSClasses.injury_reason) ? 0 : progressStep;
+            progress += !_this.dateProgress() ? 0 : progressStep;
+            progress += _this.props.formState.concerns.length === 0 ? 0 : progressStep;
+
+            return progress;
+        };
+
         return _this;
     }
 
@@ -31,15 +45,7 @@ var ProgressBar = function (_React$Component) {
         key: "render",
         value: function render() {
             // Compute progress here.
-            var progress = 0;
-            var progressStep = Math.ceil(SymbolicConstants.completed_progress / SymbolicConstants.max_number_of_pages);
-
-            progress += !this.stringValues("name") ? 0 : progressStep;
-            progress += !this.stringValues("age") ? 0 : progressStep;
-            progress += !this.stringValues("location") ? 0 : progressStep;
-            progress += !this.dateProgress() ? 0 : progressStep;
-            progress += !this.stringValues("location") ? 0 : progressStep;
-            progress += this.props.formState.concerns.length === 0 ? 0 : progressStep;
+            var progress = this.progressComputation();
 
             var progressHintContent = "progress " + progress + "%";
             if (progress >= SymbolicConstants.completed_progress) progressHintContent = "completed ✓";

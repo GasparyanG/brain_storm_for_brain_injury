@@ -180,10 +180,10 @@ var CauseOfInjury = function (_React$Component2) {
                 return _this2.displayOtherInput(element);
             }
 
-            _this2.props.checkboxHandler("injury_reason", element.dataset.value);
-
             // Design
             element.classList.toggle(CSSClasses.choice_is_made);
+
+            if (element.classList.contains(CSSClasses.choice_is_made)) _this2.props.checkboxHandler("injury_reason", element.dataset.value);else _this2.props.checkboxHandler("injury_reason", "");
 
             // After single choice change page.
             setTimeout(_this2.handleOk, SymbolicConstants.page_change_timout);

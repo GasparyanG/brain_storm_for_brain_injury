@@ -115,10 +115,13 @@ class CauseOfInjury extends React.Component {
             return this.displayOtherInput(element);
         }
 
-        this.props.checkboxHandler("injury_reason", element.dataset.value);
-
         // Design
         element.classList.toggle(CSSClasses.choice_is_made);
+
+        if (element.classList.contains(CSSClasses.choice_is_made))
+            this.props.checkboxHandler("injury_reason", element.dataset.value);
+        else
+            this.props.checkboxHandler("injury_reason", "");
 
         // After single choice change page.
         setTimeout(this.handleOk, SymbolicConstants.page_change_timout);

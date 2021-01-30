@@ -40,8 +40,15 @@ const CSSClasses = {
     better_choice_exists: "better_choice_exists",
 
     // Form Keys
+    name: "name",
+    age: "age",
+    location: "location",
+    concerns: "concerns",
     solid_concern: "solid_concern",
     concerns_other: "concerns_other",
+    injury_date_day: "injury_date_day",
+    injury_date_month: "injury_date_month",
+    injury_date_year: "injury_date_year",
     injury_reason: "injury_reason"
 };
 
@@ -61,7 +68,8 @@ const SymbolicConstants = {
     // Navigation
     page_translation_percent: 100,
     scroll_delta: -120,
-    max_number_of_pages: 5
+    max_number_of_pages: 5,
+    max_number_of_pages_human: 6
 }
 
 export {RegularButton, CSSClasses, debounce, SymbolicConstants};
