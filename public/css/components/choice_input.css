@@ -76,7 +76,7 @@
     border-color: var(--choice-shadow-color);
 }
 
-/* Choice's 'other' input decoration */
+/* -------------------------------------------- Choice's 'other' input decoration ---------------------------*/
 #form_container .choice_other_raw_input {
     background-color: transparent;
     color: var(--choice-color);
@@ -84,6 +84,15 @@
     margin-left: 1rem;
     border: none;
     outline: none;
+}
+
+#form_container .other_input_interaction {
+    position: absolute;
+    right: .5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 60px;
 }
 
 #form_container .choice_other_raw_input:hover,
@@ -110,7 +119,6 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    right: 0.5rem;
     font-family: inherit;
     font-weight: 700;
     cursor: pointer;
@@ -131,6 +139,11 @@
     border-radius: var(--box-radius);
 }
 
+#form_container .other_input_interaction .enabled_other_input {
+    display: block;
+    position: static;
+}
+
 /* -------------------------------------------- SOLID CHOICE BUTTON -------------------------------------- */
 #form_container .solid_choice {
     position: absolute;
@@ -149,6 +162,18 @@
 
 #form_container .choice_is_made .solid_choice_is_made {
     color: greenyellow;
+}
+
+/* Input area's star */
+#form_container .other_input_interaction .solid_choice {
+    display: none;
+    position: static;
+}
+
+#form_container .choice_is_made .other_input_interaction .solid_choice {
+    display: block;
+    position: static;
+    margin-left: auto;;
 }
 
 /* -------------------------------------------- RESPONSIVENESS -------------------------------------------- */

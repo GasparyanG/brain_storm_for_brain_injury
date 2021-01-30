@@ -126,8 +126,17 @@ var Concerns = function (_React$Component) {
                 ),
                 React.createElement(
                     "div",
-                    { className: "enabled_other_input hidden", onClick: _this.unCheck },
-                    "\u2713"
+                    { className: "other_input_interaction" },
+                    React.createElement(
+                        "div",
+                        { className: "enabled_other_input hidden", onClick: _this.unCheck },
+                        "\u2713"
+                    ),
+                    React.createElement(
+                        "div",
+                        { onClick: _this.makeSolidChoice, className: "solid_choice" },
+                        "\u2605"
+                    )
                 )
             );
         };

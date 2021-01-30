@@ -136,7 +136,10 @@ class Concerns extends React.Component {
                         id="concerns_other" name="concerns_other" className="choice_other_raw_input hidden"
                         defaultValue={valueToDisplay} type="text" placeholder="Type your answer..."/>
                 </div>
-                <div className="enabled_other_input hidden" onClick={this.unCheck}>✓</div>
+                <div className="other_input_interaction">
+                    <div className="enabled_other_input hidden" onClick={this.unCheck}>✓</div>
+                    <div onClick={this.makeSolidChoice} className="solid_choice">★</div>
+                </div>
             </div>
         );
     }
