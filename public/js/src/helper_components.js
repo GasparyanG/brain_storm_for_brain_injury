@@ -69,7 +69,14 @@ const CSSClasses = {
     injury_date_day: "injury_date_day",
     injury_date_month: "injury_date_month",
     injury_date_year: "injury_date_year",
-    injury_reason: "injury_reason"
+    injury_reason: "injury_reason",
+
+    // Layers
+    user_name: "user_name",
+    user_age: "user_age",
+
+    // Actions
+    warning_shake: "warning_shake"
 };
 
 // Symbolic Constants Configuration
@@ -93,7 +100,12 @@ const SymbolicConstants = {
 }
 
 const DefaultErrorMessages = {
-    name: "Name is required"
+    // NAME
+    name: "Name is required",
+
+    // AGE
+    age_numbers: "Numbers only",
+    age_required: "Age is required"
 }
 
 export {

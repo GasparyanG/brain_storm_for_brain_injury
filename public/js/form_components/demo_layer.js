@@ -18,8 +18,7 @@ var Name = function (_React$Component) {
 
         _this.handleOk = function () {
             // Validation goes here.
-
-            _this.props.changeToNext();
+            if (!_this.props.errors.hasOwnProperty("name")) _this.props.changeToNext();
         };
 
         _this.handleEnter = function (e) {
@@ -107,6 +106,8 @@ var Age = function (_React$Component2) {
         _this2.handleOk = function () {
             // Validation goes here.
 
+            if (_this2.props.errors.hasOwnProperty("age")) return;
+
             if (_this2.props.formState[_this2.prev_layer] == "") _this2.props.changeToPrev();else _this2.props.changeToNext();
         };
 
@@ -114,9 +115,35 @@ var Age = function (_React$Component2) {
             if (e.keyCode === 13) _this2.handleOk();
         };
 
+        _this2.numbersOnly = function () {
+            _this2.props.onError("age", { message: DefaultErrorMessages.age_numbers });
+            // let layer = document.querySelector("." + CSSClasses.user_age);
+            // layer.classList.add(CSSClasses.warning_shake);
+            //
+            // setTimeout(() => {layer.classList.remove(CSSClasses.warning_shake)}, 2000)
+        };
+
+        _this2.handleInput = function (e) {
+            if (isNaN(e.target.value)) {
+                e.target.value = '';
+                return _this2.numbersOnly();
+            }
+
+            _this2.props.handler(e);
+
+            if (e.target.value !== "") _this2.props.onError("age", false, true);
+        };
+
         _this2.validateInput = function () {
             if (_this2.props.formState.age !== "") return true;
             return false;
+        };
+
+        _this2.hintOrAction = function (field) {
+            var isValid = _this2.validateInput();
+            if (_this2.props.errors.hasOwnProperty(field)) return React.createElement(ErrorMessage, { errors: _this2.props.errors, field: field });
+
+            return React.createElement(RegularButton, { errors: _this2.props.errors, isValid: isValid, formState: _this2.props.formState, handleOk: _this2.handleOk });
         };
 
         _this2.prev_layer = CSSClasses.name;
@@ -170,7 +197,7 @@ var Age = function (_React$Component2) {
                 )
             );
 
-            var isValid = this.validateInput();
+            var validityElement = this.hintOrAction(CSSClasses.age);
 
             return React.createElement(
                 "section",
@@ -182,9 +209,9 @@ var Age = function (_React$Component2) {
                         "div",
                         { className: "questions" },
                         label,
-                        React.createElement("input", { onChange: this.props.handler, onKeyUp: this.handleEnter, className: "raw_input",
+                        React.createElement("input", { onChange: this.handleInput, onKeyUp: this.handleEnter, className: "raw_input",
                             name: "age", id: "age", type: "text", defaultValue: this.props.formState.age, placeholder: "Type your answer here..." }),
-                        React.createElement(RegularButton, { isValid: isValid, handleOk: this.handleOk })
+                        validityElement
                     )
                 )
             );

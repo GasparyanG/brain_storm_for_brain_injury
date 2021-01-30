@@ -68,9 +68,13 @@ class Form extends React.Component {
     onChange = (field, value) => {
         let items = {...this.state};
         let form = {...this.state.form};
+        let errors = {...this.state.errors};
+        let navigation = {...this.state.navigation};
         form[field] = value;
 
+        items.errors = errors;
         items.form = form;
+        items.navigation = navigation;
         this.setState(items);
     }
 
@@ -88,6 +92,7 @@ class Form extends React.Component {
         let items = {...this.state};
         let form = {...this.state.form}
         let errors = {...this.state.errors};
+        let navigation = {...this.state.navigation};
         if (deleteEl)
             delete errors[field];
         else
@@ -95,6 +100,7 @@ class Form extends React.Component {
 
         items.errors = errors;
         items.form = form;
+        items.navigation = navigation;
         this.setState(items);
     }
 
@@ -134,7 +140,8 @@ class Form extends React.Component {
                       changeToNext={this.changeToNext} errors={this.state.errors} onError={this.onError}/>
 
                 <Age svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}
-                     changeToNext={this.changeToNext} changeToPrev={this.changeToPrev} errors={this.state.errors}/>
+                     changeToNext={this.changeToNext} changeToPrev={this.changeToPrev} errors={this.state.errors}
+                     onError={this.onError}/>
 
                 <Location svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}
                       changeToNext={this.changeToNext} changeToPrev={this.changeToPrev} errors={this.state.errors}/>

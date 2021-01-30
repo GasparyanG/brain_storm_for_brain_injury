@@ -28,9 +28,13 @@ var Form = function (_React$Component) {
         _this.onChange = function (field, value) {
             var items = Object.assign({}, _this.state);
             var form = Object.assign({}, _this.state.form);
+            var errors = Object.assign({}, _this.state.errors);
+            var navigation = Object.assign({}, _this.state.navigation);
             form[field] = value;
 
+            items.errors = errors;
             items.form = form;
+            items.navigation = navigation;
             _this.setState(items);
         };
 
@@ -50,10 +54,12 @@ var Form = function (_React$Component) {
             var items = Object.assign({}, _this.state);
             var form = Object.assign({}, _this.state.form);
             var errors = Object.assign({}, _this.state.errors);
+            var navigation = Object.assign({}, _this.state.navigation);
             if (deleteEl) delete errors[field];else errors[field] = value;
 
             items.errors = errors;
             items.form = form;
+            items.navigation = navigation;
             _this.setState(items);
         };
 
@@ -145,7 +151,8 @@ var Form = function (_React$Component) {
                 React.createElement(Name, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
                     changeToNext: this.changeToNext, errors: this.state.errors, onError: this.onError }),
                 React.createElement(Age, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
-                    changeToNext: this.changeToNext, changeToPrev: this.changeToPrev, errors: this.state.errors }),
+                    changeToNext: this.changeToNext, changeToPrev: this.changeToPrev, errors: this.state.errors,
+                    onError: this.onError }),
                 React.createElement(Location, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
                     changeToNext: this.changeToNext, changeToPrev: this.changeToPrev, errors: this.state.errors }),
                 React.createElement(DateOfInjury, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,

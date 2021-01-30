@@ -1,0 +1,8 @@
+@keyframes shake {
+    from {transform: translateX(-2%)}
+    to {transform: translateX(2%)}
+}
+
+#form_container .warning_shake {
+    animation: 2 shake 0.1s;
+}
