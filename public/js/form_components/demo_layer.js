@@ -14,16 +14,18 @@ var Name = function (_React$Component) {
     function Name(props) {
         _classCallCheck(this, Name);
 
-        return _possibleConstructorReturn(this, (Name.__proto__ || Object.getPrototypeOf(Name)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (Name.__proto__ || Object.getPrototypeOf(Name)).call(this, props));
+
+        _this.handleOk = function () {
+            // Validation goes here.
+
+            _this.props.changeToNext();
+        };
+
+        return _this;
     }
 
     _createClass(Name, [{
-        key: "handleOk",
-        value: function handleOk() {
-            // Checking goes here
-
-        }
-    }, {
         key: "render",
         value: function render() {
             return React.createElement(
@@ -74,7 +76,15 @@ var Age = function (_React$Component2) {
     function Age(props) {
         _classCallCheck(this, Age);
 
-        return _possibleConstructorReturn(this, (Age.__proto__ || Object.getPrototypeOf(Age)).call(this, props));
+        var _this2 = _possibleConstructorReturn(this, (Age.__proto__ || Object.getPrototypeOf(Age)).call(this, props));
+
+        _this2.handleOk = function () {
+            // Validation goes here.
+
+            _this2.props.changeToNext();
+        };
+
+        return _this2;
     }
 
     _createClass(Age, [{
@@ -136,7 +146,7 @@ var Age = function (_React$Component2) {
                         label,
                         React.createElement("input", { onChange: this.props.handler, className: "raw_input",
                             name: "age", id: "age", type: "text", defaultValue: this.props.formState.age, placeholder: "Type your answer here..." }),
-                        React.createElement(RegularButton, null)
+                        React.createElement(RegularButton, { handleOk: this.handleOk })
                     )
                 )
             );
@@ -152,7 +162,15 @@ var Location = function (_React$Component3) {
     function Location(props) {
         _classCallCheck(this, Location);
 
-        return _possibleConstructorReturn(this, (Location.__proto__ || Object.getPrototypeOf(Location)).call(this, props));
+        var _this3 = _possibleConstructorReturn(this, (Location.__proto__ || Object.getPrototypeOf(Location)).call(this, props));
+
+        _this3.handleOk = function () {
+            // Validation goes here.
+
+            _this3.props.changeToNext();
+        };
+
+        return _this3;
     }
 
     _createClass(Location, [{
@@ -214,7 +232,7 @@ var Location = function (_React$Component3) {
                         label,
                         React.createElement("input", { onChange: this.props.handler, className: "raw_input",
                             name: "location", id: "location", type: "text", defaultValue: this.props.formState.location, placeholder: "Type your answer here..." }),
-                        React.createElement(RegularButton, null)
+                        React.createElement(RegularButton, { handleOk: this.handleOk })
                     )
                 )
             );

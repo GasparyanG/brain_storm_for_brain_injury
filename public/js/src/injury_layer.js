@@ -5,6 +5,12 @@ class DateOfInjury extends React.Component {
         super(props);
     }
 
+    handleOk = () => {
+        // Validation goes here.
+
+        this.props.changeToNext();
+    }
+
     render () {
         let label = (<label className="input_label" htmlFor="injury_date">
             <span className="question_number">4 {this.props.svgArrow}</span><span><strong>When was</strong> your brain injury?</span></label>);
@@ -32,7 +38,7 @@ class DateOfInjury extends React.Component {
                                 <input onChange={this.props.handler} id="injury_date_year" name="injury_date_year" className="raw_date_input" type="text"/>
                             </div>
                         </div>
-                        <RegularButton/>
+                        <RegularButton handleOk={this.handleOk}/>
                     </div>
                 </div>
             </section>

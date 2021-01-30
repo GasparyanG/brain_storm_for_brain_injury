@@ -14,7 +14,15 @@ var DateOfInjury = function (_React$Component) {
     function DateOfInjury(props) {
         _classCallCheck(this, DateOfInjury);
 
-        return _possibleConstructorReturn(this, (DateOfInjury.__proto__ || Object.getPrototypeOf(DateOfInjury)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (DateOfInjury.__proto__ || Object.getPrototypeOf(DateOfInjury)).call(this, props));
+
+        _this.handleOk = function () {
+            // Validation goes here.
+
+            _this.props.changeToNext();
+        };
+
+        return _this;
     }
 
     _createClass(DateOfInjury, [{
@@ -107,7 +115,7 @@ var DateOfInjury = function (_React$Component) {
                                 React.createElement("input", { onChange: this.props.handler, id: "injury_date_year", name: "injury_date_year", className: "raw_date_input", type: "text" })
                             )
                         ),
-                        React.createElement(RegularButton, null)
+                        React.createElement(RegularButton, { handleOk: this.handleOk })
                     )
                 )
             );

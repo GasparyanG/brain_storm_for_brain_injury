@@ -5,9 +5,10 @@ class Name extends React.Component {
         super(props);
     }
 
-    handleOk() {
-        // Checking goes here
+    handleOk = () => {
+        // Validation goes here.
 
+        this.props.changeToNext();
     }
 
     render() {
@@ -31,6 +32,12 @@ class Age extends React.Component {
         super(props);
     }
 
+    handleOk = () => {
+        // Validation goes here.
+
+        this.props.changeToNext();
+    }
+
     render() {
         let label = (<label className="input_label" htmlFor="age"><span className="question_number">2 {this.props.svgArrow}</span><span>How <strong>old</strong> are you?</span></label>);
         if (this.props.formState.name !== "")
@@ -43,7 +50,7 @@ class Age extends React.Component {
                         {label}
                         <input onChange={this.props.handler} className="raw_input"
                                name="age" id="age" type="text" defaultValue={this.props.formState.age} placeholder="Type your answer here..."/>
-                        <RegularButton/>
+                        <RegularButton handleOk={this.handleOk}/>
                     </div>
                 </div>
             </section>
@@ -55,6 +62,12 @@ class Age extends React.Component {
 class Location extends React.Component {
     constructor(props) {
         super(props);
+    }
+
+    handleOk = () => {
+        // Validation goes here.
+
+        this.props.changeToNext();
     }
 
     render() {
@@ -71,7 +84,7 @@ class Location extends React.Component {
                         {label}
                         <input onChange={this.props.handler} className="raw_input"
                                name="location" id="location" type="text" defaultValue={this.props.formState.location} placeholder="Type your answer here..."/>
-                        <RegularButton/>
+                        <RegularButton handleOk={this.handleOk}/>
                     </div>
                 </div>
             </section>
