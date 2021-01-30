@@ -19,13 +19,13 @@
     min-width: 36px;
     height: 32px;
     -webkit-box-pack: center;
-    background-color: rgb(50, 134, 179);
+    background-color: var(--button-background-color);
     color: white;
     border-radius: 0px;
 }
 
 #form_container .nav_btn:hover {
-    background-color: rgb(81, 152, 190);
+    background-color: var(--button-on-hover-bck-color);
 }
 
 /* Navigation Icons */

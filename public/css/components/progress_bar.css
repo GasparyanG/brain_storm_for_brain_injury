@@ -1,5 +1,5 @@
 #form_container .form_progress_indicator {
     position: absolute;
-    background-color: black;
+    background-color: var(--button-background-color);
     top: 1rem;
 }

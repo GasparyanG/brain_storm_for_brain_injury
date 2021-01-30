@@ -4,6 +4,11 @@
     --input-color-active: rgb(52, 113, 130);
     --question-color: rgb(68, 68, 68);
 
+    /*  Buttons  */
+    --button_margin-top: 1rem;
+    --button-background-color: rgb(50, 134, 179);
+    --button-on-hover-bck-color: rgb(81, 152, 190);
+
     /* Font Sizes */
     --input-font-size: 30px;
     --input-sm-font-size: 20px;
@@ -22,7 +27,4 @@
     --ck-box-size: 1.5rem;
     --sm-ck-font-size: 1rem;
     --sm-ck-box-size: 1rem;
-
-    /*  Buttons  */
-    --button_margin-top: 1rem;
 }

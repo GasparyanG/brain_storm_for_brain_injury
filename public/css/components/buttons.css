@@ -34,13 +34,13 @@
     box-shadow: rgba(0, 0, 0, 0.1) 0 3px 12px 0;
     padding: 6px 14px;
     min-height: 40px;
-    background-color: rgb(50, 134, 179);
+    background-color: var(--button-background-color);
     color: rgb(255, 255, 255);
     border-radius: 4px;
 }
 
 #form_container .raw_button:hover {
-    background-color: rgb(81, 152, 190);
+    background-color: var(--button-on-hover-bck-color);
 }
 
 
