@@ -25,6 +25,15 @@ var Form = function (_React$Component) {
             window.localStorage.setItem("form", JSON.stringify(_this.state));
         };
 
+        _this.onChange = function (field, value) {
+            var items = Object.assign({}, _this.state);
+            var form = Object.assign({}, _this.state.form);
+            form[field] = value;
+
+            items.form = form;
+            _this.setState(items);
+        };
+
         _this.onCheckboxCheck = function (field, value) {
             _this.onChange(field, value);
         };
@@ -35,11 +44,15 @@ var Form = function (_React$Component) {
             _this.onChange(field, value);
         };
 
-        _this.onChange = function (field, value) {
+        _this.onErrorChange = function (field, value) {
+            var deleteEl = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
             var items = Object.assign({}, _this.state);
             var form = Object.assign({}, _this.state.form);
-            form[field] = value;
+            var errors = Object.assign({}, _this.state.errors);
+            if (deleteEl) delete errors[field];else errors[field] = value;
 
+            items.errors = errors;
             items.form = form;
             _this.setState(items);
         };
@@ -68,6 +81,7 @@ var Form = function (_React$Component) {
         _this.handler = _this.onValueChange.bind(_this);
         _this.checkboxHandler = _this.onCheckboxCheck.bind(_this);
         _this.onValueUpdate = _this.onChange.bind(_this);
+        _this.onError = _this.onErrorChange.bind(_this);
 
         // Navigation
         _this.changeToNext = _this.changeToNextLayer.bind(_this);
@@ -108,17 +122,13 @@ var Form = function (_React$Component) {
                     injury_reason: ""
                 },
 
-                errors: {
-                    name: {
-                        message: DefaultErrorMessages.name
-                    }
-                }
+                errors: {}
             };
 
             var state = window.localStorage.getItem("form");
             if (state !== "undefined" && state !== "null") {
                 state = JSON.parse(state);
-                // Don't remember postion of page
+                // Don't remember position of page
                 state.navigation.current_position = 0;
 
                 return state;
@@ -133,7 +143,7 @@ var Form = function (_React$Component) {
                 { className: "layers_container" },
                 React.createElement(ProgressBar, { formState: this.state.form }),
                 React.createElement(Name, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
-                    changeToNext: this.changeToNext, errors: this.state.errors }),
+                    changeToNext: this.changeToNext, errors: this.state.errors, onError: this.onError }),
                 React.createElement(Age, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
                     changeToNext: this.changeToNext, changeToPrev: this.changeToPrev, errors: this.state.errors }),
                 React.createElement(Location, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,

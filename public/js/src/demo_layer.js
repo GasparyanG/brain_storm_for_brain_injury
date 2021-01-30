@@ -1,4 +1,4 @@
-import {CSSClasses, ErrorMessage, RegularButton} from "./helper_components";
+import {CSSClasses, ErrorMessage, DefaultErrorMessages, RegularButton} from "./helper_components";
 
 class Name extends React.Component {
     constructor(props) {
@@ -17,11 +17,12 @@ class Name extends React.Component {
     }
 
     handleInput = (e) => {
-        let button = document.querySelector(".action_box .name");
-        console.log(button);
-        if (!button) return;
+        this.props.handler(e);
 
-        button.classList.remove(CSSClasses.action_box_disabled);
+        if (e.target.value !== "") {
+            this.props.onError("name", false, true);
+        } else
+            this.props.onError("name", {message: DefaultErrorMessages.name});
     }
 
     validateInput = () => {
@@ -48,7 +49,7 @@ class Name extends React.Component {
                     <div className="questions">
                         <label className="input_label" htmlFor="name"><span className="question_number">1 {this.props.svgArrow}</span>
                             <span>Let's start with your <strong>name</strong>.</span></label>
-                        <input onChange={this.props.handler} onKeyUp={this.handleEnter} className="raw_input"
+                        <input onChange={this.handleInput} onKeyUp={this.handleEnter} className="raw_input"
                                name="name" id="name" type="text" defaultValue={this.props.formState.name} placeholder="Type here..."/>
                         {validityElement}
                     </div>

@@ -14,6 +14,7 @@ class Form extends React.Component {
         this.handler = this.onValueChange.bind(this);
         this.checkboxHandler = this.onCheckboxCheck.bind(this);
         this.onValueUpdate =this.onChange.bind(this);
+        this.onError = this.onErrorChange.bind(this);
 
         // Navigation
         this.changeToNext = this.changeToNextLayer.bind(this);
@@ -50,22 +51,27 @@ class Form extends React.Component {
                 injury_reason: ""
             },
 
-            errors: {
-                name: {
-                    message: DefaultErrorMessages.name
-                }
-            }
+            errors: {}
         };
 
         let state = window.localStorage.getItem("form");
         if (state !== "undefined" && state !== "null") {
             state = JSON.parse(state);
-            // Don't remember postion of page
+            // Don't remember position of page
             state.navigation.current_position = 0;
 
             return state;
         }
         return defaultState;
+    }
+
+    onChange = (field, value) => {
+        let items = {...this.state};
+        let form = {...this.state.form};
+        form[field] = value;
+
+        items.form = form;
+        this.setState(items);
     }
 
     onCheckboxCheck = (field, value) => {
@@ -78,11 +84,16 @@ class Form extends React.Component {
         this.onChange(field, value);
     }
 
-    onChange = (field, value) => {
+    onErrorChange = (field, value, deleteEl = false) => {
         let items = {...this.state};
-        let form = {...this.state.form};
-        form[field] = value;
+        let form = {...this.state.form}
+        let errors = {...this.state.errors};
+        if (deleteEl)
+            delete errors[field];
+        else
+            errors[field] = value;
 
+        items.errors = errors;
         items.form = form;
         this.setState(items);
     }
@@ -120,7 +131,7 @@ class Form extends React.Component {
                 <ProgressBar formState={this.state.form} />
 
                 <Name svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}
-                      changeToNext={this.changeToNext} errors={this.state.errors}/>
+                      changeToNext={this.changeToNext} errors={this.state.errors} onError={this.onError}/>
 
                 <Age svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}
                      changeToNext={this.changeToNext} changeToPrev={this.changeToPrev} errors={this.state.errors}/>

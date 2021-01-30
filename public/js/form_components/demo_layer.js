@@ -6,7 +6,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-import { CSSClasses, ErrorMessage, RegularButton } from "./helper_components";
+import { CSSClasses, ErrorMessage, DefaultErrorMessages, RegularButton } from "./helper_components";
 
 var Name = function (_React$Component) {
     _inherits(Name, _React$Component);
@@ -27,11 +27,11 @@ var Name = function (_React$Component) {
         };
 
         _this.handleInput = function (e) {
-            var button = document.querySelector(".action_box .name");
-            console.log(button);
-            if (!button) return;
+            _this.props.handler(e);
 
-            button.classList.remove(CSSClasses.action_box_disabled);
+            if (e.target.value !== "") {
+                _this.props.onError("name", false, true);
+            } else _this.props.onError("name", { message: DefaultErrorMessages.name });
         };
 
         _this.validateInput = function () {
@@ -84,7 +84,7 @@ var Name = function (_React$Component) {
                                 "."
                             )
                         ),
-                        React.createElement("input", { onChange: this.props.handler, onKeyUp: this.handleEnter, className: "raw_input",
+                        React.createElement("input", { onChange: this.handleInput, onKeyUp: this.handleEnter, className: "raw_input",
                             name: "name", id: "name", type: "text", defaultValue: this.props.formState.name, placeholder: "Type here..." }),
                         validityElement
                     )
