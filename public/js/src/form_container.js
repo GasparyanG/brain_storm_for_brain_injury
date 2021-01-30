@@ -110,16 +110,24 @@ class Form extends React.Component {
             <div className="layers_container">
                 <Name svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}
                       changeToNext={this.changToNext}/>
+
                 <Age svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}
                      changeToNext={this.changToNext}/>
+
                 <Location svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}
                       changeToNext={this.changToNext}/>
+
                 <DateOfInjury svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}
                       changeToNext={this.changToNext}/>
+
                 <CauseOfInjury svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}
-                    checkboxHandler={this.checkboxHandler} onValueUpdate={this.onValueUpdate}/>
+                    checkboxHandler={this.checkboxHandler} onValueUpdate={this.onValueUpdate}
+                   changeToNext={this.changToNext}/>
+
                 <Concerns svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}
-                    checkboxHandler={this.checkboxHandler} onValueUpdate={this.onValueUpdate}/>
+                    checkboxHandler={this.checkboxHandler} onValueUpdate={this.onValueUpdate}
+                    changeToNext={this.changToNext}/>
+
                 <Navigation changeToNext={this.changToNext} changeToPrev={this.changToPrev}/>
             </div>
         );

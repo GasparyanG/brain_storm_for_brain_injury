@@ -147,6 +147,17 @@ class CauseOfInjury extends React.Component {
         this.state.other_input_disabled = false;
     }
 
+    handleOk = () => {
+        // Validation goes here.
+
+        this.props.changeToNext();
+    }
+
+    handleEnter = (e) => {
+        if (e.keyCode === 13)
+            this.handleOk();
+    }
+
     otherInputRendering = () => {
         let valueToDisplay = "";
         let checked = "";
@@ -160,7 +171,7 @@ class CauseOfInjury extends React.Component {
                 <div className="choice_letter">N</div>
                 <div className="choice_name">
                     <span className="default_choice_name">Other</span>
-                    <input onChange={this.props.handler} id="injury_reason" name="injury_reason" className="choice_other_raw_input hidden" defaultValue={valueToDisplay} type="text" placeholder="Type your answer..."/>
+                    <input onChange={this.props.handler} onKeyUp={this.handleEnter} id="injury_reason" name="injury_reason" className="choice_other_raw_input hidden" defaultValue={valueToDisplay} type="text" placeholder="Type your answer..."/>
                 </div>
                 <div className="enabled_other_input hidden" onClick={this.unCheck}>✓</div>
             </div>

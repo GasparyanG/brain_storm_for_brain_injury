@@ -9,6 +9,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 import { CSSClasses } from "./helper_components";
+import { CauseOfInjury } from "./injury_layer";
 
 var Concerns = function (_React$Component) {
     _inherits(Concerns, _React$Component);
@@ -75,6 +76,17 @@ var Concerns = function (_React$Component) {
             _this.state.other_input_disabled = false;
         };
 
+        _this.handleOk = function () {
+            // Validation goes here.
+
+            _this.props.changeToNext();
+        };
+
+        _this.handleEnter = function (e) {
+            if (e.keyCode === 13) // Enter is pressed.
+                _this.handleOk();
+        };
+
         _this.otherInputRendering = function () {
             var valueToDisplay = "";
             var checked = "";
@@ -99,7 +111,9 @@ var Concerns = function (_React$Component) {
                         { className: "default_choice_name" },
                         "Other"
                     ),
-                    React.createElement("input", { onChange: _this.props.handler, id: "concerns_other", name: "concerns_other", className: "choice_other_raw_input hidden", defaultValue: valueToDisplay, type: "text", placeholder: "Type your answer..." })
+                    React.createElement("input", { onChange: _this.props.handler, onKeyUp: _this.handleEnter,
+                        id: "concerns_other", name: "concerns_other", className: "choice_other_raw_input hidden",
+                        defaultValue: valueToDisplay, type: "text", placeholder: "Type your answer..." })
                 ),
                 React.createElement(
                     "div",

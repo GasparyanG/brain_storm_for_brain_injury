@@ -198,6 +198,16 @@ var CauseOfInjury = function (_React$Component2) {
             _this2.state.other_input_disabled = false;
         };
 
+        _this2.handleOk = function () {
+            // Validation goes here.
+
+            _this2.props.changeToNext();
+        };
+
+        _this2.handleEnter = function (e) {
+            if (e.keyCode === 13) _this2.handleOk();
+        };
+
         _this2.otherInputRendering = function () {
             var valueToDisplay = "";
             var checked = "";
@@ -222,7 +232,7 @@ var CauseOfInjury = function (_React$Component2) {
                         { className: "default_choice_name" },
                         "Other"
                     ),
-                    React.createElement("input", { onChange: _this2.props.handler, id: "injury_reason", name: "injury_reason", className: "choice_other_raw_input hidden", defaultValue: valueToDisplay, type: "text", placeholder: "Type your answer..." })
+                    React.createElement("input", { onChange: _this2.props.handler, onKeyUp: _this2.handleEnter, id: "injury_reason", name: "injury_reason", className: "choice_other_raw_input hidden", defaultValue: valueToDisplay, type: "text", placeholder: "Type your answer..." })
                 ),
                 React.createElement(
                     "div",
