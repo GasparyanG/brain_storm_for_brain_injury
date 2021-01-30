@@ -10,7 +10,7 @@ import { Name, Age, Location } from "./demo_layer";
 import { DateOfInjury, CauseOfInjury } from "./injury_layer";
 import { Concerns } from "./concerns_layer";
 import { Navigation } from "./navigation_buttons";
-import { CSSClasses } from "./helper_components";
+import { CSSClasses, SymbolicConstants } from "./helper_components";
 
 var Form = function (_React$Component) {
     _inherits(Form, _React$Component);
@@ -48,7 +48,7 @@ var Form = function (_React$Component) {
 
             var layers = document.querySelectorAll("." + CSSClasses.form_layer);
             for (var i = 0; i < layers.length; i++) {
-                layers[i].style.setProperty("transform", "" + ("translateY(calc(" + _this.state.navigation.current_position + "*-100vh))"));
+                layers[i].style.setProperty("transform", "" + ("translateY(calc(" + _this.state.navigation.current_position + "*-" + SymbolicConstants.page_translation_percent + "vh))"));
             }
         };
 
@@ -57,7 +57,7 @@ var Form = function (_React$Component) {
 
             var layers = document.querySelectorAll("." + CSSClasses.form_layer);
             for (var i = 0; i < layers.length; i++) {
-                layers[i].style.setProperty("transform", "" + ("translateY(" + ((_this.state.navigation.current_position + 1) * -100 + 100) + "vh)"));
+                layers[i].style.setProperty("transform", "" + ("translateY(" + ((_this.state.navigation.current_position + 1) * -SymbolicConstants.page_translation_percent + SymbolicConstants.page_translation_percent) + "vh)"));
             }
         };
 
@@ -81,7 +81,7 @@ var Form = function (_React$Component) {
         );
 
         // Update local storage periodically.
-        setInterval(_this.updateStorage, 5000);
+        setInterval(_this.updateStorage, SymbolicConstants.local_storage_update_timout);
         return _this;
     }
 
@@ -91,7 +91,7 @@ var Form = function (_React$Component) {
             var defaultState = {
                 navigation: {
                     current_position: 0,
-                    max_number_of_pages: 5
+                    max_number_of_pages: SymbolicConstants.max_number_of_pages
                 },
 
                 form: {

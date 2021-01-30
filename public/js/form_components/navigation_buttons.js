@@ -6,7 +6,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-import { CSSClasses, debounce } from "./helper_components";
+import { CSSClasses, debounce, SymbolicConstants } from "./helper_components";
 
 var Navigation = function (_React$Component) {
     _inherits(Navigation, _React$Component);
@@ -18,13 +18,13 @@ var Navigation = function (_React$Component) {
 
         _this.handleOnScroll = function (e) {
             var evt = window.event || e; //equalize event object
-            var delta = evt.detail ? evt.detail * -120 : evt.wheelDelta; //check for detail first so Opera uses that instead of wheelDelta
+            var delta = evt.detail ? evt.detail * SymbolicConstants.scroll_delta : evt.wheelDelta; //check for detail first so Opera uses that instead of wheelDelta
 
             if (delta < 0) _this.props.changeToNext();else _this.props.changeToPrev();
         };
 
         _this.addOnScroll = function () {
-            var scrollHandler = debounce(_this.handleOnScroll, 20);
+            var scrollHandler = debounce(_this.handleOnScroll, SymbolicConstants.debounce_wait);
 
             // IE9, Chrome, Safari, Opera
             document.body.addEventListener("mousewheel", scrollHandler);

@@ -2,7 +2,7 @@ import {Name, Age, Location} from "./demo_layer"
 import {DateOfInjury, CauseOfInjury} from "./injury_layer";
 import {Concerns} from "./concerns_layer";
 import {Navigation} from "./navigation_buttons";
-import {CSSClasses} from "./helper_components";
+import {CSSClasses, SymbolicConstants} from "./helper_components";
 
 class Form extends React.Component {
     constructor(props) {
@@ -22,7 +22,7 @@ class Form extends React.Component {
         this.svgArrow = (<svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>);
 
         // Update local storage periodically.
-        setInterval(this.updateStorage, 5000);
+        setInterval(this.updateStorage, SymbolicConstants.local_storage_update_timout);
     }
 
     updateStorage = () => {
@@ -33,7 +33,7 @@ class Form extends React.Component {
         let defaultState = {
             navigation : {
                 current_position: 0,
-                max_number_of_pages: 5
+                max_number_of_pages: SymbolicConstants.max_number_of_pages
             },
 
             form: {
@@ -88,7 +88,7 @@ class Form extends React.Component {
         const layers = document.querySelectorAll("." + CSSClasses.form_layer);
         for(let i = 0; i < layers.length; i++) {
             layers[i].style.setProperty("transform",
-                `${"translateY(calc("  + this.state.navigation.current_position + "*-100vh))"}`);
+                `${"translateY(calc("  + this.state.navigation.current_position + "*-" + SymbolicConstants.page_translation_percent + "vh))"}`);
         }
     }
 
@@ -101,7 +101,8 @@ class Form extends React.Component {
         const layers = document.querySelectorAll("." + CSSClasses.form_layer);
         for(let i = 0; i < layers.length; i++) {
             layers[i].style.setProperty("transform",
-                `${"translateY("  + (((this.state.navigation.current_position + 1) * -100) + 100) + "vh)"}`);
+                `${"translateY("  + (((this.state.navigation.current_position + 1) * -SymbolicConstants.page_translation_percent) 
+                    + SymbolicConstants.page_translation_percent) + "vh)"}`);
         }
     }
 

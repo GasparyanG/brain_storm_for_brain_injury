@@ -6,7 +6,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-import { CSSClasses, RegularButton } from "./helper_components";
+import { CSSClasses, RegularButton, SymbolicConstants } from "./helper_components";
 
 var DateOfInjury = function (_React$Component) {
     _inherits(DateOfInjury, _React$Component);
@@ -24,7 +24,7 @@ var DateOfInjury = function (_React$Component) {
 
         _this.handleEnter = function (e) {
             // Call to handleOk when it's the last input.
-            if (e.keyCode === 13) {
+            if (e.keyCode === SymbolicConstants.enter_key_code) {
                 if (e.target.classList.contains("date_month")) {
                     // Validate month
                     var dayInput = document.querySelector(".date_day");
@@ -184,6 +184,9 @@ var CauseOfInjury = function (_React$Component2) {
 
             // Design
             element.classList.toggle(CSSClasses.choice_is_made);
+
+            // After single choice change page.
+            setTimeout(_this2.handleOk, SymbolicConstants.page_change_timout);
         };
 
         _this2.unCheck = function (e) {

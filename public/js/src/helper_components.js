@@ -39,4 +39,21 @@ const CSSClasses = {
     form_layer: "form_layer"
 };
 
-export {RegularButton, CSSClasses, debounce};
+const SymbolicConstants = {
+    // Timeouts
+    page_change_timout: 500,
+    local_storage_update_timout: 5000,
+
+    // External Support
+    debounce_wait: 20,
+
+    // Events
+    enter_key_code: 13,
+
+    // Navigation
+    page_translation_percent: 100,
+    scroll_delta: -120,
+    max_number_of_pages: 5
+}
+
+export {RegularButton, CSSClasses, debounce, SymbolicConstants};

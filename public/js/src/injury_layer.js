@@ -1,4 +1,4 @@
-import {CSSClasses, RegularButton} from "./helper_components";
+import {CSSClasses, RegularButton, SymbolicConstants} from "./helper_components";
 
 class DateOfInjury extends React.Component {
     constructor(props) {
@@ -13,7 +13,7 @@ class DateOfInjury extends React.Component {
 
     handleEnter = (e) => {
         // Call to handleOk when it's the last input.
-        if (e.keyCode === 13) {
+        if (e.keyCode === SymbolicConstants.enter_key_code) {
             if (e.target.classList.contains("date_month")) {
                 // Validate month
                 let dayInput = document.querySelector(".date_day");
@@ -119,6 +119,9 @@ class CauseOfInjury extends React.Component {
 
         // Design
         element.classList.toggle(CSSClasses.choice_is_made);
+
+        // After single choice change page.
+        setTimeout(this.handleOk, SymbolicConstants.page_change_timout);
     }
 
     createCheckbox(key) {

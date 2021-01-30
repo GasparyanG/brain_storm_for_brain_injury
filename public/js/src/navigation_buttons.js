@@ -1,4 +1,4 @@
-import {CSSClasses, debounce} from "./helper_components";
+import {CSSClasses, debounce, SymbolicConstants} from "./helper_components";
 
 class Navigation extends React.Component {
     constructor(props) {
@@ -8,7 +8,7 @@ class Navigation extends React.Component {
 
     handleOnScroll = (e) => {
         let evt = window.event || e;                                  //equalize event object
-        let delta = evt.detail? evt.detail*(-120) : evt.wheelDelta;   //check for detail first so Opera uses that instead of wheelDelta
+        let delta = evt.detail? evt.detail*(SymbolicConstants.scroll_delta) : evt.wheelDelta;   //check for detail first so Opera uses that instead of wheelDelta
 
         if (delta < 0)
             this.props.changeToNext();
@@ -17,7 +17,7 @@ class Navigation extends React.Component {
     }
 
     addOnScroll = () => {
-        let scrollHandler = debounce(this.handleOnScroll, 20);
+        let scrollHandler = debounce(this.handleOnScroll, SymbolicConstants.debounce_wait);
 
         // IE9, Chrome, Safari, Opera
         document.body.addEventListener("mousewheel", scrollHandler);
