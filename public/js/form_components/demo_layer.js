@@ -6,7 +6,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-import { RegularButton } from "./helper_components";
+import { CSSClasses, RegularButton } from "./helper_components";
 
 var Name = function (_React$Component) {
     _inherits(Name, _React$Component);
@@ -26,12 +26,27 @@ var Name = function (_React$Component) {
             if (e.keyCode === 13) _this.handleOk();
         };
 
+        _this.handleInput = function (e) {
+            var button = document.querySelector(".action_box .name");
+            console.log(button);
+            if (!button) return;
+
+            button.classList.remove(CSSClasses.action_box_disabled);
+        };
+
+        _this.validateInput = function () {
+            if (_this.props.formState.name !== "") return true;
+            return false;
+        };
+
         return _this;
     }
 
     _createClass(Name, [{
         key: "render",
         value: function render() {
+            var isValid = this.validateInput();
+
             return React.createElement(
                 "section",
                 { className: "user_name form_layer" },
@@ -64,7 +79,7 @@ var Name = function (_React$Component) {
                         ),
                         React.createElement("input", { onChange: this.props.handler, onKeyUp: this.handleEnter, className: "raw_input",
                             name: "name", id: "name", type: "text", defaultValue: this.props.formState.name, placeholder: "Type here..." }),
-                        React.createElement(RegularButton, { handleOk: this.handleOk })
+                        React.createElement(RegularButton, { isValid: isValid, formState: this.props.formState, handleOk: this.handleOk })
                     )
                 )
             );
@@ -90,6 +105,11 @@ var Age = function (_React$Component2) {
 
         _this2.handleEnter = function (e) {
             if (e.keyCode === 13) _this2.handleOk();
+        };
+
+        _this2.validateInput = function () {
+            if (_this2.props.formState.age !== "") return true;
+            return false;
         };
 
         return _this2;
@@ -142,6 +162,8 @@ var Age = function (_React$Component2) {
                 )
             );
 
+            var isValid = this.validateInput();
+
             return React.createElement(
                 "section",
                 { className: "user_age form_layer" },
@@ -154,7 +176,7 @@ var Age = function (_React$Component2) {
                         label,
                         React.createElement("input", { onChange: this.props.handler, onKeyUp: this.handleEnter, className: "raw_input",
                             name: "age", id: "age", type: "text", defaultValue: this.props.formState.age, placeholder: "Type your answer here..." }),
-                        React.createElement(RegularButton, { handleOk: this.handleOk })
+                        React.createElement(RegularButton, { isValid: isValid, handleOk: this.handleOk })
                     )
                 )
             );
@@ -181,6 +203,11 @@ var Location = function (_React$Component3) {
         _this3.handleEnter = function (e) {
             if (e.keyCode === 13) // Enter is pressed.
                 _this3.handleOk();
+        };
+
+        _this3.validateInput = function () {
+            if (_this3.props.formState.location !== "") return true;
+            return false;
         };
 
         return _this3;
@@ -233,6 +260,8 @@ var Location = function (_React$Component3) {
                 )
             );
 
+            var isValid = this.validateInput();
+
             return React.createElement(
                 "section",
                 { className: "user_location form_layer" },
@@ -245,7 +274,7 @@ var Location = function (_React$Component3) {
                         label,
                         React.createElement("input", { onChange: this.props.handler, onKeyUp: this.handleEnter, className: "raw_input",
                             name: "location", id: "location", type: "text", defaultValue: this.props.formState.location, placeholder: "Type your answer here..." }),
-                        React.createElement(RegularButton, { handleOk: this.handleOk })
+                        React.createElement(RegularButton, { isValid: isValid, handleOk: this.handleOk })
                     )
                 )
             );

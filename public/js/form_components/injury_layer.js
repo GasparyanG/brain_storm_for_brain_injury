@@ -40,6 +40,10 @@ var DateOfInjury = function (_React$Component) {
             }
         };
 
+        _this.validateInput = function () {
+            return !(_this.props.formState.injury_date_day == "" || _this.props.formState.injury_date_month == "" || _this.props.formState.injury_date_year == "");
+        };
+
         return _this;
     }
 
@@ -89,6 +93,8 @@ var DateOfInjury = function (_React$Component) {
                 )
             );
 
+            var isValid = this.validateInput();
+
             return React.createElement(
                 "section",
                 { className: "date_of_injury form_layer" },
@@ -136,7 +142,7 @@ var DateOfInjury = function (_React$Component) {
                                     id: "injury_date_year", name: "injury_date_year", className: "raw_date_input date_year", type: "text" })
                             )
                         ),
-                        React.createElement(RegularButton, { handleOk: this.handleOk })
+                        React.createElement(RegularButton, { isValid: isValid, handleOk: this.handleOk })
                     )
                 )
             );

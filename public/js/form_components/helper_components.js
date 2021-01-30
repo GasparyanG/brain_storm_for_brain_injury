@@ -1,7 +1,10 @@
 function RegularButton(props) {
+    var disabledButton = "action_box_disabled";
+    if (props.isValid) disabledButton = "";
+
     return React.createElement(
         "div",
-        { className: "action_box" },
+        { className: "action_box " + disabledButton },
         React.createElement("input", { onClick: props.handleOk, className: "raw_button", type: "button", value: "OK" }),
         React.createElement(
             "span",
@@ -49,6 +52,7 @@ var CSSClasses = {
     solid_choice: "solid_choice",
     solid_choice_is_made: "solid_choice_is_made",
     better_choice_exists: "better_choice_exists",
+    action_box_disabled: "action_box_disabled",
 
     // Form Keys
     name: "name",

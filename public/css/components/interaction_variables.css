@@ -16,6 +16,7 @@
     --question-sm-number-size: 13px;
     --quesiton-font-size: 20px;
     --quesiton-sm-font-size: 15px;
+    --box-radius: 4px;
 
     /*  Margin, Padding  */
     --input-margin-left: 2rem;
@@ -27,4 +28,8 @@
     --ck-box-size: 1.5rem;
     --sm-ck-font-size: 1rem;
     --sm-ck-box-size: 1rem;
+
+    /*  Errors  */
+    --err-background: rgb(247, 230, 230);
+    --err-color: rgb(177, 51, 28);
 }

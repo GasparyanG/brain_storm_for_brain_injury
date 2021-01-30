@@ -3,6 +3,19 @@
 #form_container .action_box {
     margin-left: var(--input-margin-left);
     margin-top: var(--button_margin-top);
+    transform: translateY(0);
+    opacity: 1;
+    transition-property: transform, opacity;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-out;
+}
+
+#form_container .action_box.action_box_disabled {
+    transform: translateY(100%);
+    opacity: 0;
+    transition-property: transform, opacity;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-out;
 }
 
 .action_box .action_prompt {
@@ -36,13 +49,12 @@
     min-height: 40px;
     background-color: var(--button-background-color);
     color: rgb(255, 255, 255);
-    border-radius: 4px;
+    border-radius: var(--box-radius);
 }
 
 #form_container .raw_button:hover {
     background-color: var(--button-on-hover-bck-color);
 }
-
 
 /* -------------------------- RESPONSIVENESS ------------------------------ */
 @media only screen and (max-width: 550px) {

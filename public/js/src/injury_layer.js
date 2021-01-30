@@ -29,6 +29,14 @@ class DateOfInjury extends React.Component {
         }
     }
 
+    validateInput = () => {
+        return !(
+            this.props.formState.injury_date_day == ""
+            || this.props.formState.injury_date_month == ""
+            || this.props.formState.injury_date_year == ""
+        );
+    }
+
     render () {
         let label = (<label className="input_label" htmlFor="injury_date">
             <span className="question_number">4 {this.props.svgArrow}</span><span><strong>When was</strong> your brain injury?</span></label>);
@@ -36,6 +44,7 @@ class DateOfInjury extends React.Component {
             label = (<label className="input_label" htmlFor="injury_date">
                 <span className="question_number">4 {this.props.svgArrow}</span><span>{this.props.formState.name}, <strong>when was</strong> your brain injury?</span></label>);
 
+        let isValid = this.validateInput();
 
         return (
             <section className="date_of_injury form_layer">
@@ -59,7 +68,7 @@ class DateOfInjury extends React.Component {
                                        id="injury_date_year" name="injury_date_year" className="raw_date_input date_year" type="text"/>
                             </div>
                         </div>
-                        <RegularButton handleOk={this.handleOk}/>
+                        <RegularButton isValid={isValid} handleOk={this.handleOk}/>
                     </div>
                 </div>
             </section>

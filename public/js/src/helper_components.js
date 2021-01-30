@@ -1,6 +1,10 @@
 function RegularButton(props) {
+    let disabledButton = "action_box_disabled";
+    if (props.isValid)
+        disabledButton = "";
+
     return (
-        <div className="action_box">
+        <div className={"action_box " + disabledButton}>
             <input onClick={props.handleOk} className="raw_button" type="button" value="OK"/>
             <span className="action_prompt">
                 <span className="prompt_part pp_press">press</span>
@@ -38,6 +42,7 @@ const CSSClasses = {
     solid_choice: "solid_choice",
     solid_choice_is_made: "solid_choice_is_made",
     better_choice_exists: "better_choice_exists",
+    action_box_disabled: "action_box_disabled",
 
     // Form Keys
     name: "name",
