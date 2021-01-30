@@ -10,6 +10,12 @@
     --letter-box-height: 25px;
     --md-letter-box-width: 20px;
     --md-letter-box-height: 20px;
+
+    /*  Solid choice (i.e. star)  */
+    --sc-box-width: 25px;
+    --sc-box-height: 25px;
+    --md-sc-box-width: 20px;
+    --md-sc-box-height: 20px;
 }
 
 /* Choice animation */
@@ -123,6 +129,26 @@
     background-color: var(--choice-color);
     color: white;
     border-radius: var(--box-radius);
+}
+
+/* -------------------------------------------- SOLID CHOICE BUTTON -------------------------------------- */
+#form_container .solid_choice {
+    position: absolute;
+    right: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none;
+    z-index: 2;
+    width: var(--sc-box-width);
+    height: var(--sc-box-height);
+}
+
+#form_container .choice_is_made .solid_choice {
+    display: inline-block;
+}
+
+#form_container .choice_is_made .solid_choice_is_made {
+    color: greenyellow;
 }
 
 /* -------------------------------------------- RESPONSIVENESS -------------------------------------------- */

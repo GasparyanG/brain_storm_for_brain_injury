@@ -36,9 +36,11 @@ const CSSClasses = {
     enabled_other_input: "enabled_other_input",
     concerns_other: "concerns_other",
     injury_reason: "injury_reason",
-    form_layer: "form_layer"
+    form_layer: "form_layer",
+    solid_choice: "solid_choice"
 };
 
+// Symbolic Constants Configuration
 const SymbolicConstants = {
     // Timeouts
     page_change_timout: 500,

@@ -38,6 +38,8 @@ var Concerns = function (_React$Component) {
 
         _this.onCheck = function (e) {
             // Functionality
+            if (e.target.classList.contains("solid_choice")) return;
+
             var element = void 0;
             if (e.target.hasAttribute("data-value")) element = e.target;else if (e.target.parentNode.hasAttribute("data-value")) element = e.target.parentNode;else if (e.target.parentNode.parentNode.hasAttribute("data-value")) element = e.target.parentNode.parentNode;
 
@@ -62,6 +64,13 @@ var Concerns = function (_React$Component) {
 
             // Design
             element.classList.toggle(CSSClasses.choice_is_made);
+        };
+
+        _this.makeSolidChoice = function (e) {
+            if (!e.target.classList.contains(CSSClasses.solid_choice)) return;
+            e.target.classList.toggle("solid_choice_is_made");
+
+            // Update state about solid choice.
         };
 
         _this.unCheck = function (e) {
@@ -161,6 +170,11 @@ var Concerns = function (_React$Component) {
                     "div",
                     { className: "choice_name" },
                     value
+                ),
+                React.createElement(
+                    "div",
+                    { onClick: this.makeSolidChoice, className: "solid_choice" },
+                    "\u2605"
                 )
             );
         }

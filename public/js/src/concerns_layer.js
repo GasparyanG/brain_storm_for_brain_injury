@@ -41,6 +41,8 @@ class Concerns extends React.Component {
 
     onCheck = (e) => {
         // Functionality
+        if (e.target.classList.contains("solid_choice")) return;
+
         let element;
         if (e.target.hasAttribute("data-value"))
             element = e.target;
@@ -72,6 +74,13 @@ class Concerns extends React.Component {
         element.classList.toggle(CSSClasses.choice_is_made);
     }
 
+    makeSolidChoice = (e) => {
+        if (!e.target.classList.contains(CSSClasses.solid_choice)) return;
+        e.target.classList.toggle("solid_choice_is_made");
+
+        // Update state about solid choice.
+    }
+
     createCheckbox(key) {
         let value = this.state.concerns[key];
         let checked = "";
@@ -82,6 +91,7 @@ class Concerns extends React.Component {
             <div key={value + ' ' + key} className={"choice_part " + checked} onClick={this.onCheck} data-value={key}>
                 <div className="choice_letter">{this.letters[key]}</div>
                 <div className="choice_name">{value}</div>
+                <div onClick={this.makeSolidChoice} className="solid_choice">★</div>
             </div>
         );
     }
