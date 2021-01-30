@@ -22,6 +22,10 @@ var Name = function (_React$Component) {
             _this.props.changeToNext();
         };
 
+        _this.handleEnter = function (e) {
+            if (e.keyCode === 13) _this.handleOk();
+        };
+
         return _this;
     }
 
@@ -58,7 +62,7 @@ var Name = function (_React$Component) {
                                 "."
                             )
                         ),
-                        React.createElement("input", { onChange: this.props.handler, className: "raw_input",
+                        React.createElement("input", { onChange: this.props.handler, onKeyUp: this.handleEnter, className: "raw_input",
                             name: "name", id: "name", type: "text", defaultValue: this.props.formState.name, placeholder: "Type here..." }),
                         React.createElement(RegularButton, { handleOk: this.handleOk })
                     )
@@ -82,6 +86,10 @@ var Age = function (_React$Component2) {
             // Validation goes here.
 
             _this2.props.changeToNext();
+        };
+
+        _this2.handleEnter = function (e) {
+            if (e.keyCode === 13) _this2.handleOk();
         };
 
         return _this2;
@@ -144,7 +152,7 @@ var Age = function (_React$Component2) {
                         "div",
                         { className: "questions" },
                         label,
-                        React.createElement("input", { onChange: this.props.handler, className: "raw_input",
+                        React.createElement("input", { onChange: this.props.handler, onKeyUp: this.handleEnter, className: "raw_input",
                             name: "age", id: "age", type: "text", defaultValue: this.props.formState.age, placeholder: "Type your answer here..." }),
                         React.createElement(RegularButton, { handleOk: this.handleOk })
                     )
@@ -168,6 +176,11 @@ var Location = function (_React$Component3) {
             // Validation goes here.
 
             _this3.props.changeToNext();
+        };
+
+        _this3.handleEnter = function (e) {
+            if (e.keyCode === 13) // Enter is pressed.
+                _this3.handleOk();
         };
 
         return _this3;
@@ -230,7 +243,7 @@ var Location = function (_React$Component3) {
                         "div",
                         { className: "questions" },
                         label,
-                        React.createElement("input", { onChange: this.props.handler, className: "raw_input",
+                        React.createElement("input", { onChange: this.props.handler, onKeyUp: this.handleEnter, className: "raw_input",
                             name: "location", id: "location", type: "text", defaultValue: this.props.formState.location, placeholder: "Type your answer here..." }),
                         React.createElement(RegularButton, { handleOk: this.handleOk })
                     )
