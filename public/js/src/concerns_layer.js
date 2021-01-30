@@ -75,17 +75,19 @@ class Concerns extends React.Component {
     }
 
     isSolidChoice = (checkedElement) => {
-        return !!checkedElement.querySelector("." + CSSClasses.solid_choice_is_made);
+        return this.props.formState.solid_concern == checkedElement.dataset.value;
     }
 
     displaySolidChoice = (checkedElement) => {
         if (this.isSolidChoice(checkedElement)) return;
-        checkedElement.classList.remove(CSSClasses.better_choice_exists);
+        let starEl = checkedElement.querySelector("." + CSSClasses.solid_choice);
+        starEl.classList.remove(CSSClasses.hidden_element);
     }
 
     hideSolidChoice = (checkedElement) => {
         if (this.isSolidChoice(checkedElement)) return;
-        checkedElement.classList.add(CSSClasses.better_choice_exists);
+        let starEl = checkedElement.querySelector("." + CSSClasses.solid_choice);
+        starEl.classList.add(CSSClasses.hidden_element);
     }
 
     makeSolidChoice = (e) => {
@@ -93,12 +95,15 @@ class Concerns extends React.Component {
         e.target.classList.toggle(CSSClasses.solid_choice_is_made);
 
         // Update state about solid choice.
-        this.props.checkboxHandler(CSSClasses.solid_concern, e.target.dataset.solid_value);
+        if (e.target.classList.contains(CSSClasses.solid_choice_is_made))
+            this.props.checkboxHandler(CSSClasses.solid_concern, e.target.dataset.solid_value);
+        else
+            this.props.checkboxHandler(CSSClasses.solid_concern, "");
 
         // Update solid choice button for other elements.
-        let choices = document.querySelectorAll("." + CSSClasses.choice_is_made);
+        let choices = document.querySelectorAll(".concerns ." + CSSClasses.choice_is_made);
         for (let i = 0; i < choices.length; i++) {
-            if (!e.target.classList.contains(CSSClasses.solid_choice_is_made))
+            if (this.props.formState.solid_concern === "")
                 this.displaySolidChoice(choices[i]);
             else
                 this.hideSolidChoice(choices[i]);
@@ -111,11 +116,18 @@ class Concerns extends React.Component {
         if (this.props.formState.concerns.includes(key))
             checked = CSSClasses.choice_is_made;
 
+        let solidChoice = "";
+        if (this.props.formState.solid_concern == key)
+            solidChoice = CSSClasses.solid_choice_is_made;
+
+        solidChoice = solidChoice === "" && this.props.formState.solid_concern !== ""
+            ? solidChoice + " hidden": solidChoice;
+
         return (
             <div key={value + ' ' + key} className={"choice_part " + checked} onClick={this.onCheck} data-value={key}>
                 <div className="choice_letter">{this.letters[key]}</div>
                 <div className="choice_name">{value}</div>
-                <div onClick={this.makeSolidChoice} data-solid_value={key} className="solid_choice">★</div>
+                <div onClick={this.makeSolidChoice} data-solid_value={key} className={"solid_choice " + solidChoice}>★</div>
             </div>
         );
     }
@@ -153,6 +165,10 @@ class Concerns extends React.Component {
             checked = CSSClasses.choice_is_made;
         }
 
+        let solidChoice = "";
+        if (this.props.formState.solid_concern == "14")
+            solidChoice = CSSClasses.solid_choice_is_made;
+
         return (
             <div className={"choice_part " + checked} data-value="14" onClick={this.onCheck}>
                 <div className="choice_letter">N</div>
@@ -164,7 +180,7 @@ class Concerns extends React.Component {
                 </div>
                 <div className="other_input_interaction">
                     <div className="enabled_other_input hidden" onClick={this.unCheck}>✓</div>
-                    <div onClick={this.makeSolidChoice} data-solid_value="14" className="solid_choice">★</div>
+                    <div onClick={this.makeSolidChoice} data-solid_value="14" className={"solid_choice " + solidChoice}>★</div>
                 </div>
             </div>
         );
