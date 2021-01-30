@@ -22,6 +22,24 @@ var DateOfInjury = function (_React$Component) {
             _this.props.changeToNext();
         };
 
+        _this.handleEnter = function (e) {
+            // Call to handleOk when it's the last input.
+            if (e.keyCode === 13) {
+                if (e.target.classList.contains("date_month")) {
+                    // Validate month
+                    var dayInput = document.querySelector(".date_day");
+                    dayInput.focus();
+                } else if (e.target.classList.contains("date_day")) {
+                    //Validate day
+                    var yearInput = document.querySelector(".date_year");
+                    yearInput.focus();
+                } else if (e.target.classList.contains("date_year")) {
+                    // Validate year
+                    _this.handleOk();
+                }
+            }
+        };
+
         return _this;
     }
 
@@ -92,7 +110,8 @@ var DateOfInjury = function (_React$Component) {
                                     { htmlFor: "injury_date_month", className: "date_section_name" },
                                     "Month"
                                 ),
-                                React.createElement("input", { onChange: this.props.handler, id: "injury_date_month", name: "injury_date_month", className: "raw_date_input", type: "text" })
+                                React.createElement("input", { onChange: this.props.handler, onKeyUp: this.handleEnter,
+                                    id: "injury_date_month", name: "injury_date_month", className: "raw_date_input date_month", type: "text" })
                             ),
                             React.createElement(
                                 "div",
@@ -102,7 +121,8 @@ var DateOfInjury = function (_React$Component) {
                                     { htmlFor: "injury_date_day", className: "date_section_name" },
                                     "Day"
                                 ),
-                                React.createElement("input", { onChange: this.props.handler, id: "injury_date_day", name: "injury_date_day", className: "raw_date_input", type: "text" })
+                                React.createElement("input", { onChange: this.props.handler, onKeyUp: this.handleEnter,
+                                    id: "injury_date_day", name: "injury_date_day", className: "raw_date_input date_day", type: "text" })
                             ),
                             React.createElement(
                                 "div",
@@ -112,7 +132,8 @@ var DateOfInjury = function (_React$Component) {
                                     { htmlFor: "injury_date_year", className: "date_section_name" },
                                     "Year"
                                 ),
-                                React.createElement("input", { onChange: this.props.handler, id: "injury_date_year", name: "injury_date_year", className: "raw_date_input", type: "text" })
+                                React.createElement("input", { onChange: this.props.handler, onKeyUp: this.handleEnter,
+                                    id: "injury_date_year", name: "injury_date_year", className: "raw_date_input date_year", type: "text" })
                             )
                         ),
                         React.createElement(RegularButton, { handleOk: this.handleOk })

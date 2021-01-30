@@ -11,6 +11,24 @@ class DateOfInjury extends React.Component {
         this.props.changeToNext();
     }
 
+    handleEnter = (e) => {
+        // Call to handleOk when it's the last input.
+        if (e.keyCode === 13) {
+            if (e.target.classList.contains("date_month")) {
+                // Validate month
+                let dayInput = document.querySelector(".date_day");
+                dayInput.focus();
+            } else if (e.target.classList.contains("date_day")) {
+                //Validate day
+                let yearInput = document.querySelector(".date_year");
+                yearInput.focus();
+            } else if (e.target.classList.contains("date_year")) {
+                // Validate year
+                this.handleOk();
+            }
+        }
+    }
+
     render () {
         let label = (<label className="input_label" htmlFor="injury_date">
             <span className="question_number">4 {this.props.svgArrow}</span><span><strong>When was</strong> your brain injury?</span></label>);
@@ -27,15 +45,18 @@ class DateOfInjury extends React.Component {
                         <div className="date_input_section">
                             <div className="date_input_part date_input_part_dash date_input_month">
                                 <label htmlFor="injury_date_month" className="date_section_name">Month</label>
-                                <input onChange={this.props.handler} id="injury_date_month" name="injury_date_month" className="raw_date_input" type="text"/>
+                                <input onChange={this.props.handler} onKeyUp={this.handleEnter}
+                                       id="injury_date_month" name="injury_date_month" className="raw_date_input date_month" type="text"/>
                             </div>
                             <div className="date_input_part date_input_part_dash date_input_day">
                                 <label htmlFor="injury_date_day" className="date_section_name">Day</label>
-                                <input onChange={this.props.handler} id="injury_date_day" name="injury_date_day" className="raw_date_input" type="text"/>
+                                <input onChange={this.props.handler} onKeyUp={this.handleEnter}
+                                       id="injury_date_day" name="injury_date_day" className="raw_date_input date_day" type="text"/>
                             </div>
                             <div className="date_input_part date_input_year">
                                 <label htmlFor="injury_date_year" className="date_section_name">Year</label>
-                                <input onChange={this.props.handler} id="injury_date_year" name="injury_date_year" className="raw_date_input" type="text"/>
+                                <input onChange={this.props.handler} onKeyUp={this.handleEnter}
+                                       id="injury_date_year" name="injury_date_year" className="raw_date_input date_year" type="text"/>
                             </div>
                         </div>
                         <RegularButton handleOk={this.handleOk}/>
