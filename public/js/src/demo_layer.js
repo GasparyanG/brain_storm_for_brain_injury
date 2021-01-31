@@ -57,7 +57,7 @@ class Name extends React.Component {
             <section className="user_name form_layer">
                 <div className="layer_content">
                     <div className="questions">
-                        <label className="input_label" htmlFor="name"><span className="question_number">1 {this.props.svgArrow}</span>
+                        <label className="input_label" htmlFor="name"><span className="question_number">  {this.props.svgArrow}</span>
                             <span>Let's start with your <strong>name</strong>.</span></label>
                         <input onChange={this.handleInput} onKeyUp={this.handleEnter} className="raw_input"
                                name="name" id="name" type="text" defaultValue={this.props.formState.name} placeholder="Type here..."/>
@@ -135,9 +135,9 @@ class Age extends React.Component {
     }
 
     render() {
-        let label = (<label className="input_label" htmlFor="age"><span className="question_number">2 {this.props.svgArrow}</span><span>How <strong>old</strong> are you?</span></label>);
+        let label = (<label className="input_label" htmlFor="age"><span className="question_number">  {this.props.svgArrow}</span><span>How <strong>old</strong> are you?</span></label>);
         if (this.props.formState.name !== "")
-            label = (<label className="input_label" htmlFor="age"><span className="question_number">2 {this.props.svgArrow}</span><span>{this.props.formState.name}, how <strong>old</strong> are you?</span></label>);
+            label = (<label className="input_label" htmlFor="age"><span className="question_number">  {this.props.svgArrow}</span><span>{this.props.formState.name}, how <strong>old</strong> are you?</span></label>);
 
         let validityElement = this.hintOrAction(CSSClasses.age);
 
@@ -211,10 +211,10 @@ class Location extends React.Component {
 
     render() {
         let label = (<label className="input_label" htmlFor="date_of_birth">
-            <span className="question_number">3 {this.props.svgArrow}</span><span>Where do you <strong>live</strong>?</span></label>);
+            <span className="question_number">  {this.props.svgArrow}</span><span>Where do you <strong>live</strong>?</span></label>);
         if (this.props.formState.name !== "")
             label = (<label className="input_label" htmlFor="date_of_birth">
-                <span className="question_number">3 {this.props.svgArrow}</span><span>{this.props.formState.name}, where do you <strong>live</strong>?</span></label>);
+                <span className="question_number">  {this.props.svgArrow}</span><span>{this.props.formState.name}, where do you <strong>live</strong>?</span></label>);
 
         let validityElement = this.hintOrAction(CSSClasses.location);
 
@@ -288,10 +288,10 @@ class Email extends React.Component {
 
     render() {
         let label = (<label className="input_label" htmlFor="email">
-            <span className="question_number">3 {this.props.svgArrow}</span><span>What is your <strong>email</strong> address?</span></label>);
+            <span className="question_number">  {this.props.svgArrow}</span><span>What is your <strong>email</strong> address?</span></label>);
         if (this.props.formState.name !== "")
             label = (<label className="input_label" htmlFor="email">
-                <span className="question_number">3 {this.props.svgArrow}</span><span>{this.props.formState.name}, what is your <strong>email</strong> address?</span></label>);
+                <span className="question_number">  {this.props.svgArrow}</span><span>{this.props.formState.name}, what is your <strong>email</strong> address?</span></label>);
 
         let validityElement = this.hintOrAction(CSSClasses.email);
 

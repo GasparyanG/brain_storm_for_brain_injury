@@ -94,7 +94,6 @@ var Form = function (_React$Component) {
             var errors = Object.assign({}, _this.state.errors);
             var navigation = Object.assign({}, _this.state.navigation);
             navigation[field] = value;
-            console.log(value);
 
             items.errors = errors;
             items.form = form;

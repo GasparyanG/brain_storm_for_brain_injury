@@ -142,7 +142,6 @@ class Form extends React.Component {
         let errors = {...this.state.errors};
         let navigation = {...this.state.navigation};
         navigation[field] = value;
-        console.log(value);
 
         items.errors = errors;
         items.form = form;

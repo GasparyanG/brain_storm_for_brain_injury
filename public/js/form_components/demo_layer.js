@@ -71,7 +71,7 @@ var Name = function (_React$Component) {
                             React.createElement(
                                 "span",
                                 { className: "question_number" },
-                                "1 ",
+                                "  ",
                                 this.props.svgArrow
                             ),
                             React.createElement(
@@ -170,7 +170,7 @@ var Age = function (_React$Component2) {
                 React.createElement(
                     "span",
                     { className: "question_number" },
-                    "2 ",
+                    "  ",
                     this.props.svgArrow
                 ),
                 React.createElement(
@@ -191,7 +191,7 @@ var Age = function (_React$Component2) {
                 React.createElement(
                     "span",
                     { className: "question_number" },
-                    "2 ",
+                    "  ",
                     this.props.svgArrow
                 ),
                 React.createElement(
@@ -293,7 +293,7 @@ var Location = function (_React$Component3) {
                 React.createElement(
                     "span",
                     { className: "question_number" },
-                    "3 ",
+                    "  ",
                     this.props.svgArrow
                 ),
                 React.createElement(
@@ -314,7 +314,7 @@ var Location = function (_React$Component3) {
                 React.createElement(
                     "span",
                     { className: "question_number" },
-                    "3 ",
+                    "  ",
                     this.props.svgArrow
                 ),
                 React.createElement(
@@ -415,7 +415,7 @@ var Email = function (_React$Component4) {
                 React.createElement(
                     "span",
                     { className: "question_number" },
-                    "3 ",
+                    "  ",
                     this.props.svgArrow
                 ),
                 React.createElement(
@@ -436,7 +436,7 @@ var Email = function (_React$Component4) {
                 React.createElement(
                     "span",
                     { className: "question_number" },
-                    "3 ",
+                    "  ",
                     this.props.svgArrow
                 ),
                 React.createElement(

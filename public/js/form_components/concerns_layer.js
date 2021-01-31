@@ -302,7 +302,7 @@ var Concerns = function (_React$Component) {
                 React.createElement(
                     "span",
                     { className: "question_number" },
-                    "6 ",
+                    "  ",
                     this.props.svgArrow
                 ),
                 React.createElement(
@@ -322,7 +322,7 @@ var Concerns = function (_React$Component) {
                 React.createElement(
                     "span",
                     { className: "question_number" },
-                    "6 ",
+                    "  ",
                     this.props.svgArrow
                 ),
                 React.createElement(

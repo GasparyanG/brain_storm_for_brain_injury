@@ -104,7 +104,7 @@ var DateOfInjury = function (_React$Component) {
                 React.createElement(
                     "span",
                     { className: "question_number" },
-                    "4 ",
+                    "  ",
                     this.props.svgArrow
                 ),
                 React.createElement(
@@ -124,7 +124,7 @@ var DateOfInjury = function (_React$Component) {
                 React.createElement(
                     "span",
                     { className: "question_number" },
-                    "4 ",
+                    "  ",
                     this.props.svgArrow
                 ),
                 React.createElement(
@@ -379,7 +379,7 @@ var CauseOfInjury = function (_React$Component2) {
                 React.createElement(
                     "span",
                     { className: "question_number" },
-                    "5 ",
+                    "  ",
                     this.props.svgArrow
                 ),
                 React.createElement(
@@ -400,7 +400,7 @@ var CauseOfInjury = function (_React$Component2) {
                 React.createElement(
                     "span",
                     { className: "question_number" },
-                    "5 ",
+                    "  ",
                     this.props.svgArrow
                 ),
                 React.createElement(

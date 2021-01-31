@@ -268,10 +268,10 @@ class Concerns extends React.Component {
         const otherInput = this.otherInputRendering();
 
         let label = (<label className="input_label" htmlFor="injury_date">
-            <span className="question_number">6 {this.props.svgArrow}</span><span>Check your <strong>greatest concerns.</strong></span></label>);
+            <span className="question_number">  {this.props.svgArrow}</span><span>Check your <strong>greatest concerns.</strong></span></label>);
         if (this.props.formState.name !== "")
             label = (<label className="input_label" htmlFor="injury_date">
-                <span className="question_number">6 {this.props.svgArrow}</span>
+                <span className="question_number">  {this.props.svgArrow}</span>
                 <span>{this.props.formState.name}, check your <strong>greatest concerns.</strong></span></label>);
 
         const validityElement = this.hintOrAction(CSSClasses.concerns);
