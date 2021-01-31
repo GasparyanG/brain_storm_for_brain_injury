@@ -173,7 +173,7 @@ class Form extends React.Component {
         return (
             <div className="layers_container">
                 {/*  PROGRESS BAR SECTION */}
-                <ProgressBar formState={this.state.form} isValidDate={this.isValidDate_b}/>
+                <ProgressBar errors={this.state.errors} formState={this.state.form} isValidDate={this.isValidDate_b}/>
 
                 {/*  NAME SECTION */}
                 <Name svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}

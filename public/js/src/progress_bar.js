@@ -9,6 +9,16 @@ class ProgressBar extends React.Component {
         return !(this.props.formState[field] == "");
     }
 
+    areConcernsValid = () => {
+        return !(
+            // There is no element in 'concerns' array and 'concerns_other' string is empty.
+            ((this.props.formState.concerns.length < SymbolicConstants.min_amount_of_choices)
+                && (this.props.formState.concerns_other.length < SymbolicConstants.min_length_of_other_concern))
+            // Concerns have error.
+            || this.props.errors.hasOwnProperty(CSSClasses.concerns)
+        );
+    }
+
     progressComputation = () => {
         let progress = 0;
         let progressStep =
@@ -19,7 +29,7 @@ class ProgressBar extends React.Component {
         progress += !this.stringValues(CSSClasses.location) ? 0 : progressStep;
         progress += !this.stringValues(CSSClasses.injury_reason) ? 0 : progressStep;
         progress += !this.props.isValidDate(this.props.formState) ? 0 : progressStep;
-        progress += this.props.formState.concerns.length === 0 ? 0 : progressStep;
+        progress += !this.areConcernsValid() ? 0 : progressStep;
 
         return progress;
     }

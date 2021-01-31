@@ -20,6 +20,14 @@ var ProgressBar = function (_React$Component) {
             return !(_this.props.formState[field] == "");
         };
 
+        _this.areConcernsValid = function () {
+            return !(
+            // There is no element in 'concerns' array and 'concerns_other' string is empty.
+            _this.props.formState.concerns.length < SymbolicConstants.min_amount_of_choices && _this.props.formState.concerns_other.length < SymbolicConstants.min_length_of_other_concern ||
+            // Concerns have error.
+            _this.props.errors.hasOwnProperty(CSSClasses.concerns));
+        };
+
         _this.progressComputation = function () {
             var progress = 0;
             var progressStep = Math.ceil(SymbolicConstants.completed_progress / SymbolicConstants.max_number_of_pages_human);
@@ -29,7 +37,7 @@ var ProgressBar = function (_React$Component) {
             progress += !_this.stringValues(CSSClasses.location) ? 0 : progressStep;
             progress += !_this.stringValues(CSSClasses.injury_reason) ? 0 : progressStep;
             progress += !_this.props.isValidDate(_this.props.formState) ? 0 : progressStep;
-            progress += _this.props.formState.concerns.length === 0 ? 0 : progressStep;
+            progress += !_this.areConcernsValid() ? 0 : progressStep;
 
             return progress;
         };
