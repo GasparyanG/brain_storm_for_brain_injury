@@ -11,7 +11,7 @@ import { DateOfInjury, CauseOfInjury } from "./injury_layer";
 import { Concerns } from "./concerns_layer";
 import { Navigation } from "./navigation_buttons";
 import { ProgressBar } from "./progress_bar";
-import { CSSClasses, SymbolicConstants } from "./helper_components";
+import { CSSClasses, DefaultErrorMessages, SymbolicConstants } from "./helper_components";
 
 var Form = function (_React$Component) {
     _inherits(Form, _React$Component);
@@ -25,8 +25,46 @@ var Form = function (_React$Component) {
             window.localStorage.setItem("form", JSON.stringify(_this.state));
         };
 
+        _this.onChange = function (field, value) {
+            var items = Object.assign({}, _this.state);
+            var form = Object.assign({}, _this.state.form);
+            var errors = Object.assign({}, _this.state.errors);
+            var navigation = Object.assign({}, _this.state.navigation);
+            form[field] = value;
+
+            items.errors = errors;
+            items.form = form;
+            items.navigation = navigation;
+            _this.setState(items);
+        };
+
         _this.onCheckboxCheck = function (field, value) {
             _this.onChange(field, value);
+        };
+
+        _this.prepareErrors = function (field, value) {
+            var deleteEnt = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
+            var errors = Object.assign({}, _this.state.errors);
+            var navigation = Object.assign({}, _this.state.navigation);
+            if (deleteEnt) delete errors[field];else errors[field] = value;
+
+            return errors;
+        };
+
+        _this.prepareForm = function (field, value) {
+            var form = Object.assign({}, _this.state.form);
+            form[field] = value;
+            return form;
+        };
+
+        _this.updateFormAndError = function (formObj, errorsObj) {
+            var items = Object.assign({}, _this.state);
+
+            items.errors = errorsObj;
+            items.form = formObj;
+
+            _this.setState(items);
         };
 
         _this.onValueChange = function (event) {
@@ -35,12 +73,18 @@ var Form = function (_React$Component) {
             _this.onChange(field, value);
         };
 
-        _this.onChange = function (field, value) {
+        _this.onErrorChange = function (field, value) {
+            var deleteEl = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
             var items = Object.assign({}, _this.state);
             var form = Object.assign({}, _this.state.form);
-            form[field] = value;
+            var errors = Object.assign({}, _this.state.errors);
+            var navigation = Object.assign({}, _this.state.navigation);
+            if (deleteEl) delete errors[field];else errors[field] = value;
 
+            items.errors = errors;
             items.form = form;
+            items.navigation = navigation;
             _this.setState(items);
         };
 
@@ -68,10 +112,14 @@ var Form = function (_React$Component) {
         _this.handler = _this.onValueChange.bind(_this);
         _this.checkboxHandler = _this.onCheckboxCheck.bind(_this);
         _this.onValueUpdate = _this.onChange.bind(_this);
+        _this.onError = _this.onErrorChange.bind(_this);
+        _this.prepareErrors_b = _this.prepareErrors.bind(_this);
+        _this.prepareForm_b = _this.prepareForm.bind(_this);
+        _this.updateFormAndError_b = _this.updateFormAndError.bind(_this);
 
         // Navigation
-        _this.changToNext = _this.changeToNextLayer.bind(_this);
-        _this.changToPrev = _this.changeToPrevLayer.bind(_this);
+        _this.changeToNext = _this.changeToNextLayer.bind(_this);
+        _this.changeToPrev = _this.changeToPrevLayer.bind(_this);
 
         // Common Components
         _this.svgArrow = React.createElement(
@@ -106,13 +154,15 @@ var Form = function (_React$Component) {
                     injury_date_month: "",
                     injury_date_year: "",
                     injury_reason: ""
-                }
+                },
+
+                errors: {}
             };
 
             var state = window.localStorage.getItem("form");
-            if (state !== "undefined" && state !== "null") {
+            if (state !== "undefined" && state !== "null" && state != null) {
                 state = JSON.parse(state);
-                // Don't remember postion of page
+                // Don't remember position of page
                 state.navigation.current_position = 0;
 
                 return state;
@@ -127,20 +177,24 @@ var Form = function (_React$Component) {
                 { className: "layers_container" },
                 React.createElement(ProgressBar, { formState: this.state.form }),
                 React.createElement(Name, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
-                    changeToNext: this.changToNext }),
+                    changeToNext: this.changeToNext, errors: this.state.errors,
+                    prepareErrors: this.prepareErrors_b, prepareForm: this.prepareForm_b, updateFormAndError: this.updateFormAndError_b }),
                 React.createElement(Age, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
-                    changeToNext: this.changToNext }),
+                    changeToNext: this.changeToNext, changeToPrev: this.changeToPrev, errors: this.state.errors,
+                    prepareErrors: this.prepareErrors_b, prepareForm: this.prepareForm_b, updateFormAndError: this.updateFormAndError_b }),
                 React.createElement(Location, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
-                    changeToNext: this.changToNext }),
+                    changeToNext: this.changeToNext, changeToPrev: this.changeToPrev, errors: this.state.errors,
+                    prepareErrors: this.prepareErrors_b, prepareForm: this.prepareForm_b, updateFormAndError: this.updateFormAndError_b }),
                 React.createElement(DateOfInjury, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
-                    changeToNext: this.changToNext }),
+                    changeToNext: this.changeToNext, changeToPrev: this.changeToPrev, errors: this.state.errors,
+                    prepareErrors: this.prepareErrors_b, prepareForm: this.prepareForm_b, updateFormAndError: this.updateFormAndError_b }),
                 React.createElement(CauseOfInjury, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
                     checkboxHandler: this.checkboxHandler, onValueUpdate: this.onValueUpdate,
-                    changeToNext: this.changToNext }),
+                    changeToNext: this.changeToNext, changeToPrev: this.changeToPrev, errors: this.state.errors }),
                 React.createElement(Concerns, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
                     checkboxHandler: this.checkboxHandler, onValueUpdate: this.onValueUpdate,
-                    changeToNext: this.changToNext }),
-                React.createElement(Navigation, { changeToNext: this.changToNext, changeToPrev: this.changToPrev })
+                    changeToNext: this.changeToNext, changeToPrev: this.changeToPrev, errors: this.state.errors }),
+                React.createElement(Navigation, { changeToNext: this.changeToNext, changeToPrev: this.changeToPrev })
             );
         }
     }]);

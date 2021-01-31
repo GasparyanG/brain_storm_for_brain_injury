@@ -1,14 +1,66 @@
-import {CSSClasses, RegularButton, SymbolicConstants} from "./helper_components";
+import {CSSClasses, ErrorMessage, RegularButton, SymbolicConstants, DefaultErrorMessages} from "./helper_components";
 
 class DateOfInjury extends React.Component {
     constructor(props) {
         super(props);
+
+        this.prev_layer = CSSClasses.location;
     }
 
     handleOk = () => {
-        // Validation goes here.
+        // Dispatch.
+        if (this.props.errors.hasOwnProperty(CSSClasses.date)) return;
 
-        this.props.changeToNext();
+        if (this.props.formState[this.prev_layer] == "")
+            this.props.changeToPrev()
+        else
+            this.props.changeToNext();
+    }
+
+    numbersOnly = (e) => {
+        let errors = this.props.prepareErrors(e.target.name, {message : DefaultErrorMessages.numbers_only});
+        this.props.updateFormAndError(this.props.formState, errors);
+        let layer = document.querySelector("." + CSSClasses.doi_event_layer);
+        layer.classList.add(CSSClasses.warning_shake);
+
+        setTimeout(() => {layer.classList.remove(CSSClasses.warning_shake)}, SymbolicConstants.shake_timeout)
+    }
+
+    isValidDate = (form) => {
+        return !(form[CSSClasses.injury_date_month] < SymbolicConstants.month_min || form[CSSClasses.injury_date_month] > SymbolicConstants.month_max)
+            && !(form[CSSClasses.injury_date_day] < SymbolicConstants.day_min || form[CSSClasses.injury_date_day] > SymbolicConstants.day_max)
+            && !(form[CSSClasses.injury_date_year] < SymbolicConstants.year_min || form[CSSClasses.injury_date_year] > SymbolicConstants.year_max);
+    }
+
+    handleInput = (e) => {
+        if (isNaN(e.target.value)) {
+            e.target.value = '';
+            return this.numbersOnly(e);
+        }
+
+        let errors = this.props.errors;
+        let form = this.props.prepareForm(e.target.name, e.target.value);
+
+        if (e.target.value == "")
+            errors = this.props.prepareErrors(CSSClasses.date, {message: DefaultErrorMessages.date_required});
+        else if (e.target.classList.contains(CSSClasses.date_month)) {
+            // Validate month
+            if (e.target.value < SymbolicConstants.month_min || e.target.value > SymbolicConstants.month_max)
+                errors = this.props.prepareErrors(CSSClasses.date, {message: DefaultErrorMessages.date_wrong});
+        } else if (e.target.classList.contains(CSSClasses.date_day)) {
+            //Validate day
+            if (e.target.value < SymbolicConstants.day_min || e.target.value > SymbolicConstants.day_max)
+                errors = this.props.prepareErrors(CSSClasses.date, {message: DefaultErrorMessages.date_wrong});
+        } else if (e.target.classList.contains(CSSClasses.date_year)) {
+            // Validate year
+            if (e.target.value < SymbolicConstants.year_min || e.target.value > SymbolicConstants.year_max)
+                errors = this.props.prepareErrors(CSSClasses.date, {message: DefaultErrorMessages.date_wrong});
+        }
+
+        if (this.isValidDate(form))
+            errors = this.props.prepareErrors(CSSClasses.date, false, true);
+
+        this.props.updateFormAndError(form, errors);
     }
 
     handleEnter = (e) => {
@@ -16,14 +68,17 @@ class DateOfInjury extends React.Component {
         if (e.keyCode === SymbolicConstants.enter_key_code) {
             if (e.target.classList.contains("date_month")) {
                 // Validate month
+                this.handleInput(e);
                 let dayInput = document.querySelector(".date_day");
                 dayInput.focus();
             } else if (e.target.classList.contains("date_day")) {
                 //Validate day
+                this.handleInput(e);
                 let yearInput = document.querySelector(".date_year");
                 yearInput.focus();
             } else if (e.target.classList.contains("date_year")) {
                 // Validate year
+                this.handleInput(e);
                 this.handleOk();
             }
         }
@@ -37,6 +92,16 @@ class DateOfInjury extends React.Component {
         );
     }
 
+    hintOrAction = (field) => {
+        let isValid = this.validateInput();
+        if (this.props.errors.hasOwnProperty(field))
+            return <ErrorMessage errors={this.props.errors} field={field}/>
+
+        return (
+            <RegularButton errors={this.props.errors} isValid={isValid} formState={this.props.formState} handleOk={this.handleOk}/>
+        );
+    }
+
     render () {
         let label = (<label className="input_label" htmlFor="injury_date">
             <span className="question_number">4 {this.props.svgArrow}</span><span><strong>When was</strong> your brain injury?</span></label>);
@@ -44,31 +109,33 @@ class DateOfInjury extends React.Component {
             label = (<label className="input_label" htmlFor="injury_date">
                 <span className="question_number">4 {this.props.svgArrow}</span><span>{this.props.formState.name}, <strong>when was</strong> your brain injury?</span></label>);
 
-        let isValid = this.validateInput();
+        let validityElement = this.hintOrAction(CSSClasses.date);
 
         return (
             <section className="date_of_injury form_layer">
-                <div className="layer_content">
-                    <div className="questions">
-                        {label}
-                        <div className="date_input_section">
-                            <div className="date_input_part date_input_part_dash date_input_month">
-                                <label htmlFor="injury_date_month" className="date_section_name">Month</label>
-                                <input onChange={this.props.handler} onKeyUp={this.handleEnter} defaultValue={this.props.formState.injury_date_month}
-                                       id="injury_date_month" name="injury_date_month" className="raw_date_input date_month" type="text"/>
+                <div className="event_layer doi_event_layer">
+                    <div className="layer_content">
+                        <div className="questions">
+                            {label}
+                            <div className="date_input_section">
+                                <div className="date_input_part date_input_part_dash date_input_month">
+                                    <label htmlFor="injury_date_month" className="date_section_name">Month</label>
+                                    <input onChange={this.handleInput} onKeyUp={this.handleEnter} defaultValue={this.props.formState.injury_date_month}
+                                           id="injury_date_month" name="injury_date_month" className="raw_date_input date_month" type="text"/>
+                                </div>
+                                <div className="date_input_part date_input_part_dash date_input_day">
+                                    <label htmlFor="injury_date_day" className="date_section_name">Day</label>
+                                    <input onChange={this.handleInput} onKeyUp={this.handleEnter} defaultValue={this.props.formState.injury_date_day}
+                                           id="injury_date_day" name="injury_date_day" className="raw_date_input date_day" type="text"/>
+                                </div>
+                                <div className="date_input_part date_input_year">
+                                    <label htmlFor="injury_date_year" className="date_section_name">Year</label>
+                                    <input onChange={this.handleInput} onKeyUp={this.handleEnter} defaultValue={this.props.formState.injury_date_year}
+                                           id="injury_date_year" name="injury_date_year" className="raw_date_input date_year" type="text"/>
+                                </div>
                             </div>
-                            <div className="date_input_part date_input_part_dash date_input_day">
-                                <label htmlFor="injury_date_day" className="date_section_name">Day</label>
-                                <input onChange={this.props.handler} onKeyUp={this.handleEnter} defaultValue={this.props.formState.injury_date_day}
-                                       id="injury_date_day" name="injury_date_day" className="raw_date_input date_day" type="text"/>
-                            </div>
-                            <div className="date_input_part date_input_year">
-                                <label htmlFor="injury_date_year" className="date_section_name">Year</label>
-                                <input onChange={this.props.handler} onKeyUp={this.handleEnter} defaultValue={this.props.formState.injury_date_year}
-                                       id="injury_date_year" name="injury_date_year" className="raw_date_input date_year" type="text"/>
-                            </div>
+                            {validityElement}
                         </div>
-                        <RegularButton isValid={isValid} handleOk={this.handleOk}/>
                     </div>
                 </div>
             </section>
@@ -162,10 +229,21 @@ class CauseOfInjury extends React.Component {
         this.state.other_input_disabled = false;
     }
 
+    validateDate = () => {
+        return !(
+            this.props.formState.injury_date_day == ""
+            || this.props.formState.injury_date_month == ""
+            || this.props.formState.injury_date_year == ""
+        );
+    }
+
     handleOk = () => {
         // Validation goes here.
 
-        this.props.changeToNext();
+        if (!this.validateDate())
+            this.props.changeToPrev();
+        else
+            this.props.changeToNext();
     }
 
     handleEnter = (e) => {
@@ -192,6 +270,8 @@ class CauseOfInjury extends React.Component {
             </div>
         );
     }
+
+
 
     render () {
         let label = (<label className="input_label" htmlFor="injury_reason">

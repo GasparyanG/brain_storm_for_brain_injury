@@ -6,7 +6,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-import { CSSClasses, RegularButton } from "./helper_components";
+import { CSSClasses, SymbolicConstants, ErrorMessage, DefaultErrorMessages, RegularButton } from "./helper_components";
 
 var Name = function (_React$Component) {
     _inherits(Name, _React$Component);
@@ -18,8 +18,7 @@ var Name = function (_React$Component) {
 
         _this.handleOk = function () {
             // Validation goes here.
-
-            _this.props.changeToNext();
+            if (!_this.props.errors.hasOwnProperty("name")) _this.props.changeToNext();
         };
 
         _this.handleEnter = function (e) {
@@ -27,16 +26,26 @@ var Name = function (_React$Component) {
         };
 
         _this.handleInput = function (e) {
-            var button = document.querySelector(".action_box .name");
-            console.log(button);
-            if (!button) return;
+            var errors = void 0;
+            var form = _this.props.prepareForm(e.target.name, e.target.value);
 
-            button.classList.remove(CSSClasses.action_box_disabled);
+            if (e.target.value !== "") {
+                errors = _this.props.prepareErrors("name", false, true);
+            } else errors = _this.props.prepareErrors("name", { message: DefaultErrorMessages.name });
+
+            _this.props.updateFormAndError(form, errors);
         };
 
         _this.validateInput = function () {
             if (_this.props.formState.name !== "") return true;
             return false;
+        };
+
+        _this.hintOrAction = function (field) {
+            var isValid = _this.validateInput();
+            if (_this.props.errors.hasOwnProperty(field)) return React.createElement(ErrorMessage, { errors: _this.props.errors, field: field });
+
+            return React.createElement(RegularButton, { errors: _this.props.errors, isValid: isValid, formState: _this.props.formState, handleOk: _this.handleOk });
         };
 
         return _this;
@@ -45,7 +54,7 @@ var Name = function (_React$Component) {
     _createClass(Name, [{
         key: "render",
         value: function render() {
-            var isValid = this.validateInput();
+            var validityElement = this.hintOrAction(CSSClasses.name);
 
             return React.createElement(
                 "section",
@@ -77,9 +86,9 @@ var Name = function (_React$Component) {
                                 "."
                             )
                         ),
-                        React.createElement("input", { onChange: this.props.handler, onKeyUp: this.handleEnter, className: "raw_input",
+                        React.createElement("input", { onChange: this.handleInput, onKeyUp: this.handleEnter, className: "raw_input",
                             name: "name", id: "name", type: "text", defaultValue: this.props.formState.name, placeholder: "Type here..." }),
-                        React.createElement(RegularButton, { isValid: isValid, formState: this.props.formState, handleOk: this.handleOk })
+                        validityElement
                     )
                 )
             );
@@ -98,13 +107,40 @@ var Age = function (_React$Component2) {
         var _this2 = _possibleConstructorReturn(this, (Age.__proto__ || Object.getPrototypeOf(Age)).call(this, props));
 
         _this2.handleOk = function () {
-            // Validation goes here.
+            if (_this2.props.errors.hasOwnProperty("age")) return;
 
-            _this2.props.changeToNext();
+            if (_this2.props.formState[_this2.prev_layer] == "") _this2.props.changeToPrev();else _this2.props.changeToNext();
         };
 
         _this2.handleEnter = function (e) {
             if (e.keyCode === 13) _this2.handleOk();
+        };
+
+        _this2.numbersOnly = function () {
+            var errors = _this2.props.prepareErrors("age", { message: DefaultErrorMessages.numbers_only });
+            _this2.props.updateFormAndError(_this2.props.formState, errors);
+            var layer = document.querySelector("." + CSSClasses.age_event_layer);
+            layer.classList.add(CSSClasses.warning_shake);
+
+            setTimeout(function () {
+                layer.classList.remove(CSSClasses.warning_shake);
+            }, SymbolicConstants.shake_timeout);
+        };
+
+        _this2.handleInput = function (e) {
+            if (isNaN(e.target.value)) {
+                e.target.value = '';
+                return _this2.numbersOnly();
+            }
+
+            var errors = void 0;
+            var form = _this2.props.prepareForm(e.target.name, e.target.value);
+
+            if (e.target.value !== "") {
+                errors = _this2.props.prepareErrors("age", false, true);
+            } else errors = _this2.props.prepareErrors("age", { message: DefaultErrorMessages.age_required });
+
+            _this2.props.updateFormAndError(form, errors);
         };
 
         _this2.validateInput = function () {
@@ -112,6 +148,14 @@ var Age = function (_React$Component2) {
             return false;
         };
 
+        _this2.hintOrAction = function (field) {
+            var isValid = _this2.validateInput();
+            if (_this2.props.errors.hasOwnProperty(field)) return React.createElement(ErrorMessage, { errors: _this2.props.errors, field: field });
+
+            return React.createElement(RegularButton, { errors: _this2.props.errors, isValid: isValid, formState: _this2.props.formState, handleOk: _this2.handleOk });
+        };
+
+        _this2.prev_layer = CSSClasses.name;
         return _this2;
     }
 
@@ -162,21 +206,25 @@ var Age = function (_React$Component2) {
                 )
             );
 
-            var isValid = this.validateInput();
+            var validityElement = this.hintOrAction(CSSClasses.age);
 
             return React.createElement(
                 "section",
                 { className: "user_age form_layer" },
                 React.createElement(
                     "div",
-                    { className: "layer_content" },
+                    { className: "event_layer age_event_layer" },
                     React.createElement(
                         "div",
-                        { className: "questions" },
-                        label,
-                        React.createElement("input", { onChange: this.props.handler, onKeyUp: this.handleEnter, className: "raw_input",
-                            name: "age", id: "age", type: "text", defaultValue: this.props.formState.age, placeholder: "Type your answer here..." }),
-                        React.createElement(RegularButton, { isValid: isValid, handleOk: this.handleOk })
+                        { className: "layer_content" },
+                        React.createElement(
+                            "div",
+                            { className: "questions" },
+                            label,
+                            React.createElement("input", { onChange: this.handleInput, onKeyUp: this.handleEnter, className: "raw_input",
+                                name: "age", id: "age", type: "text", defaultValue: this.props.formState.age, placeholder: "Type your answer here..." }),
+                            validityElement
+                        )
                     )
                 )
             );
@@ -197,7 +245,9 @@ var Location = function (_React$Component3) {
         _this3.handleOk = function () {
             // Validation goes here.
 
-            _this3.props.changeToNext();
+            if (_this3.props.errors.hasOwnProperty(CSSClasses.location)) return;
+
+            if (_this3.props.formState[_this3.prev_layer] == "") _this3.props.changeToPrev();else _this3.props.changeToNext();
         };
 
         _this3.handleEnter = function (e) {
@@ -205,11 +255,30 @@ var Location = function (_React$Component3) {
                 _this3.handleOk();
         };
 
+        _this3.handleInput = function (e) {
+            var errors = void 0;
+            var form = _this3.props.prepareForm(e.target.name, e.target.value);
+
+            if (e.target.value !== "") {
+                errors = _this3.props.prepareErrors(CSSClasses.location, false, true);
+            } else errors = _this3.props.prepareErrors(CSSClasses.location, { message: DefaultErrorMessages.location_required });
+
+            _this3.props.updateFormAndError(form, errors);
+        };
+
         _this3.validateInput = function () {
             if (_this3.props.formState.location !== "") return true;
             return false;
         };
 
+        _this3.hintOrAction = function (field) {
+            var isValid = _this3.validateInput();
+            if (_this3.props.errors.hasOwnProperty(field)) return React.createElement(ErrorMessage, { errors: _this3.props.errors, field: field });
+
+            return React.createElement(RegularButton, { errors: _this3.props.errors, isValid: isValid, formState: _this3.props.formState, handleOk: _this3.handleOk });
+        };
+
+        _this3.prev_layer = CSSClasses.age;
         return _this3;
     }
 
@@ -260,7 +329,7 @@ var Location = function (_React$Component3) {
                 )
             );
 
-            var isValid = this.validateInput();
+            var validityElement = this.hintOrAction(CSSClasses.location);
 
             return React.createElement(
                 "section",
@@ -272,9 +341,9 @@ var Location = function (_React$Component3) {
                         "div",
                         { className: "questions" },
                         label,
-                        React.createElement("input", { onChange: this.props.handler, onKeyUp: this.handleEnter, className: "raw_input",
+                        React.createElement("input", { onChange: this.handleInput, onKeyUp: this.handleEnter, className: "raw_input",
                             name: "location", id: "location", type: "text", defaultValue: this.props.formState.location, placeholder: "Type your answer here..." }),
-                        React.createElement(RegularButton, { isValid: isValid, handleOk: this.handleOk })
+                        validityElement
                     )
                 )
             );

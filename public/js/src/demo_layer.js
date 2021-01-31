@@ -1,4 +1,4 @@
-import {CSSClasses, RegularButton} from "./helper_components";
+import {CSSClasses, SymbolicConstants, ErrorMessage, DefaultErrorMessages, RegularButton} from "./helper_components";
 
 class Name extends React.Component {
     constructor(props) {
@@ -7,8 +7,8 @@ class Name extends React.Component {
 
     handleOk = () => {
         // Validation goes here.
-
-        this.props.changeToNext();
+        if (!this.props.errors.hasOwnProperty("name"))
+            this.props.changeToNext();
     }
 
     handleEnter = (e) => {
@@ -17,11 +17,15 @@ class Name extends React.Component {
     }
 
     handleInput = (e) => {
-        let button = document.querySelector(".action_box .name");
-        console.log(button);
-        if (!button) return;
+        let errors;
+        let form = this.props.prepareForm(e.target.name, e.target.value);
 
-        button.classList.remove(CSSClasses.action_box_disabled);
+        if (e.target.value !== "") {
+            errors = this.props.prepareErrors("name", false, true);
+        } else
+            errors = this.props.prepareErrors("name", {message: DefaultErrorMessages.name});
+
+        this.props.updateFormAndError(form, errors);
     }
 
     validateInput = () => {
@@ -29,17 +33,28 @@ class Name extends React.Component {
         return false;
     }
 
-    render() {
+    hintOrAction = (field) => {
         let isValid = this.validateInput();
+        if (this.props.errors.hasOwnProperty(field))
+            return <ErrorMessage errors={this.props.errors} field={field}/>
+
+        return (
+            <RegularButton errors={this.props.errors} isValid={isValid} formState={this.props.formState} handleOk={this.handleOk}/>
+        );
+    }
+
+    render() {
+        let validityElement = this.hintOrAction(CSSClasses.name);
 
         return (
             <section className="user_name form_layer">
                 <div className="layer_content">
                     <div className="questions">
-                        <label className="input_label" htmlFor="name"><span className="question_number">1 {this.props.svgArrow}</span><span>Let's start with your <strong>name</strong>.</span></label>
-                        <input onChange={this.props.handler} onKeyUp={this.handleEnter} className="raw_input"
+                        <label className="input_label" htmlFor="name"><span className="question_number">1 {this.props.svgArrow}</span>
+                            <span>Let's start with your <strong>name</strong>.</span></label>
+                        <input onChange={this.handleInput} onKeyUp={this.handleEnter} className="raw_input"
                                name="name" id="name" type="text" defaultValue={this.props.formState.name} placeholder="Type here..."/>
-                        <RegularButton isValid={isValid} formState={this.props.formState} handleOk={this.handleOk}/>
+                        {validityElement}
                     </div>
                 </div>
             </section>
@@ -50,12 +65,17 @@ class Name extends React.Component {
 class Age extends React.Component {
     constructor(props) {
         super(props);
+
+        this.prev_layer = CSSClasses.name;
     }
 
     handleOk = () => {
-        // Validation goes here.
+        if (this.props.errors.hasOwnProperty("age")) return;
 
-        this.props.changeToNext();
+        if (this.props.formState[this.prev_layer] == "")
+            this.props.changeToPrev()
+        else
+            this.props.changeToNext();
     }
 
     handleEnter = (e) => {
@@ -63,9 +83,45 @@ class Age extends React.Component {
             this.handleOk();
     }
 
+    numbersOnly = () => {
+        let errors = this.props.prepareErrors("age", {message: DefaultErrorMessages.numbers_only});
+        this.props.updateFormAndError(this.props.formState, errors);
+        let layer = document.querySelector("." + CSSClasses.age_event_layer);
+        layer.classList.add(CSSClasses.warning_shake);
+
+        setTimeout(() => {layer.classList.remove(CSSClasses.warning_shake)}, SymbolicConstants.shake_timeout)
+    }
+
+    handleInput = (e) => {
+        if (isNaN(e.target.value)) {
+            e.target.value = '';
+            return this.numbersOnly();
+        }
+
+        let errors;
+        let form = this.props.prepareForm(e.target.name, e.target.value);
+
+        if (e.target.value !== "") {
+            errors = this.props.prepareErrors("age", false, true);
+        } else
+            errors = this.props.prepareErrors("age", {message: DefaultErrorMessages.age_required});
+
+        this.props.updateFormAndError(form, errors);
+    }
+
     validateInput = () => {
         if (this.props.formState.age !== "") return true;
         return false;
+    }
+
+    hintOrAction = (field) => {
+        let isValid = this.validateInput();
+        if (this.props.errors.hasOwnProperty(field))
+            return <ErrorMessage errors={this.props.errors} field={field}/>
+
+        return (
+            <RegularButton errors={this.props.errors} isValid={isValid} formState={this.props.formState} handleOk={this.handleOk}/>
+        );
     }
 
     render() {
@@ -73,16 +129,18 @@ class Age extends React.Component {
         if (this.props.formState.name !== "")
             label = (<label className="input_label" htmlFor="age"><span className="question_number">2 {this.props.svgArrow}</span><span>{this.props.formState.name}, how <strong>old</strong> are you?</span></label>);
 
-        let isValid = this.validateInput();
+        let validityElement = this.hintOrAction(CSSClasses.age);
 
         return (
             <section className="user_age form_layer">
-                <div className="layer_content">
-                    <div className="questions">
-                        {label}
-                        <input onChange={this.props.handler} onKeyUp={this.handleEnter} className="raw_input"
-                               name="age" id="age" type="text" defaultValue={this.props.formState.age} placeholder="Type your answer here..."/>
-                        <RegularButton isValid={isValid} handleOk={this.handleOk}/>
+                <div className="event_layer age_event_layer">
+                    <div className="layer_content">
+                        <div className="questions">
+                            {label}
+                            <input onChange={this.handleInput} onKeyUp={this.handleEnter} className="raw_input"
+                                   name="age" id="age" type="text" defaultValue={this.props.formState.age} placeholder="Type your answer here..."/>
+                            {validityElement}
+                        </div>
                     </div>
                 </div>
             </section>
@@ -94,12 +152,19 @@ class Age extends React.Component {
 class Location extends React.Component {
     constructor(props) {
         super(props);
+
+        this.prev_layer = CSSClasses.age;
     }
 
     handleOk = () => {
         // Validation goes here.
 
-        this.props.changeToNext();
+        if (this.props.errors.hasOwnProperty(CSSClasses.location)) return;
+
+        if (this.props.formState[this.prev_layer] == "")
+            this.props.changeToPrev()
+        else
+            this.props.changeToNext();
     }
 
     handleEnter = (e) => {
@@ -107,9 +172,31 @@ class Location extends React.Component {
             this.handleOk();
     }
 
+    handleInput = (e) => {
+        let errors;
+        let form = this.props.prepareForm(e.target.name, e.target.value);
+
+        if (e.target.value !== "") {
+            errors = this.props.prepareErrors(CSSClasses.location, false, true);
+        } else
+            errors = this.props.prepareErrors(CSSClasses.location, {message: DefaultErrorMessages.location_required});
+
+        this.props.updateFormAndError(form, errors);
+    }
+
     validateInput = () => {
         if (this.props.formState.location !== "") return true;
         return false;
+    }
+
+    hintOrAction = (field) => {
+        let isValid = this.validateInput();
+        if (this.props.errors.hasOwnProperty(field))
+            return <ErrorMessage errors={this.props.errors} field={field}/>
+
+        return (
+            <RegularButton errors={this.props.errors} isValid={isValid} formState={this.props.formState} handleOk={this.handleOk}/>
+        );
     }
 
     render() {
@@ -119,16 +206,16 @@ class Location extends React.Component {
             label = (<label className="input_label" htmlFor="date_of_birth">
                 <span className="question_number">3 {this.props.svgArrow}</span><span>{this.props.formState.name}, where do you <strong>live</strong>?</span></label>);
 
-        let isValid = this.validateInput();
+        let validityElement = this.hintOrAction(CSSClasses.location);
 
         return (
             <section className="user_location form_layer">
                 <div className="layer_content">
                     <div className="questions">
                         {label}
-                        <input onChange={this.props.handler} onKeyUp={this.handleEnter} className="raw_input"
+                        <input onChange={this.handleInput} onKeyUp={this.handleEnter} className="raw_input"
                                name="location" id="location" type="text" defaultValue={this.props.formState.location} placeholder="Type your answer here..."/>
-                        <RegularButton isValid={isValid} handleOk={this.handleOk}/>
+                        {validityElement}
                     </div>
                 </div>
             </section>

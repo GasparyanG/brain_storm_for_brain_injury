@@ -6,7 +6,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-import { CSSClasses, RegularButton, SymbolicConstants } from "./helper_components";
+import { CSSClasses, ErrorMessage, RegularButton, SymbolicConstants, DefaultErrorMessages } from "./helper_components";
 
 var DateOfInjury = function (_React$Component) {
     _inherits(DateOfInjury, _React$Component);
@@ -17,9 +17,50 @@ var DateOfInjury = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (DateOfInjury.__proto__ || Object.getPrototypeOf(DateOfInjury)).call(this, props));
 
         _this.handleOk = function () {
-            // Validation goes here.
+            // Dispatch.
+            if (_this.props.errors.hasOwnProperty(CSSClasses.date)) return;
 
-            _this.props.changeToNext();
+            if (_this.props.formState[_this.prev_layer] == "") _this.props.changeToPrev();else _this.props.changeToNext();
+        };
+
+        _this.numbersOnly = function (e) {
+            var errors = _this.props.prepareErrors(e.target.name, { message: DefaultErrorMessages.numbers_only });
+            _this.props.updateFormAndError(_this.props.formState, errors);
+            var layer = document.querySelector("." + CSSClasses.doi_event_layer);
+            layer.classList.add(CSSClasses.warning_shake);
+
+            setTimeout(function () {
+                layer.classList.remove(CSSClasses.warning_shake);
+            }, SymbolicConstants.shake_timeout);
+        };
+
+        _this.isValidDate = function (form) {
+            return !(form[CSSClasses.injury_date_month] < SymbolicConstants.month_min || form[CSSClasses.injury_date_month] > SymbolicConstants.month_max) && !(form[CSSClasses.injury_date_day] < SymbolicConstants.day_min || form[CSSClasses.injury_date_day] > SymbolicConstants.day_max) && !(form[CSSClasses.injury_date_year] < SymbolicConstants.year_min || form[CSSClasses.injury_date_year] > SymbolicConstants.year_max);
+        };
+
+        _this.handleInput = function (e) {
+            if (isNaN(e.target.value)) {
+                e.target.value = '';
+                return _this.numbersOnly(e);
+            }
+
+            var errors = _this.props.errors;
+            var form = _this.props.prepareForm(e.target.name, e.target.value);
+
+            if (e.target.value == "") errors = _this.props.prepareErrors(CSSClasses.date, { message: DefaultErrorMessages.date_required });else if (e.target.classList.contains(CSSClasses.date_month)) {
+                // Validate month
+                if (e.target.value < SymbolicConstants.month_min || e.target.value > SymbolicConstants.month_max) errors = _this.props.prepareErrors(CSSClasses.date, { message: DefaultErrorMessages.date_wrong });
+            } else if (e.target.classList.contains(CSSClasses.date_day)) {
+                //Validate day
+                if (e.target.value < SymbolicConstants.day_min || e.target.value > SymbolicConstants.day_max) errors = _this.props.prepareErrors(CSSClasses.date, { message: DefaultErrorMessages.date_wrong });
+            } else if (e.target.classList.contains(CSSClasses.date_year)) {
+                // Validate year
+                if (e.target.value < SymbolicConstants.year_min || e.target.value > SymbolicConstants.year_max) errors = _this.props.prepareErrors(CSSClasses.date, { message: DefaultErrorMessages.date_wrong });
+            }
+
+            if (_this.isValidDate(form)) errors = _this.props.prepareErrors(CSSClasses.date, false, true);
+
+            _this.props.updateFormAndError(form, errors);
         };
 
         _this.handleEnter = function (e) {
@@ -27,14 +68,17 @@ var DateOfInjury = function (_React$Component) {
             if (e.keyCode === SymbolicConstants.enter_key_code) {
                 if (e.target.classList.contains("date_month")) {
                     // Validate month
+                    _this.handleInput(e);
                     var dayInput = document.querySelector(".date_day");
                     dayInput.focus();
                 } else if (e.target.classList.contains("date_day")) {
                     //Validate day
+                    _this.handleInput(e);
                     var yearInput = document.querySelector(".date_year");
                     yearInput.focus();
                 } else if (e.target.classList.contains("date_year")) {
                     // Validate year
+                    _this.handleInput(e);
                     _this.handleOk();
                 }
             }
@@ -44,6 +88,14 @@ var DateOfInjury = function (_React$Component) {
             return !(_this.props.formState.injury_date_day == "" || _this.props.formState.injury_date_month == "" || _this.props.formState.injury_date_year == "");
         };
 
+        _this.hintOrAction = function (field) {
+            var isValid = _this.validateInput();
+            if (_this.props.errors.hasOwnProperty(field)) return React.createElement(ErrorMessage, { errors: _this.props.errors, field: field });
+
+            return React.createElement(RegularButton, { errors: _this.props.errors, isValid: isValid, formState: _this.props.formState, handleOk: _this.handleOk });
+        };
+
+        _this.prev_layer = CSSClasses.location;
         return _this;
     }
 
@@ -93,56 +145,60 @@ var DateOfInjury = function (_React$Component) {
                 )
             );
 
-            var isValid = this.validateInput();
+            var validityElement = this.hintOrAction(CSSClasses.date);
 
             return React.createElement(
                 "section",
                 { className: "date_of_injury form_layer" },
                 React.createElement(
                     "div",
-                    { className: "layer_content" },
+                    { className: "event_layer doi_event_layer" },
                     React.createElement(
                         "div",
-                        { className: "questions" },
-                        label,
+                        { className: "layer_content" },
                         React.createElement(
                             "div",
-                            { className: "date_input_section" },
+                            { className: "questions" },
+                            label,
                             React.createElement(
                                 "div",
-                                { className: "date_input_part date_input_part_dash date_input_month" },
+                                { className: "date_input_section" },
                                 React.createElement(
-                                    "label",
-                                    { htmlFor: "injury_date_month", className: "date_section_name" },
-                                    "Month"
+                                    "div",
+                                    { className: "date_input_part date_input_part_dash date_input_month" },
+                                    React.createElement(
+                                        "label",
+                                        { htmlFor: "injury_date_month", className: "date_section_name" },
+                                        "Month"
+                                    ),
+                                    React.createElement("input", { onChange: this.handleInput, onKeyUp: this.handleEnter, defaultValue: this.props.formState.injury_date_month,
+                                        id: "injury_date_month", name: "injury_date_month", className: "raw_date_input date_month", type: "text" })
                                 ),
-                                React.createElement("input", { onChange: this.props.handler, onKeyUp: this.handleEnter, defaultValue: this.props.formState.injury_date_month,
-                                    id: "injury_date_month", name: "injury_date_month", className: "raw_date_input date_month", type: "text" })
+                                React.createElement(
+                                    "div",
+                                    { className: "date_input_part date_input_part_dash date_input_day" },
+                                    React.createElement(
+                                        "label",
+                                        { htmlFor: "injury_date_day", className: "date_section_name" },
+                                        "Day"
+                                    ),
+                                    React.createElement("input", { onChange: this.handleInput, onKeyUp: this.handleEnter, defaultValue: this.props.formState.injury_date_day,
+                                        id: "injury_date_day", name: "injury_date_day", className: "raw_date_input date_day", type: "text" })
+                                ),
+                                React.createElement(
+                                    "div",
+                                    { className: "date_input_part date_input_year" },
+                                    React.createElement(
+                                        "label",
+                                        { htmlFor: "injury_date_year", className: "date_section_name" },
+                                        "Year"
+                                    ),
+                                    React.createElement("input", { onChange: this.handleInput, onKeyUp: this.handleEnter, defaultValue: this.props.formState.injury_date_year,
+                                        id: "injury_date_year", name: "injury_date_year", className: "raw_date_input date_year", type: "text" })
+                                )
                             ),
-                            React.createElement(
-                                "div",
-                                { className: "date_input_part date_input_part_dash date_input_day" },
-                                React.createElement(
-                                    "label",
-                                    { htmlFor: "injury_date_day", className: "date_section_name" },
-                                    "Day"
-                                ),
-                                React.createElement("input", { onChange: this.props.handler, onKeyUp: this.handleEnter, defaultValue: this.props.formState.injury_date_day,
-                                    id: "injury_date_day", name: "injury_date_day", className: "raw_date_input date_day", type: "text" })
-                            ),
-                            React.createElement(
-                                "div",
-                                { className: "date_input_part date_input_year" },
-                                React.createElement(
-                                    "label",
-                                    { htmlFor: "injury_date_year", className: "date_section_name" },
-                                    "Year"
-                                ),
-                                React.createElement("input", { onChange: this.props.handler, onKeyUp: this.handleEnter, defaultValue: this.props.formState.injury_date_year,
-                                    id: "injury_date_year", name: "injury_date_year", className: "raw_date_input date_year", type: "text" })
-                            )
-                        ),
-                        React.createElement(RegularButton, { isValid: isValid, handleOk: this.handleOk })
+                            validityElement
+                        )
                     )
                 )
             );
@@ -207,10 +263,14 @@ var CauseOfInjury = function (_React$Component2) {
             _this2.state.other_input_disabled = false;
         };
 
+        _this2.validateDate = function () {
+            return !(_this2.props.formState.injury_date_day == "" || _this2.props.formState.injury_date_month == "" || _this2.props.formState.injury_date_year == "");
+        };
+
         _this2.handleOk = function () {
             // Validation goes here.
 
-            _this2.props.changeToNext();
+            if (!_this2.validateDate()) _this2.props.changeToPrev();else _this2.props.changeToNext();
         };
 
         _this2.handleEnter = function (e) {

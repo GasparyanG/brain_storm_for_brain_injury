@@ -1,0 +1,24 @@
+#form_container .error_message_component {
+    margin-left: var(--input-margin-left);
+    background-color: var(--err-background);
+    color: var(--err-color);
+    margin-top: var(--button_margin-top);
+    transition-property: transform, opacity;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-out;
+    border-radius: var(--box-radius);
+    padding: .3rem;
+    box-sizing: content-box;
+    font-size: 12px;
+    display: inline-block;
+}
+
+
+#form_container .error_message_component .error_message_parts {
+    display: flex;
+    align-items: center;
+}
+
+#form_container .error_message_component .error_message_parts .error_message_icon {
+    margin-right: 1rem;
+}
