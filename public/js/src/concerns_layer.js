@@ -41,6 +41,7 @@ class Concerns extends React.Component {
         this.state.other_input_disabled = !checkElement.classList.contains(CSSClasses.hidden_element);
     }
 
+    // ERRORS HANDLING
     handleMoreThanRequiredChoices = (element) => {
         let errors = this.props.errors;
         let form = this.props.formState;
@@ -57,6 +58,13 @@ class Concerns extends React.Component {
         else
             errors = this.props.prepareErrors(CSSClasses.concerns, false, true);
 
+        return errors;
+    }
+
+    handleChoiceAbsence = (concerns, errors) => {
+        if ((concerns.length < SymbolicConstants.min_amount_of_choices)
+            && (this.props.formState.concerns_other.length < SymbolicConstants.min_length_of_other_concern))
+            errors = this.props.prepareErrors(CSSClasses.concerns, {message: DefaultErrorMessages.concerns_required});
         return errors;
     }
 
@@ -101,6 +109,8 @@ class Concerns extends React.Component {
             concerns.push(element.dataset.value);
         }
 
+        // Choice is required checking.
+        errors = this.handleChoiceAbsence(concerns, errors);
         let form = this.props.prepareForm(CSSClasses.concerns, concerns);
 
         this.props.updateFormAndError(form, errors);

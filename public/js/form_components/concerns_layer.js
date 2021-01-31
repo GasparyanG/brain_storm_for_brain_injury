@@ -49,6 +49,11 @@ var Concerns = function (_React$Component) {
             return errors;
         };
 
+        _this.handleChoiceAbsence = function (concerns, errors) {
+            if (concerns.length < SymbolicConstants.min_amount_of_choices && _this.props.formState.concerns_other.length < SymbolicConstants.min_length_of_other_concern) errors = _this.props.prepareErrors(CSSClasses.concerns, { message: DefaultErrorMessages.concerns_required });
+            return errors;
+        };
+
         _this.animateShake = function () {
             var layer = document.querySelector("." + CSSClasses.concerns_event_layer);
             layer.classList.add(CSSClasses.warning_shake);
@@ -87,6 +92,8 @@ var Concerns = function (_React$Component) {
                 concerns.push(element.dataset.value);
             }
 
+            // Choice is required checking.
+            errors = _this.handleChoiceAbsence(concerns, errors);
             var form = _this.props.prepareForm(CSSClasses.concerns, concerns);
 
             _this.props.updateFormAndError(form, errors);
@@ -230,6 +237,9 @@ var Concerns = function (_React$Component) {
         _this.prev_layer = CSSClasses.injury_reason;
         return _this;
     }
+
+    // ERRORS HANDLING
+
 
     _createClass(Concerns, [{
         key: "createCheckbox",
