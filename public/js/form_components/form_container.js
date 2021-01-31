@@ -183,7 +183,7 @@ var Form = function (_React$Component) {
             return React.createElement(
                 "div",
                 { className: "layers_container" },
-                React.createElement(ProgressBar, { formState: this.state.form }),
+                React.createElement(ProgressBar, { formState: this.state.form, isValidDate: this.isValidDate_b }),
                 React.createElement(Name, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
                     changeToNext: this.changeToNext, errors: this.state.errors,
                     prepareErrors: this.prepareErrors_b, prepareForm: this.prepareForm_b, updateFormAndError: this.updateFormAndError_b }),

@@ -5,14 +5,6 @@ class ProgressBar extends React.Component {
         super(props);
     }
 
-    dateProgress = () => {
-        return !(
-            this.props.formState.injury_date_day == ""
-            || this.props.formState.injury_date_month == ""
-            || this.props.formState.injury_date_year == ""
-        );
-    }
-
     stringValues = (field) => {
         return !(this.props.formState[field] == "");
     }
@@ -26,7 +18,7 @@ class ProgressBar extends React.Component {
         progress += !this.stringValues(CSSClasses.age) ? 0 : progressStep;
         progress += !this.stringValues(CSSClasses.location) ? 0 : progressStep;
         progress += !this.stringValues(CSSClasses.injury_reason) ? 0 : progressStep;
-        progress += !this.dateProgress() ? 0 : progressStep;
+        progress += !this.props.isValidDate(this.props.formState) ? 0 : progressStep;
         progress += this.props.formState.concerns.length === 0 ? 0 : progressStep;
 
         return progress;

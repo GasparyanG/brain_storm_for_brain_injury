@@ -16,10 +16,6 @@ var ProgressBar = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (ProgressBar.__proto__ || Object.getPrototypeOf(ProgressBar)).call(this, props));
 
-        _this.dateProgress = function () {
-            return !(_this.props.formState.injury_date_day == "" || _this.props.formState.injury_date_month == "" || _this.props.formState.injury_date_year == "");
-        };
-
         _this.stringValues = function (field) {
             return !(_this.props.formState[field] == "");
         };
@@ -32,7 +28,7 @@ var ProgressBar = function (_React$Component) {
             progress += !_this.stringValues(CSSClasses.age) ? 0 : progressStep;
             progress += !_this.stringValues(CSSClasses.location) ? 0 : progressStep;
             progress += !_this.stringValues(CSSClasses.injury_reason) ? 0 : progressStep;
-            progress += !_this.dateProgress() ? 0 : progressStep;
+            progress += !_this.props.isValidDate(_this.props.formState) ? 0 : progressStep;
             progress += _this.props.formState.concerns.length === 0 ? 0 : progressStep;
 
             return progress;

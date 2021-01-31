@@ -172,7 +172,7 @@ class Form extends React.Component {
     render() {
         return (
             <div className="layers_container">
-                <ProgressBar formState={this.state.form} />
+                <ProgressBar formState={this.state.form} isValidDate={this.isValidDate_b}/>
 
                 <Name svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}
                       changeToNext={this.changeToNext} errors={this.state.errors}
