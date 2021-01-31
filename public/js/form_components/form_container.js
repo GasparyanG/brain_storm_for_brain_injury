@@ -88,21 +88,41 @@ var Form = function (_React$Component) {
             _this.setState(items);
         };
 
+        _this.updateNavigation = function (field, value) {
+            var items = Object.assign({}, _this.state);
+            var form = Object.assign({}, _this.state.form);
+            var errors = Object.assign({}, _this.state.errors);
+            var navigation = Object.assign({}, _this.state.navigation);
+            navigation[field] = value;
+            console.log(value);
+
+            items.errors = errors;
+            items.form = form;
+            items.navigation = navigation;
+            _this.setState(items);
+        };
+
         _this.changeToNextLayer = function () {
-            if (_this.state.navigation.current_position === _this.state.navigation.max_number_of_pages) return;else _this.state.navigation.current_position++;
+            if (_this.state.navigation.current_position === _this.state.navigation.max_number_of_pages) return;
+
+            var currentPosition = _this.state.navigation.current_position + 1;
+            _this.updateNavigation("current_position", _this.state.navigation.current_position + 1);
 
             var layers = document.querySelectorAll("." + CSSClasses.form_layer);
             for (var i = 0; i < layers.length; i++) {
-                layers[i].style.setProperty("transform", "" + ("translateY(calc(" + _this.state.navigation.current_position + "*-" + SymbolicConstants.page_translation_percent + "vh))"));
+                layers[i].style.setProperty("transform", "" + ("translateY(calc(" + currentPosition + "*-" + SymbolicConstants.page_translation_percent + "vh))"));
             }
         };
 
         _this.changeToPrevLayer = function () {
-            if (_this.state.navigation.current_position === 0) return;else _this.state.navigation.current_position--;
+            if (_this.state.navigation.current_position === 0) return;
+
+            var currentPosition = _this.state.navigation.current_position - 1;
+            _this.updateNavigation("current_position", _this.state.navigation.current_position - 1);
 
             var layers = document.querySelectorAll("." + CSSClasses.form_layer);
             for (var i = 0; i < layers.length; i++) {
-                layers[i].style.setProperty("transform", "" + ("translateY(" + ((_this.state.navigation.current_position + 1) * -SymbolicConstants.page_translation_percent + SymbolicConstants.page_translation_percent) + "vh)"));
+                layers[i].style.setProperty("transform", "" + ("translateY(" + ((currentPosition + 1) * -SymbolicConstants.page_translation_percent + SymbolicConstants.page_translation_percent) + "vh)"));
             }
         };
 

@@ -53,8 +53,8 @@
 }
 
 /* Disabled Navigation Buttons */
-#form_container .disabled_nav {
-    color: var(--input-color)!important;
+#form_container .disabled_nav .nav-icon svg {
+    fill: var(--input-color)!important;
 }
 
 #form_container .disabled_nav:hover {

@@ -136,29 +136,45 @@ class Form extends React.Component {
         this.setState(items);
     }
 
+    updateNavigation = (field, value) => {
+        let items = {...this.state};
+        let form = {...this.state.form};
+        let errors = {...this.state.errors};
+        let navigation = {...this.state.navigation};
+        navigation[field] = value;
+        console.log(value);
+
+        items.errors = errors;
+        items.form = form;
+        items.navigation = navigation;
+        this.setState(items);
+    }
+
     changeToNextLayer = () => {
         if (this.state.navigation.current_position === this.state.navigation.max_number_of_pages)
             return;
-        else
-            this.state.navigation.current_position++;
+
+        let currentPosition = this.state.navigation.current_position + 1;
+        this.updateNavigation("current_position", (this.state.navigation.current_position + 1));
 
         const layers = document.querySelectorAll("." + CSSClasses.form_layer);
         for(let i = 0; i < layers.length; i++) {
             layers[i].style.setProperty("transform",
-                `${"translateY(calc("  + this.state.navigation.current_position + "*-" + SymbolicConstants.page_translation_percent + "vh))"}`);
+                `${"translateY(calc("  + currentPosition + "*-" + SymbolicConstants.page_translation_percent + "vh))"}`);
         }
     }
 
     changeToPrevLayer = () => {
         if (this.state.navigation.current_position === 0)
             return;
-        else
-            this.state.navigation.current_position--;
+
+        let currentPosition = this.state.navigation.current_position - 1;
+        this.updateNavigation("current_position", (this.state.navigation.current_position - 1));
 
         const layers = document.querySelectorAll("." + CSSClasses.form_layer);
         for(let i = 0; i < layers.length; i++) {
             layers[i].style.setProperty("transform",
-                `${"translateY("  + (((this.state.navigation.current_position + 1) * -SymbolicConstants.page_translation_percent) 
+                `${"translateY("  + (((currentPosition + 1) * -SymbolicConstants.page_translation_percent) 
                     + SymbolicConstants.page_translation_percent) + "vh)"}`);
         }
     }

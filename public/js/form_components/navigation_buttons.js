@@ -44,10 +44,17 @@ var Navigation = function (_React$Component) {
         key: "render",
         value: function render() {
             var submitButton = this.submitButtonState();
-            var lastPage = "";
+
+            // Layer navigator activation.
             var firstPage = "";
-            if (this.props.navigation.current_position === 0) firstPage = CSSClasses.disabled_nav;
-            if (this.props.navigation.current_position === SymbolicConstants.max_number_of_pages) lastPage = CSSClasses.disabled_nav;
+            if (this.props.navigation.current_position === 0) {
+                firstPage = CSSClasses.disabled_nav;
+            }
+
+            var lastPage = "";
+            if (this.props.navigation.current_position === SymbolicConstants.max_number_of_pages) {
+                lastPage = CSSClasses.disabled_nav;
+            }
 
             return React.createElement(
                 "div",

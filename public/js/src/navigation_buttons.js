@@ -31,12 +31,17 @@ class Navigation extends React.Component {
 
     render() {
         let submitButton = this.submitButtonState();
-        let lastPage = "";
+
+        // Layer navigator activation.
         let firstPage = "";
-        if (this.props.navigation.current_position === 0)
+        if (this.props.navigation.current_position === 0) {
             firstPage = CSSClasses.disabled_nav;
-        if (this.props.navigation.current_position === SymbolicConstants.max_number_of_pages)
+        }
+
+        let lastPage = "";
+        if (this.props.navigation.current_position === SymbolicConstants.max_number_of_pages) {
             lastPage = CSSClasses.disabled_nav;
+        }
 
         return (
             <div className="navigation_buttons">
