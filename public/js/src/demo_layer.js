@@ -101,10 +101,13 @@ class Age extends React.Component {
         let errors;
         let form = this.props.prepareForm(e.target.name, e.target.value);
 
-        if (e.target.value !== "") {
-            errors = this.props.prepareErrors("age", false, true);
+
+        if (e.target.value !== "" && (e.target.value <= SymbolicConstants.min_age || e.target.value > SymbolicConstants.max_age)) {
+            errors = this.props.prepareErrors(CSSClasses.age, {message: DefaultErrorMessages.age_out_of_rage});
+        } else if (e.target.value !== "") {
+                errors = this.props.prepareErrors(CSSClasses.age, false, true);
         } else
-            errors = this.props.prepareErrors("age", {message: DefaultErrorMessages.age_required});
+            errors = this.props.prepareErrors(CSSClasses.age, {message: DefaultErrorMessages.age_required});
 
         this.props.updateFormAndError(form, errors);
     }

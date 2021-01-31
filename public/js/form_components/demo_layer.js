@@ -136,9 +136,11 @@ var Age = function (_React$Component2) {
             var errors = void 0;
             var form = _this2.props.prepareForm(e.target.name, e.target.value);
 
-            if (e.target.value !== "") {
-                errors = _this2.props.prepareErrors("age", false, true);
-            } else errors = _this2.props.prepareErrors("age", { message: DefaultErrorMessages.age_required });
+            if (e.target.value !== "" && (e.target.value <= SymbolicConstants.min_age || e.target.value > SymbolicConstants.max_age)) {
+                errors = _this2.props.prepareErrors(CSSClasses.age, { message: DefaultErrorMessages.age_out_of_rage });
+            } else if (e.target.value !== "") {
+                errors = _this2.props.prepareErrors(CSSClasses.age, false, true);
+            } else errors = _this2.props.prepareErrors(CSSClasses.age, { message: DefaultErrorMessages.age_required });
 
             _this2.props.updateFormAndError(form, errors);
         };

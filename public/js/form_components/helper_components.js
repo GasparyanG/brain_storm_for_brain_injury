@@ -129,6 +129,10 @@ var SymbolicConstants = {
     max_number_of_pages: 5,
     max_number_of_pages_human: 6,
 
+    // Age
+    max_age: 150,
+    min_age: 0,
+
     // Dates
     day_min: 1,
     day_max: 31, // TODO: Consider: leap year, different months.
@@ -153,6 +157,7 @@ var DefaultErrorMessages = {
 
     // AGE
     age_required: "Age is required",
+    age_out_of_rage: "Your age seems too unrealistic",
 
     // LOCATION
     location_required: "Location is required",
