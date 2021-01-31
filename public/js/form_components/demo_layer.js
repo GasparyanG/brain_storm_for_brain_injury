@@ -6,7 +6,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-import { CSSClasses, ErrorMessage, DefaultErrorMessages, RegularButton } from "./helper_components";
+import { CSSClasses, SymbolicConstants, ErrorMessage, DefaultErrorMessages, RegularButton } from "./helper_components";
 
 var Name = function (_React$Component) {
     _inherits(Name, _React$Component);
@@ -121,10 +121,12 @@ var Age = function (_React$Component2) {
         _this2.numbersOnly = function () {
             var errors = _this2.props.prepareErrors("age", { message: DefaultErrorMessages.age_numbers });
             _this2.props.updateFormAndError(_this2.props.formState, errors);
-            // let layer = document.querySelector("." + CSSClasses.user_age);
-            // layer.classList.add(CSSClasses.warning_shake);
-            //
-            // setTimeout(() => {layer.classList.remove(CSSClasses.warning_shake)}, 2000)
+            var layer = document.querySelector("." + CSSClasses.age_event_layer);
+            layer.classList.add(CSSClasses.warning_shake);
+
+            setTimeout(function () {
+                layer.classList.remove(CSSClasses.warning_shake);
+            }, SymbolicConstants.shake_timeout);
         };
 
         _this2.handleInput = function (e) {
@@ -213,14 +215,18 @@ var Age = function (_React$Component2) {
                 { className: "user_age form_layer" },
                 React.createElement(
                     "div",
-                    { className: "layer_content" },
+                    { className: "age_event_layer" },
                     React.createElement(
                         "div",
-                        { className: "questions" },
-                        label,
-                        React.createElement("input", { onChange: this.handleInput, onKeyUp: this.handleEnter, className: "raw_input",
-                            name: "age", id: "age", type: "text", defaultValue: this.props.formState.age, placeholder: "Type your answer here..." }),
-                        validityElement
+                        { className: "layer_content" },
+                        React.createElement(
+                            "div",
+                            { className: "questions" },
+                            label,
+                            React.createElement("input", { onChange: this.handleInput, onKeyUp: this.handleEnter, className: "raw_input",
+                                name: "age", id: "age", type: "text", defaultValue: this.props.formState.age, placeholder: "Type your answer here..." }),
+                            validityElement
+                        )
                     )
                 )
             );

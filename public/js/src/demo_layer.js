@@ -1,4 +1,4 @@
-import {CSSClasses, ErrorMessage, DefaultErrorMessages, RegularButton} from "./helper_components";
+import {CSSClasses, SymbolicConstants, ErrorMessage, DefaultErrorMessages, RegularButton} from "./helper_components";
 
 class Name extends React.Component {
     constructor(props) {
@@ -88,10 +88,10 @@ class Age extends React.Component {
     numbersOnly = () => {
         let errors = this.props.prepareErrors("age", {message: DefaultErrorMessages.age_numbers});
         this.props.updateFormAndError(this.props.formState, errors);
-        // let layer = document.querySelector("." + CSSClasses.user_age);
-        // layer.classList.add(CSSClasses.warning_shake);
-        //
-        // setTimeout(() => {layer.classList.remove(CSSClasses.warning_shake)}, 2000)
+        let layer = document.querySelector("." + CSSClasses.age_event_layer);
+        layer.classList.add(CSSClasses.warning_shake);
+
+        setTimeout(() => {layer.classList.remove(CSSClasses.warning_shake)}, SymbolicConstants.shake_timeout)
     }
 
     handleInput = (e) => {
@@ -135,12 +135,14 @@ class Age extends React.Component {
 
         return (
             <section className="user_age form_layer">
-                <div className="layer_content">
-                    <div className="questions">
-                        {label}
-                        <input onChange={this.handleInput} onKeyUp={this.handleEnter} className="raw_input"
-                               name="age" id="age" type="text" defaultValue={this.props.formState.age} placeholder="Type your answer here..."/>
-                        {validityElement}
+                <div className="age_event_layer">
+                    <div className="layer_content">
+                        <div className="questions">
+                            {label}
+                            <input onChange={this.handleInput} onKeyUp={this.handleEnter} className="raw_input"
+                                   name="age" id="age" type="text" defaultValue={this.props.formState.age} placeholder="Type your answer here..."/>
+                            {validityElement}
+                        </div>
                     </div>
                 </div>
             </section>

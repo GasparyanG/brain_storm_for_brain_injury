@@ -58,6 +58,7 @@ const CSSClasses = {
     solid_choice_is_made: "solid_choice_is_made",
     better_choice_exists: "better_choice_exists",
     action_box_disabled: "action_box_disabled",
+    age_event_layer: "age_event_layer",
 
     // Form Keys
     name: "name",
@@ -84,6 +85,7 @@ const SymbolicConstants = {
     // Timeouts
     page_change_timout: 500,
     local_storage_update_timout: 5000,
+    shake_timeout: 1000,
 
     // External Support
     debounce_wait: 20,
