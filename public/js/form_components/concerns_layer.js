@@ -165,6 +165,18 @@ var Concerns = function (_React$Component) {
                 _this.handleOk();
         };
 
+        _this.handleInput = function (e) {
+            var errors = _this.props.errors;
+            var form = _this.props.formState;
+            if (_this.props.formState.concerns.length >= SymbolicConstants.max_amount_of_choices) {
+                e.target.value = '';
+                _this.animateShake();
+                errors = _this.props.prepareErrors(CSSClasses.concerns, { message: DefaultErrorMessages.cant_type });
+            } else form = _this.props.prepareForm(CSSClasses.concerns_other, e.target.value);
+
+            _this.props.updateFormAndError(form, errors);
+        };
+
         _this.otherInputRendering = function () {
             var valueToDisplay = "";
             var checked = "";
@@ -192,7 +204,7 @@ var Concerns = function (_React$Component) {
                         { className: "default_choice_name" },
                         "Other"
                     ),
-                    React.createElement("input", { onChange: _this.props.handler, onKeyUp: _this.handleEnter,
+                    React.createElement("input", { onChange: _this.handleInput, onKeyUp: _this.handleEnter,
                         id: "concerns_other", name: "concerns_other", className: "choice_other_raw_input hidden",
                         defaultValue: valueToDisplay, type: "text", placeholder: "Type your answer..." })
                 ),

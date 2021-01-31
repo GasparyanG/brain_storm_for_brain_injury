@@ -172,7 +172,8 @@ var DefaultErrorMessages = {
 
     // CONCERNS
     concerns_required: "At least one concern is required",
-    more_than_three: "Can't choose more than three concerns"
+    more_than_three: "Can't choose more than three concerns",
+    cant_type: "Can't type: you already made three choices"
 };
 
 export { RegularButton, ErrorMessage, CSSClasses, debounce, SymbolicConstants, DefaultErrorMessages };

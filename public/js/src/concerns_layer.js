@@ -211,6 +211,19 @@ class Concerns extends React.Component {
             this.handleOk();
     }
 
+    handleInput = (e) => {
+        let errors = this.props.errors;
+        let form = this.props.formState;
+        if (this.props.formState.concerns.length >= SymbolicConstants.max_amount_of_choices) {
+            e.target.value = '';
+            this.animateShake();
+            errors = this.props.prepareErrors(CSSClasses.concerns, {message: DefaultErrorMessages.cant_type});
+        } else
+            form = this.props.prepareForm(CSSClasses.concerns_other, e.target.value);
+
+        this.props.updateFormAndError(form, errors);
+    }
+
     otherInputRendering = () => {
         let valueToDisplay = "";
         let checked = "";
@@ -228,7 +241,7 @@ class Concerns extends React.Component {
                 <div className="choice_letter">N</div>
                 <div className="choice_name">
                     <span className="default_choice_name">Other</span>
-                    <input onChange={this.props.handler} onKeyUp={this.handleEnter}
+                    <input onChange={this.handleInput} onKeyUp={this.handleEnter}
                         id="concerns_other" name="concerns_other" className="choice_other_raw_input hidden"
                         defaultValue={valueToDisplay} type="text" placeholder="Type your answer..."/>
                 </div>
