@@ -161,6 +161,8 @@ class Location extends React.Component {
     handleOk = () => {
         // Validation goes here.
 
+        if (this.props.errors.hasOwnProperty(CSSClasses.location)) return;
+
         if (this.props.formState[this.prev_layer] == "")
             this.props.changeToPrev()
         else
@@ -172,9 +174,31 @@ class Location extends React.Component {
             this.handleOk();
     }
 
+    handleInput = (e) => {
+        let errors;
+        let form = this.props.prepareForm(e.target.name, e.target.value);
+
+        if (e.target.value !== "") {
+            errors = this.props.prepareErrors(CSSClasses.location, false, true);
+        } else
+            errors = this.props.prepareErrors(CSSClasses.location, {message: DefaultErrorMessages.location_required});
+
+        this.props.updateFormAndError(form, errors);
+    }
+
     validateInput = () => {
         if (this.props.formState.location !== "") return true;
         return false;
+    }
+
+    hintOrAction = (field) => {
+        let isValid = this.validateInput();
+        if (this.props.errors.hasOwnProperty(field))
+            return <ErrorMessage errors={this.props.errors} field={field}/>
+
+        return (
+            <RegularButton errors={this.props.errors} isValid={isValid} formState={this.props.formState} handleOk={this.handleOk}/>
+        );
     }
 
     render() {
@@ -184,16 +208,16 @@ class Location extends React.Component {
             label = (<label className="input_label" htmlFor="date_of_birth">
                 <span className="question_number">3 {this.props.svgArrow}</span><span>{this.props.formState.name}, where do you <strong>live</strong>?</span></label>);
 
-        let isValid = this.validateInput();
+        let validityElement = this.hintOrAction(CSSClasses.location);
 
         return (
             <section className="user_location form_layer">
                 <div className="layer_content">
                     <div className="questions">
                         {label}
-                        <input onChange={this.props.handler} onKeyUp={this.handleEnter} className="raw_input"
+                        <input onChange={this.handleInput} onKeyUp={this.handleEnter} className="raw_input"
                                name="location" id="location" type="text" defaultValue={this.props.formState.location} placeholder="Type your answer here..."/>
-                        <RegularButton isValid={isValid} handleOk={this.handleOk}/>
+                        {validityElement}
                     </div>
                 </div>
             </section>

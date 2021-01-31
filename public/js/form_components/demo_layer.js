@@ -247,6 +247,8 @@ var Location = function (_React$Component3) {
         _this3.handleOk = function () {
             // Validation goes here.
 
+            if (_this3.props.errors.hasOwnProperty(CSSClasses.location)) return;
+
             if (_this3.props.formState[_this3.prev_layer] == "") _this3.props.changeToPrev();else _this3.props.changeToNext();
         };
 
@@ -255,9 +257,27 @@ var Location = function (_React$Component3) {
                 _this3.handleOk();
         };
 
+        _this3.handleInput = function (e) {
+            var errors = void 0;
+            var form = _this3.props.prepareForm(e.target.name, e.target.value);
+
+            if (e.target.value !== "") {
+                errors = _this3.props.prepareErrors(CSSClasses.location, false, true);
+            } else errors = _this3.props.prepareErrors(CSSClasses.location, { message: DefaultErrorMessages.location_required });
+
+            _this3.props.updateFormAndError(form, errors);
+        };
+
         _this3.validateInput = function () {
             if (_this3.props.formState.location !== "") return true;
             return false;
+        };
+
+        _this3.hintOrAction = function (field) {
+            var isValid = _this3.validateInput();
+            if (_this3.props.errors.hasOwnProperty(field)) return React.createElement(ErrorMessage, { errors: _this3.props.errors, field: field });
+
+            return React.createElement(RegularButton, { errors: _this3.props.errors, isValid: isValid, formState: _this3.props.formState, handleOk: _this3.handleOk });
         };
 
         _this3.prev_layer = CSSClasses.age;
@@ -311,7 +331,7 @@ var Location = function (_React$Component3) {
                 )
             );
 
-            var isValid = this.validateInput();
+            var validityElement = this.hintOrAction(CSSClasses.location);
 
             return React.createElement(
                 "section",
@@ -323,9 +343,9 @@ var Location = function (_React$Component3) {
                         "div",
                         { className: "questions" },
                         label,
-                        React.createElement("input", { onChange: this.props.handler, onKeyUp: this.handleEnter, className: "raw_input",
+                        React.createElement("input", { onChange: this.handleInput, onKeyUp: this.handleEnter, className: "raw_input",
                             name: "location", id: "location", type: "text", defaultValue: this.props.formState.location, placeholder: "Type your answer here..." }),
-                        React.createElement(RegularButton, { isValid: isValid, handleOk: this.handleOk })
+                        validityElement
                     )
                 )
             );

@@ -127,7 +127,10 @@ var DefaultErrorMessages = {
 
     // AGE
     age_numbers: "Numbers only",
-    age_required: "Age is required"
+    age_required: "Age is required",
+
+    // Location
+    location_required: "Location is required"
 };
 
 export { RegularButton, ErrorMessage, CSSClasses, debounce, SymbolicConstants, DefaultErrorMessages };
