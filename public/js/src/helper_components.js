@@ -60,6 +60,7 @@ const CSSClasses = {
     action_box_disabled: "action_box_disabled",
     age_event_layer: "age_event_layer",
     doi_event_layer: "doi_event_layer",     // doi - date of injury
+    concerns_event_layer: "concerns_event_layer",
 
     // Dates
     date_month: "date_month",
@@ -110,15 +111,19 @@ const SymbolicConstants = {
 
     // Dates
     day_min: 1,
-    day_max: 31,            // Consider: leap year, different months.
+    day_max: 31,            // TODO: Consider: leap year, different months.
     month_max: 12,
     month_min: 1,
     year_max: 2021,         // Update every year or take dynamically.
-    year_min: 1920          // For 100 years old people.
+    year_min: 1920,         // For 100 years old people.
+
+    // Business Logic
+    max_amount_of_choices: 3,
+    max_amount_with_other_choice: 2,
 }
 
 const DefaultErrorMessages = {
-    // General
+    // GENERAL
     numbers_only: "Numbers only",
 
     // NAME
@@ -127,21 +132,23 @@ const DefaultErrorMessages = {
     // AGE
     age_required: "Age is required",
 
-    // Location
+    // LOCATION
     location_required: "Location is required",
 
-    // Date and time
-    date_wrong: "Date is wrong",                // General
+    // DATE AND TIME
+    date_wrong: "Date is wrong",                // General error.
+
+    // TODO: Coming Soon!
     fill_date_entirely: "Fill date entirely",
     day_wrong: "Day is wrong",
     month_wrong: "Month is wrong",
     year_wrong: "Year is wrong",
     date_required: "Date is required",
 
-    // Injury Reason
+    // INJURY REASON
     injury_reason_required: "Injury reason is required",
 
-    // Concerns
+    // CONCERNS
     concerns_required: "At least one concern is required",
     more_than_three: "Can't choose more than three concerns"
 }

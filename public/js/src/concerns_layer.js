@@ -1,4 +1,4 @@
-import {CSSClasses, ErrorMessage} from "./helper_components";
+import {CSSClasses, ErrorMessage, DefaultErrorMessages, SymbolicConstants} from "./helper_components";
 import {CauseOfInjury} from "./injury_layer";
 
 class Concerns extends React.Component {
@@ -41,6 +41,32 @@ class Concerns extends React.Component {
         this.state.other_input_disabled = !checkElement.classList.contains(CSSClasses.hidden_element);
     }
 
+    handleMoreThanRequiredChoices = (element) => {
+        let errors = this.props.errors;
+        let form = this.props.formState;
+        let concerns = [...this.props.formState.concerns];
+
+        // More (or equal) than three element in 'concerns' array.
+        if (!concerns.includes(element.dataset.value) && (concerns.length >= SymbolicConstants.max_amount_of_choices))
+            errors = this.props.prepareErrors(CSSClasses.concerns, {message: DefaultErrorMessages.more_than_three});
+        // 2 elements in 'concerns' array and 'other_concern'.
+        else if (!concerns.includes(element.dataset.value)
+            && (concerns.length === SymbolicConstants.max_amount_with_other_choice)
+            && (form[CSSClasses.concerns_other].length > 0))
+            errors = this.props.prepareErrors(CSSClasses.concerns, {message: DefaultErrorMessages.more_than_three});
+        else
+            errors = this.props.prepareErrors(CSSClasses.concerns, false, true);
+
+        return errors;
+    }
+
+    animateShake = () => {
+        let layer = document.querySelector("." + CSSClasses.concerns_event_layer);
+        layer.classList.add(CSSClasses.warning_shake);
+
+        setTimeout(() => {layer.classList.remove(CSSClasses.warning_shake)}, SymbolicConstants.shake_timeout)
+    }
+
     onCheck = (e) => {
         // Functionality
         if (e.target.classList.contains("solid_choice")) return;
@@ -57,8 +83,13 @@ class Concerns extends React.Component {
             return this.displayOtherInput(element);
         }
 
-        // Don't let to make more than 4 choices
-        // Coming soon!
+        // Don't let to make more than required choices
+        let errors;
+        if ((errors = this.handleMoreThanRequiredChoices(element)).hasOwnProperty(CSSClasses.concerns)) {
+            this.props.updateFormAndError(this.props.formState, errors);
+            this.animateShake();
+            return;
+        }
 
         let concerns = [...this.props.formState.concerns];
         if (concerns.includes(element.dataset.value)) {
@@ -70,7 +101,9 @@ class Concerns extends React.Component {
             concerns.push(element.dataset.value);
         }
 
-        this.props.checkboxHandler("concerns", concerns);
+        let form = this.props.prepareForm(CSSClasses.concerns, concerns);
+
+        this.props.updateFormAndError(form, errors);
 
         // Design
         element.classList.toggle(CSSClasses.choice_is_made);
@@ -222,17 +255,19 @@ class Concerns extends React.Component {
 
         return (
             <section className="concerns form_layer">
-                <div className="layer_content">
-                    <div className="questions concern_questions">
-                        {label}
-                        <div className="question_usage_hint">
-                            Check <strong>up to four</strong> and <strong>star</strong> the most troubling one.
+                <div className="event_layer concerns_event_layer">
+                    <div className="layer_content">
+                        <div className="questions concern_questions">
+                            {label}
+                            <div className="question_usage_hint">
+                                Check <strong>up to three</strong> and <strong>star</strong> the most troubling one.
+                            </div>
+                            <div className="choices_section">
+                                {checkboxItems}
+                                {otherInput}
+                            </div>
+                            {validityElement}
                         </div>
-                        <div className="choices_section">
-                            {checkboxItems}
-                            {otherInput}
-                        </div>
-                        {validityElement}
                     </div>
                 </div>
             </section>

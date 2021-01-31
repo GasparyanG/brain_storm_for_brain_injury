@@ -8,7 +8,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-import { CSSClasses, ErrorMessage } from "./helper_components";
+import { CSSClasses, ErrorMessage, DefaultErrorMessages, SymbolicConstants } from "./helper_components";
 import { CauseOfInjury } from "./injury_layer";
 
 var Concerns = function (_React$Component) {
@@ -36,6 +36,28 @@ var Concerns = function (_React$Component) {
             _this.state.other_input_disabled = !checkElement.classList.contains(CSSClasses.hidden_element);
         };
 
+        _this.handleMoreThanRequiredChoices = function (element) {
+            var errors = _this.props.errors;
+            var form = _this.props.formState;
+            var concerns = [].concat(_toConsumableArray(_this.props.formState.concerns));
+
+            // More (or equal) than three element in 'concerns' array.
+            if (!concerns.includes(element.dataset.value) && concerns.length >= SymbolicConstants.max_amount_of_choices) errors = _this.props.prepareErrors(CSSClasses.concerns, { message: DefaultErrorMessages.more_than_three });
+            // 2 elements in 'concerns' array and 'other_concern'.
+            else if (!concerns.includes(element.dataset.value) && concerns.length === SymbolicConstants.max_amount_with_other_choice && form[CSSClasses.concerns_other].length > 0) errors = _this.props.prepareErrors(CSSClasses.concerns, { message: DefaultErrorMessages.more_than_three });else errors = _this.props.prepareErrors(CSSClasses.concerns, false, true);
+
+            return errors;
+        };
+
+        _this.animateShake = function () {
+            var layer = document.querySelector("." + CSSClasses.concerns_event_layer);
+            layer.classList.add(CSSClasses.warning_shake);
+
+            setTimeout(function () {
+                layer.classList.remove(CSSClasses.warning_shake);
+            }, SymbolicConstants.shake_timeout);
+        };
+
         _this.onCheck = function (e) {
             // Functionality
             if (e.target.classList.contains("solid_choice")) return;
@@ -47,8 +69,13 @@ var Concerns = function (_React$Component) {
                 return _this.displayOtherInput(element);
             }
 
-            // Don't let to make more than 4 choices
-            // Coming soon!
+            // Don't let to make more than required choices
+            var errors = void 0;
+            if ((errors = _this.handleMoreThanRequiredChoices(element)).hasOwnProperty(CSSClasses.concerns)) {
+                _this.props.updateFormAndError(_this.props.formState, errors);
+                _this.animateShake();
+                return;
+            }
 
             var concerns = [].concat(_toConsumableArray(_this.props.formState.concerns));
             if (concerns.includes(element.dataset.value)) {
@@ -60,7 +87,9 @@ var Concerns = function (_React$Component) {
                 concerns.push(element.dataset.value);
             }
 
-            _this.props.checkboxHandler("concerns", concerns);
+            var form = _this.props.prepareForm(CSSClasses.concerns, concerns);
+
+            _this.props.updateFormAndError(form, errors);
 
             // Design
             element.classList.toggle(CSSClasses.choice_is_made);
@@ -294,35 +323,39 @@ var Concerns = function (_React$Component) {
                 { className: "concerns form_layer" },
                 React.createElement(
                     "div",
-                    { className: "layer_content" },
+                    { className: "event_layer concerns_event_layer" },
                     React.createElement(
                         "div",
-                        { className: "questions concern_questions" },
-                        label,
+                        { className: "layer_content" },
                         React.createElement(
                             "div",
-                            { className: "question_usage_hint" },
-                            "Check ",
+                            { className: "questions concern_questions" },
+                            label,
                             React.createElement(
-                                "strong",
-                                null,
-                                "up to four"
+                                "div",
+                                { className: "question_usage_hint" },
+                                "Check ",
+                                React.createElement(
+                                    "strong",
+                                    null,
+                                    "up to three"
+                                ),
+                                " and ",
+                                React.createElement(
+                                    "strong",
+                                    null,
+                                    "star"
+                                ),
+                                " the most troubling one."
                             ),
-                            " and ",
                             React.createElement(
-                                "strong",
-                                null,
-                                "star"
+                                "div",
+                                { className: "choices_section" },
+                                checkboxItems,
+                                otherInput
                             ),
-                            " the most troubling one."
-                        ),
-                        React.createElement(
-                            "div",
-                            { className: "choices_section" },
-                            checkboxItems,
-                            otherInput
-                        ),
-                        validityElement
+                            validityElement
+                        )
                     )
                 )
             );
