@@ -71,7 +71,7 @@ function ErrorMessage(props) {
         <div className="error_message_component">
             <div className="error_message_parts">
                 <span className="error_message_icon">
-                    <i className="material-icons">warning</i>
+                    &#x26A0;
                 </span>
                     <span className="error_message">
                     {props.errors[props.field].message}

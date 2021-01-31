@@ -20,5 +20,6 @@
 }
 
 #form_container .error_message_component .error_message_parts .error_message_icon {
-    margin-right: 1rem;
+    margin-right: 0.5rem;
+    font-size: 1rem;
 }

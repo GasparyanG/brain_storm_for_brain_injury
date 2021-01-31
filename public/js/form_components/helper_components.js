@@ -87,11 +87,7 @@ function ErrorMessage(props) {
             React.createElement(
                 "span",
                 { className: "error_message_icon" },
-                React.createElement(
-                    "i",
-                    { className: "material-icons" },
-                    "warning"
-                )
+                "\u26A0"
             ),
             React.createElement(
                 "span",
