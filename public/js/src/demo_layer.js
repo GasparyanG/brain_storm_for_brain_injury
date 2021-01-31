@@ -86,7 +86,8 @@ class Age extends React.Component {
     }
 
     numbersOnly = () => {
-        this.props.onError("age", {message: DefaultErrorMessages.age_numbers});
+        let errors = this.props.prepareErrors("age", {message: DefaultErrorMessages.age_numbers});
+        this.props.updateFormAndError(this.props.formState, errors);
         // let layer = document.querySelector("." + CSSClasses.user_age);
         // layer.classList.add(CSSClasses.warning_shake);
         //
@@ -99,10 +100,15 @@ class Age extends React.Component {
             return this.numbersOnly();
         }
 
-        this.props.handler(e);
+        let errors;
+        let form = this.props.prepareForm(e.target.name, e.target.value);
 
-        if (e.target.value !== "")
-            this.props.onError("age", false, true);
+        if (e.target.value !== "") {
+            errors = this.props.prepareErrors("age", false, true);
+        } else
+            errors = this.props.prepareErrors("age", {message: DefaultErrorMessages.age_required});
+
+        this.props.updateFormAndError(form, errors);
     }
 
     validateInput = () => {

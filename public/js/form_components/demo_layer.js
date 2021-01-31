@@ -119,7 +119,8 @@ var Age = function (_React$Component2) {
         };
 
         _this2.numbersOnly = function () {
-            _this2.props.onError("age", { message: DefaultErrorMessages.age_numbers });
+            var errors = _this2.props.prepareErrors("age", { message: DefaultErrorMessages.age_numbers });
+            _this2.props.updateFormAndError(_this2.props.formState, errors);
             // let layer = document.querySelector("." + CSSClasses.user_age);
             // layer.classList.add(CSSClasses.warning_shake);
             //
@@ -132,9 +133,14 @@ var Age = function (_React$Component2) {
                 return _this2.numbersOnly();
             }
 
-            _this2.props.handler(e);
+            var errors = void 0;
+            var form = _this2.props.prepareForm(e.target.name, e.target.value);
 
-            if (e.target.value !== "") _this2.props.onError("age", false, true);
+            if (e.target.value !== "") {
+                errors = _this2.props.prepareErrors("age", false, true);
+            } else errors = _this2.props.prepareErrors("age", { message: DefaultErrorMessages.age_required });
+
+            _this2.props.updateFormAndError(form, errors);
         };
 
         _this2.validateInput = function () {
