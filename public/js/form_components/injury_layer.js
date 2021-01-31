@@ -17,9 +17,9 @@ var DateOfInjury = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (DateOfInjury.__proto__ || Object.getPrototypeOf(DateOfInjury)).call(this, props));
 
         _this.handleOk = function () {
-            // Validation goes here.
-
             // Dispatch.
+            if (_this.props.errors.hasOwnProperty(CSSClasses.date)) return;
+
             if (_this.props.formState[_this.prev_layer] == "") _this.props.changeToPrev();else _this.props.changeToNext();
         };
 
@@ -34,11 +34,33 @@ var DateOfInjury = function (_React$Component) {
             }, SymbolicConstants.shake_timeout);
         };
 
+        _this.isValidDate = function (form) {
+            return !(form[CSSClasses.injury_date_month] < SymbolicConstants.month_min || form[CSSClasses.injury_date_month] > SymbolicConstants.month_max) && !(form[CSSClasses.injury_date_day] < SymbolicConstants.day_min || form[CSSClasses.injury_date_day] > SymbolicConstants.day_max) && !(form[CSSClasses.injury_date_year] < SymbolicConstants.year_min || form[CSSClasses.injury_date_year] > SymbolicConstants.year_max);
+        };
+
         _this.handleInput = function (e) {
             if (isNaN(e.target.value)) {
                 e.target.value = '';
                 return _this.numbersOnly(e);
             }
+
+            var errors = _this.props.errors;
+            var form = _this.props.prepareForm(e.target.name, e.target.value);
+
+            if (e.target.value == "") errors = _this.props.prepareErrors(CSSClasses.date, { message: DefaultErrorMessages.date_required });else if (e.target.classList.contains(CSSClasses.date_month)) {
+                // Validate month
+                if (e.target.value < SymbolicConstants.month_min || e.target.value > SymbolicConstants.month_max) errors = _this.props.prepareErrors(CSSClasses.date, { message: DefaultErrorMessages.date_wrong });
+            } else if (e.target.classList.contains(CSSClasses.date_day)) {
+                //Validate day
+                if (e.target.value < SymbolicConstants.day_min || e.target.value > SymbolicConstants.day_max) errors = _this.props.prepareErrors(CSSClasses.date, { message: DefaultErrorMessages.date_wrong });
+            } else if (e.target.classList.contains(CSSClasses.date_year)) {
+                // Validate year
+                if (e.target.value < SymbolicConstants.year_min || e.target.value > SymbolicConstants.year_max) errors = _this.props.prepareErrors(CSSClasses.date, { message: DefaultErrorMessages.date_wrong });
+            }
+
+            if (_this.isValidDate(form)) errors = _this.props.prepareErrors(CSSClasses.date, false, true);
+
+            _this.props.updateFormAndError(form, errors);
         };
 
         _this.handleEnter = function (e) {
@@ -46,14 +68,17 @@ var DateOfInjury = function (_React$Component) {
             if (e.keyCode === SymbolicConstants.enter_key_code) {
                 if (e.target.classList.contains("date_month")) {
                     // Validate month
+                    _this.handleInput(e);
                     var dayInput = document.querySelector(".date_day");
                     dayInput.focus();
                 } else if (e.target.classList.contains("date_day")) {
                     //Validate day
+                    _this.handleInput(e);
                     var yearInput = document.querySelector(".date_year");
                     yearInput.focus();
                 } else if (e.target.classList.contains("date_year")) {
                     // Validate year
+                    _this.handleInput(e);
                     _this.handleOk();
                 }
             }
@@ -120,7 +145,7 @@ var DateOfInjury = function (_React$Component) {
                 )
             );
 
-            var validityElement = this.hintOrAction(CSSClasses.age);
+            var validityElement = this.hintOrAction(CSSClasses.date);
 
             return React.createElement(
                 "section",

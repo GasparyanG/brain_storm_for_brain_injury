@@ -81,6 +81,11 @@ var CSSClasses = {
     age_event_layer: "age_event_layer",
     doi_event_layer: "doi_event_layer", // doi - date of injury
 
+    // Dates
+    date_month: "date_month",
+    date_day: "date_day",
+    date_year: "date_year",
+
     // Form Keys
     name: "name",
     age: "age",
@@ -88,10 +93,12 @@ var CSSClasses = {
     concerns: "concerns",
     solid_concern: "solid_concern",
     concerns_other: "concerns_other",
+    injury_reason: "injury_reason",
+
+    date: "date", // Date in general.
     injury_date_day: "injury_date_day",
     injury_date_month: "injury_date_month",
     injury_date_year: "injury_date_year",
-    injury_reason: "injury_reason",
 
     // Layers
     user_name: "user_name",
@@ -119,7 +126,15 @@ var SymbolicConstants = {
     page_translation_percent: 100,
     scroll_delta: -120,
     max_number_of_pages: 5,
-    max_number_of_pages_human: 6
+    max_number_of_pages_human: 6,
+
+    // Dates
+    day_min: 1,
+    day_max: 31, // Consider: leap year, different months.
+    month_max: 12,
+    month_min: 1,
+    year_max: 2021, // Update every year or take dynamically.
+    year_min: 1920 // For 100 years old people.
 };
 
 var DefaultErrorMessages = {
@@ -136,6 +151,7 @@ var DefaultErrorMessages = {
     location_required: "Location is required",
 
     // Date and time
+    date_wrong: "Date is wrong", // General
     fill_date_entirely: "Fill date entirely",
     day_wrong: "Day is wrong",
     month_wrong: "Month is wrong",

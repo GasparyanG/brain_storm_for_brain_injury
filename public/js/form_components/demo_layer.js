@@ -107,8 +107,6 @@ var Age = function (_React$Component2) {
         var _this2 = _possibleConstructorReturn(this, (Age.__proto__ || Object.getPrototypeOf(Age)).call(this, props));
 
         _this2.handleOk = function () {
-            // Validation goes here.
-
             if (_this2.props.errors.hasOwnProperty("age")) return;
 
             if (_this2.props.formState[_this2.prev_layer] == "") _this2.props.changeToPrev();else _this2.props.changeToNext();

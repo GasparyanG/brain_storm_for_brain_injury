@@ -70,8 +70,6 @@ class Age extends React.Component {
     }
 
     handleOk = () => {
-        // Validation goes here.
-
         if (this.props.errors.hasOwnProperty("age")) return;
 
         if (this.props.formState[this.prev_layer] == "")
