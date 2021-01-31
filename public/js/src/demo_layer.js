@@ -17,12 +17,15 @@ class Name extends React.Component {
     }
 
     handleInput = (e) => {
-        this.props.handler(e);
+        let errors;
+        let form = this.props.prepareForm(e.target.name, e.target.value);
 
         if (e.target.value !== "") {
-            this.props.onError("name", false, true);
+            errors = this.props.prepareErrors("name", false, true);
         } else
-            this.props.onError("name", {message: DefaultErrorMessages.name});
+            errors = this.props.prepareErrors("name", {message: DefaultErrorMessages.name});
+
+        this.props.updateFormAndError(form, errors);
     }
 
     validateInput = () => {

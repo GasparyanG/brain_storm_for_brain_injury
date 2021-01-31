@@ -42,6 +42,31 @@ var Form = function (_React$Component) {
             _this.onChange(field, value);
         };
 
+        _this.prepareErrors = function (field, value) {
+            var deleteEnt = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
+            var errors = Object.assign({}, _this.state.errors);
+            var navigation = Object.assign({}, _this.state.navigation);
+            if (deleteEnt) delete errors[field];else errors[field] = value;
+
+            return errors;
+        };
+
+        _this.prepareForm = function (field, value) {
+            var form = Object.assign({}, _this.state.form);
+            form[field] = value;
+            return form;
+        };
+
+        _this.updateFormAndError = function (formObj, errorsObj) {
+            var items = Object.assign({}, _this.state);
+
+            items.errors = errorsObj;
+            items.form = formObj;
+
+            _this.setState(items);
+        };
+
         _this.onValueChange = function (event) {
             var field = event.target.name;
             var value = event.target.value;
@@ -88,6 +113,9 @@ var Form = function (_React$Component) {
         _this.checkboxHandler = _this.onCheckboxCheck.bind(_this);
         _this.onValueUpdate = _this.onChange.bind(_this);
         _this.onError = _this.onErrorChange.bind(_this);
+        _this.prepareErrors_b = _this.prepareErrors.bind(_this);
+        _this.prepareForm_b = _this.prepareForm.bind(_this);
+        _this.updateFormAndError_b = _this.updateFormAndError.bind(_this);
 
         // Navigation
         _this.changeToNext = _this.changeToNextLayer.bind(_this);
@@ -132,7 +160,7 @@ var Form = function (_React$Component) {
             };
 
             var state = window.localStorage.getItem("form");
-            if (state !== "undefined" && state !== "null") {
+            if (state !== "undefined" && state !== "null" && state != null) {
                 state = JSON.parse(state);
                 // Don't remember position of page
                 state.navigation.current_position = 0;
@@ -149,10 +177,11 @@ var Form = function (_React$Component) {
                 { className: "layers_container" },
                 React.createElement(ProgressBar, { formState: this.state.form }),
                 React.createElement(Name, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
-                    changeToNext: this.changeToNext, errors: this.state.errors, onError: this.onError }),
+                    changeToNext: this.changeToNext, errors: this.state.errors,
+                    prepareErrors: this.prepareErrors_b, prepareForm: this.prepareForm_b, updateFormAndError: this.updateFormAndError_b }),
                 React.createElement(Age, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
                     changeToNext: this.changeToNext, changeToPrev: this.changeToPrev, errors: this.state.errors,
-                    onError: this.onError }),
+                    prepareErrors: this.prepareErrors_b, prepareForm: this.prepareForm_b, updateFormAndError: this.updateFormAndError_b }),
                 React.createElement(Location, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
                     changeToNext: this.changeToNext, changeToPrev: this.changeToPrev, errors: this.state.errors }),
                 React.createElement(DateOfInjury, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,

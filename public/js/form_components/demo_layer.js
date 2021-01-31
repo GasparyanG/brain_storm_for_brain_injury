@@ -26,11 +26,14 @@ var Name = function (_React$Component) {
         };
 
         _this.handleInput = function (e) {
-            _this.props.handler(e);
+            var errors = void 0;
+            var form = _this.props.prepareForm(e.target.name, e.target.value);
 
             if (e.target.value !== "") {
-                _this.props.onError("name", false, true);
-            } else _this.props.onError("name", { message: DefaultErrorMessages.name });
+                errors = _this.props.prepareErrors("name", false, true);
+            } else errors = _this.props.prepareErrors("name", { message: DefaultErrorMessages.name });
+
+            _this.props.updateFormAndError(form, errors);
         };
 
         _this.validateInput = function () {
