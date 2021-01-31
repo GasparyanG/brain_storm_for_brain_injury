@@ -18,8 +18,9 @@ class DateOfInjury extends React.Component {
     }
 
     numbersOnly = (e) => {
-        let errors = this.props.prepareErrors(e.target.name, {message : DefaultErrorMessages.numbers_only});
+        let errors = this.props.prepareErrors(CSSClasses.date, {message : DefaultErrorMessages.numbers_only});
         this.props.updateFormAndError(this.props.formState, errors);
+
         let layer = document.querySelector("." + CSSClasses.doi_event_layer);
         layer.classList.add(CSSClasses.warning_shake);
 

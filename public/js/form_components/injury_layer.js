@@ -24,8 +24,9 @@ var DateOfInjury = function (_React$Component) {
         };
 
         _this.numbersOnly = function (e) {
-            var errors = _this.props.prepareErrors(e.target.name, { message: DefaultErrorMessages.numbers_only });
+            var errors = _this.props.prepareErrors(CSSClasses.date, { message: DefaultErrorMessages.numbers_only });
             _this.props.updateFormAndError(_this.props.formState, errors);
+
             var layer = document.querySelector("." + CSSClasses.doi_event_layer);
             layer.classList.add(CSSClasses.warning_shake);
 

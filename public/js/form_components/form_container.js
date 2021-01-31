@@ -25,6 +25,51 @@ var Form = function (_React$Component) {
             window.localStorage.setItem("form", JSON.stringify(_this.state));
         };
 
+        _this.storageContentIsValid = function (storageData) {
+            if (storageData === "undefined" || storageData == "null" || storageData == null) return false;
+            // Required field existence checking.
+            var parsedData = JSON.parse(storageData);
+            if (!parsedData.hasOwnProperty("navigation") || !parsedData.hasOwnProperty("form") || !parsedData.hasOwnProperty("errors")) return false;
+
+            return true; // Valid.
+        };
+
+        _this.populateState = function () {
+            var defaultState = {
+                navigation: {
+                    current_position: 0,
+                    max_number_of_pages: SymbolicConstants.max_number_of_pages
+                },
+
+                form: {
+                    name: "",
+                    age: "",
+                    email: "",
+                    location: "",
+                    concerns: [],
+                    solid_concern: "",
+                    concerns_other: "",
+                    injury_date_day: "",
+                    injury_date_month: "",
+                    injury_date_year: "",
+                    injury_reason: ""
+                },
+
+                errors: {}
+            };
+
+            var state = window.localStorage.getItem("form");
+            if (_this.storageContentIsValid(state)) {
+                state = JSON.parse(state);
+                // Don't remember position of page
+                state.navigation.current_position = 0;
+
+                return state;
+            }
+
+            return defaultState;
+        };
+
         _this.onChange = function (field, value) {
             var items = Object.assign({}, _this.state);
             var form = Object.assign({}, _this.state.form);
@@ -150,7 +195,7 @@ var Form = function (_React$Component) {
             progress += !_this.stringValues(CSSClasses.location) ? 0 : progressStep;
             progress += !validateEmail(_this.state.form.email) ? 0 : progressStep;
             progress += !_this.stringValues(CSSClasses.injury_reason) ? 0 : progressStep;
-            progress += !_this.isValidDate(_this.state) ? 0 : progressStep;
+            progress += !_this.isValidDate(_this.state.form) ? 0 : progressStep;
             progress += !_this.areConcernsValid() ? 0 : progressStep;
 
             return progress;
@@ -186,49 +231,13 @@ var Form = function (_React$Component) {
         return _this;
     }
 
+    // VALIDATION
+
+
+    // PROGRESS COMPUTATION
+
+
     _createClass(Form, [{
-        key: "populateState",
-        value: function populateState() {
-            var defaultState = {
-                navigation: {
-                    current_position: 0,
-                    max_number_of_pages: SymbolicConstants.max_number_of_pages
-                },
-
-                form: {
-                    name: "",
-                    age: "",
-                    email: "",
-                    location: "",
-                    concerns: [],
-                    solid_concern: "",
-                    concerns_other: "",
-                    injury_date_day: "",
-                    injury_date_month: "",
-                    injury_date_year: "",
-                    injury_reason: ""
-                },
-
-                errors: {}
-            };
-
-            var state = window.localStorage.getItem("form");
-            if (state !== "undefined" && state !== "null" && state != null) {
-                state = JSON.parse(state);
-                // Don't remember position of page
-                state.navigation.current_position = 0;
-
-                return state;
-            }
-            return defaultState;
-        }
-
-        // VALIDATION
-
-
-        // PROGRESS COMPUTATION
-
-    }, {
         key: "render",
         value: function render() {
             return React.createElement(

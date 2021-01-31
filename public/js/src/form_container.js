@@ -36,7 +36,18 @@ class Form extends React.Component {
         window.localStorage.setItem("form", JSON.stringify(this.state));
     }
 
-    populateState() {
+    storageContentIsValid = (storageData) => {
+        if (storageData === "undefined" || storageData == "null" || storageData == null) return false;
+        // Required field existence checking.
+        let parsedData = JSON.parse(storageData);
+        if (!parsedData.hasOwnProperty("navigation")
+            || !parsedData.hasOwnProperty("form")
+            || !parsedData.hasOwnProperty("errors")) return false;
+
+        return true;    // Valid.
+    }
+
+    populateState = () => {
         let defaultState = {
             navigation : {
                 current_position: 0,
@@ -61,13 +72,14 @@ class Form extends React.Component {
         };
 
         let state = window.localStorage.getItem("form");
-        if (state !== "undefined" && state !== "null" && state != null) {
+        if (this.storageContentIsValid(state)) {
             state = JSON.parse(state);
             // Don't remember position of page
             state.navigation.current_position = 0;
 
             return state;
         }
+
         return defaultState;
     }
 
@@ -211,7 +223,7 @@ class Form extends React.Component {
         progress += !this.stringValues(CSSClasses.location) ? 0 : progressStep;
         progress += !validateEmail(this.state.form.email) ? 0 : progressStep;
         progress += !this.stringValues(CSSClasses.injury_reason) ? 0 : progressStep;
-        progress += !this.isValidDate(this.state) ? 0 : progressStep;
+        progress += !this.isValidDate(this.state.form) ? 0 : progressStep;
         progress += !this.areConcernsValid() ? 0 : progressStep;
 
         return progress;
