@@ -183,7 +183,8 @@ class Form extends React.Component {
 
                 <CauseOfInjury svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}
                     checkboxHandler={this.checkboxHandler} onValueUpdate={this.onValueUpdate}
-                   changeToNext={this.changeToNext} changeToPrev={this.changeToPrev} errors={this.state.errors}/>
+                   changeToNext={this.changeToNext} changeToPrev={this.changeToPrev} errors={this.state.errors}
+                   prepareErrors={this.prepareErrors_b} prepareForm={this.prepareForm_b} updateFormAndError={this.updateFormAndError_b}/>
 
                 <Concerns svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}
                     checkboxHandler={this.checkboxHandler} onValueUpdate={this.onValueUpdate}

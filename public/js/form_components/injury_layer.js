@@ -245,17 +245,30 @@ var CauseOfInjury = function (_React$Component2) {
             // Design
             element.classList.toggle(CSSClasses.choice_is_made);
 
-            if (element.classList.contains(CSSClasses.choice_is_made)) _this2.props.checkboxHandler("injury_reason", element.dataset.value);else _this2.props.checkboxHandler("injury_reason", "");
+            if (element.classList.contains(CSSClasses.choice_is_made)) {
+                var form = _this2.props.prepareForm(CSSClasses.injury_reason, element.dataset.value);
+                var errors = _this2.props.prepareErrors(CSSClasses.injury_reason, false, true);
 
-            // After single choice change page.
-            setTimeout(_this2.handleOk, SymbolicConstants.page_change_timout);
+                _this2.props.updateFormAndError(form, errors);
+
+                // After single choice change page.
+                setTimeout(_this2.handleOk, SymbolicConstants.page_change_timout);
+            } else {
+                var _form = _this2.props.prepareForm(CSSClasses.injury_reason, "");
+                var _errors = _this2.props.prepareErrors(CSSClasses.injury_reason, { message: DefaultErrorMessages.injury_reason_required });
+
+                _this2.props.updateFormAndError(_form, _errors);
+            }
         };
 
         _this2.unCheck = function (e) {
             if (!e.target.classList.contains(CSSClasses.enabled_other_input)) return;
 
             // Remove from choices
-            _this2.props.onValueUpdate(CSSClasses.injury_reason, "");
+            var form = _this2.props.prepareForm(CSSClasses.injury_reason, "");
+            var errors = _this2.props.prepareErrors(CSSClasses.injury_reason, { message: DefaultErrorMessages.injury_reason_required });
+
+            _this2.props.updateFormAndError(form, errors);
 
             // Remove decoration
             var parentElement = e.target.parentNode.classList.remove(CSSClasses.choice_is_made);
@@ -270,11 +283,24 @@ var CauseOfInjury = function (_React$Component2) {
         _this2.handleOk = function () {
             // Validation goes here.
 
+            if (_this2.props.errors.hasOwnProperty(CSSClasses.injury_reason)) return;
+
             if (!_this2.validateDate()) _this2.props.changeToPrev();else _this2.props.changeToNext();
         };
 
         _this2.handleEnter = function (e) {
             if (e.keyCode === 13) _this2.handleOk();
+        };
+
+        _this2.handleInput = function (e) {
+            var errors = void 0;
+            var form = _this2.props.prepareForm(e.target.name, e.target.value);
+
+            if (e.target.value !== "") {
+                errors = _this2.props.prepareErrors(CSSClasses.injury_reason, false, true);
+            } else errors = _this2.props.prepareErrors(CSSClasses.injury_reason, { message: DefaultErrorMessages.injury_reason_required });
+
+            _this2.props.updateFormAndError(form, errors);
         };
 
         _this2.otherInputRendering = function () {
@@ -301,7 +327,7 @@ var CauseOfInjury = function (_React$Component2) {
                         { className: "default_choice_name" },
                         "Other"
                     ),
-                    React.createElement("input", { onChange: _this2.props.handler, onKeyUp: _this2.handleEnter, id: "injury_reason", name: "injury_reason", className: "choice_other_raw_input hidden", defaultValue: valueToDisplay, type: "text", placeholder: "Type your answer..." })
+                    React.createElement("input", { onChange: _this2.handleInput, onKeyUp: _this2.handleEnter, id: "injury_reason", name: "injury_reason", className: "choice_other_raw_input hidden", defaultValue: valueToDisplay, type: "text", placeholder: "Type your answer..." })
                 ),
                 React.createElement(
                     "div",
@@ -309,6 +335,10 @@ var CauseOfInjury = function (_React$Component2) {
                     "\u2713"
                 )
             );
+        };
+
+        _this2.hintOrAction = function (field) {
+            if (_this2.props.errors.hasOwnProperty(field)) return React.createElement(ErrorMessage, { errors: _this2.props.errors, field: field });
         };
 
         _this2.state = {
@@ -401,6 +431,7 @@ var CauseOfInjury = function (_React$Component2) {
             }
 
             var otherInput = this.otherInputRendering();
+            var validityElement = this.hintOrAction(CSSClasses.injury_reason);
 
             return React.createElement(
                 "section",
@@ -417,7 +448,8 @@ var CauseOfInjury = function (_React$Component2) {
                             { className: "choices_section" },
                             checkboxItems,
                             otherInput
-                        )
+                        ),
+                        validityElement
                     )
                 )
             );

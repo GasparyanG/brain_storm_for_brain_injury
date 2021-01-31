@@ -156,7 +156,10 @@ var DefaultErrorMessages = {
     day_wrong: "Day is wrong",
     month_wrong: "Month is wrong",
     year_wrong: "Year is wrong",
-    date_required: "Date is required"
+    date_required: "Date is required",
+
+    // Injury Reason
+    injury_reason_required: "Injury reason is required"
 };
 
 export { RegularButton, ErrorMessage, CSSClasses, debounce, SymbolicConstants, DefaultErrorMessages };

@@ -194,13 +194,20 @@ class CauseOfInjury extends React.Component {
         // Design
         element.classList.toggle(CSSClasses.choice_is_made);
 
-        if (element.classList.contains(CSSClasses.choice_is_made))
-            this.props.checkboxHandler("injury_reason", element.dataset.value);
-        else
-            this.props.checkboxHandler("injury_reason", "");
+        if (element.classList.contains(CSSClasses.choice_is_made)) {
+            let form = this.props.prepareForm(CSSClasses.injury_reason, element.dataset.value);
+            let errors = this.props.prepareErrors(CSSClasses.injury_reason, false, true);
 
-        // After single choice change page.
-        setTimeout(this.handleOk, SymbolicConstants.page_change_timout);
+            this.props.updateFormAndError(form, errors);
+
+            // After single choice change page.
+            setTimeout(this.handleOk, SymbolicConstants.page_change_timout);
+        } else {
+            let form = this.props.prepareForm(CSSClasses.injury_reason, "");
+            let errors = this.props.prepareErrors(CSSClasses.injury_reason, {message: DefaultErrorMessages.injury_reason_required});
+
+            this.props.updateFormAndError(form, errors);
+        }
     }
 
     createCheckbox(key) {
@@ -221,7 +228,10 @@ class CauseOfInjury extends React.Component {
         if (!e.target.classList.contains(CSSClasses.enabled_other_input)) return;
 
         // Remove from choices
-        this.props.onValueUpdate(CSSClasses.injury_reason, "");
+        let form = this.props.prepareForm(CSSClasses.injury_reason, "");
+        let errors = this.props.prepareErrors(CSSClasses.injury_reason, {message: DefaultErrorMessages.injury_reason_required});
+
+        this.props.updateFormAndError(form, errors);
 
         // Remove decoration
         let parentElement = e.target.parentNode.classList.remove(CSSClasses.choice_is_made);
@@ -240,6 +250,9 @@ class CauseOfInjury extends React.Component {
     handleOk = () => {
         // Validation goes here.
 
+        if (this.props.errors.hasOwnProperty(CSSClasses.injury_reason))
+            return;
+
         if (!this.validateDate())
             this.props.changeToPrev();
         else
@@ -249,6 +262,18 @@ class CauseOfInjury extends React.Component {
     handleEnter = (e) => {
         if (e.keyCode === 13)
             this.handleOk();
+    }
+
+    handleInput = (e) => {
+        let errors;
+        let form = this.props.prepareForm(e.target.name, e.target.value);
+
+        if (e.target.value !== "") {
+            errors = this.props.prepareErrors(CSSClasses.injury_reason, false, true);
+        } else
+            errors = this.props.prepareErrors(CSSClasses.injury_reason, {message: DefaultErrorMessages.injury_reason_required});
+
+        this.props.updateFormAndError(form, errors);
     }
 
     otherInputRendering = () => {
@@ -264,14 +289,17 @@ class CauseOfInjury extends React.Component {
                 <div className="choice_letter">N</div>
                 <div className="choice_name">
                     <span className="default_choice_name">Other</span>
-                    <input onChange={this.props.handler} onKeyUp={this.handleEnter} id="injury_reason" name="injury_reason" className="choice_other_raw_input hidden" defaultValue={valueToDisplay} type="text" placeholder="Type your answer..."/>
+                    <input onChange={this.handleInput} onKeyUp={this.handleEnter} id="injury_reason" name="injury_reason" className="choice_other_raw_input hidden" defaultValue={valueToDisplay} type="text" placeholder="Type your answer..."/>
                 </div>
                 <div className="enabled_other_input hidden" onClick={this.unCheck}>✓</div>
             </div>
         );
     }
 
-
+    hintOrAction = (field) => {
+        if (this.props.errors.hasOwnProperty(field))
+            return <ErrorMessage errors={this.props.errors} field={field}/>
+    }
 
     render () {
         let label = (<label className="input_label" htmlFor="injury_reason">
@@ -286,6 +314,7 @@ class CauseOfInjury extends React.Component {
         }
 
         const otherInput = this.otherInputRendering();
+        const validityElement = this.hintOrAction(CSSClasses.injury_reason);
 
         return (
             <section className="cause_of_injury form_layer">
@@ -296,6 +325,7 @@ class CauseOfInjury extends React.Component {
                             {checkboxItems}
                             {otherInput}
                         </div>
+                        {validityElement}
                     </div>
                 </div>
             </section>
