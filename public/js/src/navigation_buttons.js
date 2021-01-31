@@ -1,4 +1,4 @@
-import {CSSClasses, debounce, SymbolicConstants} from "./helper_components";
+import {CSSClasses, debounce, SymbolicConstants, SubmitButton} from "./helper_components";
 
 class Navigation extends React.Component {
     constructor(props) {
@@ -25,9 +25,16 @@ class Navigation extends React.Component {
         document.body.addEventListener("DOMMouseScroll", scrollHandler);
     }
 
+    submitButtonState = () => {
+        // return <SubmitButton progress={this.props.progress >= 100}/>
+    }
+
     render() {
+        let submitButton = this.submitButtonState();
+
         return (
             <div className="navigation_buttons">
+                {/*{submitButton}*/}
                 <div onClick={this.props.changeToPrev} className="nav_btn navigation_to_prev">
                     <span className="nav-icon">
                         <svg height="9" width="14"><path d="M11.996 8.121l1.414-1.414L6.705 0 0 6.707l1.414 1.414 5.291-5.293z"></path></svg>

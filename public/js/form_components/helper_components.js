@@ -1,3 +1,16 @@
+function SubmitButton(props) {
+    var disabled = "submit_button_disabled";
+    if (props.progress) {
+        disabled = "";
+    }
+
+    return React.createElement(
+        "div",
+        { className: "nav_btn nav_submit_button " + disabled },
+        "submit \u2713"
+    );
+}
+
 function RegularButton(props) {
     var disabledButton = "action_box_disabled";
     if (props.isValid) disabledButton = "";
@@ -191,4 +204,4 @@ var DefaultErrorMessages = {
     cant_type: "Can't type: you already made three choices"
 };
 
-export { RegularButton, ErrorMessage, CSSClasses, validateEmail, debounce, SymbolicConstants, DefaultErrorMessages };
+export { SubmitButton, RegularButton, ErrorMessage, CSSClasses, validateEmail, debounce, SymbolicConstants, DefaultErrorMessages };

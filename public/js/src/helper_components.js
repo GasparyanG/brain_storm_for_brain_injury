@@ -1,3 +1,16 @@
+function SubmitButton(props) {
+    let disabled = "submit_button_disabled";
+    if (props.progress) {
+        disabled = "";
+    }
+
+    return (
+        <div className={"nav_btn nav_submit_button " + disabled}>
+            {`submit ✓`}
+        </div>
+    );
+}
+
 function RegularButton(props) {
     let disabledButton = "action_box_disabled";
     if (props.isValid)
@@ -172,6 +185,7 @@ const DefaultErrorMessages = {
 }
 
 export {
+    SubmitButton,
     RegularButton,
     ErrorMessage,
     CSSClasses,

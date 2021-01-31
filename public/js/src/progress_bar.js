@@ -36,7 +36,7 @@ class ProgressBar extends React.Component {
     }
 
     render() {
-       // Compute progress here.
+        // Compute progress here.
         let progress = this.progressComputation();
 
         let progressHintContent = "progress " + progress + "%";
