@@ -18,6 +18,7 @@ class Form extends React.Component {
         this.prepareErrors_b = this.prepareErrors.bind(this);
         this.prepareForm_b = this.prepareForm.bind(this);
         this.updateFormAndError_b = this.updateFormAndError.bind(this);
+        this.isValidDate_b = this.isValidDate.bind(this);
 
         // Navigation
         this.changeToNext = this.changeToNextLayer.bind(this);
@@ -160,6 +161,14 @@ class Form extends React.Component {
         }
     }
 
+
+    // VALIDATION
+    isValidDate = (form) => {
+        return !(form[CSSClasses.injury_date_month] < SymbolicConstants.month_min || form[CSSClasses.injury_date_month] > SymbolicConstants.month_max)
+            && !(form[CSSClasses.injury_date_day] < SymbolicConstants.day_min || form[CSSClasses.injury_date_day] > SymbolicConstants.day_max)
+            && !(form[CSSClasses.injury_date_year] < SymbolicConstants.year_min || form[CSSClasses.injury_date_year] > SymbolicConstants.year_max);
+    }
+
     render() {
         return (
             <div className="layers_container">
@@ -179,12 +188,14 @@ class Form extends React.Component {
 
                 <DateOfInjury svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}
                       changeToNext={this.changeToNext} changeToPrev={this.changeToPrev} errors={this.state.errors}
-                      prepareErrors={this.prepareErrors_b} prepareForm={this.prepareForm_b} updateFormAndError={this.updateFormAndError_b}/>
+                      prepareErrors={this.prepareErrors_b} prepareForm={this.prepareForm_b} updateFormAndError={this.updateFormAndError_b}
+                      isValidDate={this.isValidDate_b}/>
 
                 <CauseOfInjury svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}
                     checkboxHandler={this.checkboxHandler} onValueUpdate={this.onValueUpdate}
                    changeToNext={this.changeToNext} changeToPrev={this.changeToPrev} errors={this.state.errors}
-                   prepareErrors={this.prepareErrors_b} prepareForm={this.prepareForm_b} updateFormAndError={this.updateFormAndError_b}/>
+                   prepareErrors={this.prepareErrors_b} prepareForm={this.prepareForm_b} updateFormAndError={this.updateFormAndError_b}
+                   isValidDate={this.isValidDate_b}/>
 
                 <Concerns svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}
                     checkboxHandler={this.checkboxHandler} onValueUpdate={this.onValueUpdate}

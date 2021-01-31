@@ -34,10 +34,6 @@ var DateOfInjury = function (_React$Component) {
             }, SymbolicConstants.shake_timeout);
         };
 
-        _this.isValidDate = function (form) {
-            return !(form[CSSClasses.injury_date_month] < SymbolicConstants.month_min || form[CSSClasses.injury_date_month] > SymbolicConstants.month_max) && !(form[CSSClasses.injury_date_day] < SymbolicConstants.day_min || form[CSSClasses.injury_date_day] > SymbolicConstants.day_max) && !(form[CSSClasses.injury_date_year] < SymbolicConstants.year_min || form[CSSClasses.injury_date_year] > SymbolicConstants.year_max);
-        };
-
         _this.handleInput = function (e) {
             if (isNaN(e.target.value)) {
                 e.target.value = '';
@@ -58,7 +54,7 @@ var DateOfInjury = function (_React$Component) {
                 if (e.target.value < SymbolicConstants.year_min || e.target.value > SymbolicConstants.year_max) errors = _this.props.prepareErrors(CSSClasses.date, { message: DefaultErrorMessages.date_wrong });
             }
 
-            if (_this.isValidDate(form)) errors = _this.props.prepareErrors(CSSClasses.date, false, true);
+            if (_this.props.isValidDate(form)) errors = _this.props.prepareErrors(CSSClasses.date, false, true);
 
             _this.props.updateFormAndError(form, errors);
         };
@@ -276,16 +272,12 @@ var CauseOfInjury = function (_React$Component2) {
             _this2.state.other_input_disabled = false;
         };
 
-        _this2.validateDate = function () {
-            return !(_this2.props.formState.injury_date_day == "" || _this2.props.formState.injury_date_month == "" || _this2.props.formState.injury_date_year == "");
-        };
-
         _this2.handleOk = function () {
             // Validation goes here.
 
             if (_this2.props.errors.hasOwnProperty(CSSClasses.injury_reason)) return;
 
-            if (!_this2.validateDate()) _this2.props.changeToPrev();else _this2.props.changeToNext();
+            if (!_this2.props.isValidDate(_this2.props.formState)) _this2.props.changeToPrev();else _this2.props.changeToNext();
         };
 
         _this2.handleEnter = function (e) {

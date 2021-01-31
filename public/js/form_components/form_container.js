@@ -106,6 +106,10 @@ var Form = function (_React$Component) {
             }
         };
 
+        _this.isValidDate = function (form) {
+            return !(form[CSSClasses.injury_date_month] < SymbolicConstants.month_min || form[CSSClasses.injury_date_month] > SymbolicConstants.month_max) && !(form[CSSClasses.injury_date_day] < SymbolicConstants.day_min || form[CSSClasses.injury_date_day] > SymbolicConstants.day_max) && !(form[CSSClasses.injury_date_year] < SymbolicConstants.year_min || form[CSSClasses.injury_date_year] > SymbolicConstants.year_max);
+        };
+
         _this.state = _this.populateState();
 
         // Event bindings.
@@ -116,6 +120,7 @@ var Form = function (_React$Component) {
         _this.prepareErrors_b = _this.prepareErrors.bind(_this);
         _this.prepareForm_b = _this.prepareForm.bind(_this);
         _this.updateFormAndError_b = _this.updateFormAndError.bind(_this);
+        _this.isValidDate_b = _this.isValidDate.bind(_this);
 
         // Navigation
         _this.changeToNext = _this.changeToNextLayer.bind(_this);
@@ -169,6 +174,9 @@ var Form = function (_React$Component) {
             }
             return defaultState;
         }
+
+        // VALIDATION
+
     }, {
         key: "render",
         value: function render() {
@@ -187,11 +195,13 @@ var Form = function (_React$Component) {
                     prepareErrors: this.prepareErrors_b, prepareForm: this.prepareForm_b, updateFormAndError: this.updateFormAndError_b }),
                 React.createElement(DateOfInjury, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
                     changeToNext: this.changeToNext, changeToPrev: this.changeToPrev, errors: this.state.errors,
-                    prepareErrors: this.prepareErrors_b, prepareForm: this.prepareForm_b, updateFormAndError: this.updateFormAndError_b }),
+                    prepareErrors: this.prepareErrors_b, prepareForm: this.prepareForm_b, updateFormAndError: this.updateFormAndError_b,
+                    isValidDate: this.isValidDate_b }),
                 React.createElement(CauseOfInjury, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
                     checkboxHandler: this.checkboxHandler, onValueUpdate: this.onValueUpdate,
                     changeToNext: this.changeToNext, changeToPrev: this.changeToPrev, errors: this.state.errors,
-                    prepareErrors: this.prepareErrors_b, prepareForm: this.prepareForm_b, updateFormAndError: this.updateFormAndError_b }),
+                    prepareErrors: this.prepareErrors_b, prepareForm: this.prepareForm_b, updateFormAndError: this.updateFormAndError_b,
+                    isValidDate: this.isValidDate_b }),
                 React.createElement(Concerns, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
                     checkboxHandler: this.checkboxHandler, onValueUpdate: this.onValueUpdate,
                     changeToNext: this.changeToNext, changeToPrev: this.changeToPrev, errors: this.state.errors }),

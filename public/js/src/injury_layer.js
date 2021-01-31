@@ -26,12 +26,6 @@ class DateOfInjury extends React.Component {
         setTimeout(() => {layer.classList.remove(CSSClasses.warning_shake)}, SymbolicConstants.shake_timeout)
     }
 
-    isValidDate = (form) => {
-        return !(form[CSSClasses.injury_date_month] < SymbolicConstants.month_min || form[CSSClasses.injury_date_month] > SymbolicConstants.month_max)
-            && !(form[CSSClasses.injury_date_day] < SymbolicConstants.day_min || form[CSSClasses.injury_date_day] > SymbolicConstants.day_max)
-            && !(form[CSSClasses.injury_date_year] < SymbolicConstants.year_min || form[CSSClasses.injury_date_year] > SymbolicConstants.year_max);
-    }
-
     handleInput = (e) => {
         if (isNaN(e.target.value)) {
             e.target.value = '';
@@ -57,7 +51,7 @@ class DateOfInjury extends React.Component {
                 errors = this.props.prepareErrors(CSSClasses.date, {message: DefaultErrorMessages.date_wrong});
         }
 
-        if (this.isValidDate(form))
+        if (this.props.isValidDate(form))
             errors = this.props.prepareErrors(CSSClasses.date, false, true);
 
         this.props.updateFormAndError(form, errors);
@@ -239,21 +233,13 @@ class CauseOfInjury extends React.Component {
         this.state.other_input_disabled = false;
     }
 
-    validateDate = () => {
-        return !(
-            this.props.formState.injury_date_day == ""
-            || this.props.formState.injury_date_month == ""
-            || this.props.formState.injury_date_year == ""
-        );
-    }
-
     handleOk = () => {
         // Validation goes here.
 
         if (this.props.errors.hasOwnProperty(CSSClasses.injury_reason))
             return;
 
-        if (!this.validateDate())
+        if (!this.props.isValidDate(this.props.formState))
             this.props.changeToPrev();
         else
             this.props.changeToNext();
