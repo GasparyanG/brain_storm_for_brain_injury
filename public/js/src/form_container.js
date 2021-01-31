@@ -3,7 +3,7 @@ import {DateOfInjury, CauseOfInjury} from "./injury_layer";
 import {Concerns} from "./concerns_layer";
 import {Navigation} from "./navigation_buttons";
 import {ProgressBar} from "./progress_bar";
-import {CSSClasses, DefaultErrorMessages, SymbolicConstants} from "./helper_components";
+import {CSSClasses, DefaultErrorMessages, SymbolicConstants, validateEmail} from "./helper_components";
 
 class Form extends React.Component {
     constructor(props) {
@@ -19,6 +19,7 @@ class Form extends React.Component {
         this.prepareForm_b = this.prepareForm.bind(this);
         this.updateFormAndError_b = this.updateFormAndError.bind(this);
         this.isValidDate_b = this.isValidDate.bind(this);
+        this.progressComputation_b = this.progressComputation.bind(this);
 
         // Navigation
         this.changeToNext = this.changeToNextLayer.bind(this);
@@ -170,11 +171,43 @@ class Form extends React.Component {
             && !(form[CSSClasses.injury_date_year] < SymbolicConstants.year_min || form[CSSClasses.injury_date_year] > SymbolicConstants.year_max);
     }
 
+    // PROGRESS COMPUTATION
+    stringValues = (field) => {
+        return !(this.state.form[field] == "");
+    }
+
+    areConcernsValid = () => {
+        return !(
+            // There is no element in 'concerns' array and 'concerns_other' string is empty.
+            ((this.state.form.concerns.length < SymbolicConstants.min_amount_of_choices)
+                && (this.state.form.concerns_other.length < SymbolicConstants.min_length_of_other_concern))
+            // Concerns have error.
+            || this.state.errors.hasOwnProperty(CSSClasses.concerns)
+        );
+    }
+
+    progressComputation = () => {
+        let progress = 0;
+        let progressStep =
+            Math.ceil(SymbolicConstants.completed_progress/SymbolicConstants.max_number_of_pages_human);
+
+        progress += !this.stringValues(CSSClasses.name) ? 0 : progressStep;
+        progress += !this.stringValues(CSSClasses.age) ? 0 : progressStep;
+        progress += !this.stringValues(CSSClasses.location) ? 0 : progressStep;
+        progress += !validateEmail(this.state.form.email) ? 0 : progressStep;
+        progress += !this.stringValues(CSSClasses.injury_reason) ? 0 : progressStep;
+        progress += !this.isValidDate(this.state) ? 0 : progressStep;
+        progress += !this.areConcernsValid() ? 0 : progressStep;
+
+        return progress;
+    }
+
     render() {
         return (
             <div className="layers_container">
                 {/*  PROGRESS BAR SECTION */}
-                <ProgressBar errors={this.state.errors} formState={this.state.form} isValidDate={this.isValidDate_b}/>
+                <ProgressBar progressComputation={this.progressComputation_b} errors={this.state.errors}
+                     formState={this.state.form} isValidDate={this.isValidDate_b}/>
 
                 {/*  NAME SECTION */}
                 <Name svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}
@@ -216,7 +249,7 @@ class Form extends React.Component {
                     changeToNext={this.changeToNext} changeToPrev={this.changeToPrev} errors={this.state.errors}
                     prepareErrors={this.prepareErrors_b} prepareForm={this.prepareForm_b} updateFormAndError={this.updateFormAndError_b}/>
 
-                <Navigation changeToNext={this.changeToNext} changeToPrev={this.changeToPrev}/>
+                <Navigation progressComputation={this.progressComputation_b} changeToNext={this.changeToNext} changeToPrev={this.changeToPrev}/>
             </div>
         );
     }

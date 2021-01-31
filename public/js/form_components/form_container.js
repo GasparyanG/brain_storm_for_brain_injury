@@ -11,7 +11,7 @@ import { DateOfInjury, CauseOfInjury } from "./injury_layer";
 import { Concerns } from "./concerns_layer";
 import { Navigation } from "./navigation_buttons";
 import { ProgressBar } from "./progress_bar";
-import { CSSClasses, DefaultErrorMessages, SymbolicConstants } from "./helper_components";
+import { CSSClasses, DefaultErrorMessages, SymbolicConstants, validateEmail } from "./helper_components";
 
 var Form = function (_React$Component) {
     _inherits(Form, _React$Component);
@@ -110,6 +110,33 @@ var Form = function (_React$Component) {
             return !(form[CSSClasses.injury_date_month] < SymbolicConstants.month_min || form[CSSClasses.injury_date_month] > SymbolicConstants.month_max) && !(form[CSSClasses.injury_date_day] < SymbolicConstants.day_min || form[CSSClasses.injury_date_day] > SymbolicConstants.day_max) && !(form[CSSClasses.injury_date_year] < SymbolicConstants.year_min || form[CSSClasses.injury_date_year] > SymbolicConstants.year_max);
         };
 
+        _this.stringValues = function (field) {
+            return !(_this.state.form[field] == "");
+        };
+
+        _this.areConcernsValid = function () {
+            return !(
+            // There is no element in 'concerns' array and 'concerns_other' string is empty.
+            _this.state.form.concerns.length < SymbolicConstants.min_amount_of_choices && _this.state.form.concerns_other.length < SymbolicConstants.min_length_of_other_concern ||
+            // Concerns have error.
+            _this.state.errors.hasOwnProperty(CSSClasses.concerns));
+        };
+
+        _this.progressComputation = function () {
+            var progress = 0;
+            var progressStep = Math.ceil(SymbolicConstants.completed_progress / SymbolicConstants.max_number_of_pages_human);
+
+            progress += !_this.stringValues(CSSClasses.name) ? 0 : progressStep;
+            progress += !_this.stringValues(CSSClasses.age) ? 0 : progressStep;
+            progress += !_this.stringValues(CSSClasses.location) ? 0 : progressStep;
+            progress += !validateEmail(_this.state.form.email) ? 0 : progressStep;
+            progress += !_this.stringValues(CSSClasses.injury_reason) ? 0 : progressStep;
+            progress += !_this.isValidDate(_this.state) ? 0 : progressStep;
+            progress += !_this.areConcernsValid() ? 0 : progressStep;
+
+            return progress;
+        };
+
         _this.state = _this.populateState();
 
         // Event bindings.
@@ -121,6 +148,7 @@ var Form = function (_React$Component) {
         _this.prepareForm_b = _this.prepareForm.bind(_this);
         _this.updateFormAndError_b = _this.updateFormAndError.bind(_this);
         _this.isValidDate_b = _this.isValidDate.bind(_this);
+        _this.progressComputation_b = _this.progressComputation.bind(_this);
 
         // Navigation
         _this.changeToNext = _this.changeToNextLayer.bind(_this);
@@ -178,13 +206,17 @@ var Form = function (_React$Component) {
 
         // VALIDATION
 
+
+        // PROGRESS COMPUTATION
+
     }, {
         key: "render",
         value: function render() {
             return React.createElement(
                 "div",
                 { className: "layers_container" },
-                React.createElement(ProgressBar, { errors: this.state.errors, formState: this.state.form, isValidDate: this.isValidDate_b }),
+                React.createElement(ProgressBar, { progressComputation: this.progressComputation_b, errors: this.state.errors,
+                    formState: this.state.form, isValidDate: this.isValidDate_b }),
                 React.createElement(Name, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
                     changeToNext: this.changeToNext, errors: this.state.errors,
                     prepareErrors: this.prepareErrors_b, prepareForm: this.prepareForm_b, updateFormAndError: this.updateFormAndError_b }),
@@ -210,7 +242,7 @@ var Form = function (_React$Component) {
                     checkboxHandler: this.checkboxHandler, onValueUpdate: this.onValueUpdate,
                     changeToNext: this.changeToNext, changeToPrev: this.changeToPrev, errors: this.state.errors,
                     prepareErrors: this.prepareErrors_b, prepareForm: this.prepareForm_b, updateFormAndError: this.updateFormAndError_b }),
-                React.createElement(Navigation, { changeToNext: this.changeToNext, changeToPrev: this.changeToPrev })
+                React.createElement(Navigation, { progressComputation: this.progressComputation_b, changeToNext: this.changeToNext, changeToPrev: this.changeToPrev })
             );
         }
     }]);

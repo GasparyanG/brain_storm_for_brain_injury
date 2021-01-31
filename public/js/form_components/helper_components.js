@@ -1,12 +1,12 @@
 function SubmitButton(props) {
     var disabled = "submit_button_disabled";
     if (props.progress) {
-        disabled = "";
+        disabled = "nav_submit_button";
     }
 
     return React.createElement(
         "div",
-        { className: "nav_btn nav_submit_button " + disabled },
+        { className: "nav_btn " + disabled },
         "submit \u2713"
     );
 }

@@ -14,43 +14,14 @@ var ProgressBar = function (_React$Component) {
     function ProgressBar(props) {
         _classCallCheck(this, ProgressBar);
 
-        var _this = _possibleConstructorReturn(this, (ProgressBar.__proto__ || Object.getPrototypeOf(ProgressBar)).call(this, props));
-
-        _this.stringValues = function (field) {
-            return !(_this.props.formState[field] == "");
-        };
-
-        _this.areConcernsValid = function () {
-            return !(
-            // There is no element in 'concerns' array and 'concerns_other' string is empty.
-            _this.props.formState.concerns.length < SymbolicConstants.min_amount_of_choices && _this.props.formState.concerns_other.length < SymbolicConstants.min_length_of_other_concern ||
-            // Concerns have error.
-            _this.props.errors.hasOwnProperty(CSSClasses.concerns));
-        };
-
-        _this.progressComputation = function () {
-            var progress = 0;
-            var progressStep = Math.ceil(SymbolicConstants.completed_progress / SymbolicConstants.max_number_of_pages_human);
-
-            progress += !_this.stringValues(CSSClasses.name) ? 0 : progressStep;
-            progress += !_this.stringValues(CSSClasses.age) ? 0 : progressStep;
-            progress += !_this.stringValues(CSSClasses.location) ? 0 : progressStep;
-            progress += !validateEmail(_this.props.formState.email) ? 0 : progressStep;
-            progress += !_this.stringValues(CSSClasses.injury_reason) ? 0 : progressStep;
-            progress += !_this.props.isValidDate(_this.props.formState) ? 0 : progressStep;
-            progress += !_this.areConcernsValid() ? 0 : progressStep;
-
-            return progress;
-        };
-
-        return _this;
+        return _possibleConstructorReturn(this, (ProgressBar.__proto__ || Object.getPrototypeOf(ProgressBar)).call(this, props));
     }
 
     _createClass(ProgressBar, [{
         key: "render",
         value: function render() {
             // Compute progress here.
-            var progress = this.progressComputation();
+            var progress = this.props.progressComputation();
 
             var progressHintContent = "progress " + progress + "%";
             if (progress >= SymbolicConstants.completed_progress) progressHintContent = "completed ✓";

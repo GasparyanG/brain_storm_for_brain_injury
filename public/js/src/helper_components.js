@@ -1,11 +1,11 @@
 function SubmitButton(props) {
     let disabled = "submit_button_disabled";
     if (props.progress) {
-        disabled = "";
+        disabled = "nav_submit_button";
     }
 
     return (
-        <div className={"nav_btn nav_submit_button " + disabled}>
+        <div className={"nav_btn " + disabled}>
             {`submit ✓`}
         </div>
     );
