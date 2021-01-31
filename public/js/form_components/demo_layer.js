@@ -119,7 +119,7 @@ var Age = function (_React$Component2) {
         };
 
         _this2.numbersOnly = function () {
-            var errors = _this2.props.prepareErrors("age", { message: DefaultErrorMessages.age_numbers });
+            var errors = _this2.props.prepareErrors("age", { message: DefaultErrorMessages.numbers_only });
             _this2.props.updateFormAndError(_this2.props.formState, errors);
             var layer = document.querySelector("." + CSSClasses.age_event_layer);
             layer.classList.add(CSSClasses.warning_shake);

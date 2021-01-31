@@ -86,7 +86,7 @@ class Age extends React.Component {
     }
 
     numbersOnly = () => {
-        let errors = this.props.prepareErrors("age", {message: DefaultErrorMessages.age_numbers});
+        let errors = this.props.prepareErrors("age", {message: DefaultErrorMessages.numbers_only});
         this.props.updateFormAndError(this.props.formState, errors);
         let layer = document.querySelector("." + CSSClasses.age_event_layer);
         layer.classList.add(CSSClasses.warning_shake);

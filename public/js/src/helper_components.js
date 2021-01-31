@@ -102,15 +102,24 @@ const SymbolicConstants = {
 }
 
 const DefaultErrorMessages = {
+    // General
+    numbers_only: "Numbers only",
+
     // NAME
     name: "Name is required",
 
     // AGE
-    age_numbers: "Numbers only",
     age_required: "Age is required",
 
     // Location
-    location_required: "Location is required"
+    location_required: "Location is required",
+
+    // Date and time
+    fill_date_entirely: "Fill date entirely",
+    day_wrong: "Day is wrong",
+    month_wrong: "Month is wrong",
+    year_wrong: "Year is wrong",
+    date_required: "Date is required"
 }
 
 export {
