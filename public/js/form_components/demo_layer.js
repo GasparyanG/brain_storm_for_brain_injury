@@ -215,7 +215,7 @@ var Age = function (_React$Component2) {
                 { className: "user_age form_layer" },
                 React.createElement(
                     "div",
-                    { className: "age_event_layer" },
+                    { className: "event_layer age_event_layer" },
                     React.createElement(
                         "div",
                         { className: "layer_content" },

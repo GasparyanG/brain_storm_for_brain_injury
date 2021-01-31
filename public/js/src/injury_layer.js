@@ -1,4 +1,4 @@
-import {CSSClasses, RegularButton, SymbolicConstants} from "./helper_components";
+import {CSSClasses, ErrorMessage, RegularButton, SymbolicConstants, DefaultErrorMessages} from "./helper_components";
 
 class DateOfInjury extends React.Component {
     constructor(props) {
@@ -15,6 +15,22 @@ class DateOfInjury extends React.Component {
             this.props.changeToPrev();
         else
             this.props.changeToNext();
+    }
+
+    numbersOnly = (e) => {
+        let errors = this.props.prepareErrors(e.target.name, {message : DefaultErrorMessages.numbers_only});
+        this.props.updateFormAndError(this.props.formState, errors);
+        let layer = document.querySelector("." + CSSClasses.doi_event_layer);
+        layer.classList.add(CSSClasses.warning_shake);
+
+        setTimeout(() => {layer.classList.remove(CSSClasses.warning_shake)}, SymbolicConstants.shake_timeout)
+    }
+
+    handleInput = (e) => {
+        if (isNaN(e.target.value)) {
+            e.target.value = '';
+            return this.numbersOnly(e);
+        }
     }
 
     handleEnter = (e) => {
@@ -43,6 +59,16 @@ class DateOfInjury extends React.Component {
         );
     }
 
+    hintOrAction = (field) => {
+        let isValid = this.validateInput();
+        if (this.props.errors.hasOwnProperty(field))
+            return <ErrorMessage errors={this.props.errors} field={field}/>
+
+        return (
+            <RegularButton errors={this.props.errors} isValid={isValid} formState={this.props.formState} handleOk={this.handleOk}/>
+        );
+    }
+
     render () {
         let label = (<label className="input_label" htmlFor="injury_date">
             <span className="question_number">4 {this.props.svgArrow}</span><span><strong>When was</strong> your brain injury?</span></label>);
@@ -50,31 +76,33 @@ class DateOfInjury extends React.Component {
             label = (<label className="input_label" htmlFor="injury_date">
                 <span className="question_number">4 {this.props.svgArrow}</span><span>{this.props.formState.name}, <strong>when was</strong> your brain injury?</span></label>);
 
-        let isValid = this.validateInput();
+        let validityElement = this.hintOrAction(CSSClasses.age);
 
         return (
             <section className="date_of_injury form_layer">
-                <div className="layer_content">
-                    <div className="questions">
-                        {label}
-                        <div className="date_input_section">
-                            <div className="date_input_part date_input_part_dash date_input_month">
-                                <label htmlFor="injury_date_month" className="date_section_name">Month</label>
-                                <input onChange={this.props.handler} onKeyUp={this.handleEnter} defaultValue={this.props.formState.injury_date_month}
-                                       id="injury_date_month" name="injury_date_month" className="raw_date_input date_month" type="text"/>
+                <div className="event_layer doi_event_layer">
+                    <div className="layer_content">
+                        <div className="questions">
+                            {label}
+                            <div className="date_input_section">
+                                <div className="date_input_part date_input_part_dash date_input_month">
+                                    <label htmlFor="injury_date_month" className="date_section_name">Month</label>
+                                    <input onChange={this.handleInput} onKeyUp={this.handleEnter} defaultValue={this.props.formState.injury_date_month}
+                                           id="injury_date_month" name="injury_date_month" className="raw_date_input date_month" type="text"/>
+                                </div>
+                                <div className="date_input_part date_input_part_dash date_input_day">
+                                    <label htmlFor="injury_date_day" className="date_section_name">Day</label>
+                                    <input onChange={this.handleInput} onKeyUp={this.handleEnter} defaultValue={this.props.formState.injury_date_day}
+                                           id="injury_date_day" name="injury_date_day" className="raw_date_input date_day" type="text"/>
+                                </div>
+                                <div className="date_input_part date_input_year">
+                                    <label htmlFor="injury_date_year" className="date_section_name">Year</label>
+                                    <input onChange={this.handleInput} onKeyUp={this.handleEnter} defaultValue={this.props.formState.injury_date_year}
+                                           id="injury_date_year" name="injury_date_year" className="raw_date_input date_year" type="text"/>
+                                </div>
                             </div>
-                            <div className="date_input_part date_input_part_dash date_input_day">
-                                <label htmlFor="injury_date_day" className="date_section_name">Day</label>
-                                <input onChange={this.props.handler} onKeyUp={this.handleEnter} defaultValue={this.props.formState.injury_date_day}
-                                       id="injury_date_day" name="injury_date_day" className="raw_date_input date_day" type="text"/>
-                            </div>
-                            <div className="date_input_part date_input_year">
-                                <label htmlFor="injury_date_year" className="date_section_name">Year</label>
-                                <input onChange={this.props.handler} onKeyUp={this.handleEnter} defaultValue={this.props.formState.injury_date_year}
-                                       id="injury_date_year" name="injury_date_year" className="raw_date_input date_year" type="text"/>
-                            </div>
+                            {validityElement}
                         </div>
-                        <RegularButton isValid={isValid} handleOk={this.handleOk}/>
                     </div>
                 </div>
             </section>

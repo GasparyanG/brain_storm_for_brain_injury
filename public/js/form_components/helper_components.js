@@ -79,6 +79,7 @@ var CSSClasses = {
     better_choice_exists: "better_choice_exists",
     action_box_disabled: "action_box_disabled",
     age_event_layer: "age_event_layer",
+    doi_event_layer: "doi_event_layer", // doi - date of injury
 
     // Form Keys
     name: "name",

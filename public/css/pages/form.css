@@ -42,8 +42,8 @@
     transform: translate(-50%, -50%);
 }
 
-/* EVENT LAYER */
-#form_container .age_event_layer {
+/* ---------------------------------------------- EVENT LAYER ---------------------------------------------- */
+#form_container .event_layer {
     height: inherit;
     width: inherit;
     position: relative;

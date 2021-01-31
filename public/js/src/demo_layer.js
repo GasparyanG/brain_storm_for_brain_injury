@@ -135,7 +135,7 @@ class Age extends React.Component {
 
         return (
             <section className="user_age form_layer">
-                <div className="age_event_layer">
+                <div className="event_layer age_event_layer">
                     <div className="layer_content">
                         <div className="questions">
                             {label}

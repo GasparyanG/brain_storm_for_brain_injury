@@ -6,7 +6,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-import { CSSClasses, RegularButton, SymbolicConstants } from "./helper_components";
+import { CSSClasses, ErrorMessage, RegularButton, SymbolicConstants, DefaultErrorMessages } from "./helper_components";
 
 var DateOfInjury = function (_React$Component) {
     _inherits(DateOfInjury, _React$Component);
@@ -21,6 +21,24 @@ var DateOfInjury = function (_React$Component) {
 
             // Dispatch.
             if (_this.props.formState[_this.prev_layer] == "") _this.props.changeToPrev();else _this.props.changeToNext();
+        };
+
+        _this.numbersOnly = function (e) {
+            var errors = _this.props.prepareErrors(e.target.name, { message: DefaultErrorMessages.numbers_only });
+            _this.props.updateFormAndError(_this.props.formState, errors);
+            var layer = document.querySelector("." + CSSClasses.doi_event_layer);
+            layer.classList.add(CSSClasses.warning_shake);
+
+            setTimeout(function () {
+                layer.classList.remove(CSSClasses.warning_shake);
+            }, SymbolicConstants.shake_timeout);
+        };
+
+        _this.handleInput = function (e) {
+            if (isNaN(e.target.value)) {
+                e.target.value = '';
+                return _this.numbersOnly(e);
+            }
         };
 
         _this.handleEnter = function (e) {
@@ -43,6 +61,13 @@ var DateOfInjury = function (_React$Component) {
 
         _this.validateInput = function () {
             return !(_this.props.formState.injury_date_day == "" || _this.props.formState.injury_date_month == "" || _this.props.formState.injury_date_year == "");
+        };
+
+        _this.hintOrAction = function (field) {
+            var isValid = _this.validateInput();
+            if (_this.props.errors.hasOwnProperty(field)) return React.createElement(ErrorMessage, { errors: _this.props.errors, field: field });
+
+            return React.createElement(RegularButton, { errors: _this.props.errors, isValid: isValid, formState: _this.props.formState, handleOk: _this.handleOk });
         };
 
         _this.prev_layer = CSSClasses.location;
@@ -95,56 +120,60 @@ var DateOfInjury = function (_React$Component) {
                 )
             );
 
-            var isValid = this.validateInput();
+            var validityElement = this.hintOrAction(CSSClasses.age);
 
             return React.createElement(
                 "section",
                 { className: "date_of_injury form_layer" },
                 React.createElement(
                     "div",
-                    { className: "layer_content" },
+                    { className: "event_layer doi_event_layer" },
                     React.createElement(
                         "div",
-                        { className: "questions" },
-                        label,
+                        { className: "layer_content" },
                         React.createElement(
                             "div",
-                            { className: "date_input_section" },
+                            { className: "questions" },
+                            label,
                             React.createElement(
                                 "div",
-                                { className: "date_input_part date_input_part_dash date_input_month" },
+                                { className: "date_input_section" },
                                 React.createElement(
-                                    "label",
-                                    { htmlFor: "injury_date_month", className: "date_section_name" },
-                                    "Month"
+                                    "div",
+                                    { className: "date_input_part date_input_part_dash date_input_month" },
+                                    React.createElement(
+                                        "label",
+                                        { htmlFor: "injury_date_month", className: "date_section_name" },
+                                        "Month"
+                                    ),
+                                    React.createElement("input", { onChange: this.handleInput, onKeyUp: this.handleEnter, defaultValue: this.props.formState.injury_date_month,
+                                        id: "injury_date_month", name: "injury_date_month", className: "raw_date_input date_month", type: "text" })
                                 ),
-                                React.createElement("input", { onChange: this.props.handler, onKeyUp: this.handleEnter, defaultValue: this.props.formState.injury_date_month,
-                                    id: "injury_date_month", name: "injury_date_month", className: "raw_date_input date_month", type: "text" })
+                                React.createElement(
+                                    "div",
+                                    { className: "date_input_part date_input_part_dash date_input_day" },
+                                    React.createElement(
+                                        "label",
+                                        { htmlFor: "injury_date_day", className: "date_section_name" },
+                                        "Day"
+                                    ),
+                                    React.createElement("input", { onChange: this.handleInput, onKeyUp: this.handleEnter, defaultValue: this.props.formState.injury_date_day,
+                                        id: "injury_date_day", name: "injury_date_day", className: "raw_date_input date_day", type: "text" })
+                                ),
+                                React.createElement(
+                                    "div",
+                                    { className: "date_input_part date_input_year" },
+                                    React.createElement(
+                                        "label",
+                                        { htmlFor: "injury_date_year", className: "date_section_name" },
+                                        "Year"
+                                    ),
+                                    React.createElement("input", { onChange: this.handleInput, onKeyUp: this.handleEnter, defaultValue: this.props.formState.injury_date_year,
+                                        id: "injury_date_year", name: "injury_date_year", className: "raw_date_input date_year", type: "text" })
+                                )
                             ),
-                            React.createElement(
-                                "div",
-                                { className: "date_input_part date_input_part_dash date_input_day" },
-                                React.createElement(
-                                    "label",
-                                    { htmlFor: "injury_date_day", className: "date_section_name" },
-                                    "Day"
-                                ),
-                                React.createElement("input", { onChange: this.props.handler, onKeyUp: this.handleEnter, defaultValue: this.props.formState.injury_date_day,
-                                    id: "injury_date_day", name: "injury_date_day", className: "raw_date_input date_day", type: "text" })
-                            ),
-                            React.createElement(
-                                "div",
-                                { className: "date_input_part date_input_year" },
-                                React.createElement(
-                                    "label",
-                                    { htmlFor: "injury_date_year", className: "date_section_name" },
-                                    "Year"
-                                ),
-                                React.createElement("input", { onChange: this.props.handler, onKeyUp: this.handleEnter, defaultValue: this.props.formState.injury_date_year,
-                                    id: "injury_date_year", name: "injury_date_year", className: "raw_date_input date_year", type: "text" })
-                            )
-                        ),
-                        React.createElement(RegularButton, { isValid: isValid, handleOk: this.handleOk })
+                            validityElement
+                        )
                     )
                 )
             );
