@@ -172,34 +172,45 @@ class Form extends React.Component {
     render() {
         return (
             <div className="layers_container">
+                {/*  PROGRESS BAR SECTION */}
                 <ProgressBar formState={this.state.form} isValidDate={this.isValidDate_b}/>
 
+                {/*  NAME SECTION */}
                 <Name svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}
                       changeToNext={this.changeToNext} errors={this.state.errors}
                     prepareErrors={this.prepareErrors_b} prepareForm={this.prepareForm_b} updateFormAndError={this.updateFormAndError_b}/>
 
+                {/*  AGE SECTION */}
                 <Age svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}
                      changeToNext={this.changeToNext} changeToPrev={this.changeToPrev} errors={this.state.errors}
                      prepareErrors={this.prepareErrors_b} prepareForm={this.prepareForm_b} updateFormAndError={this.updateFormAndError_b}/>
 
+                {/*  LOCATION SECTION */}
                 <Location svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}
                       changeToNext={this.changeToNext} changeToPrev={this.changeToPrev} errors={this.state.errors}
                       prepareErrors={this.prepareErrors_b} prepareForm={this.prepareForm_b} updateFormAndError={this.updateFormAndError_b}/>
 
+                {/*  EMAIL ADDRESS SECTION */}
+                {/* TODO */}
+
+                {/*  DATE OF INJURY SECTION */}
                 <DateOfInjury svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}
                       changeToNext={this.changeToNext} changeToPrev={this.changeToPrev} errors={this.state.errors}
                       prepareErrors={this.prepareErrors_b} prepareForm={this.prepareForm_b} updateFormAndError={this.updateFormAndError_b}
                       isValidDate={this.isValidDate_b}/>
 
+                {/*  CAUSE OF INJURY SECTION */}
                 <CauseOfInjury svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}
                     checkboxHandler={this.checkboxHandler} onValueUpdate={this.onValueUpdate}
                    changeToNext={this.changeToNext} changeToPrev={this.changeToPrev} errors={this.state.errors}
                    prepareErrors={this.prepareErrors_b} prepareForm={this.prepareForm_b} updateFormAndError={this.updateFormAndError_b}
                    isValidDate={this.isValidDate_b}/>
 
+                {/*  CONCERNS SECTION */}
                 <Concerns svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}
                     checkboxHandler={this.checkboxHandler} onValueUpdate={this.onValueUpdate}
-                    changeToNext={this.changeToNext} changeToPrev={this.changeToPrev} errors={this.state.errors}/>
+                    changeToNext={this.changeToNext} changeToPrev={this.changeToPrev} errors={this.state.errors}
+                    prepareErrors={this.prepareErrors_b} prepareForm={this.prepareForm_b} updateFormAndError={this.updateFormAndError_b}/>
 
                 <Navigation changeToNext={this.changeToNext} changeToPrev={this.changeToPrev}/>
             </div>

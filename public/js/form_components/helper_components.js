@@ -159,7 +159,11 @@ var DefaultErrorMessages = {
     date_required: "Date is required",
 
     // Injury Reason
-    injury_reason_required: "Injury reason is required"
+    injury_reason_required: "Injury reason is required",
+
+    // Concerns
+    concerns_required: "At least one concern is required",
+    more_than_three: "Can't choose more than three concerns"
 };
 
 export { RegularButton, ErrorMessage, CSSClasses, debounce, SymbolicConstants, DefaultErrorMessages };

@@ -8,7 +8,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-import { CSSClasses } from "./helper_components";
+import { CSSClasses, ErrorMessage } from "./helper_components";
 import { CauseOfInjury } from "./injury_layer";
 
 var Concerns = function (_React$Component) {
@@ -177,6 +177,10 @@ var Concerns = function (_React$Component) {
             );
         };
 
+        _this.hintOrAction = function (field) {
+            if (_this.props.errors.hasOwnProperty(field)) return React.createElement(ErrorMessage, { errors: _this.props.errors, field: field });
+        };
+
         _this.state = {
             concerns: {
                 1: "Headaches", 2: "Pain", 3: "Fatigue",
@@ -283,6 +287,8 @@ var Concerns = function (_React$Component) {
                 )
             );
 
+            var validityElement = this.hintOrAction(CSSClasses.concerns);
+
             return React.createElement(
                 "section",
                 { className: "concerns form_layer" },
@@ -315,7 +321,8 @@ var Concerns = function (_React$Component) {
                             { className: "choices_section" },
                             checkboxItems,
                             otherInput
-                        )
+                        ),
+                        validityElement
                     )
                 )
             );

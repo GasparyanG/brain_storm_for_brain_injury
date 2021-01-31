@@ -1,4 +1,4 @@
-import {CSSClasses} from "./helper_components";
+import {CSSClasses, ErrorMessage} from "./helper_components";
 import {CauseOfInjury} from "./injury_layer";
 
 class Concerns extends React.Component {
@@ -197,6 +197,11 @@ class Concerns extends React.Component {
         );
     }
 
+    hintOrAction = (field) => {
+        if (this.props.errors.hasOwnProperty(field))
+            return <ErrorMessage errors={this.props.errors} field={field}/>
+    }
+
     render () {
         // Prepare Checkbox array
         const checkboxItems = [];
@@ -213,6 +218,8 @@ class Concerns extends React.Component {
                 <span className="question_number">6 {this.props.svgArrow}</span>
                 <span>{this.props.formState.name}, check your <strong>greatest concerns.</strong></span></label>);
 
+        const validityElement = this.hintOrAction(CSSClasses.concerns);
+
         return (
             <section className="concerns form_layer">
                 <div className="layer_content">
@@ -225,6 +232,7 @@ class Concerns extends React.Component {
                             {checkboxItems}
                             {otherInput}
                         </div>
+                        {validityElement}
                     </div>
                 </div>
             </section>
