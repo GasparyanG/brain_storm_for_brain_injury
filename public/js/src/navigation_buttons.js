@@ -1,4 +1,4 @@
-import {CSSClasses, debounce, SymbolicConstants, SubmitButton} from "./helper_components";
+import {CSSClasses, debounce, SymbolicConstants, SubmitButton, isBrowser} from "./helper_components";
 
 class Navigation extends React.Component {
     constructor(props) {

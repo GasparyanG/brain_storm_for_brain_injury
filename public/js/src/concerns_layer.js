@@ -6,11 +6,10 @@ class Concerns extends React.Component {
         super(props);
         this.state = {
             concerns: {
-                1: "Headaches",                 2: "Pain",                                      3: "Fatigue",
-                4: "Balance difficulties",      5: "Dizziness",                                 6: "Vision problems",
-                7: "Hearing problems",          8: "Light or sound sensitivity",                9: "Trouble sleeping",
-                10: "Thinking difficulties",    11: "Speaking or understanding difficulties",   12: "Mood difficulties",
-                13: "Depression or anxiety"
+                1: "Fatigue",                   2: "Headaches",                     3: "Dizziness",
+                4: "Walking difficulties",      5: "Hand or arm difficulties",      6: "Sleeping difficulties",
+                7: "Thinking difficulties",     8: "Mood difficulties",             9: "Speaking difficulties",
+                10: "Depression or anxiety",    11: "Vision problems",              12: "Light or sound sensitivity"
             },
 
             other_input_disabled: false
@@ -18,7 +17,7 @@ class Concerns extends React.Component {
 
         this.letters = {
             1: 'A', 2: 'B', 3: 'C', 4: 'D', 5: 'E', 6: 'F',
-            7: 'G', 8: 'H', 9: 'I', 10: 'J', 11: 'K', 12: 'L', 13: 'M'
+            7: 'G', 8: 'H', 9: 'I', 10: 'J', 11: 'K', 12: 'L'
         }
 
         this.prev_layer = CSSClasses.injury_reason;
@@ -237,8 +236,8 @@ class Concerns extends React.Component {
             solidChoice = CSSClasses.solid_choice_is_made;
 
         return (
-            <div className={"choice_part " + checked} data-value="14" onClick={this.onCheck}>
-                <div className="choice_letter">N</div>
+            <div className={"choice_part " + checked} data-value="13" onClick={this.onCheck}>
+                <div className="choice_letter">M</div>
                 <div className="choice_name">
                     <span className="default_choice_name">Other</span>
                     <input onChange={this.handleInput} onKeyUp={this.handleEnter}
