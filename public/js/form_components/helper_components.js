@@ -90,6 +90,7 @@ var CSSClasses = {
     // Form Keys
     name: "name",
     age: "age",
+    email: "email",
     location: "location",
     concerns: "concerns",
     solid_concern: "solid_concern",
@@ -126,8 +127,8 @@ var SymbolicConstants = {
     // Navigation
     page_translation_percent: 100,
     scroll_delta: -120,
-    max_number_of_pages: 5,
-    max_number_of_pages_human: 6,
+    max_number_of_pages: 6,
+    max_number_of_pages_human: 7,
 
     // Age
     max_age: 150,
@@ -161,6 +162,10 @@ var DefaultErrorMessages = {
 
     // LOCATION
     location_required: "Location is required",
+
+    // Email
+    email_required: "Email is required",
+    email_wrong_format: "Wrong email format",
 
     // DATE AND TIME
     date_wrong: "Date is wrong", // General error.

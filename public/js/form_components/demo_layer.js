@@ -355,4 +355,124 @@ var Location = function (_React$Component3) {
     return Location;
 }(React.Component);
 
-export { Name, Age, Location };
+var Email = function (_React$Component4) {
+    _inherits(Email, _React$Component4);
+
+    function Email(props) {
+        _classCallCheck(this, Email);
+
+        var _this4 = _possibleConstructorReturn(this, (Email.__proto__ || Object.getPrototypeOf(Email)).call(this, props));
+
+        _this4.handleOk = function () {
+            // Validation goes here.
+
+            if (_this4.props.errors.hasOwnProperty(CSSClasses.email)) return;
+
+            if (_this4.props.formState[_this4.prev_layer] == "") _this4.props.changeToPrev();else _this4.props.changeToNext();
+        };
+
+        _this4.handleEnter = function (e) {
+            if (e.keyCode === 13) // Enter is pressed.
+                _this4.handleOk();
+        };
+
+        _this4.handleInput = function (e) {
+            var errors = void 0;
+            var form = _this4.props.prepareForm(e.target.name, e.target.value);
+
+            // Check email format here.
+            if (e.target.value !== "") {
+                errors = _this4.props.prepareErrors(CSSClasses.email, false, true);
+            } else errors = _this4.props.prepareErrors(CSSClasses.email, { message: DefaultErrorMessages.email_required });
+
+            _this4.props.updateFormAndError(form, errors);
+        };
+
+        _this4.validateInput = function () {
+            if (_this4.props.formState.email !== "") return true;
+            return false;
+        };
+
+        _this4.hintOrAction = function (field) {
+            var isValid = _this4.validateInput();
+            if (_this4.props.errors.hasOwnProperty(field)) return React.createElement(ErrorMessage, { errors: _this4.props.errors, field: field });
+
+            return React.createElement(RegularButton, { errors: _this4.props.errors, isValid: isValid, formState: _this4.props.formState, handleOk: _this4.handleOk });
+        };
+
+        _this4.prev_layer = CSSClasses.location;
+        return _this4;
+    }
+
+    _createClass(Email, [{
+        key: "render",
+        value: function render() {
+            var label = React.createElement(
+                "label",
+                { className: "input_label", htmlFor: "email" },
+                React.createElement(
+                    "span",
+                    { className: "question_number" },
+                    "3 ",
+                    this.props.svgArrow
+                ),
+                React.createElement(
+                    "span",
+                    null,
+                    "What is your ",
+                    React.createElement(
+                        "strong",
+                        null,
+                        "email"
+                    ),
+                    " address?"
+                )
+            );
+            if (this.props.formState.name !== "") label = React.createElement(
+                "label",
+                { className: "input_label", htmlFor: "email" },
+                React.createElement(
+                    "span",
+                    { className: "question_number" },
+                    "3 ",
+                    this.props.svgArrow
+                ),
+                React.createElement(
+                    "span",
+                    null,
+                    this.props.formState.name,
+                    ", what is your ",
+                    React.createElement(
+                        "strong",
+                        null,
+                        "email"
+                    ),
+                    " address?"
+                )
+            );
+
+            var validityElement = this.hintOrAction(CSSClasses.email);
+
+            return React.createElement(
+                "section",
+                { className: "user_email form_layer" },
+                React.createElement(
+                    "div",
+                    { className: "layer_content" },
+                    React.createElement(
+                        "div",
+                        { className: "questions" },
+                        label,
+                        React.createElement("input", { onChange: this.handleInput, onKeyUp: this.handleEnter, className: "raw_input",
+                            name: "email", id: "email", type: "text", defaultValue: this.props.formState.email, placeholder: "example@mail.tld" }),
+                        validityElement
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Email;
+}(React.Component);
+
+export { Name, Age, Location, Email };

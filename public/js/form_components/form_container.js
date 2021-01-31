@@ -6,7 +6,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-import { Name, Age, Location } from "./demo_layer";
+import { Name, Age, Location, Email } from "./demo_layer";
 import { DateOfInjury, CauseOfInjury } from "./injury_layer";
 import { Concerns } from "./concerns_layer";
 import { Navigation } from "./navigation_buttons";
@@ -151,6 +151,7 @@ var Form = function (_React$Component) {
                 form: {
                     name: "",
                     age: "",
+                    email: "",
                     location: "",
                     concerns: [],
                     solid_concern: "",
@@ -193,10 +194,12 @@ var Form = function (_React$Component) {
                 React.createElement(Location, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
                     changeToNext: this.changeToNext, changeToPrev: this.changeToPrev, errors: this.state.errors,
                     prepareErrors: this.prepareErrors_b, prepareForm: this.prepareForm_b, updateFormAndError: this.updateFormAndError_b }),
+                React.createElement(Email, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
+                    changeToNext: this.changeToNext, changeToPrev: this.changeToPrev, errors: this.state.errors,
+                    prepareErrors: this.prepareErrors_b, prepareForm: this.prepareForm_b, updateFormAndError: this.updateFormAndError_b }),
                 React.createElement(DateOfInjury, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
                     changeToNext: this.changeToNext, changeToPrev: this.changeToPrev, errors: this.state.errors,
-                    prepareErrors: this.prepareErrors_b, prepareForm: this.prepareForm_b, updateFormAndError: this.updateFormAndError_b,
-                    isValidDate: this.isValidDate_b }),
+                    prepareErrors: this.prepareErrors_b, prepareForm: this.prepareForm_b, updateFormAndError: this.updateFormAndError_b }),
                 React.createElement(CauseOfInjury, { svgArrow: this.svgArrow, handler: this.handler, formState: this.state.form,
                     checkboxHandler: this.checkboxHandler, onValueUpdate: this.onValueUpdate,
                     changeToNext: this.changeToNext, changeToPrev: this.changeToPrev, errors: this.state.errors,

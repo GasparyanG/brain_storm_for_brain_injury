@@ -4,7 +4,7 @@ class DateOfInjury extends React.Component {
     constructor(props) {
         super(props);
 
-        this.prev_layer = CSSClasses.location;
+        this.prev_layer = CSSClasses.email;
     }
 
     handleOk = () => {

@@ -91,7 +91,7 @@ var DateOfInjury = function (_React$Component) {
             return React.createElement(RegularButton, { errors: _this.props.errors, isValid: isValid, formState: _this.props.formState, handleOk: _this.handleOk });
         };
 
-        _this.prev_layer = CSSClasses.location;
+        _this.prev_layer = CSSClasses.email;
         return _this;
     }
 

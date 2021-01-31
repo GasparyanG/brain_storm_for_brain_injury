@@ -1,4 +1,4 @@
-import {Name, Age, Location} from "./demo_layer"
+import {Name, Age, Location, Email} from "./demo_layer"
 import {DateOfInjury, CauseOfInjury} from "./injury_layer";
 import {Concerns} from "./concerns_layer";
 import {Navigation} from "./navigation_buttons";
@@ -45,6 +45,7 @@ class Form extends React.Component {
             form: {
                 name: "",
                 age: "",
+                email: "",
                 location: "",
                 concerns: [],
                 solid_concern: "",
@@ -191,13 +192,16 @@ class Form extends React.Component {
                       prepareErrors={this.prepareErrors_b} prepareForm={this.prepareForm_b} updateFormAndError={this.updateFormAndError_b}/>
 
                 {/*  EMAIL ADDRESS SECTION */}
-                {/* TODO */}
+                {/*  LOCATION SECTION */}
+                <Email svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}
+                  changeToNext={this.changeToNext} changeToPrev={this.changeToPrev} errors={this.state.errors}
+                  prepareErrors={this.prepareErrors_b} prepareForm={this.prepareForm_b} updateFormAndError={this.updateFormAndError_b}/>
+
 
                 {/*  DATE OF INJURY SECTION */}
                 <DateOfInjury svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}
                       changeToNext={this.changeToNext} changeToPrev={this.changeToPrev} errors={this.state.errors}
-                      prepareErrors={this.prepareErrors_b} prepareForm={this.prepareForm_b} updateFormAndError={this.updateFormAndError_b}
-                      isValidDate={this.isValidDate_b}/>
+                      prepareErrors={this.prepareErrors_b} prepareForm={this.prepareForm_b} updateFormAndError={this.updateFormAndError_b}/>
 
                 {/*  CAUSE OF INJURY SECTION */}
                 <CauseOfInjury svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}

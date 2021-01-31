@@ -226,4 +226,79 @@ class Location extends React.Component {
     }
 }
 
-export {Name, Age, Location};
+class Email extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.prev_layer = CSSClasses.location;
+    }
+
+    handleOk = () => {
+        // Validation goes here.
+
+        if (this.props.errors.hasOwnProperty(CSSClasses.email)) return;
+
+        if (this.props.formState[this.prev_layer] == "")
+            this.props.changeToPrev()
+        else
+            this.props.changeToNext();
+    }
+
+    handleEnter = (e) => {
+        if (e.keyCode === 13)       // Enter is pressed.
+            this.handleOk();
+    }
+
+    handleInput = (e) => {
+        let errors;
+        let form = this.props.prepareForm(e.target.name, e.target.value);
+
+        // Check email format here.
+        if (e.target.value !== "") {
+            errors = this.props.prepareErrors(CSSClasses.email, false, true);
+        } else
+            errors = this.props.prepareErrors(CSSClasses.email, {message: DefaultErrorMessages.email_required});
+
+        this.props.updateFormAndError(form, errors);
+    }
+
+    validateInput = () => {
+        if (this.props.formState.email !== "") return true;
+        return false;
+    }
+
+    hintOrAction = (field) => {
+        let isValid = this.validateInput();
+        if (this.props.errors.hasOwnProperty(field))
+            return <ErrorMessage errors={this.props.errors} field={field}/>
+
+        return (
+            <RegularButton errors={this.props.errors} isValid={isValid} formState={this.props.formState} handleOk={this.handleOk}/>
+        );
+    }
+
+    render() {
+        let label = (<label className="input_label" htmlFor="email">
+            <span className="question_number">3 {this.props.svgArrow}</span><span>What is your <strong>email</strong> address?</span></label>);
+        if (this.props.formState.name !== "")
+            label = (<label className="input_label" htmlFor="email">
+                <span className="question_number">3 {this.props.svgArrow}</span><span>{this.props.formState.name}, what is your <strong>email</strong> address?</span></label>);
+
+        let validityElement = this.hintOrAction(CSSClasses.email);
+
+        return (
+            <section className="user_email form_layer">
+                <div className="layer_content">
+                    <div className="questions">
+                        {label}
+                        <input onChange={this.handleInput} onKeyUp={this.handleEnter} className="raw_input"
+                               name="email" id="email" type="text" defaultValue={this.props.formState.email} placeholder="example@mail.tld"/>
+                        {validityElement}
+                    </div>
+                </div>
+            </section>
+        );
+    }
+}
+
+export {Name, Age, Location, Email};
