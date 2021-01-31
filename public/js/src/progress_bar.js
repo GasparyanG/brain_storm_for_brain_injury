@@ -1,4 +1,4 @@
-import {CSSClasses, SymbolicConstants} from "./helper_components";
+import {CSSClasses, validateEmail, SymbolicConstants} from "./helper_components";
 
 class ProgressBar extends React.Component {
     constructor(props) {
@@ -27,6 +27,7 @@ class ProgressBar extends React.Component {
         progress += !this.stringValues(CSSClasses.name) ? 0 : progressStep;
         progress += !this.stringValues(CSSClasses.age) ? 0 : progressStep;
         progress += !this.stringValues(CSSClasses.location) ? 0 : progressStep;
+        progress += !validateEmail(this.props.formState.email) ? 0 : progressStep;
         progress += !this.stringValues(CSSClasses.injury_reason) ? 0 : progressStep;
         progress += !this.props.isValidDate(this.props.formState) ? 0 : progressStep;
         progress += !this.areConcernsValid() ? 0 : progressStep;

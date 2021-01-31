@@ -48,6 +48,11 @@ function ErrorMessage(props) {
     );
 }
 
+function validateEmail(email) {
+    var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}
+
 function debounce(func, wait, immediate) {
     var timeout;
     return function () {
@@ -186,4 +191,4 @@ var DefaultErrorMessages = {
     cant_type: "Can't type: you already made three choices"
 };
 
-export { RegularButton, ErrorMessage, CSSClasses, debounce, SymbolicConstants, DefaultErrorMessages };
+export { RegularButton, ErrorMessage, CSSClasses, validateEmail, debounce, SymbolicConstants, DefaultErrorMessages };

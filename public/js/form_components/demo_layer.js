@@ -6,7 +6,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-import { CSSClasses, SymbolicConstants, ErrorMessage, DefaultErrorMessages, RegularButton } from "./helper_components";
+import { CSSClasses, SymbolicConstants, ErrorMessage, validateEmail, DefaultErrorMessages, RegularButton } from "./helper_components";
 
 var Name = function (_React$Component) {
     _inherits(Name, _React$Component);
@@ -381,7 +381,9 @@ var Email = function (_React$Component4) {
             var form = _this4.props.prepareForm(e.target.name, e.target.value);
 
             // Check email format here.
-            if (e.target.value !== "") {
+            if (e.target.value !== "" && !validateEmail(e.target.value)) {
+                errors = _this4.props.prepareErrors(CSSClasses.email, { message: DefaultErrorMessages.email_wrong_format });
+            } else if (e.target.value !== "") {
                 errors = _this4.props.prepareErrors(CSSClasses.email, false, true);
             } else errors = _this4.props.prepareErrors(CSSClasses.email, { message: DefaultErrorMessages.email_required });
 

@@ -6,7 +6,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-import { CSSClasses, SymbolicConstants } from "./helper_components";
+import { CSSClasses, validateEmail, SymbolicConstants } from "./helper_components";
 
 var ProgressBar = function (_React$Component) {
     _inherits(ProgressBar, _React$Component);
@@ -35,6 +35,7 @@ var ProgressBar = function (_React$Component) {
             progress += !_this.stringValues(CSSClasses.name) ? 0 : progressStep;
             progress += !_this.stringValues(CSSClasses.age) ? 0 : progressStep;
             progress += !_this.stringValues(CSSClasses.location) ? 0 : progressStep;
+            progress += !validateEmail(_this.props.formState.email) ? 0 : progressStep;
             progress += !_this.stringValues(CSSClasses.injury_reason) ? 0 : progressStep;
             progress += !_this.props.isValidDate(_this.props.formState) ? 0 : progressStep;
             progress += !_this.areConcernsValid() ? 0 : progressStep;

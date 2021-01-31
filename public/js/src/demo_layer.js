@@ -1,4 +1,11 @@
-import {CSSClasses, SymbolicConstants, ErrorMessage, DefaultErrorMessages, RegularButton} from "./helper_components";
+import {
+    CSSClasses,
+    SymbolicConstants,
+    ErrorMessage,
+    validateEmail,
+    DefaultErrorMessages,
+    RegularButton
+} from "./helper_components";
 
 class Name extends React.Component {
     constructor(props) {
@@ -254,7 +261,9 @@ class Email extends React.Component {
         let form = this.props.prepareForm(e.target.name, e.target.value);
 
         // Check email format here.
-        if (e.target.value !== "") {
+        if (e.target.value !== "" && !validateEmail(e.target.value)) {
+            errors = this.props.prepareErrors(CSSClasses.email, {message: DefaultErrorMessages.email_wrong_format});
+        }else if (e.target.value !== "") {
             errors = this.props.prepareErrors(CSSClasses.email, false, true);
         } else
             errors = this.props.prepareErrors(CSSClasses.email, {message: DefaultErrorMessages.email_required});

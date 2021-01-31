@@ -192,7 +192,6 @@ class Form extends React.Component {
                       prepareErrors={this.prepareErrors_b} prepareForm={this.prepareForm_b} updateFormAndError={this.updateFormAndError_b}/>
 
                 {/*  EMAIL ADDRESS SECTION */}
-                {/*  LOCATION SECTION */}
                 <Email svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}
                   changeToNext={this.changeToNext} changeToPrev={this.changeToPrev} errors={this.state.errors}
                   prepareErrors={this.prepareErrors_b} prepareForm={this.prepareForm_b} updateFormAndError={this.updateFormAndError_b}/>
@@ -201,7 +200,8 @@ class Form extends React.Component {
                 {/*  DATE OF INJURY SECTION */}
                 <DateOfInjury svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}
                       changeToNext={this.changeToNext} changeToPrev={this.changeToPrev} errors={this.state.errors}
-                      prepareErrors={this.prepareErrors_b} prepareForm={this.prepareForm_b} updateFormAndError={this.updateFormAndError_b}/>
+                      prepareErrors={this.prepareErrors_b} prepareForm={this.prepareForm_b} updateFormAndError={this.updateFormAndError_b}
+                      isValidDate={this.isValidDate_b}/>
 
                 {/*  CAUSE OF INJURY SECTION */}
                 <CauseOfInjury svgArrow={this.svgArrow} handler={this.handler} formState={this.state.form}

@@ -24,7 +24,7 @@
 #form_container .form_progress_amount {
     white-space: nowrap;
     font-style: italic;
-    color: var(--input-color);
+    color: var(--input-color-active);
     width: var(--progress-hint-width);
     align-self: center;
 }
