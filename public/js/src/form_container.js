@@ -249,7 +249,8 @@ class Form extends React.Component {
                     changeToNext={this.changeToNext} changeToPrev={this.changeToPrev} errors={this.state.errors}
                     prepareErrors={this.prepareErrors_b} prepareForm={this.prepareForm_b} updateFormAndError={this.updateFormAndError_b}/>
 
-                <Navigation progressComputation={this.progressComputation_b} changeToNext={this.changeToNext} changeToPrev={this.changeToPrev}/>
+                <Navigation navigation={this.state.navigation} progressComputation={this.progressComputation_b} changeToNext={this.changeToNext}
+                        changeToPrev={this.changeToPrev}/>
             </div>
         );
     }

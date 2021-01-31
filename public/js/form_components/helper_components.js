@@ -99,6 +99,7 @@ var CSSClasses = {
     age_event_layer: "age_event_layer",
     doi_event_layer: "doi_event_layer", // doi - date of injury
     concerns_event_layer: "concerns_event_layer",
+    disabled_nav: "disabled_nav",
 
     // Dates
     date_month: "date_month",

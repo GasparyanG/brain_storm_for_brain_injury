@@ -31,16 +31,22 @@ class Navigation extends React.Component {
 
     render() {
         let submitButton = this.submitButtonState();
+        let lastPage = "";
+        let firstPage = "";
+        if (this.props.navigation.current_position === 0)
+            firstPage = CSSClasses.disabled_nav;
+        if (this.props.navigation.current_position === SymbolicConstants.max_number_of_pages)
+            lastPage = CSSClasses.disabled_nav;
 
         return (
             <div className="navigation_buttons">
                 {submitButton}
-                <div onClick={this.props.changeToPrev} className="nav_btn navigation_to_prev">
+                <div onClick={this.props.changeToPrev} className={"nav_btn navigation_to_prev " + firstPage } >
                     <span className="nav-icon">
                         <svg height="9" width="14"><path d="M11.996 8.121l1.414-1.414L6.705 0 0 6.707l1.414 1.414 5.291-5.293z"></path></svg>
                     </span>
                 </div>
-                <div onClick={this.props.changeToNext} className="nav_btn navigation_to_next">
+                <div onClick={this.props.changeToNext} className={"nav_btn navigation_to_next " + lastPage }>
                     <span className="nav-icon">
                         <svg height="9" width="14"><path d="M12.293.293l1.414 1.414L7 8.414.293 1.707 1.707.293 7 5.586z"></path></svg>
                     </span>

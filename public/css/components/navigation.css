@@ -52,6 +52,15 @@
     border-radius: 0!important;
 }
 
+/* Disabled Navigation Buttons */
+#form_container .disabled_nav {
+    color: var(--input-color)!important;
+}
+
+#form_container .disabled_nav:hover {
+    background-color: var(--button-background-color);
+}
+
 /* --------------------------------------- SUBMIT BUTTON ------------------------------------- */
 #form_container .navigation_buttons .nav_btn.submit_button_disabled {
     transform-origin: bottom left;

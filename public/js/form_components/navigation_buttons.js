@@ -44,6 +44,10 @@ var Navigation = function (_React$Component) {
         key: "render",
         value: function render() {
             var submitButton = this.submitButtonState();
+            var lastPage = "";
+            var firstPage = "";
+            if (this.props.navigation.current_position === 0) firstPage = CSSClasses.disabled_nav;
+            if (this.props.navigation.current_position === SymbolicConstants.max_number_of_pages) lastPage = CSSClasses.disabled_nav;
 
             return React.createElement(
                 "div",
@@ -51,7 +55,7 @@ var Navigation = function (_React$Component) {
                 submitButton,
                 React.createElement(
                     "div",
-                    { onClick: this.props.changeToPrev, className: "nav_btn navigation_to_prev" },
+                    { onClick: this.props.changeToPrev, className: "nav_btn navigation_to_prev " + firstPage },
                     React.createElement(
                         "span",
                         { className: "nav-icon" },
@@ -64,7 +68,7 @@ var Navigation = function (_React$Component) {
                 ),
                 React.createElement(
                     "div",
-                    { onClick: this.props.changeToNext, className: "nav_btn navigation_to_next" },
+                    { onClick: this.props.changeToNext, className: "nav_btn navigation_to_next " + lastPage },
                     React.createElement(
                         "span",
                         { className: "nav-icon" },

@@ -242,7 +242,8 @@ var Form = function (_React$Component) {
                     checkboxHandler: this.checkboxHandler, onValueUpdate: this.onValueUpdate,
                     changeToNext: this.changeToNext, changeToPrev: this.changeToPrev, errors: this.state.errors,
                     prepareErrors: this.prepareErrors_b, prepareForm: this.prepareForm_b, updateFormAndError: this.updateFormAndError_b }),
-                React.createElement(Navigation, { progressComputation: this.progressComputation_b, changeToNext: this.changeToNext, changeToPrev: this.changeToPrev })
+                React.createElement(Navigation, { navigation: this.state.navigation, progressComputation: this.progressComputation_b, changeToNext: this.changeToNext,
+                    changeToPrev: this.changeToPrev })
             );
         }
     }]);
