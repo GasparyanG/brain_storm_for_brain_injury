@@ -3,6 +3,7 @@
 namespace App\Services\Validation\Form;
 
 use App\Database\Connection;
+use App\Database\Entities\Concern;
 use App\Database\Entities\InjuryInformation;
 use App\Database\Entities\InjuryReason;
 use App\Database\Entities\User;
@@ -44,29 +45,40 @@ class EntityBulkBuilder extends AbstractValidator
         if ($this->isInvalidArgument()) return self::defaultErrorResponse();
         $this->extractFields();
 
-        // User
+        // Validate The User
         $user = $this->validateUser();
         if ($this->errorStatus()) {
             $this->prepareError();
             return $this->prepareInvalidResponse();
         }
 
-        // Injury Reason
+        // Validate The Injury Reason
         $injuryReason = $this->validateInjuryReason();
         if ($this->errorStatus()) {
             $this->prepareError();
             return $this->prepareInvalidResponse();
         }
 
-        // Validate Injury Information
+        // Validate The Injury Information
         $injuryInformation = $this->validateInjuryInformation($user, $injuryReason);
-        $injuryReason = $this->validateInjuryReason();
         if ($this->errorStatus()) {
             $this->prepareError();
             return $this->prepareInvalidResponse();
         }
 
-        
+        // Validate Concerns
+        $concern = $this->validateConcern();
+        if ($this->errorStatus()) {
+            $this->prepareError();
+            return $this->prepareInvalidResponse();
+        }
+
+        if ($concern) {     // Concern can be a null.
+            $user->addUserConcern($concern);
+        }
+
+        // Validate Users Concerns
+        $this->validateUsersConcerns($user, $concern ? true: false);
     }
 
     private function validateUser(): User
@@ -84,6 +96,8 @@ class EntityBulkBuilder extends AbstractValidator
 
         if ($this->isValidAge($this->form))
             $user->setAge($this->form[FieldsEnum::AGE]);
+
+        if (count($this->customErrors) > 0) return $user;
 
         // Persistence
         try {
@@ -114,6 +128,8 @@ class EntityBulkBuilder extends AbstractValidator
         if ($this->stringIsNotEmpty($this->form, FieldsEnum::INJURY_REASON))
             $injuryReason->setName($this->form[FieldsEnum::INJURY_REASON]);
 
+        if (count($this->customErrors) > 0) return $injuryReason;
+
         // Persistence
         try {
             $this->em->persist($injuryReason);
@@ -138,6 +154,8 @@ class EntityBulkBuilder extends AbstractValidator
         $injuryInformation->setInjuryReason($injuryReason);
         $injuryInformation->setUser($user);
 
+        if (count($this->customErrors) > 0) return $injuryInformation;
+
         // Persistence
         try {
             $this->em->persist($injuryInformation);
@@ -147,6 +165,36 @@ class EntityBulkBuilder extends AbstractValidator
         }
 
         return $injuryInformation;
+    }
+
+    private function validateConcern(): ?Concern
+    {
+        if (!isset($this->form[FieldsEnum::CONCERN_OTHER])) return null;        // Don't exists.
+        if (strlen($this->form[FieldsEnum::CONCERN_OTHER]) == 0) return null;   // Is empty.
+        if (is_numeric($this->form[FieldsEnum::CONCERN_OTHER])) return null;    // Is numeric.
+
+        $concern = $this->em->getRepository(Concern::class)
+            ->findOneBy([FieldsEnum::NAME => $this->form[FieldsEnum::CONCERN_OTHER]]);
+
+        if ($concern) return $concern;                                           // Already exists in database.
+
+        // Create new record.
+        $concern = new Concern();
+        $concern->setName($this->form[FieldsEnum::CONCERN_OTHER]);
+
+        try {
+            $this->em->persist($concern);
+            $this->em->flush();
+        } catch (\ErrorException | ORMException $e) {
+            $this->persistenceError = true;
+        }
+
+        return $concern;
+    }
+
+    private function validateUsersConcerns(User $user, bool $concernOther): void
+    {
+        // TODO: Implement validateUsersConcerns.
     }
 
     private function isInjuryReasonInRange(): bool
