@@ -119,18 +119,19 @@ class EntityBulkBuilder extends AbstractValidator
         return $user;
     }
 
-    private function validateInjuryReason(): InjuryReason
+    private function validateInjuryReason(): ?InjuryReason
     {
         // Don't create new record.
         if ($this->isInjuryReasonInRange())
             return $this->em->getRepository(InjuryReason::class)->find($this->form[FieldsEnum::INJURY_REASON]);
-
-        if (isset($this->form[FieldsEnum::INJURY_REASON])) {
-            $injuryReason = $this->em->getRepository(InjuryReason::class)
-                ->findOneBy([FieldsEnum::NAME => $this->form[FieldsEnum::INJURY_REASON]]);
-            if ($injuryReason) return $injuryReason;
+        else {
+            $this->addError(ErrorEnum::INJURY_REASON_REQUIRED, FieldsEnum::INJURY_REASON);
+            return null;
         }
 
+        $injuryReason = $this->em->getRepository(InjuryReason::class)
+            ->findOneBy([FieldsEnum::NAME => $this->form[FieldsEnum::INJURY_REASON]]);
+        if ($injuryReason) return $injuryReason;
 
         // Create new record.
         $injuryReason = new InjuryReason();
@@ -222,6 +223,12 @@ class EntityBulkBuilder extends AbstractValidator
 
         if (count($concerns) == 0 && !$concernOther)
             $this->addError(ErrorEnum::isRequiredError(FieldsEnum::CONCERNS), FieldsEnum::CONCERNS);
+
+        // Update concerns.
+        $newConcerns = [];
+        foreach ($concerns as $c)
+            $newConcerns[] = $c;
+        $this->form[FieldsEnum::CONCERNS] = $newConcerns;
     }
 
     private function createAndPersistUserConcern(User $user, Concern $concern): void
@@ -267,8 +274,8 @@ class EntityBulkBuilder extends AbstractValidator
         return (
             isset($this->form[FieldsEnum::INJURY_REASON]) &&                                    // Is Set
             is_numeric($this->form[FieldsEnum::INJURY_REASON]) &&                               // Is Numeric
-        ($this->form[FieldsEnum::INJURY_REASON] >= SymbolicConstantsEnum::MIN_INJURY_REASON)    // In Range
-        &&($this->form[FieldsEnum::INJURY_REASON] <= SymbolicConstantsEnum::MAX_NUMBER_OF_PAGES)
+            (($this->form[FieldsEnum::INJURY_REASON] >= SymbolicConstantsEnum::MIN_INJURY_REASON)    // In Range
+        && ($this->form[FieldsEnum::INJURY_REASON] <= SymbolicConstantsEnum::MAX_INJURY_REASON))
         );
     }
 

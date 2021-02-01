@@ -23,9 +23,8 @@ abstract class AbstractValidator
 
     protected function addError(string $message, string $name): void
     {
-        $this->customErrors[] = [
-            FieldsEnum::MESSAGE => [$name => $message]
-        ];
+        $this->customErrors[$name] =
+            [FieldsEnum::MESSAGE => $message];
     }
 
     private function numbersOnly(array $assocArray, string $keyToAssoc): bool
@@ -81,9 +80,9 @@ abstract class AbstractValidator
 
     protected function isValidDateMDY(array $assocArray, string &$date): bool
     {
-        if (!isset($assocArray[FieldsEnum::INJURY_DATE_DAY])
-            || !isset($assocArray[FieldsEnum::INJURY_DATE_MONTH])
-            || !isset($assocArray[FieldsEnum::INJURY_DATE_YEAR])) {
+        if (!$this->isValidNumericValue($assocArray, FieldsEnum::INJURY_DATE_DAY)
+            || !$this->isValidNumericValue($assocArray, FieldsEnum::INJURY_DATE_MONTH)
+            || !$this->isValidNumericValue($assocArray, FieldsEnum::INJURY_DATE_YEAR)) {
             $this->addError(ErrorEnum::FILL_DATE_ENTIRELY, FieldsEnum::DATE);
             return false;
         }
@@ -98,6 +97,12 @@ abstract class AbstractValidator
         }
 
         $date = strtotime("$day-$month-$year");
+        return true;
+    }
+
+    private function isValidNumericValue(array $assocArray, string $field): bool
+    {
+        if (!isset($assocArray[$field]) || !is_numeric($assocArray[$field])) return false;
         return true;
     }
 
