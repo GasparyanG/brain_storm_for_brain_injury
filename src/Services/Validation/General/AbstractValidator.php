@@ -76,8 +76,55 @@ abstract class AbstractValidator
         return true;
     }
 
-    protected function isValidDateMDY(array $assocArray): bool
+    protected function isValidDateMDY(array $assocArray, string &$date): bool
     {
-        // TODO: implement isValidDateMDY.
+        if (!isset($assocArray[FieldsEnum::INJURY_DATE_DAY])
+            || !isset($assocArray[FieldsEnum::INJURY_DATE_MONTH])
+            || !isset($assocArray[FieldsEnum::INJURY_DATE_YEAR])) {
+            $this->addError(ErrorEnum::FILL_DATE_ENTIRELY, FieldsEnum::DATE);
+            return false;
+        }
+
+        $day = $assocArray[FieldsEnum::INJURY_DATE_DAY];
+        $month = $assocArray[FieldsEnum::INJURY_DATE_MONTH];
+        $year = $assocArray[FieldsEnum::INJURY_DATE_YEAR];
+
+        if (!$this->isValidDay($day) || !$this->isValidMonth($month) || !$this->isValidYear($year)) {
+            $this->addError(ErrorEnum::DATE_WRONG, FieldsEnum::DATE);
+            return false;
+        }
+
+        $date = strtotime("$day-$month-$year");
+        return true;
+    }
+
+    private function isValidDay(int $day): bool
+    {
+        if ($day < SymbolicConstantsEnum::DAY_MIN || $day > SymbolicConstantsEnum::DAY_MAX) {
+            $this->addError(ErrorEnum::DATE_WRONG, FieldsEnum::DATE);
+            return false;
+        }
+
+        return true;
+    }
+
+    private function isValidMonth(int $month): bool
+    {
+        if ($month < SymbolicConstantsEnum::MONTH_MIN || $month > SymbolicConstantsEnum::MONTH_MAX) {
+            $this->addError(ErrorEnum::DATE_WRONG, FieldsEnum::DATE);
+            return false;
+        }
+
+        return true;
+    }
+
+    private function isValidYear(int $year): bool
+    {
+        if ($year < SymbolicConstantsEnum::YEAR_MIN || $year > SymbolicConstantsEnum::YEAR_MAX) {
+            $this->addError(ErrorEnum::DATE_WRONG, FieldsEnum::DATE);
+            return false;
+        }
+
+        return true;
     }
 }

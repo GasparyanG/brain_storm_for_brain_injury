@@ -58,9 +58,15 @@ class EntityBulkBuilder extends AbstractValidator
             return $this->prepareInvalidResponse();
         }
 
-
         // Validate Injury Information
         $injuryInformation = $this->validateInjuryInformation($user, $injuryReason);
+        $injuryReason = $this->validateInjuryReason();
+        if ($this->errorStatus()) {
+            $this->prepareError();
+            return $this->prepareInvalidResponse();
+        }
+
+        
     }
 
     private function validateUser(): User
