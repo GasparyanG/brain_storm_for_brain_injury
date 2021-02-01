@@ -94,12 +94,15 @@ class Form extends React.Component {
 
     // Handle submit button press.
     submit = () => {
+        self = this;
         $.ajax({
             url: RequestConfigurations.form_submit_url,
             method: RequestConfigurations.post,
             data: JSON.stringify(this.state),
             success: function(data) {
-                console.log(JSON.parse(data));
+                data = JSON.parse(data);
+                console.log(data.data);
+                self.setState(data.data);
             },
             error: function(e) {
                 console.error(e);

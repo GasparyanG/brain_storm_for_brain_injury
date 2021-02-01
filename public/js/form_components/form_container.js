@@ -71,12 +71,15 @@ var Form = function (_React$Component) {
         };
 
         _this.submit = function () {
+            self = _this;
             $.ajax({
                 url: RequestConfigurations.form_submit_url,
                 method: RequestConfigurations.post,
                 data: JSON.stringify(_this.state),
                 success: function success(data) {
-                    console.log(JSON.parse(data));
+                    data = JSON.parse(data);
+                    console.log(data.data);
+                    self.setState(data.data);
                 },
                 error: function error(e) {
                     console.error(e);
