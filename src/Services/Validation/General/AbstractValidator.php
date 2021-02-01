@@ -7,9 +7,10 @@ namespace App\Services\Validation\General;
 abstract class AbstractValidator
 {
     protected array $customErrors = [];
+    protected bool $persistenceError = false;   // Initially there is no persistence error.
 
     // ----------------------------------- GENERAL ------------------------------------
-    private function isFieldExists(array $assocArray, string $keyToAssoc): bool
+    protected function isFieldExists(array $assocArray, string $keyToAssoc): bool
     {
         // Field doesn't exists.
         if (!isset($assocArray[$keyToAssoc])) {

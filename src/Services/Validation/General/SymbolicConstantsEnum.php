@@ -14,4 +14,8 @@ class SymbolicConstantsEnum
     // Age Range
     const MIN_AGE = 0;
     const MAX_AGE = 150;
+
+    // Injury Reason Range
+    const MIN_INJURY_REASON = 1;
+    const MAX_INJURY_REASON = 5;
 }

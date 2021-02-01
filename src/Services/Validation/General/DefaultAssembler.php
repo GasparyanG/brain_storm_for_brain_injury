@@ -6,7 +6,6 @@ namespace App\Services\Validation\General;
 
 class DefaultAssembler
 {
-
     public static function navigation(): array
     {
         $navigationArray = [];
