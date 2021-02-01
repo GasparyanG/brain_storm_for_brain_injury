@@ -19,7 +19,7 @@ class InjuryInformation
 
     /**
      * @var null|InjuryReason
-     * @ManyToOne(targetEntity="InjuryReason", inversedBy="injuryInformations")
+     * @ManyToOne(targetEntity="InjuryReason", inversedBy="injuryInformation")
      * @JoinColumn(name="injury_reason_id", referencedColumnName="id")
      */
     private $injuryReason;
@@ -27,7 +27,7 @@ class InjuryInformation
     /**
      * @var User
      * @OneToOne(targetEntity="User", inversedBy="injuryInformation")
-     * @JoinColumn(name="user_id", referenceColumnName="id")
+     * @JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
 

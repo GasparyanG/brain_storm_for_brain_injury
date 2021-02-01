@@ -2,6 +2,8 @@
 
 namespace App\Database\Entities;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * @Entity(repositoryClass="App\Database\Repositories\UserRepository")
  * @Table(name="users")
@@ -36,9 +38,20 @@ class User
 
     /**
      * @var string
-     * @Column(type="string", name="locaiton")
+     * @Column(type="string", name="location")
      */
     private $location;
+
+    /**
+     * @OneToMany(targetEntity="InjuryInformation", mappedBy="user")
+     * @JoinColumn(name="user_id")
+     */
+    private $injuryInformation;
+
+    public function __construct()
+    {
+        $this->injuryInformation = new ArrayCollection();
+    }
 
     /**
      * @return int
@@ -118,5 +131,24 @@ class User
     public function setLocation(string $location): void
     {
         $this->location = $location;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInjuryInformation()
+    {
+        return $this->injuryInformation;
+    }
+
+    /**
+     * @param InjuryInformation $injuryInformation
+     */
+    public function addInjuryInformation(InjuryInformation $injuryInformation): void
+    {
+        if (!$this->injuryInformation->contains($injuryInformation)) {
+            $this->injuryInformation[] = $injuryInformation;
+            $injuryInformation->setUser($this);
+        }
     }
 }

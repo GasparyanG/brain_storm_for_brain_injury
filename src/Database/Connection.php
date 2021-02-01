@@ -27,6 +27,7 @@ class Connection
         );
 
         $config = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode);
+        $config->setProxyDir(__DIR__ . "/Proxies");
 
         // More than one database connection is like killing a bunch of people.
         if (!self::$entityManager) {

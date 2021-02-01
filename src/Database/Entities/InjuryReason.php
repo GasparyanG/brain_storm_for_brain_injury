@@ -2,6 +2,8 @@
 
 namespace App\Database\Entities;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * @Entity(repositoryClass="App\Database\Repositories\InjuryReasonRepository")
  * @Table(name="injury_reasons")
@@ -21,6 +23,17 @@ class InjuryReason
      * @Column(type="string", name="name")
      */
     private $name;
+
+    /**
+     * @OneToMany(targetEntity="InjuryInformation", mappedBy="injuryReason")
+     * @JoinColumn(name="injury_reason_id")
+     */
+    private $injuryInformation;
+
+    public function __construct()
+    {
+        $this->injuryInformation = new ArrayCollection();
+    }
 
     /**
      * @return int
@@ -52,5 +65,24 @@ class InjuryReason
     public function setName(string $name): void
     {
         $this->name = $name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInjuryInformation()
+    {
+        return $this->injuryInformation;
+    }
+
+    /**
+     * @param InjuryInformation $injuryInformation
+     */
+    public function addInjuryInformation(InjuryInformation $injuryInformation): void
+    {
+        if (!$this->injuryInformation->contains($injuryInformation)) {
+            $this->injuryInformation[] = $injuryInformation;
+            $injuryInformation->setInjuryReason($this);
+        }
     }
 }

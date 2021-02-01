@@ -3,3 +3,5 @@
 /node_modules/
 /public/images
 .idea
+/src/Database/Proxies
+/src/Database/tests
