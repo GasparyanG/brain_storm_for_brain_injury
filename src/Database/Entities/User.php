@@ -48,9 +48,16 @@ class User
      */
     private $injuryInformation;
 
+    /**
+     * @OneToMany(targetEntity="UserConcern", mappedBy="user")
+     * @JoinColumn(name="user_id")
+     */
+    private $userConcerns;
+
     public function __construct()
     {
         $this->injuryInformation = new ArrayCollection();
+        $this->userConcerns = new ArrayCollection();
     }
 
     /**
@@ -149,6 +156,25 @@ class User
         if (!$this->injuryInformation->contains($injuryInformation)) {
             $this->injuryInformation[] = $injuryInformation;
             $injuryInformation->setUser($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUserConcerns()
+    {
+        return $this->userConcerns;
+    }
+
+    /**
+     * @param UserConcern $userConcern
+     */
+    public function addUserConcern(InjuryInformation $userConcern): void
+    {
+        if (!$this->userConcerns->contains($userConcern)) {
+            $this->userConcerns[] = $userConcern;
+            $userConcern->setUser($this);
         }
     }
 }

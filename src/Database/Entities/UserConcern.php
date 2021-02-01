@@ -33,7 +33,7 @@ class UserConcern
 
     /**
      * @var bool
-     * @Column(type="bool", name="strong")
+     * @Column(type="boolean", name="strong")
      */
     private $strong;
 
