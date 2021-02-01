@@ -14,6 +14,7 @@ class FieldsEnum
     const CONCERNS = "concerns";
     const SOLID_CONCERN = "solid_concern";
     const CONCERN_OTHER = "concern_other";
+    const DATE = "date";                                // Date's general name for errors.
     const INJURY_DATE_DAY = "injury_date_day";
     const INJURY_DATE_MONTH = "injury_date_month";
     const INJURY_DATE_YEAR = "injury_date_year";
