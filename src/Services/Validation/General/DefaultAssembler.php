@@ -52,7 +52,7 @@ class DefaultAssembler
         $errors[FieldsEnum::LOCATION] = [
             FieldsEnum::MESSAGE => ErrorEnum::LOCATION_REQUIRED
         ];
-        $errors[FieldsEnum::SOLID_CONCERN] = [
+        $errors[FieldsEnum::CONCERNS] = [
             FieldsEnum::MESSAGE => ErrorEnum::CONCERNS_REQUIRED
         ];
         $errors[FieldsEnum::DATE] = [

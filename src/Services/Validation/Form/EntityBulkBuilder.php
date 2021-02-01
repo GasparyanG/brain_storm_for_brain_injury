@@ -2,6 +2,7 @@
 
 namespace App\Services\Validation\Form;
 
+use App\Database\Entities\User;
 use App\Services\Validation\General\AbstractValidator;
 use App\Services\Validation\General\DefaultAssembler;
 use App\Services\Validation\General\DefaultErrorGenerator;
@@ -30,7 +31,19 @@ class EntityBulkBuilder extends AbstractValidator
         if ($this->isInvalidArgument()) return self::defaultErrorResponse();
         $this->extractFields();
 
-        return self::defaultErrorResponse();    // TODO: validate properly
+        // User
+        $user = new User();
+        if ($this->stringIsNotEmpty($this->form, FieldsEnum::NAME))
+            $user->setName($this->form[FieldsEnum::NAME]);
+
+        if ($this->stringIsNotEmpty($this->form, FieldsEnum::LOCATION))
+            $user->setLocation($this->form[FieldsEnum::LOCATION]);
+
+        if ($this->isValidEmailAddress($this->form))
+            $user->setEmailAddress($this->form[FieldsEnum::EMAIL]);
+
+        if ($this->isValidAge($this->form))
+            $user->setAge($this->form[FieldsEnum::AGE]);
     }
 
     private function extractFields(): void
