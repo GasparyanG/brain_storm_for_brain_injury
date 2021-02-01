@@ -19,10 +19,12 @@ class Form
     {
         // -[x] Accept data.
         // -[x] Design database architecture and create one.
-        // -[] Create Entities.
+        // -[x] Create Entities.
         // -[] Validate.
         //      -[] Email validation (hint: send verification code to email address).
         // -[] Persist.
+
+//        $resultOfValidation =
 
         return Response::create(
             $req->getContent()

@@ -208,9 +208,9 @@ var SymbolicConstants = {
     min_amount_of_choices: 1,
     max_amount_with_other_choice: 2,
     min_length_of_other_concern: 1
-};
 
-var DefaultErrorMessages = {
+    // ALWAYS MAKE SURE THIS ERRORS ARE SYNCHRONIZED WITH General/ErrorEnum.php ERRORS
+};var DefaultErrorMessages = {
     // GENERAL
     numbers_only: "Numbers only",
 

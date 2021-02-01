@@ -192,6 +192,8 @@ const SymbolicConstants = {
     min_length_of_other_concern: 1
 }
 
+
+// ALWAYS MAKE SURE THIS ERRORS ARE SYNCHRONIZED WITH General/ErrorEnum.php ERRORS
 const DefaultErrorMessages = {
     // GENERAL
     numbers_only: "Numbers only",
