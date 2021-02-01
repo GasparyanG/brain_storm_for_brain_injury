@@ -2,11 +2,13 @@
 
 namespace App\Services\Validation\Form;
 
+use App\Services\Validation\General\AbstractValidator;
+use App\Services\Validation\General\DefaultAssembler;
 use App\Services\Validation\General\DefaultErrorGenerator;
 use App\Services\Validation\General\FieldsEnum;
 use App\Services\Validation\General\HTTPCommunicationFieldsEnum;
 
-class EntityBulkBuilder
+class EntityBulkBuilder extends AbstractValidator
 {
     private array $assocArrayForm;
 
@@ -26,6 +28,27 @@ class EntityBulkBuilder
     public function validate(): array
     {
         if ($this->isInvalidArgument()) return self::defaultErrorResponse();
+        $this->extractFields();
+
+        return self::defaultErrorResponse();    // TODO: validate properly
+    }
+
+    private function extractFields(): void
+    {
+        // Navigation
+        $this->navigation =
+            isset($this->assocArrayForm[FieldsEnum::NAVIGATION])
+            ? $this->assocArrayForm[FieldsEnum::NAVIGATION]
+            : DefaultAssembler::navigation();
+
+        // Errors
+        $this->errors =
+            isset($this->assocArrayForm[FieldsEnum::ERRORS])
+            ? $this->assocArrayForm[FieldsEnum::ERRORS]
+            : DefaultAssembler::errors();
+
+        // Form
+        $this->form = $this->assocArrayForm[FieldsEnum::FORM];
     }
 
     private function isInvalidArgument(): bool
