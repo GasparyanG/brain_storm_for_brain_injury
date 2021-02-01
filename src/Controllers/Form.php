@@ -17,11 +17,12 @@ class Form
 
     public function submit(Request $req): Response
     {
-        // -[] Accept data
-        // -[] Create Entity
-        // -[] Validate
+        // -[x] Accept data.
+        // -[x] Design database architecture and create one.
+        // -[] Create Entities.
+        // -[] Validate.
         //      -[] Email validation (hint: send verification code to email address).
-        // -[] Persist
+        // -[] Persist.
 
         return Response::create(
             $req->getContent()
