@@ -54,7 +54,10 @@ abstract class AbstractValidator
     protected function isValidEmailAddress(array $assocArray): bool
     {
         // Field doesn't exists.
-        if (!$this->isFieldExists($assocArray, FieldsEnum::EMAIL)) return false;
+        if (!$this->isFieldExists($assocArray, FieldsEnum::EMAIL)) {
+            $this->addError(ErrorEnum::isRequiredError(FieldsEnum::EMAIL), FieldsEnum::EMAIL);
+            return false;
+        }
 
         // TODO: Implement email address validation.
         return true;

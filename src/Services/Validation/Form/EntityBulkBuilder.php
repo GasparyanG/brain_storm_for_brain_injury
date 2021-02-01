@@ -81,6 +81,13 @@ class EntityBulkBuilder extends AbstractValidator
 
         // Validate Users Concerns
         $this->validateUsersConcerns($user, $concern ? true: false);
+
+        if ($this->errorStatus()) {
+            $this->prepareError();
+            return $this->prepareInvalidResponse();
+        }
+
+        return successResponse();
     }
 
     private function validateUser(): User
@@ -217,7 +224,7 @@ class EntityBulkBuilder extends AbstractValidator
             $this->addError(ErrorEnum::isRequiredError(FieldsEnum::CONCERNS), FieldsEnum::CONCERNS);
     }
 
-    private function createCreateAndPersistUserConcern(User $user, Concern $concern): bool
+    private function createCreateAndPersistUserConcern(User $user, Concern $concern): void
     {
         $userConcern = new UserConcern();
         $userConcern->setUser($user);
@@ -229,8 +236,12 @@ class EntityBulkBuilder extends AbstractValidator
         else
             $userConcern->setStrong(false);
 
-        $this->em->persist($userConcern);
-        $this->em->flush();
+        try {
+            $this->em->persist($userConcern);
+            $this->em->flush();
+        } catch (\ErrorException | ORMException $e) {
+            $this->persistenceError = true;
+        }
     }
 
     private function concernIsValidNumeric(int $concern): bool
@@ -303,7 +314,24 @@ class EntityBulkBuilder extends AbstractValidator
         $regularAssembler->setNavigation($this->navigation);
         $regularAssembler->setForm($this->form);
 
-        return $regularAssembler->getPartsContainer();
+        return [
+            HTTPCommunicationFieldsEnum::SUCCESS => false,
+            HTTPCommunicationFieldsEnum::DATA => $regularAssembler->getPartsContainer()
+        ];
+    }
+
+    private function successResponse(): array
+    {
+        $regularAssembler = new RegularAssembler();
+
+        // Assemble
+        $regularAssembler->setErrors($this->customErrors);
+        $regularAssembler->setForm($this->form);
+
+        return [
+            HTTPCommunicationFieldsEnum::SUCCESS => true,
+            HTTPCommunicationFieldsEnum::DATA => $regularAssembler->getPartsContainer()
+        ];
     }
 
     private function errorStatus(): bool
