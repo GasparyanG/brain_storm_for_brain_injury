@@ -17,6 +17,14 @@ class Form
 
     public function submit(Request $req): Response
     {
+        // -[] Accept data
+        // -[] Create Entity
+        // -[] Validate
+        //      -[] Email validation (hint: send verification code to email address).
+        // -[] Persist
+
+
+
         return Response::create(
             $req->getContent()
         );

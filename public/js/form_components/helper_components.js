@@ -6,7 +6,7 @@ function SubmitButton(props) {
 
     return React.createElement(
         "div",
-        { className: "nav_btn " + disabled },
+        { onClick: props.submit, className: "nav_btn " + disabled },
         "submit \u2713"
     );
 }
@@ -31,6 +31,27 @@ function RegularButton(props) {
                 "span",
                 { className: "prompt_part pp_enter" },
                 "Enter \u21B5"
+            )
+        )
+    );
+}
+
+function ErrorMessage(props) {
+    return React.createElement(
+        "div",
+        { className: "error_message_component" },
+        React.createElement(
+            "div",
+            { className: "error_message_parts" },
+            React.createElement(
+                "span",
+                { className: "error_message_icon" },
+                "\u26A0"
+            ),
+            React.createElement(
+                "span",
+                { className: "error_message" },
+                props.errors[props.field].message
             )
         )
     );
@@ -75,27 +96,6 @@ function isBrowser(browser_name) {
     };
 
     return objectOfBrowsers[browser_name];
-}
-
-function ErrorMessage(props) {
-    return React.createElement(
-        "div",
-        { className: "error_message_component" },
-        React.createElement(
-            "div",
-            { className: "error_message_parts" },
-            React.createElement(
-                "span",
-                { className: "error_message_icon" },
-                "\u26A0"
-            ),
-            React.createElement(
-                "span",
-                { className: "error_message" },
-                props.errors[props.field].message
-            )
-        )
-    );
 }
 
 function validateEmail(email) {

@@ -5,7 +5,7 @@ function SubmitButton(props) {
     }
 
     return (
-        <div className={"nav_btn " + disabled}>
+        <div onClick={props.submit} className={"nav_btn " + disabled}>
             {`submit ✓`}
         </div>
     );
@@ -23,6 +23,21 @@ function RegularButton(props) {
                 <span className="prompt_part pp_press">press</span>
                 <span className="prompt_part pp_enter">Enter ↵</span>
             </span>
+        </div>
+    );
+}
+
+function ErrorMessage(props) {
+    return (
+        <div className="error_message_component">
+            <div className="error_message_parts">
+                <span className="error_message_icon">
+                    &#x26A0;
+                </span>
+                <span className="error_message">
+                    {props.errors[props.field].message}
+                </span>
+            </div>
         </div>
     );
 }
@@ -64,21 +79,6 @@ function isBrowser(browser_name) {
     };
 
     return objectOfBrowsers[browser_name];
-}
-
-function ErrorMessage(props) {
-    return (
-        <div className="error_message_component">
-            <div className="error_message_parts">
-                <span className="error_message_icon">
-                    &#x26A0;
-                </span>
-                    <span className="error_message">
-                    {props.errors[props.field].message}
-                </span>
-            </div>
-        </div>
-    );
 }
 
 function validateEmail(email) {

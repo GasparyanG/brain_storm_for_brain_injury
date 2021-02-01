@@ -70,6 +70,10 @@ var Form = function (_React$Component) {
             return defaultState;
         };
 
+        _this.submit = function () {
+            console.log("submit is called");
+        };
+
         _this.onChange = function (field, value) {
             var items = Object.assign({}, _this.state);
             var form = Object.assign({}, _this.state.form);
@@ -214,6 +218,9 @@ var Form = function (_React$Component) {
         _this.isValidDate_b = _this.isValidDate.bind(_this);
         _this.progressComputation_b = _this.progressComputation.bind(_this);
 
+        // Send request to server via Ajax.
+        _this.submit_b = _this.submit.bind(_this);
+
         // Navigation
         _this.changeToNext = _this.changeToNextLayer.bind(_this);
         _this.changeToPrev = _this.changeToPrevLayer.bind(_this);
@@ -230,6 +237,9 @@ var Form = function (_React$Component) {
         setInterval(_this.updateStorage, SymbolicConstants.local_storage_update_timout);
         return _this;
     }
+
+    // Handle submit button press.
+
 
     // VALIDATION
 
@@ -270,7 +280,7 @@ var Form = function (_React$Component) {
                     checkboxHandler: this.checkboxHandler, onValueUpdate: this.onValueUpdate,
                     changeToNext: this.changeToNext, changeToPrev: this.changeToPrev, errors: this.state.errors,
                     prepareErrors: this.prepareErrors_b, prepareForm: this.prepareForm_b, updateFormAndError: this.updateFormAndError_b }),
-                React.createElement(Navigation, { navigation: this.state.navigation, progressComputation: this.progressComputation_b, changeToNext: this.changeToNext,
+                React.createElement(Navigation, { submit: this.submit_b, navigation: this.state.navigation, progressComputation: this.progressComputation_b, changeToNext: this.changeToNext,
                     changeToPrev: this.changeToPrev })
             );
         }

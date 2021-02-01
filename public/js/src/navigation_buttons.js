@@ -26,7 +26,7 @@ class Navigation extends React.Component {
     }
 
     submitButtonState = () => {
-        return <SubmitButton progress={this.props.progressComputation() >= 100}/>
+        return <SubmitButton submit={this.props.submit} progress={this.props.progressComputation() >= 100}/>
     }
 
     render() {

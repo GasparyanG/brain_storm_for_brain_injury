@@ -33,7 +33,7 @@ var Navigation = function (_React$Component) {
         };
 
         _this.submitButtonState = function () {
-            return React.createElement(SubmitButton, { progress: _this.props.progressComputation() >= 100 });
+            return React.createElement(SubmitButton, { submit: _this.props.submit, progress: _this.props.progressComputation() >= 100 });
         };
 
         _this.addOnScroll();

@@ -21,6 +21,9 @@ class Form extends React.Component {
         this.isValidDate_b = this.isValidDate.bind(this);
         this.progressComputation_b = this.progressComputation.bind(this);
 
+        // Send request to server via Ajax.
+        this.submit_b = this.submit.bind(this);
+
         // Navigation
         this.changeToNext = this.changeToNextLayer.bind(this);
         this.changeToPrev = this.changeToPrevLayer.bind(this);
@@ -81,6 +84,11 @@ class Form extends React.Component {
         }
 
         return defaultState;
+    }
+
+    // Handle submit button press.
+    submit = () => {
+        console.log("submit is called");
     }
 
     onChange = (field, value) => {
@@ -276,7 +284,7 @@ class Form extends React.Component {
                     changeToNext={this.changeToNext} changeToPrev={this.changeToPrev} errors={this.state.errors}
                     prepareErrors={this.prepareErrors_b} prepareForm={this.prepareForm_b} updateFormAndError={this.updateFormAndError_b}/>
 
-                <Navigation navigation={this.state.navigation} progressComputation={this.progressComputation_b} changeToNext={this.changeToNext}
+                <Navigation submit={this.submit_b} navigation={this.state.navigation} progressComputation={this.progressComputation_b} changeToNext={this.changeToNext}
                         changeToPrev={this.changeToPrev}/>
             </div>
         );
