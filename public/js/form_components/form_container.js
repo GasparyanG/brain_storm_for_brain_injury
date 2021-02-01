@@ -11,7 +11,7 @@ import { DateOfInjury, CauseOfInjury } from "./injury_layer";
 import { Concerns } from "./concerns_layer";
 import { Navigation } from "./navigation_buttons";
 import { ProgressBar } from "./progress_bar";
-import { CSSClasses, DefaultErrorMessages, SymbolicConstants, validateEmail } from "./helper_components";
+import { CSSClasses, DefaultErrorMessages, SymbolicConstants, validateEmail, RequestConfigurations } from "./helper_components";
 
 var Form = function (_React$Component) {
     _inherits(Form, _React$Component);
@@ -71,7 +71,17 @@ var Form = function (_React$Component) {
         };
 
         _this.submit = function () {
-            console.log("submit is called");
+            $.ajax({
+                url: RequestConfigurations.form_submit_url,
+                method: RequestConfigurations.post,
+                data: JSON.stringify(_this.state),
+                success: function success(data) {
+                    console.log(JSON.parse(data));
+                },
+                error: function error(e) {
+                    console.error(e);
+                }
+            });
         };
 
         _this.onChange = function (field, value) {

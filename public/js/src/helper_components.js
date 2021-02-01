@@ -229,6 +229,15 @@ const DefaultErrorMessages = {
     cant_type: "Can't type: you already made three choices"
 }
 
+const RequestConfigurations = {
+    // REQUEST VERBS
+    get: "GET",
+    post: "POST",
+
+    // URLS - ENDPOINTS
+    form_submit_url: "/form",
+}
+
 export {
     SubmitButton,
     RegularButton,
@@ -238,5 +247,6 @@ export {
     debounce,
     isBrowser,
     SymbolicConstants,
-    DefaultErrorMessages
+    DefaultErrorMessages,
+    RequestConfigurations
 };

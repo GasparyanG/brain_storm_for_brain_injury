@@ -3,7 +3,13 @@ import {DateOfInjury, CauseOfInjury} from "./injury_layer";
 import {Concerns} from "./concerns_layer";
 import {Navigation} from "./navigation_buttons";
 import {ProgressBar} from "./progress_bar";
-import {CSSClasses, DefaultErrorMessages, SymbolicConstants, validateEmail} from "./helper_components";
+import {
+    CSSClasses,
+    DefaultErrorMessages,
+    SymbolicConstants,
+    validateEmail,
+    RequestConfigurations
+} from "./helper_components";
 
 class Form extends React.Component {
     constructor(props) {
@@ -11,15 +17,15 @@ class Form extends React.Component {
         this.state = this.populateState();
 
         // Event bindings.
-        this.handler = this.onValueChange.bind(this);
-        this.checkboxHandler = this.onCheckboxCheck.bind(this);
-        this.onValueUpdate =this.onChange.bind(this);
-        this.onError = this.onErrorChange.bind(this);
-        this.prepareErrors_b = this.prepareErrors.bind(this);
-        this.prepareForm_b = this.prepareForm.bind(this);
-        this.updateFormAndError_b = this.updateFormAndError.bind(this);
-        this.isValidDate_b = this.isValidDate.bind(this);
-        this.progressComputation_b = this.progressComputation.bind(this);
+        this.handler                = this.onValueChange.bind(this);
+        this.checkboxHandler        = this.onCheckboxCheck.bind(this);
+        this.onValueUpdate          = this.onChange.bind(this);
+        this.onError                = this.onErrorChange.bind(this);
+        this.prepareErrors_b        = this.prepareErrors.bind(this);
+        this.prepareForm_b          = this.prepareForm.bind(this);
+        this.updateFormAndError_b   = this.updateFormAndError.bind(this);
+        this.isValidDate_b          = this.isValidDate.bind(this);
+        this.progressComputation_b  = this.progressComputation.bind(this);
 
         // Send request to server via Ajax.
         this.submit_b = this.submit.bind(this);
@@ -88,7 +94,17 @@ class Form extends React.Component {
 
     // Handle submit button press.
     submit = () => {
-        console.log("submit is called");
+        $.ajax({
+            url: RequestConfigurations.form_submit_url,
+            method: RequestConfigurations.post,
+            data: JSON.stringify(this.state),
+            success: function(data) {
+                console.log(JSON.parse(data));
+            },
+            error: function(e) {
+                console.error(e);
+            }
+        });
     }
 
     onChange = (field, value) => {

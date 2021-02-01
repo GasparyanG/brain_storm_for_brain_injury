@@ -247,4 +247,13 @@ var DefaultErrorMessages = {
     cant_type: "Can't type: you already made three choices"
 };
 
-export { SubmitButton, RegularButton, ErrorMessage, CSSClasses, validateEmail, debounce, isBrowser, SymbolicConstants, DefaultErrorMessages };
+var RequestConfigurations = {
+    // REQUEST VERBS
+    get: "GET",
+    post: "POST",
+
+    // URLS - ENDPOINTS
+    form_submit_url: "/form"
+};
+
+export { SubmitButton, RegularButton, ErrorMessage, CSSClasses, validateEmail, debounce, isBrowser, SymbolicConstants, DefaultErrorMessages, RequestConfigurations };
