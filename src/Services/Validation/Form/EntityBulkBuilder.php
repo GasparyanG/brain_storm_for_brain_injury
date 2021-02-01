@@ -7,9 +7,11 @@ use App\Database\Entities\Concern;
 use App\Database\Entities\InjuryInformation;
 use App\Database\Entities\InjuryReason;
 use App\Database\Entities\User;
+use App\Database\Entities\UserConcern;
 use App\Services\Validation\General\AbstractValidator;
 use App\Services\Validation\General\DefaultAssembler;
 use App\Services\Validation\General\DefaultErrorGenerator;
+use App\Services\Validation\General\ErrorEnum;
 use App\Services\Validation\General\FieldsEnum;
 use App\Services\Validation\General\HTTPCommunicationFieldsEnum;
 use App\Services\Validation\General\RegularAssembler;
@@ -194,7 +196,57 @@ class EntityBulkBuilder extends AbstractValidator
 
     private function validateUsersConcerns(User $user, bool $concernOther): void
     {
-        // TODO: Implement validateUsersConcerns.
+        if ($this->concernsNotExist() && !$concernOther) {
+            $this->addError(ErrorEnum::isRequiredError(FieldsEnum::CONCERNS), FieldsEnum::CONCERNS);
+            return;
+        }
+
+        $concerns = $this->form[FieldsEnum::CONCERNS];
+        foreach ($concerns as $concernValue) {
+            if (is_numeric($concernValue) && $this->concernIsValidNumeric($concernValue)) {
+                $concern = $this->em->getRepository(Concern::class)->find($concernValue);
+                if ($concern)
+                    $this->createCreateAndPersistUserConcern($user, $concern);
+                else
+                    self::removeConcernFromArray($concerns, $concernValue);
+            } else
+                self::removeConcernFromArray($concerns, $concernValue);
+        }
+
+        if (count($concerns) == 0 && !$concernOther)
+            $this->addError(ErrorEnum::isRequiredError(FieldsEnum::CONCERNS), FieldsEnum::CONCERNS);
+    }
+
+    private function createCreateAndPersistUserConcern(User $user, Concern $concern): bool
+    {
+        $userConcern = new UserConcern();
+        $userConcern->setUser($user);
+        $userConcern->setConcern($concern);
+
+        if (isset($this->form[FieldsEnum::SOLID_CONCERN])
+            && $this->form[FieldsEnum::SOLID_CONCERN] == $concern->getId())
+            $userConcern->setStrong(true);
+        else
+            $userConcern->setStrong(false);
+
+        $this->em->persist($userConcern);
+        $this->em->flush();
+    }
+
+    private function concernIsValidNumeric(int $concern): bool
+    {
+        if (!is_numeric($concern)) return false;                                               // Not a numeric value
+        if ($concern < SymbolicConstantsEnum::MIN_CONCERN
+            || $concern > SymbolicConstantsEnum::MAX_CONCERN) return false;                     // Out of range
+
+        return true;
+    }
+
+    private function concernsNotExist(): bool
+    {
+        if (!isset($this->form[FieldsEnum::CONCERNS])) return true;                             // Isn't Set
+        if (!is_array($this->form[FieldsEnum::CONCERNS])) return true;                          // Not an Array
+        if (count($this->form[FieldsEnum::CONCERNS]) == 0) return true;                         // Is Empty
     }
 
     private function isInjuryReasonInRange(): bool
@@ -266,5 +318,11 @@ class EntityBulkBuilder extends AbstractValidator
     {
         // Not required to be implemented at this moment.
         // The idea is to merge this->errors with this->customErrors.
+    }
+
+    private static function removeConcernFromArray(array &$concerns, $concernValue): void
+    {
+        $index = array_search($concernValue, $concerns);
+        unset($concerns[$index]);
     }
 }

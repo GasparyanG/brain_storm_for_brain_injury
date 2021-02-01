@@ -21,7 +21,7 @@ abstract class AbstractValidator
         return true;
     }
 
-    private function addError(string $message, string $name): void
+    protected function addError(string $message, string $name): void
     {
         $this->customErrors[] = [
             FieldsEnum::MESSAGE => [$name => $message]

@@ -19,6 +19,10 @@ class SymbolicConstantsEnum
     const MIN_INJURY_REASON = 1;
     const MAX_INJURY_REASON = 5;
 
+    // Concern Range
+    const MIN_CONCERN = 1;
+    const MAX_CONCERN = 12;
+
     // Date
     const DAY_MIN = 1;
     const DAY_MAX = 31;
