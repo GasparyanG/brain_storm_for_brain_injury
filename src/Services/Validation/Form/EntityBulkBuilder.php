@@ -76,7 +76,7 @@ class EntityBulkBuilder extends AbstractValidator
         }
 
         if ($concern) {     // Concern can be a null.
-            $user->addUserConcern($concern);
+            $this->createAndPersistUserConcern($user, $concern);
         }
 
         // Validate Users Concerns
@@ -87,7 +87,7 @@ class EntityBulkBuilder extends AbstractValidator
             return $this->prepareInvalidResponse();
         }
 
-        return successResponse();
+        return $this->successResponse();
     }
 
     private function validateUser(): User
@@ -213,7 +213,7 @@ class EntityBulkBuilder extends AbstractValidator
             if (is_numeric($concernValue) && $this->concernIsValidNumeric($concernValue)) {
                 $concern = $this->em->getRepository(Concern::class)->find($concernValue);
                 if ($concern)
-                    $this->createCreateAndPersistUserConcern($user, $concern);
+                    $this->createAndPersistUserConcern($user, $concern);
                 else
                     self::removeConcernFromArray($concerns, $concernValue);
             } else
@@ -224,7 +224,7 @@ class EntityBulkBuilder extends AbstractValidator
             $this->addError(ErrorEnum::isRequiredError(FieldsEnum::CONCERNS), FieldsEnum::CONCERNS);
     }
 
-    private function createCreateAndPersistUserConcern(User $user, Concern $concern): void
+    private function createAndPersistUserConcern(User $user, Concern $concern): void
     {
         $userConcern = new UserConcern();
         $userConcern->setUser($user);
@@ -258,6 +258,8 @@ class EntityBulkBuilder extends AbstractValidator
         if (!isset($this->form[FieldsEnum::CONCERNS])) return true;                             // Isn't Set
         if (!is_array($this->form[FieldsEnum::CONCERNS])) return true;                          // Not an Array
         if (count($this->form[FieldsEnum::CONCERNS]) == 0) return true;                         // Is Empty
+
+        return false;
     }
 
     private function isInjuryReasonInRange(): bool
