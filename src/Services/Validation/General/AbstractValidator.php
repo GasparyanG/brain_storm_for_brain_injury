@@ -75,4 +75,9 @@ abstract class AbstractValidator
 
         return true;
     }
+
+    protected function isValidDateMDY(array $assocArray): bool
+    {
+        // TODO: implement isValidDateMDY.
+    }
 }

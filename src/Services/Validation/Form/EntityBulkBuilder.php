@@ -3,6 +3,7 @@
 namespace App\Services\Validation\Form;
 
 use App\Database\Connection;
+use App\Database\Entities\InjuryInformation;
 use App\Database\Entities\InjuryReason;
 use App\Database\Entities\User;
 use App\Services\Validation\General\AbstractValidator;
@@ -56,6 +57,10 @@ class EntityBulkBuilder extends AbstractValidator
             $this->prepareError();
             return $this->prepareInvalidResponse();
         }
+
+
+        // Validate Injury Information
+        $injuryInformation = $this->validateInjuryInformation($user, $injuryReason);
     }
 
     private function validateUser(): User
@@ -112,6 +117,30 @@ class EntityBulkBuilder extends AbstractValidator
         }
 
         return $injuryReason;
+    }
+
+    private function validateInjuryInformation(User $user, InjuryReason $injuryReason): InjuryInformation
+    {
+        $injuryInformation = new InjuryInformation();
+
+        // Date setting.
+        $date = time();
+        if ($this->isValidDateMDY($this->form, $date))
+            $injuryInformation->setInjuryDate($date);
+
+        // Connection with other tables/entities.
+        $injuryInformation->setInjuryReason($injuryReason);
+        $injuryInformation->setUser($user);
+
+        // Persistence
+        try {
+            $this->em->persist($injuryInformation);
+            $this->em->flush();
+        } catch (\ErrorException | ORMException $e) {
+            $this->persistenceError = true;
+        }
+
+        return $injuryInformation;
     }
 
     private function isInjuryReasonInRange(): bool
