@@ -9,6 +9,7 @@
 
 .symptom_section .description_section .main_point {
     font-style: italic;
+    font-size: 40px;
 }
 
 .symptom_section .description_part {
@@ -66,4 +67,43 @@
     cursor: pointer;
     color: inherit;
     text-decoration: unset;
+}
+
+/* ----------------------------------------- RESPONSIVENESS --------------------------------------------- */
+@media only screen and (max-width: 650px) {
+    .symptom_section .description_section {
+        font-size: 17px;
+    }
+
+    .symptom_section .description_section {
+        width: 90%;
+        margin-left: 5%;
+    }
+
+    .symptom_section .description_section .main_point {
+        font-size: 25px;
+    }
+
+    .symptom_section .description_section .description_part .large_header {
+        font-size: 25px;
+    }
+}
+
+@media only screen and (min-width: 651px) and (max-width: 1200px) {
+    .symptom_section .description_section {
+        font-size: 20px;
+    }
+
+    .symptom_section .description_section {
+        width: 80%;
+        margin-left: 10%;
+    }
+
+    .symptom_section .description_section .main_point {
+        font-size: 30px;
+    }
+
+    .symptom_section .description_section .description_part .large_header {
+        font-size: 30px;
+    }
 }

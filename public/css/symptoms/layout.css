@@ -34,6 +34,7 @@
         flex-direction: column-reverse;
         justify-content: center;
         align-items: center;
+        margin-bottom: 3rem;
     }
 
     .symptom_section .title_section .title {
