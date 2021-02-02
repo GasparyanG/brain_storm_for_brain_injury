@@ -50,7 +50,23 @@ class RegularAssembler
 
     private function sanitizeNavigation(): void
     {
-        if (isset($this->partsContainer[FieldsEnum::NAVIGATION])) return;
-        $this->partsContainer[FieldsEnum::NAVIGATION] = DefaultAssembler::navigation();
+        if (!isset($this->partsContainer[FieldsEnum::ERRORS]))
+            if (isset($this->partsContainer[FieldsEnum::NAVIGATION])) return;
+            else {
+                $this->partsContainer[FieldsEnum::NAVIGATION] = DefaultAssembler::navigation();
+                return;
+            }
+
+
+        if(count($this->partsContainer[FieldsEnum::ERRORS]) > 0) {
+            $key = key($this->partsContainer[FieldsEnum::ERRORS]);
+
+            $pageNumber = SymbolicConstantsEnum::getPageNumber($key);
+            $this->partsContainer[FieldsEnum::NAVIGATION][FieldsEnum::CURRENT_POSITION] = $pageNumber;
+            $this->partsContainer[FieldsEnum::NAVIGATION][FieldsEnum::MAX_NUMBER_OF_PAGES]
+                = SymbolicConstantsEnum::MAX_NUMBER_OF_PAGES;
+        } else {
+            $this->partsContainer[FieldsEnum::NAVIGATION] = DefaultAssembler::navigation();
+        }
     }
 }

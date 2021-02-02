@@ -31,4 +31,19 @@ class SymbolicConstantsEnum
     const MONTH_MIN = 1;
     const YEAR_MIN = 1920;         // For 100 years old people.
     const YEAR_MAX = 2021;         // Update every year or take dynamically.
+
+    private static array $pageAndNumber = [
+        FieldsEnum::NAME => 0,
+        FieldsEnum::AGE => 1,
+        FieldsEnum::LOCATION => 2,
+        FieldsEnum::EMAIL => 3,
+        FieldsEnum::DATE => 4,
+        FieldsEnum::INJURY_REASON => 5,
+        FieldsEnum::CONCERNS => 6
+    ];
+
+    public static function getPageNumber(string $key): int
+    {
+        return self::$pageAndNumber[$key];
+    }
 }

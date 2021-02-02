@@ -22,6 +22,7 @@ use Doctrine\ORM\ORMException;
 class EntityBulkBuilder extends AbstractValidator
 {
     private array $assocArrayForm;
+    private bool $userAdded = false;
 
     // Passed Association Array's Components
     private array $navigation = [];
@@ -50,28 +51,28 @@ class EntityBulkBuilder extends AbstractValidator
         // Validate The User
         $user = $this->validateUser();
         if ($this->errorStatus()) {
-            $this->prepareError();
+            $this->prepareError($user);
             return $this->prepareInvalidResponse();
         }
 
         // Validate The Injury Reason
         $injuryReason = $this->validateInjuryReason();
         if ($this->errorStatus()) {
-            $this->prepareError();
+            $this->prepareError($user);
             return $this->prepareInvalidResponse();
         }
 
         // Validate The Injury Information
         $injuryInformation = $this->validateInjuryInformation($user, $injuryReason);
         if ($this->errorStatus()) {
-            $this->prepareError();
+            $this->prepareError($user);
             return $this->prepareInvalidResponse();
         }
 
         // Validate Concerns
         $concern = $this->validateConcern();
         if ($this->errorStatus()) {
-            $this->prepareError();
+            $this->prepareError($user);
             return $this->prepareInvalidResponse();
         }
 
@@ -83,7 +84,7 @@ class EntityBulkBuilder extends AbstractValidator
         $this->validateUsersConcerns($user, $concern ? true: false);
 
         if ($this->errorStatus()) {
-            $this->prepareError();
+            $this->prepareError($user);
             return $this->prepareInvalidResponse();
         }
 
@@ -116,6 +117,7 @@ class EntityBulkBuilder extends AbstractValidator
             $this->persistenceError = true;
         }
 
+        $this->userAdded = true;
         return $user;
     }
 
@@ -357,10 +359,20 @@ class EntityBulkBuilder extends AbstractValidator
         return false;
     }
 
-    private function prepareError(): void
+    private function prepareError(User $user): void
     {
-        // Not required to be implemented at this moment.
-        // The idea is to merge this->errors with this->customErrors.
+        if (!$this->userAdded) return;
+
+        $userToRemove = $this->em->getRepository(User::class)
+            ->find($user->getId());
+
+        try {
+            $this->em->remove($userToRemove);
+            $this->em->flush();
+        } catch (ORMException | \ErrorException $e) {
+            // TODO: Report about not deleted user.
+            $this->persistenceError = true;
+        }
     }
 
     private static function removeConcernFromArray(array &$concerns, $concernValue): void

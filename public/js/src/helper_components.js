@@ -7,7 +7,7 @@ function SubmitButton(props) {
 
     return (
         <div onClick={props.submit} className={"nav_btn " + disabled}>
-            {`submit ✓`}
+            {`Submit ✓`}
         </div>
     );
 }

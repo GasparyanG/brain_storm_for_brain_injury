@@ -8,7 +8,7 @@ function SubmitButton(props) {
     return React.createElement(
         "div",
         { onClick: props.submit, className: "nav_btn " + disabled },
-        "submit \u2713"
+        "Submit \u2713"
     );
 }
 
