@@ -1,0 +1,40 @@
+.symptom_section .description_section {
+    font-size: 27px;
+}
+
+.symptom_section .description_section {
+    width: 70%;
+    margin-left: 15%;
+}
+
+.symptom_section .description_section .main_point {
+    font-style: italic;
+}
+
+.symptom_section .description_part {
+    margin-bottom: 3rem;
+}
+
+/* Lists */
+.symptom_section .bullet_opening {
+    font-weight: 500;
+}
+
+.symptom_section .sub_opening {
+    font-weight: 500;
+    color: rgba(0,0,0,0.5);
+    font-style: italic;
+}
+
+.symptom_section .bullet_point {
+    margin-bottom: 1rem;
+}
+
+.bullet_points {
+    list-style: none;
+    padding: 0;
+}
+
+.sub_content {
+    margin-left: 2rem;
+}
