@@ -401,7 +401,7 @@ var Concerns = function (_React$Component) {
                                     null,
                                     "star (\u2605)"
                                 ),
-                                " the most troubling one. For more information about concern press ",
+                                " the most troubling one. For more information about the specific concern press ",
                                 React.createElement("img", { className: "concern_explanation_link", src: "/public/images/icons/book.svg", alt: "" }),
                                 "."
                             ),

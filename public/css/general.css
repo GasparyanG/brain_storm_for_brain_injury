@@ -13,3 +13,8 @@ body {
 .hidden {
     display: none!important;
 }
+
+.page_animation_stopper * {
+    animation: none !important;
+    transition: none !important;
+}

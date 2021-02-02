@@ -311,7 +311,7 @@ class Concerns extends React.Component {
                             {label}
                             <div className="question_usage_hint">
                                 Check <strong>up to three</strong> and <strong>star (★)</strong> the most troubling one.
-                                For more information about concern press <img className="concern_explanation_link" src="/public/images/icons/book.svg" alt=""/>.
+                                For more information about the specific concern press <img className="concern_explanation_link" src="/public/images/icons/book.svg" alt=""/>.
                             </div>
                             <div className="choices_section">
                                 {checkboxItems}
