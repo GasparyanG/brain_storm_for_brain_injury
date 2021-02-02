@@ -30,6 +30,10 @@
     margin-bottom: 1rem;
 }
 
+.symptom_section .bullet_point_with_arrow {
+    display: flex;
+}
+
 .bullet_points {
     list-style: none;
     padding: 0;
@@ -37,4 +41,17 @@
 
 .sub_content {
     margin-left: 2rem;
+}
+
+.symptom_section .description_section .description_part .large_header {
+    margin-top: 5rem;
+    margin-bottom: 2rem;
+    font-weight: 700;
+    font-size: 40px;
+    text-align: center;
+}
+
+.symptom_section .list_arrow {
+    display: inline;
+    align-self: flex-start;
 }
