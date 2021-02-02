@@ -5,11 +5,23 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    {#  CSS  #}
+    <link rel="stylesheet" href="/public/css/general.css">
+
     <title>{{ page_title }}</title>
 </head>
 <body>
-    {% block payload %}
-        {#    Main content gose here    #}
-    {% endblock %}
+    <section id="nav_bar">
+        {#    Website navigation goes here    #}
+    </section>
+    <section id="payload">
+        {% block payload %}
+            {#    Main content gose here    #}
+        {% endblock %}
+    </section>
+    <section id="footer">
+
+    </section>
 </body>
 </html>

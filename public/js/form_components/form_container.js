@@ -78,7 +78,6 @@ var Form = function (_React$Component) {
                 data: JSON.stringify(_this.state),
                 success: function success(data) {
                     data = JSON.parse(data);
-                    console.log(data.data);
                     self.setState(data.data);
                 },
                 error: function error(e) {

@@ -1,5 +1,19 @@
 {% extends "/general/header.html.twig" %}
 
 {% block payload %}
-    <h1>{{ page_title }}</h1>
+    {#  Video Section  #}
+    <div class="video_section">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/FS163gvNW58"
+                frameborder="0" allow="accelerometer; autoplay; clipboard-write;
+                encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+        </iframe>
+    </div>
+
+    {#  Title Section #}
+    <div class="title section">{{ page_title }}</div>
+
+    {#  Description Section  #}
+    <div class="description_section">
+
+    </div>
 {% endblock %}

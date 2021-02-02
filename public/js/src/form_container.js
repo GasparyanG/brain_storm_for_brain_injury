@@ -101,7 +101,6 @@ class Form extends React.Component {
             data: JSON.stringify(this.state),
             success: function(data) {
                 data = JSON.parse(data);
-                console.log(data.data);
                 self.setState(data.data);
             },
             error: function(e) {
