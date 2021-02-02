@@ -124,10 +124,8 @@ class EntityBulkBuilder extends AbstractValidator
         // Don't create new record.
         if ($this->isInjuryReasonInRange())
             return $this->em->getRepository(InjuryReason::class)->find($this->form[FieldsEnum::INJURY_REASON]);
-        else {
-            $this->addError(ErrorEnum::INJURY_REASON_REQUIRED, FieldsEnum::INJURY_REASON);
+        else if (!$this->stringIsNotEmpty($this->form, FieldsEnum::INJURY_REASON))
             return null;
-        }
 
         $injuryReason = $this->em->getRepository(InjuryReason::class)
             ->findOneBy([FieldsEnum::NAME => $this->form[FieldsEnum::INJURY_REASON]]);
