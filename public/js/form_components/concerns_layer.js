@@ -203,7 +203,10 @@ var Concerns = function (_React$Component) {
                 e.target.value = '';
                 _this.animateShake();
                 errors = _this.props.prepareErrors(CSSClasses.concerns, { message: DefaultErrorMessages.cant_type });
-            } else form = _this.props.prepareForm(CSSClasses.concerns_other, e.target.value);
+            } else {
+                errors = _this.props.prepareErrors(CSSClasses.concerns, false, true);
+                form = _this.props.prepareForm(CSSClasses.concerns_other, e.target.value);
+            }
 
             _this.props.updateFormAndError(form, errors);
         };

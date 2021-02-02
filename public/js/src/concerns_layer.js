@@ -217,8 +217,10 @@ class Concerns extends React.Component {
             e.target.value = '';
             this.animateShake();
             errors = this.props.prepareErrors(CSSClasses.concerns, {message: DefaultErrorMessages.cant_type});
-        } else
+        } else {
+            errors = this.props.prepareErrors(CSSClasses.concerns, false, true);
             form = this.props.prepareForm(CSSClasses.concerns_other, e.target.value);
+        }
 
         this.props.updateFormAndError(form, errors);
     }
