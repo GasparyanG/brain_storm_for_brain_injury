@@ -42,9 +42,9 @@ var Concerns = function (_React$Component) {
             var concerns = [].concat(_toConsumableArray(_this.props.formState.concerns));
 
             // More (or equal) than three element in 'concerns' array.
-            if (!concerns.includes(element.dataset.value) && concerns.length >= SymbolicConstants.max_amount_of_choices) errors = _this.props.prepareErrors(CSSClasses.concerns, { message: DefaultErrorMessages.more_than_three });
+            if (!_this.contains(concerns, element.dataset.value) && concerns.length >= SymbolicConstants.max_amount_of_choices) errors = _this.props.prepareErrors(CSSClasses.concerns, { message: DefaultErrorMessages.more_than_three });
             // 2 elements in 'concerns' array and 'other_concern'.
-            else if (!concerns.includes(element.dataset.value) && concerns.length === SymbolicConstants.max_amount_with_other_choice && form[CSSClasses.concerns_other].length > 0) errors = _this.props.prepareErrors(CSSClasses.concerns, { message: DefaultErrorMessages.more_than_three });else errors = _this.props.prepareErrors(CSSClasses.concerns, false, true);
+            else if (!_this.contains(concerns, element.dataset.value) && concerns.length === SymbolicConstants.max_amount_with_other_choice && form[CSSClasses.concerns_other].length > 0) errors = _this.props.prepareErrors(CSSClasses.concerns, { message: DefaultErrorMessages.more_than_three });else errors = _this.props.prepareErrors(CSSClasses.concerns, false, true);
 
             return errors;
         };
@@ -83,7 +83,7 @@ var Concerns = function (_React$Component) {
             }
 
             var concerns = [].concat(_toConsumableArray(_this.props.formState.concerns));
-            if (concerns.includes(element.dataset.value)) {
+            if (_this.contains(concerns, element.dataset.value)) {
                 var index = concerns.indexOf(element.dataset.value);
                 if (index > -1) {
                     concerns.splice(index, 1);
@@ -138,6 +138,37 @@ var Concerns = function (_React$Component) {
 
         _this.makeSolidChoice = function (e) {
             _this.makeSolidChoiceElement(e.target);
+        };
+
+        _this.createCheckbox = function (key) {
+            var value = _this.state.concerns[key];
+            var checked = "";
+            if (_this.contains(_this.props.formState.concerns, key)) checked = CSSClasses.choice_is_made;
+
+            var solidChoice = "";
+            if (_this.props.formState.solid_concern == key) solidChoice = CSSClasses.solid_choice_is_made;
+
+            solidChoice = solidChoice === "" && _this.props.formState.solid_concern !== "" ? solidChoice + " hidden" : solidChoice;
+
+            return React.createElement(
+                "div",
+                { key: value + ' ' + key, className: "choice_part " + checked, onClick: _this.onCheck, "data-value": key },
+                React.createElement(
+                    "div",
+                    { className: "choice_letter" },
+                    _this.letters[key]
+                ),
+                React.createElement(
+                    "div",
+                    { className: "choice_name" },
+                    value
+                ),
+                React.createElement(
+                    "div",
+                    { onClick: _this.makeSolidChoice, "data-solid_value": key, className: "solid_choice " + solidChoice },
+                    "\u2605"
+                )
+            );
         };
 
         _this.unCheck = function (e) {
@@ -253,36 +284,11 @@ var Concerns = function (_React$Component) {
 
 
     _createClass(Concerns, [{
-        key: "createCheckbox",
-        value: function createCheckbox(key) {
-            var value = this.state.concerns[key];
-            var checked = "";
-            if (this.props.formState.concerns.includes(key)) checked = CSSClasses.choice_is_made;
-
-            var solidChoice = "";
-            if (this.props.formState.solid_concern == key) solidChoice = CSSClasses.solid_choice_is_made;
-
-            solidChoice = solidChoice === "" && this.props.formState.solid_concern !== "" ? solidChoice + " hidden" : solidChoice;
-
-            return React.createElement(
-                "div",
-                { key: value + ' ' + key, className: "choice_part " + checked, onClick: this.onCheck, "data-value": key },
-                React.createElement(
-                    "div",
-                    { className: "choice_letter" },
-                    this.letters[key]
-                ),
-                React.createElement(
-                    "div",
-                    { className: "choice_name" },
-                    value
-                ),
-                React.createElement(
-                    "div",
-                    { onClick: this.makeSolidChoice, "data-solid_value": key, className: "solid_choice " + solidChoice },
-                    "\u2605"
-                )
-            );
+        key: "contains",
+        value: function contains(arr, it) {
+            for (var i = 0; i < arr.length; i++) {
+                if (it == arr[i]) return true;
+            }return false;
         }
     }, {
         key: "render",

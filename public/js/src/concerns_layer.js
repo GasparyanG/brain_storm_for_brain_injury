@@ -47,10 +47,10 @@ class Concerns extends React.Component {
         let concerns = [...this.props.formState.concerns];
 
         // More (or equal) than three element in 'concerns' array.
-        if (!concerns.includes(element.dataset.value) && (concerns.length >= SymbolicConstants.max_amount_of_choices))
+        if (!this.contains(concerns, element.dataset.value) && (concerns.length >= SymbolicConstants.max_amount_of_choices))
             errors = this.props.prepareErrors(CSSClasses.concerns, {message: DefaultErrorMessages.more_than_three});
         // 2 elements in 'concerns' array and 'other_concern'.
-        else if (!concerns.includes(element.dataset.value)
+        else if (!this.contains(concerns, element.dataset.value)
             && (concerns.length === SymbolicConstants.max_amount_with_other_choice)
             && (form[CSSClasses.concerns_other].length > 0))
             errors = this.props.prepareErrors(CSSClasses.concerns, {message: DefaultErrorMessages.more_than_three});
@@ -99,7 +99,7 @@ class Concerns extends React.Component {
         }
 
         let concerns = [...this.props.formState.concerns];
-        if (concerns.includes(element.dataset.value)) {
+        if (this.contains(concerns, element.dataset.value)) {
             let index = concerns.indexOf(element.dataset.value);
             if (index > -1) {
                 concerns.splice(index, 1);
@@ -162,10 +162,16 @@ class Concerns extends React.Component {
         this.makeSolidChoiceElement(e.target);
     }
 
-    createCheckbox(key) {
+    contains(arr, it) {
+        for (let i=0; i < arr.length; i++)
+            if (it == arr[i]) return true;
+        return false;
+    }
+
+    createCheckbox = (key) => {
         let value = this.state.concerns[key];
         let checked = "";
-        if (this.props.formState.concerns.includes(key))
+        if (this.contains(this.props.formState.concerns, key))
             checked = CSSClasses.choice_is_made;
 
         let solidChoice = "";
