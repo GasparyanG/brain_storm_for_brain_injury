@@ -253,6 +253,7 @@ const RequestConfigurations = {
 
     // URLS - ENDPOINTS
     form_submit_url: "/form",
+    thank_you_url: "thank_you"
 }
 
 export {

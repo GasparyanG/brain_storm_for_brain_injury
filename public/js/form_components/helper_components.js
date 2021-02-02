@@ -268,7 +268,8 @@ var RequestConfigurations = {
     post: "POST",
 
     // URLS - ENDPOINTS
-    form_submit_url: "/form"
+    form_submit_url: "/form",
+    thank_you_url: "thank_you"
 };
 
 export { SubmitButton, RegularButton, ErrorMessage, CSSClasses, validateEmail, debounce, isBrowser, SymbolicConstants, DefaultErrorMessages, RequestConfigurations, eIndexOf, eIncludes };

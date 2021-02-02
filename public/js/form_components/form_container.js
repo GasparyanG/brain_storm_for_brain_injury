@@ -78,7 +78,7 @@ var Form = function (_React$Component) {
                 data: JSON.stringify(_this.state),
                 success: function success(data) {
                     data = JSON.parse(data);
-                    self.setState(data.data);
+                    if (data.success) window.location.replace(RequestConfigurations.thank_you_url);else self.setState(data.data);
                 },
                 error: function error(e) {
                     console.error(e);
