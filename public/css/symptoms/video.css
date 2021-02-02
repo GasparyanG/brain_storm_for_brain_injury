@@ -3,7 +3,7 @@
 }
 
 .symptom_section .video_section {
-    border: solid 30px #333332;
+    border: solid 30px var(--nav-background-color);
     border-radius: 26px;
     height: 50vh;
     width: 50vw;
@@ -17,7 +17,7 @@
 
 @media only screen and (min-width: 1201px) and (max-width: 1400px) {
     .symptom_section .video_section {
-        border: solid 20px #333332;
+        border: solid 20px var(--nav-background-color);
         border-radius: 20px;
         height: 40vh;
         width: 40vw;
