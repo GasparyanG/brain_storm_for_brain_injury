@@ -8,20 +8,21 @@
 
     {#  CSS  #}
     <link rel="stylesheet" href="/public/css/general.css">
+    <link rel="stylesheet" href="/public/css/symptoms/general.css">
 
     <title>{{ page_title }}</title>
 </head>
 <body>
     <section id="nav_bar">
-        {#    Website navigation goes here    #}
+        {% include "/general/nav_bar.html.twig" %}
     </section>
     <section id="payload">
         {% block payload %}
-            {#    Main content gose here    #}
+            {# Main content gose here #}
         {% endblock %}
     </section>
     <section id="footer">
-
+        {% include "/general/footer.html.twig" %}
     </section>
 </body>
 </html>

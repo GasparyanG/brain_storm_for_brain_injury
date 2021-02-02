@@ -30,7 +30,7 @@
 
 @media only screen and (max-width: 1200px) {
     .symptom_section .introduction_to_symptom {
-        margin-top: 0;
+        margin-top: var(--sm-nav-height);
         flex-direction: column-reverse;
         justify-content: center;
         align-items: center;

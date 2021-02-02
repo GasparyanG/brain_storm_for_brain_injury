@@ -1,1 +1,25 @@
 /* Design Navigation */
+#nav_bar {
+    width: 100vw;
+    height: var(--nav-height);
+    position: fixed;
+    background-color: var(--nav-background-color);
+}
+
+#nav_bar .nav_logo {
+    text-align: center;
+    width: inherit;
+    height: inherit;
+    margin-top: 0.5rem;
+}
+
+/* --------------------------------------- RESPONSIVENESS -------------------------------------------  */
+@media only screen and (max-width: 1200px) {
+    #nav_bar {
+        height: var(--sm-nav-height);
+    }
+
+    #nav_bar .nav_logo img {
+        width: 200px;
+    }
+}
