@@ -335,6 +335,7 @@ class EntityBulkBuilder extends AbstractValidator
 
         // Assemble
         $regularAssembler->setErrors($this->customErrors);
+        $regularAssembler->setNavigation($this->navigation);
         $regularAssembler->setForm($this->form);
 
         return [

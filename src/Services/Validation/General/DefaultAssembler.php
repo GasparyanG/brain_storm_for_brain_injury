@@ -10,7 +10,7 @@ class DefaultAssembler
     {
         $navigationArray = [];
 
-        $navigationArray[FieldsEnum::CURRENT_POSITION] = SymbolicConstantsEnum::PAGE_INITIAL_POSITION;
+        $navigationArray[FieldsEnum::CURRENT_POSITION] = SymbolicConstantsEnum::MAX_NUMBER_OF_PAGES;
         $navigationArray[FieldsEnum::MAX_NUMBER_OF_PAGES] = SymbolicConstantsEnum::MAX_NUMBER_OF_PAGES;
 
         return $navigationArray;
