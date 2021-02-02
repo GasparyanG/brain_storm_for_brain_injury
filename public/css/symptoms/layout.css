@@ -1,0 +1,55 @@
+.symptom_section .introduction_to_symptom {
+    margin-top: 25vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.symptom_section .title_section {
+    font-size: 50px;
+}
+
+.symptom_section .title_section .title {
+    font-weight: 700;
+    display: block;
+}
+
+
+/* ------------------------------------ RESPONSIVENESS --------------------------------------------*/
+
+@media only screen and (min-width: 1201px) and (max-width: 1400px) {
+    .symptom_section .introduction_to_symptom {
+        margin-top: 30vh;
+    }
+    .symptom_section .title_section {
+        font-size: 40px;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .symptom_section .introduction_to_symptom {
+        margin-top: 0;
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .symptom_section .title_section .title {
+        display: inline;
+    }
+}
+
+@media only screen and (min-width: 751px) and (max-width: 1200px) {
+    .symptom_section .title_section {
+        font-size: 35px;
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 751px){
+    .symptom_section .title_section {
+        font-size: 25px;
+        text-align: center;
+    }
+}

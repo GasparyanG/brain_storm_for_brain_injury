@@ -1,16 +1,16 @@
 {% extends "/pages/symptoms.html.twig" %}
 
 {% block symptom %}
-    {#  Video Section  #}
-    <div class="video_section">
-        <iframe src="https://www.youtube.com/embed/FS163gvNW58"
-                frameborder="0" allow="accelerometer; autoplay; clipboard-write;
+    <div class="introduction_to_symptom">
+        {#  TODO: Provide link to the video, thus making video section rendered dynamically.  #}
+        <div class="title_section">Introducing to <span class="title">{{ page_title }}</span></div>
+        <div class="video_section">
+            <iframe src="https://www.youtube.com/embed/FS163gvNW58"
+                    frameborder="0" allow="accelerometer; autoplay; clipboard-write;
                 encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-        </iframe>
+            </iframe>
+        </div>
     </div>
-
-    {#  Title Section #}
-    <div class="title section">{{ page_title }}</div>
 
     {#  Description Section  #}
     <div class="description_section">
