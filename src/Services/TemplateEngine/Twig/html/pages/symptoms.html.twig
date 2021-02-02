@@ -1,0 +1,14 @@
+{% extends "/general/header.html.twig" %}
+
+{% block payload %}
+    {#  CSS goes here  #}
+    <link rel="stylesheet" href="/public/css/components/video.css">
+
+    <div class="symptom_section">
+        {% block symptom %}
+            {#    Specific symptom goes here    #}
+        {% endblock %}
+    </div>
+
+    {#  JS goes here  #}
+{% endblock %}

@@ -1,0 +1,15 @@
+.symptom_section {
+    overflow-x: hidden;
+}
+
+.symptom_section .video_section {
+    height: 100vh;
+    width: 100vw;
+}
+
+.symptom_section .video_section iframe {
+    height: inherit;
+    width: inherit;
+}
+
+/* ------------------------------------ RESPONSIVENESS --------------------------------------------*/
