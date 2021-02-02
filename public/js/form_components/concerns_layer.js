@@ -8,7 +8,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-import { CSSClasses, ErrorMessage, DefaultErrorMessages, SymbolicConstants } from "./helper_components";
+import { CSSClasses, ErrorMessage, DefaultErrorMessages, SymbolicConstants, eIndexOf, eIncludes } from "./helper_components";
 import { CauseOfInjury } from "./injury_layer";
 
 var Concerns = function (_React$Component) {
@@ -42,9 +42,9 @@ var Concerns = function (_React$Component) {
             var concerns = [].concat(_toConsumableArray(_this.props.formState.concerns));
 
             // More (or equal) than three element in 'concerns' array.
-            if (!_this.contains(concerns, element.dataset.value) && concerns.length >= SymbolicConstants.max_amount_of_choices) errors = _this.props.prepareErrors(CSSClasses.concerns, { message: DefaultErrorMessages.more_than_three });
+            if (!eIncludes(concerns, element.dataset.value) && concerns.length >= SymbolicConstants.max_amount_of_choices) errors = _this.props.prepareErrors(CSSClasses.concerns, { message: DefaultErrorMessages.more_than_three });
             // 2 elements in 'concerns' array and 'other_concern'.
-            else if (!_this.contains(concerns, element.dataset.value) && concerns.length === SymbolicConstants.max_amount_with_other_choice && form[CSSClasses.concerns_other].length > 0) errors = _this.props.prepareErrors(CSSClasses.concerns, { message: DefaultErrorMessages.more_than_three });else errors = _this.props.prepareErrors(CSSClasses.concerns, false, true);
+            else if (!eIncludes(concerns, element.dataset.value) && concerns.length === SymbolicConstants.max_amount_with_other_choice && form[CSSClasses.concerns_other].length > 0) errors = _this.props.prepareErrors(CSSClasses.concerns, { message: DefaultErrorMessages.more_than_three });else errors = _this.props.prepareErrors(CSSClasses.concerns, false, true);
 
             return errors;
         };
@@ -83,8 +83,8 @@ var Concerns = function (_React$Component) {
             }
 
             var concerns = [].concat(_toConsumableArray(_this.props.formState.concerns));
-            if (_this.contains(concerns, element.dataset.value)) {
-                var index = concerns.indexOf(element.dataset.value);
+            if (eIncludes(concerns, element.dataset.value)) {
+                var index = eIndexOf(concerns, element.dataset.value);
                 if (index > -1) {
                     concerns.splice(index, 1);
                 }
@@ -143,7 +143,7 @@ var Concerns = function (_React$Component) {
         _this.createCheckbox = function (key) {
             var value = _this.state.concerns[key];
             var checked = "";
-            if (_this.contains(_this.props.formState.concerns, key)) checked = CSSClasses.choice_is_made;
+            if (eIncludes(_this.props.formState.concerns, key)) checked = CSSClasses.choice_is_made;
 
             var solidChoice = "";
             if (_this.props.formState.solid_concern == key) solidChoice = CSSClasses.solid_choice_is_made;
@@ -284,13 +284,6 @@ var Concerns = function (_React$Component) {
 
 
     _createClass(Concerns, [{
-        key: "contains",
-        value: function contains(arr, it) {
-            for (var i = 0; i < arr.length; i++) {
-                if (it == arr[i]) return true;
-            }return false;
-        }
-    }, {
         key: "render",
         value: function render() {
             // Prepare Checkbox array

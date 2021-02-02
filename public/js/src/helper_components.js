@@ -1,3 +1,4 @@
+// Components
 function SubmitButton(props) {
     let disabled = "submit_button_disabled";
     if (props.progress) {
@@ -40,6 +41,19 @@ function ErrorMessage(props) {
             </div>
         </div>
     );
+}
+
+// Regular Functions
+function eIndexOf(arr, it) {
+    for (let i = 0; i < arr.length; i++)
+        if (arr[i] == it) return i;
+    return -1;
+}
+
+function eIncludes(arr, it) {
+    for (let i=0; i < arr.length; i++)
+        if (it == arr[i]) return true;
+    return false;
 }
 
 function isBrowser(browser_name) {
@@ -250,5 +264,7 @@ export {
     isBrowser,
     SymbolicConstants,
     DefaultErrorMessages,
-    RequestConfigurations
+    RequestConfigurations,
+    eIndexOf,
+    eIncludes
 };

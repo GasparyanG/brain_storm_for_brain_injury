@@ -1,3 +1,4 @@
+// Components
 function SubmitButton(props) {
     var disabled = "submit_button_disabled";
     if (props.progress) {
@@ -55,6 +56,19 @@ function ErrorMessage(props) {
             )
         )
     );
+}
+
+// Regular Functions
+function eIndexOf(arr, it) {
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i] == it) return i;
+    }return -1;
+}
+
+function eIncludes(arr, it) {
+    for (var i = 0; i < arr.length; i++) {
+        if (it == arr[i]) return true;
+    }return false;
 }
 
 function isBrowser(browser_name) {
@@ -256,4 +270,4 @@ var RequestConfigurations = {
     form_submit_url: "/form"
 };
 
-export { SubmitButton, RegularButton, ErrorMessage, CSSClasses, validateEmail, debounce, isBrowser, SymbolicConstants, DefaultErrorMessages, RequestConfigurations };
+export { SubmitButton, RegularButton, ErrorMessage, CSSClasses, validateEmail, debounce, isBrowser, SymbolicConstants, DefaultErrorMessages, RequestConfigurations, eIndexOf, eIncludes };
