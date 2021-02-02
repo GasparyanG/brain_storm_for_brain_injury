@@ -22,6 +22,7 @@ class SymbolicConstantsEnum
     // Concern Range
     const MIN_CONCERN = 1;
     const MAX_CONCERN = 12;
+    const MAX_CONCERN_CHOICES = 3;
 
     // Date
     const DAY_MIN = 1;

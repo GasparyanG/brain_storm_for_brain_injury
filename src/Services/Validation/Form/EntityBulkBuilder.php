@@ -208,12 +208,19 @@ class EntityBulkBuilder extends AbstractValidator
         }
 
         $concerns = $this->form[FieldsEnum::CONCERNS];
+        $numberOfConcerns = 0;
+        $requiredNumberOfConcerns = $concernOther
+            ? SymbolicConstantsEnum::MAX_CONCERN_CHOICES - 1: SymbolicConstantsEnum::MAX_CONCERN_CHOICES;
         foreach ($concerns as $concernValue) {
             if (is_numeric($concernValue) && $this->concernIsValidNumeric($concernValue)) {
                 $concern = $this->em->getRepository(Concern::class)->find($concernValue);
-                if ($concern)
+                if ($concern) {
                     $this->createAndPersistUserConcern($user, $concern);
-                else
+
+                    // Can't choose more than mentioned.
+                    $numberOfConcerns++;
+                    if ($numberOfConcerns == $requiredNumberOfConcerns) break;
+                } else
                     self::removeConcernFromArray($concerns, $concernValue);
             } else
                 self::removeConcernFromArray($concerns, $concernValue);
@@ -224,8 +231,8 @@ class EntityBulkBuilder extends AbstractValidator
 
         // Update concerns.
         $newConcerns = [];
-        foreach ($concerns as $c)
-            $newConcerns[] = $c;
+        for ($i = 0; $i < $requiredNumberOfConcerns; $i++)
+            $newConcerns[] = $concerns[$i];
         $this->form[FieldsEnum::CONCERNS] = $newConcerns;
     }
 
