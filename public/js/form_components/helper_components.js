@@ -151,6 +151,7 @@ var CSSClasses = {
     doi_event_layer: "doi_event_layer", // doi - date of injury
     concerns_event_layer: "concerns_event_layer",
     disabled_nav: "disabled_nav",
+    concern_explanation_link: "concern_explanation_link",
 
     // Dates
     date_month: "date_month",

@@ -56,6 +56,20 @@
     background-color: var(--button-on-hover-bck-color);
 }
 
+/* Explanation icon */
+#form_container .choice_box_interaction {
+    display: flex;
+    position: absolute;
+    right: 1rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#form_container .concern_explanation_link {
+    width: var(--letter-box-width);
+    height: var(--letter-box-height);
+}
+
 /* -------------------------- RESPONSIVENESS ------------------------------ */
 @media only screen and (max-width: 550px) {
     #form_container .raw_button {

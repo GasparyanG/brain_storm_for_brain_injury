@@ -148,7 +148,6 @@
 
 /* -------------------------------------------- SOLID CHOICE BUTTON -------------------------------------- */
 #form_container .solid_choice {
-    position: absolute;
     right: 1rem;
     font-size: 1.5rem;
     cursor: pointer;

@@ -63,9 +63,19 @@ var Concerns = function (_React$Component) {
             }, SymbolicConstants.shake_timeout);
         };
 
+        _this.isExplanationLink = function (e) {
+            var element = e.target;
+            if (element.classList.contains(CSSClasses.concern_explanation_link)) return true;
+            if (element.parentNode.classList.contains(CSSClasses.concern_explanation_link)) return true;
+            if (element.parentNode.parentNode.classList.contains(CSSClasses.concern_explanation_link)) return true;
+
+            return false;
+        };
+
         _this.onCheck = function (e) {
             // Functionality
             if (e.target.classList.contains("solid_choice")) return;
+            if (_this.isExplanationLink(e)) return;
 
             var element = void 0;
             if (e.target.hasAttribute("data-value")) element = e.target;else if (e.target.parentNode.hasAttribute("data-value")) element = e.target.parentNode;else if (e.target.parentNode.parentNode.hasAttribute("data-value")) element = e.target.parentNode.parentNode;
@@ -150,6 +160,18 @@ var Concerns = function (_React$Component) {
 
             solidChoice = solidChoice === "" && _this.props.formState.solid_concern !== "" ? solidChoice + " hidden" : solidChoice;
 
+            var link = void 0;
+
+            if (_this.resources[key] == "") link = React.createElement(
+                "span",
+                { className: "concern_explanation_link" },
+                React.createElement("img", { src: "/public/images/icons/book.svg", alt: "" })
+            );else link = React.createElement(
+                "a",
+                { className: "concern_explanation_link", target: "_blank", href: _this.resources[key] },
+                React.createElement("img", { src: "/public/images/icons/book.svg", alt: "" })
+            );
+
             return React.createElement(
                 "div",
                 { key: value + ' ' + key, className: "choice_part " + checked, onClick: _this.onCheck, "data-value": key },
@@ -165,8 +187,13 @@ var Concerns = function (_React$Component) {
                 ),
                 React.createElement(
                     "div",
-                    { onClick: _this.makeSolidChoice, "data-solid_value": key, className: "solid_choice " + solidChoice },
-                    "\u2605"
+                    { className: "choice_box_interaction" },
+                    React.createElement(
+                        "div",
+                        { onClick: _this.makeSolidChoice, "data-solid_value": key, className: "solid_choice " + solidChoice },
+                        "\u2605"
+                    ),
+                    link
                 )
             );
         };
@@ -220,7 +247,7 @@ var Concerns = function (_React$Component) {
             }
 
             var solidChoice = "";
-            if (_this.props.formState.solid_concern == "14") solidChoice = CSSClasses.solid_choice_is_made;
+            if (_this.props.formState.solid_concern == "13") solidChoice = CSSClasses.solid_choice_is_made;
 
             return React.createElement(
                 "div",
@@ -277,6 +304,11 @@ var Concerns = function (_React$Component) {
         _this.letters = {
             1: 'A', 2: 'B', 3: 'C', 4: 'D', 5: 'E', 6: 'F',
             7: 'G', 8: 'H', 9: 'I', 10: 'J', 11: 'K', 12: 'L'
+        };
+
+        _this.resources = {
+            1: "", 2: "/symptoms/headaches", 3: "", 4: "", 5: "", 6: "", 7: "",
+            8: "", 9: "", 10: "", 11: "", 12: ""
         };
 
         _this.prev_layer = CSSClasses.injury_reason;
@@ -367,9 +399,11 @@ var Concerns = function (_React$Component) {
                                 React.createElement(
                                     "strong",
                                     null,
-                                    "star"
+                                    "star (\u2605)"
                                 ),
-                                " the most troubling one."
+                                " the most troubling one. For more information about concern press ",
+                                React.createElement("img", { className: "concern_explanation_link", src: "/public/images/icons/book.svg", alt: "" }),
+                                "."
                             ),
                             React.createElement(
                                 "div",
