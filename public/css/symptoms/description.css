@@ -18,6 +18,8 @@
 /* Lists */
 .symptom_section .bullet_opening {
     font-weight: 500;
+    font-style: italic;
+    margin-top: 3rem;
 }
 
 .symptom_section .sub_opening {
@@ -54,4 +56,14 @@
 .symptom_section .list_arrow {
     display: inline;
     align-self: flex-start;
+}
+
+.symptom_section .header_indicator {
+    font-weight: 700;
+    font-size: 40px;
+    font-style: italic;
+    margin-right: 1rem;
+    cursor: pointer;
+    color: inherit;
+    text-decoration: unset;
 }
