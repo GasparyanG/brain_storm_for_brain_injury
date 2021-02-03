@@ -269,7 +269,7 @@ class EntityBulkBuilder extends AbstractValidator
 
         // Update concerns.
         $newConcerns = [];
-        for ($i = 0; $i < $requiredNumberOfConcerns; $i++)
+        for ($i = 0; $i < min($requiredNumberOfConcerns, $numberOfConcerns); $i++)
             $newConcerns[] = $concerns[$i];
         $this->form[FieldsEnum::CONCERNS] = $newConcerns;
 
