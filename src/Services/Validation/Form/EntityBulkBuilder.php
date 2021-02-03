@@ -107,6 +107,11 @@ class EntityBulkBuilder extends AbstractValidator
         if ($this->isValidAge($this->form))
             $user->setAge($this->form[FieldsEnum::AGE]);
 
+        // Validation measures.
+        $user->setSignedDate(time());
+        $user->setValidated(false);
+        $user->setValidationHash($this->validationHash());
+
         if (count($this->customErrors) > 0) return $user;
 
         // Persistence

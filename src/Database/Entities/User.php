@@ -43,6 +43,24 @@ class User
     private $location;
 
     /**
+     * @var int
+     * @Column(type="integer", name="signed_date")
+     */
+    private $signedDate;
+
+    /**
+     * @var bool
+     * @Column(type="boolean", name="validated")
+     */
+    private $validated;
+
+    /**
+     * @var string
+     * @Column(type="string", name="validation_hash")
+     */
+    private $validationHash;
+
+    /**
      * @OneToMany(targetEntity="InjuryInformation", mappedBy="user")
      * @JoinColumn(name="user_id")
      */
@@ -146,6 +164,54 @@ class User
     public function getInjuryInformation()
     {
         return $this->injuryInformation;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSignedDate(): int
+    {
+        return $this->signedDate;
+    }
+
+    /**
+     * @param int $signedDate
+     */
+    public function setSignedDate(int $signedDate): void
+    {
+        $this->signedDate = $signedDate;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isValidated(): bool
+    {
+        return $this->validated;
+    }
+
+    /**
+     * @param bool $validated
+     */
+    public function setValidated(bool $validated): void
+    {
+        $this->validated = $validated;
+    }
+
+    /**
+     * @return string
+     */
+    public function getValidationHash(): string
+    {
+        return $this->validationHash;
+    }
+
+    /**
+     * @param string $validationHash
+     */
+    public function setValidationHash(string $validationHash): void
+    {
+        $this->validationHash = $validationHash;
     }
 
     /**

@@ -9,6 +9,12 @@ abstract class AbstractValidator
     protected array $customErrors = [];
     protected bool $persistenceError = false;   // Initially there is no persistence error.
 
+    // Hashing
+    const GENERAL_CONFIG_FILE = __DIR__ . "/../../../../config/general.json";
+    const HASH_ALGORITHM = "hashing_algorithm";
+    const SALT_MODULO_1 = 300;
+    const SALT_MODULO_2 = 255;
+
     // ----------------------------------- GENERAL ------------------------------------
     protected function isFieldExists(array $assocArray, string $keyToAssoc): bool
     {
@@ -134,5 +140,23 @@ abstract class AbstractValidator
         }
 
         return true;
+    }
+
+    // --------------------------------- Validation Hash ----------------------------------------------
+    protected function validationHash(): string
+    {
+        $generalConfig
+            = json_decode(file_get_contents(self::GENERAL_CONFIG_FILE), true);
+
+        return hash($generalConfig[self::HASH_ALGORITHM], time() . $this->salt());
+    }
+
+    protected function salt(): string
+    {
+        try {
+            return random_int(time()%self::SALT_MODULO_1, time());
+        } catch (\Exception $e) {
+            return time()%self::SALT_MODULO_2;
+        }
     }
 }
