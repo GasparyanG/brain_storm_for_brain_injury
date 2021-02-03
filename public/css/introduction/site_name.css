@@ -12,12 +12,8 @@
 }
 
 #intro_container .site_name_section {
-    position: absolute;
-    z-index: 2;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%);
     font-size: 30px;
+    margin-bottom: 2rem;
 }
 
 #intro_container .site_name_letter {

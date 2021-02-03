@@ -1,0 +1,13 @@
+#intro_container .introduction_section {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#intro_container .introduction_text {
+    font-size: 20px;
+    font-style: italic;
+}
