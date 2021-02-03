@@ -22,3 +22,17 @@
     transition: 0.2s ease-out;
     transform: translateY(3%);
 }
+
+/* -------------------------------- RESPONSIVENESS ---------------------------- */
+
+@media only screen and (min-width: 701px) and (max-width: 1200px) {
+    #intro_container .call_to_action {
+        font-size: 20px;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    #intro_container .call_to_action {
+        font-size: 15px;
+    }
+}

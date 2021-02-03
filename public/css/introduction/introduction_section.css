@@ -11,3 +11,22 @@
     font-size: 20px;
     font-style: italic;
 }
+
+/* ----------------------------- RESPONSIVENESS ------------------------------- */
+@media only screen and (min-width: 801px) and (max-width: 1100px) {
+    #intro_container .introduction_section {
+        width: 70%;
+        left: 15%;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    #intro_container .introduction_section {
+        width: 80%;
+        left: 10%;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}

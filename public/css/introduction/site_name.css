@@ -14,6 +14,8 @@
 #intro_container .site_name_section {
     font-size: 30px;
     margin-bottom: 2rem;
+    width: 80%;
+    margin-left: 10%;
 }
 
 #intro_container .site_name_letter {
@@ -24,6 +26,17 @@
     transition-duration: 2s;
 }
 
+#intro_container .site_name_letters {
+    display: flex;
+}
+
+#intro_container .name_half div {
+    margin-right: 1rem;
+}
+
+#intro_container .name_half {
+    display: flex;
+}
 
 #intro_container .site_name_section .site_name_letter_translated {
     transform: translateY(0);
@@ -54,3 +67,53 @@
 #intro_container .ltr_22 {transition-delay: 133.33ms}
 #intro_container .ltr_23 {transition-delay: 166.66ms}
 #intro_container .ltr_24 {transition-delay: 500.66ms}
+
+
+/* ------------------------------ RESPONSIVENESS ------------------------------------------- */
+@media only screen and (min-width: 1500px) and (max-width: 1600px) {
+    #intro_container .site_name_section {
+        font-size: 25px;
+    }
+}
+
+@media only screen and (min-width: 801px) and (max-width: 1500px) {
+    #intro_container .site_name_section {
+        font-size: 20px;
+    }
+}
+
+@media only screen and (min-width: 451px) and (max-width: 800px) {
+    #intro_container .site_name_section {
+        margin-left: 25%;
+    }
+
+    #intro_container .site_name_letters {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #intro_container .site_name_section {
+        font-size: 18px;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    #intro_container .site_name_section {
+        margin-left: 30%;
+    }
+
+    #intro_container .site_name_letters {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #intro_container .name_half {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #intro_container .site_name_section {
+        font-size: 18px;
+    }
+}
+
