@@ -20,11 +20,6 @@ class Concerns extends React.Component {
             7: 'G', 8: 'H', 9: 'I', 10: 'J', 11: 'K', 12: 'L'
         }
 
-        this.resources = {
-            1: "", 2: "/symptoms/headaches", 3: "",  4: "",  5: "", 6: "", 7: "",
-            8: "", 9: "",                    10: "", 11: "", 12: ""
-        }
-
         this.prev_layer = CSSClasses.injury_reason;
     }
 
@@ -79,19 +74,9 @@ class Concerns extends React.Component {
         setTimeout(() => {layer.classList.remove(CSSClasses.warning_shake)}, SymbolicConstants.shake_timeout)
     }
 
-    isExplanationLink = (e) => {
-        let element = e.target;
-        if (element.classList.contains(CSSClasses.concern_explanation_link)) return true;
-        if (element.parentNode.classList.contains(CSSClasses.concern_explanation_link)) return true;
-        if (element.parentNode.parentNode.classList.contains(CSSClasses.concern_explanation_link)) return true;
-
-        return false;
-    }
-
     onCheck = (e) => {
         // Functionality
         if (e.target.classList.contains("solid_choice")) return;
-        if (this.isExplanationLink(e)) return;
 
         let element;
         if (e.target.hasAttribute("data-value"))
@@ -190,22 +175,11 @@ class Concerns extends React.Component {
         solidChoice = solidChoice === "" && this.props.formState.solid_concern !== ""
             ? solidChoice + " hidden": solidChoice;
 
-
-        let link;
-
-        if (this.resources[key] == "")
-            link = (<span className="concern_explanation_link"><img src="/public/images/icons/book.svg" alt=""/></span>)
-        else
-            link = (<a className="concern_explanation_link" target="_blank" href={this.resources[key]}><img src="/public/images/icons/book.svg" alt=""/></a>);
-
         return (
             <div key={value + ' ' + key} className={"choice_part " + checked} onClick={this.onCheck} data-value={key}>
                 <div className="choice_letter">{this.letters[key]}</div>
                 <div className="choice_name">{value}</div>
-                <div className="choice_box_interaction">
-                    <div onClick={this.makeSolidChoice} data-solid_value={key} className={"solid_choice " + solidChoice}>★</div>
-                    {link}
-                </div>
+                <div onClick={this.makeSolidChoice} data-solid_value={key} className={"solid_choice " + solidChoice}>★</div>
             </div>
         );
     }
@@ -311,7 +285,6 @@ class Concerns extends React.Component {
                             {label}
                             <div className="question_usage_hint">
                                 Check <strong>up to three</strong> and <strong>star (★)</strong> the most troubling one.
-                                For more information about the specific concern press <img className="concern_explanation_link" src="/public/images/icons/book.svg" alt=""/>.
                             </div>
                             <div className="choices_section">
                                 {checkboxItems}
