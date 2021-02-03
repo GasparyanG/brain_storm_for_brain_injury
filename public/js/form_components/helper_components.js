@@ -205,6 +205,7 @@ var SymbolicConstants = {
     scroll_delta: -120,
     max_number_of_pages: 6,
     max_number_of_pages_human: 7,
+    progress_steps: 8,
 
     // Age
     max_age: 150,
@@ -259,7 +260,8 @@ var SymbolicConstants = {
     // CONCERNS
     concerns_required: "At least one concern is required",
     more_than_three: "Can't choose more than three concerns",
-    cant_type: "Can't type: you already made three choices"
+    cant_type: "Can't type: you already made three choices",
+    solid_concern_required: "Solid concern is required"
 };
 
 var RequestConfigurations = {

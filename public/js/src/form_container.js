@@ -245,7 +245,7 @@ class Form extends React.Component {
     progressComputation = () => {
         let progress = 0;
         let progressStep =
-            Math.ceil(SymbolicConstants.completed_progress/SymbolicConstants.max_number_of_pages_human);
+            Math.ceil(SymbolicConstants.completed_progress/SymbolicConstants.progress_steps);
 
         progress += !this.stringValues(CSSClasses.name) ? 0 : progressStep;
         progress += !this.stringValues(CSSClasses.age) ? 0 : progressStep;
@@ -254,6 +254,7 @@ class Form extends React.Component {
         progress += !this.stringValues(CSSClasses.injury_reason) ? 0 : progressStep;
         progress += !this.isValidDate(this.state.form) ? 0 : progressStep;
         progress += !this.areConcernsValid() ? 0 : progressStep;
+        progress += !this.stringValues(CSSClasses.solid_concern) ? 0: progressStep;
 
         return progress;
     }

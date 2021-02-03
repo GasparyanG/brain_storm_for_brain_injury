@@ -127,7 +127,15 @@ var Concerns = function (_React$Component) {
             element.classList.toggle(CSSClasses.solid_choice_is_made);
 
             // Update state about solid choice.
-            if (element.classList.contains(CSSClasses.solid_choice_is_made)) _this.props.checkboxHandler(CSSClasses.solid_concern, element.dataset.solid_value);else _this.props.checkboxHandler(CSSClasses.solid_concern, "");
+            if (element.classList.contains(CSSClasses.solid_choice_is_made)) {
+                var errors = _this.props.prepareErrors(CSSClasses.solid_concern, false, true); // Remove error.
+                var form = _this.props.prepareForm(CSSClasses.solid_concern, element.dataset.solid_value);
+                _this.props.updateFormAndError(form, errors);
+            } else {
+                var _errors = _this.props.prepareErrors(CSSClasses.solid_concern, { message: DefaultErrorMessages.solid_concern_required }); // Add error.
+                var _form = _this.props.prepareForm(CSSClasses.solid_concern, "");
+                _this.props.updateFormAndError(_form, _errors);
+            }
 
             // Update solid choice button for other elements.
             var choices = document.querySelectorAll(".concerns ." + CSSClasses.choice_is_made);
@@ -259,8 +267,8 @@ var Concerns = function (_React$Component) {
             );
         };
 
-        _this.hintOrAction = function (field) {
-            if (_this.props.errors.hasOwnProperty(field)) return React.createElement(ErrorMessage, { errors: _this.props.errors, field: field });
+        _this.hintOrAction = function () {
+            if (_this.props.errors.hasOwnProperty(CSSClasses.concerns)) return React.createElement(ErrorMessage, { errors: _this.props.errors, field: CSSClasses.concerns });else if (_this.props.errors.hasOwnProperty(CSSClasses.solid_concern)) return React.createElement(ErrorMessage, { errors: _this.props.errors, field: CSSClasses.solid_concern });
         };
 
         _this.state = {
@@ -339,7 +347,7 @@ var Concerns = function (_React$Component) {
                 )
             );
 
-            var validityElement = this.hintOrAction(CSSClasses.concerns);
+            var validityElement = this.hintOrAction();
 
             return React.createElement(
                 "section",

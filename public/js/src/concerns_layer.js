@@ -143,10 +143,16 @@ class Concerns extends React.Component {
         element.classList.toggle(CSSClasses.solid_choice_is_made);
 
         // Update state about solid choice.
-        if (element.classList.contains(CSSClasses.solid_choice_is_made))
-            this.props.checkboxHandler(CSSClasses.solid_concern, element.dataset.solid_value);
-        else
-            this.props.checkboxHandler(CSSClasses.solid_concern, "");
+        if (element.classList.contains(CSSClasses.solid_choice_is_made)) {
+            let errors = this.props.prepareErrors(CSSClasses.solid_concern, false, true); // Remove error.
+            let form = this.props.prepareForm(CSSClasses.solid_concern, element.dataset.solid_value);
+            this.props.updateFormAndError(form, errors);
+        } else {
+            let errors = this.props.prepareErrors(CSSClasses.solid_concern,
+                {message: DefaultErrorMessages.solid_concern_required}); // Add error.
+            let form = this.props.prepareForm(CSSClasses.solid_concern, "");
+            this.props.updateFormAndError(form, errors);
+        }
 
         // Update solid choice button for other elements.
         let choices = document.querySelectorAll(".concerns ." + CSSClasses.choice_is_made);
@@ -254,9 +260,11 @@ class Concerns extends React.Component {
         );
     }
 
-    hintOrAction = (field) => {
-        if (this.props.errors.hasOwnProperty(field))
-            return <ErrorMessage errors={this.props.errors} field={field}/>
+    hintOrAction = () => {
+        if (this.props.errors.hasOwnProperty(CSSClasses.concerns))
+            return (<ErrorMessage errors={this.props.errors} field={CSSClasses.concerns}/>)
+        else if (this.props.errors.hasOwnProperty(CSSClasses.solid_concern))
+            return (<ErrorMessage errors={this.props.errors} field={CSSClasses.solid_concern}/>);
     }
 
     render () {
@@ -275,7 +283,7 @@ class Concerns extends React.Component {
                 <span className="question_number">  {this.props.svgArrow}</span>
                 <span>{this.props.formState.name}, check your <strong>greatest concerns.</strong></span></label>);
 
-        const validityElement = this.hintOrAction(CSSClasses.concerns);
+        const validityElement = this.hintOrAction();
 
         return (
             <section className="concerns form_layer">

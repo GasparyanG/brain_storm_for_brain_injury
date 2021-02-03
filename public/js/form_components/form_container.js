@@ -204,7 +204,7 @@ var Form = function (_React$Component) {
 
         _this.progressComputation = function () {
             var progress = 0;
-            var progressStep = Math.ceil(SymbolicConstants.completed_progress / SymbolicConstants.max_number_of_pages_human);
+            var progressStep = Math.ceil(SymbolicConstants.completed_progress / SymbolicConstants.progress_steps);
 
             progress += !_this.stringValues(CSSClasses.name) ? 0 : progressStep;
             progress += !_this.stringValues(CSSClasses.age) ? 0 : progressStep;
@@ -213,6 +213,7 @@ var Form = function (_React$Component) {
             progress += !_this.stringValues(CSSClasses.injury_reason) ? 0 : progressStep;
             progress += !_this.isValidDate(_this.state.form) ? 0 : progressStep;
             progress += !_this.areConcernsValid() ? 0 : progressStep;
+            progress += !_this.stringValues(CSSClasses.solid_concern) ? 0 : progressStep;
 
             return progress;
         };

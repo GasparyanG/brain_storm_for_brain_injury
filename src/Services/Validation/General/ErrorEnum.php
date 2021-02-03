@@ -39,6 +39,7 @@ class ErrorEnum
     const CONCERNS_REQUIRED = "At least one concern is required";
     const MORE_THAN_THREE = "Can't choose more than three concerns";
     const CANT_TYPE = "Can't type: you already made three choices";
+    const SOLID_CONCERN_REQUIRED = "Solid concern is required";
 
     private static $isReqiredErrors = [
         FieldsEnum::NAME => self::NAME,
@@ -47,7 +48,8 @@ class ErrorEnum
         FieldsEnum::EMAIL => self::EMAIL_REQUIRED,
         FieldsEnum::CONCERNS => self::CONCERNS_REQUIRED,
         FieldsEnum::DATE => self::DATE_REQUIRED,
-        FieldsEnum::INJURY_REASON => self::INJURY_REASON_REQUIRED
+        FieldsEnum::INJURY_REASON => self::INJURY_REASON_REQUIRED,
+        FieldsEnum::SOLID_CONCERN => self::SOLID_CONCERN_REQUIRED
     ];
 
     private static $numbersOnlyErrors = [
