@@ -39,7 +39,8 @@ class SymbolicConstantsEnum
         FieldsEnum::EMAIL => 3,
         FieldsEnum::DATE => 4,
         FieldsEnum::INJURY_REASON => 5,
-        FieldsEnum::CONCERNS => 6
+        FieldsEnum::CONCERNS => 6,
+        FieldsEnum::SOLID_CONCERN => 6
     ];
 
     public static function getPageNumber(string $key): int

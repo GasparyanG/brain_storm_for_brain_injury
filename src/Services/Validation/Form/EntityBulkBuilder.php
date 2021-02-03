@@ -25,6 +25,7 @@ class EntityBulkBuilder extends AbstractValidator
     private array $assocArrayForm;
     private bool $userAdded = false;
     private bool $toBeUpdated = false;
+    private bool $solidConcern = false;
 
     // Passed Association Array's Components
     private array $navigation = [];
@@ -271,6 +272,14 @@ class EntityBulkBuilder extends AbstractValidator
         for ($i = 0; $i < $requiredNumberOfConcerns; $i++)
             $newConcerns[] = $concerns[$i];
         $this->form[FieldsEnum::CONCERNS] = $newConcerns;
+
+        $this->validateSolidConcern();
+    }
+
+    private function validateSolidConcern(): void
+    {
+        if ($this->solidConcern) return;
+        $this->addError(ErrorEnum::SOLID_CONCERN_REQUIRED, FieldsEnum::SOLID_CONCERN);
     }
 
     private function createAndPersistUserConcern(User $user, Concern $concern): void
@@ -280,9 +289,12 @@ class EntityBulkBuilder extends AbstractValidator
         $userConcern->setConcern($concern);
 
         if (isset($this->form[FieldsEnum::SOLID_CONCERN])
-            && $this->form[FieldsEnum::SOLID_CONCERN] == $concern->getId())
+            && $this->form[FieldsEnum::SOLID_CONCERN] == $concern->getId()) {
+
+            // Mention that solid concern is found.
             $userConcern->setStrong(true);
-        else
+            $this->solidConcern = true;
+        } else
             $userConcern->setStrong(false);
 
         try {

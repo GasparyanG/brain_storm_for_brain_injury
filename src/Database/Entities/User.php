@@ -73,7 +73,6 @@ class User
 
     public function __construct()
     {
-        $this->injuryInformation = new ArrayCollection();
         $this->userConcerns = new ArrayCollection();
     }
 
