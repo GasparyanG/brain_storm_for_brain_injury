@@ -1,0 +1,60 @@
+:root {
+    --light-theme: white;
+    --dark-theme: black;
+}
+
+#intro_container .light_background .site_name_section {
+    color: var(--dark-theme);
+}
+
+#intro_container .dark_background .site_name_section {
+    color: var(--light-theme);
+}
+
+#intro_container .site_name_section {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 30px;
+}
+
+#intro_container .site_name_letter {
+    opacity: 1;
+    transform: translateY(-100%);
+    transition-property: opacity, transform;
+    transition-timing-function: ease-out;
+    transition-duration: 2s;
+}
+
+
+#intro_container .site_name_section .site_name_letter_translated {
+    transform: translateY(0);
+    opacity: 0;
+}
+
+#intro_container .ltr_1 {transition-delay: 400ms}
+#intro_container .ltr_2 {transition-delay: 400ms}
+#intro_container .ltr_3 {transition-delay: 466.6ms}
+#intro_container .ltr_4 {transition-delay: 66.66ms}
+#intro_container .ltr_5 {transition-delay: 266.66ms}
+#intro_container .ltr_6 {transition-delay: 133.33ms}
+#intro_container .ltr_7 {transition-delay: 166.66ms}
+#intro_container .ltr_8 {transition-delay: 500.66ms}
+#intro_container .ltr_9 {transition-delay: 400ms}
+#intro_container .ltr_10 {transition-delay: 400ms}
+#intro_container .ltr_11 {transition-delay: 466.6ms}
+#intro_container .ltr_12 {transition-delay: 66.66ms}
+#intro_container .ltr_13 {transition-delay: 266.66ms}
+#intro_container .ltr_14 {transition-delay: 133.33ms}
+#intro_container .ltr_15 {transition-delay: 166.66ms}
+#intro_container .ltr_16 {transition-delay: 500.66ms}
+#intro_container .ltr_17 {transition-delay: 400ms}
+#intro_container .ltr_18 {transition-delay: 400ms}
+#intro_container .ltr_19 {transition-delay: 466.6ms}
+#intro_container .ltr_20 {transition-delay: 66.66ms}
+#intro_container .ltr_21 {transition-delay: 266.66ms}
+#intro_container .ltr_22 {transition-delay: 133.33ms}
+#intro_container .ltr_23 {transition-delay: 166.66ms}
+#intro_container .ltr_24 {transition-delay: 500.66ms}
