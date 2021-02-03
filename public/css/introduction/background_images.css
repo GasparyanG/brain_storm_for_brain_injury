@@ -1,0 +1,40 @@
+#intro_container {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+#intro_container .background_section {
+    height: inherit;
+    width: inherit;
+}
+
+#intro_container .background_image {
+    height: inherit;
+    width: inherit;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    opacity: 1;
+    transform: scale(1.3);
+    transition-property: transform, opacity;
+    transition-duration: 5s;
+    transition-timing-function: ease-out;
+}
+
+#intro_container .background_section .disable_background_image {
+    height: inherit;
+    width: inherit;
+    opacity: 0;
+    transform: scale(1.5);
+    transition-property: transform, opacity;
+    transition-duration: 5s;
+    transition-timing-function: ease-out;
+}
+
+#intro_container .bck_1 { background-image: url("/public/images/introduction_page/pexels-kelly-lacy-3356685.jpg") }
+#intro_container .bck_2 { background-image: url("/public/images/introduction_page/pexels-maria-isabella-bernotti-1049298.jpg") }
+#intro_container .bck_3 { background-image: url("/public/images/introduction_page/pexels-pixabay-414083.jpg") }
+#intro_container .bck_4 { background-image: url("/public/images/introduction_page/pexels-ruvim-miksanskiy-1438761.jpg") }
+
