@@ -40,7 +40,7 @@ class Mailer
 
         // SMTP CONFIGURATION
         $this->mail->isSMTP();
-        $this->mail->SMTPDebug = SMTP::DEBUG_SERVER;
+        // $this->mail->SMTPDebug = SMTP::DEBUG_SERVER;
         $this->mail->SMTPAuth = true;
         $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 

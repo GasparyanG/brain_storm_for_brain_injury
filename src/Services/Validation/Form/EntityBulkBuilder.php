@@ -8,6 +8,8 @@ use App\Database\Entities\InjuryInformation;
 use App\Database\Entities\InjuryReason;
 use App\Database\Entities\User;
 use App\Database\Entities\UserConcern;
+use App\Services\Mailer\EmailVerification;
+use App\Services\Mailer\Mailer;
 use App\Services\Validation\General\AbstractValidator;
 use App\Services\Validation\General\DefaultAssembler;
 use App\Services\Validation\General\DefaultErrorGenerator;
@@ -88,7 +90,7 @@ class EntityBulkBuilder extends AbstractValidator
             return $this->prepareInvalidResponse();
         }
 
-        return $this->successResponse();
+        return $this->successResponse($user);
     }
 
     private function validateUser(): User
@@ -341,8 +343,11 @@ class EntityBulkBuilder extends AbstractValidator
         ];
     }
 
-    private function successResponse(): array
+    private function successResponse(User $user): array
     {
+        // TODO: Handle unverified email.
+        $emailIsVerified = (new EmailVerification($user))->verify();
+
         $regularAssembler = new RegularAssembler();
 
         // Assemble
