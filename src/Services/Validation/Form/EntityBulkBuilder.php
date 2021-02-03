@@ -9,7 +9,6 @@ use App\Database\Entities\InjuryReason;
 use App\Database\Entities\User;
 use App\Database\Entities\UserConcern;
 use App\Services\Mailer\EmailVerification;
-use App\Services\Mailer\Mailer;
 use App\Services\Validation\General\AbstractValidator;
 use App\Services\Validation\General\DefaultAssembler;
 use App\Services\Validation\General\DefaultErrorGenerator;
@@ -25,6 +24,7 @@ class EntityBulkBuilder extends AbstractValidator
 {
     private array $assocArrayForm;
     private bool $userAdded = false;
+    private bool $toBeUpdated = false;
 
     // Passed Association Array's Components
     private array $navigation = [];
@@ -49,6 +49,9 @@ class EntityBulkBuilder extends AbstractValidator
     {
         if ($this->isInvalidArgument()) return self::defaultErrorResponse();
         $this->extractFields();
+
+        if ($this->exists())
+            $this->toBeUpdated = true;
 
         // Validate The User
         $user = $this->validateUser();
@@ -78,6 +81,10 @@ class EntityBulkBuilder extends AbstractValidator
             return $this->prepareInvalidResponse();
         }
 
+        // Don't let more than three concerns per-user by deleting them.
+        if ($this->toBeUpdated)
+            $this->deleteUserConcerns($user);
+
         if ($concern) {     // Concern can be a null.
             $this->createAndPersistUserConcern($user, $concern);
         }
@@ -93,17 +100,35 @@ class EntityBulkBuilder extends AbstractValidator
         return $this->successResponse($user);
     }
 
+    private function exists(): bool
+    {
+        if (
+            !isset($this->form[FieldsEnum::EMAIL]) ||
+            (strlen($this->form[FieldsEnum::EMAIL]) == 0)
+        ) return false;
+
+        $user = $this->getUserViaEmail();
+
+        if ($user) return true;
+        return false;
+    }
+
     private function validateUser(): User
     {
         // Validation
-        $user = new User();
+        if ($this->toBeUpdated)
+            $user = $this->getUserViaEmail();
+        else
+            $user = new User();
+
+
         if ($this->stringIsNotEmpty($this->form, FieldsEnum::NAME))
             $user->setName($this->form[FieldsEnum::NAME]);
 
         if ($this->stringIsNotEmpty($this->form, FieldsEnum::LOCATION))
             $user->setLocation($this->form[FieldsEnum::LOCATION]);
 
-        if ($this->isValidEmailAddress($this->form))
+        if (!$this->toBeUpdated && $this->isValidEmailAddress($this->form))
             $user->setEmailAddress($this->form[FieldsEnum::EMAIL]);
 
         if ($this->isValidAge($this->form))
@@ -160,7 +185,10 @@ class EntityBulkBuilder extends AbstractValidator
 
     private function validateInjuryInformation(User $user, InjuryReason $injuryReason): InjuryInformation
     {
-        $injuryInformation = new InjuryInformation();
+        if ($this->toBeUpdated) {
+            $injuryInformation = $this->getInjuryInformationViaUser($user);
+        } else
+            $injuryInformation = new InjuryInformation();
 
         // Date setting.
         $date = time();
@@ -389,5 +417,43 @@ class EntityBulkBuilder extends AbstractValidator
     {
         $index = array_search($concernValue, $concerns);
         unset($concerns[$index]);
+    }
+
+    // ----------------------------- Accessing Entities -------------------------------------------
+    private function getUserViaEmail(): ?User
+    {
+        return $this->em->getRepository(User::class)
+            ->findOneBy(
+                [
+                    FieldsEnum::EMAIL_ADDRESS => $this->form[FieldsEnum::EMAIL]
+                ]
+            );
+    }
+
+    private function getInjuryInformationViaUser(User $user): InjuryInformation
+    {
+        return $this->em->getRepository(InjuryInformation::class)
+            ->findOneBy(
+                [
+                    FieldsEnum::USER => $user
+                ]
+            );
+    }
+
+    private function deleteUserConcerns(User $user): void
+    {
+        $userConcerns = $this->em->getRepository(UserConcern::class)->findAll(
+            [
+                FieldsEnum::USER => $user
+            ]
+        );
+
+        foreach ($userConcerns as $uc) {
+            try {
+                $this->em->remove($uc);
+            } catch (ORMException $e) {
+                $this->persistenceError = true;
+            }
+        }
     }
 }

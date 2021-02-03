@@ -28,4 +28,9 @@ class FieldsEnum
     // ERRORS
     const ERRORS = "errors";
     const MESSAGE = "message";
+
+    // ----------------------------------- Entity Fields --------------------------------------
+    // InjuryInformation
+    const USER = "user";
+    const EMAIL_ADDRESS = "emailAddress";
 }

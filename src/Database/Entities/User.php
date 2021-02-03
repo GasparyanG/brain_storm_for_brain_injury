@@ -61,8 +61,7 @@ class User
     private $validationHash;
 
     /**
-     * @OneToMany(targetEntity="InjuryInformation", mappedBy="user")
-     * @JoinColumn(name="user_id")
+     * @OneToOne(targetEntity="InjuryInformation", mappedBy="user")
      */
     private $injuryInformation;
 
@@ -217,12 +216,9 @@ class User
     /**
      * @param InjuryInformation $injuryInformation
      */
-    public function addInjuryInformation(InjuryInformation $injuryInformation): void
+    public function setInjuryInformation(InjuryInformation $injuryInformation): void
     {
-        if (!$this->injuryInformation->contains($injuryInformation)) {
-            $this->injuryInformation[] = $injuryInformation;
-            $injuryInformation->setUser($this);
-        }
+        $this->injuryInformation = $injuryInformation;
     }
 
     /**

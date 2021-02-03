@@ -11,6 +11,12 @@ use FastRoute;
 
 class RoutingMiddleware implements MiddlewareInterface
 {
+    // KEYS
+    const VERIFICATION_URL_KEY = "verification_url";
+
+    const DOMAIN = "http://bsfbi.loc";
+    const VERIFICATION_URL = self::DOMAIN . "/email_verification";
+
 	/**
 	 * @var MiddlewareInterface|null
 	 */

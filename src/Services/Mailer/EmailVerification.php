@@ -5,6 +5,7 @@ namespace App\Services\Mailer;
 
 
 use App\Database\Entities\User;
+use App\Middlewares\RoutingMiddleware;
 use App\Services\TemplateEngine\Twig\Twig;
 use PHPMailer\PHPMailer\PHPMailer;
 
@@ -37,7 +38,10 @@ class EmailVerification
             $this->mail->isHTML(true);
             $this->mail->Body = (
                     new Twig())->render(self::BODY_FILE,
-                        [self::VALIDATION_HASH => $this->user->getValidationHash()]
+                        [
+                            RoutingMiddleware::VERIFICATION_URL_KEY => RoutingMiddleware::VERIFICATION_URL,
+                            self::VALIDATION_HASH => $this->user->getValidationHash()
+                        ]
                 );
 
             $this->mail->send();
