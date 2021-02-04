@@ -28,9 +28,16 @@
 }
 
 /* ------------------------------- RESPONSIVENESS -----------------------------------*/
-@media only screen and (max-width: 1000px) {
+@media only screen and (min-width: 451px) and (max-width: 1000px) {
     #thank_you_section .solid_concern_identification {
         font-size: 20px;
+        margin-bottom: 1rem;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    #thank_you_section .solid_concern_identification {
+        font-size: 15px;
         margin-bottom: 1rem;
     }
 }

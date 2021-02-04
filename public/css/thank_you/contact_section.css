@@ -138,17 +138,21 @@
     }
 }
 
-@media only screen and (min-width: 351px) and(max-width: 400px) {
+@media only screen and (min-width: 351px) and (max-width: 400px) {
     #thank_you_section .contact_email {
-        font-size: 14px;
+        font-size: 12px;
     }
 
     #thank_you_section .contact_opening {
-        font-size: 15px!important;
+        font-size: 14px;
     }
 }
 
 @media only screen and (max-width: 350px) {
+    #thank_you_section .contact_opening {
+        font-size: 14px;
+    }
+
     #thank_you_section .contact_email {
         font-size: 12px;
     }
