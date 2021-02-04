@@ -32,14 +32,14 @@ class UserMessage extends AbstractValidator
     {
         $user = $this->getUser();
 
-        if ($this->invalidArgument() || $user) return static::invalidArgumentResponse();
+        if ($this->invalidArgument() || !$user) return static::invalidArgumentResponse();
         $this->extractFields();
 
         if (!$this->stringIsNotEmpty($this->formAssocArray, FieldsEnum::MESSAGE)
             || !$this->stringNotExceeds($this->message, FieldsEnum::MESSAGE, SymbolicConstantsEnum::MAX_NUMBER_OF_CHARACTERS))
             return static::defaultErrorMessage($this->customErrors[FieldsEnum::MESSAGE][FieldsEnum::MESSAGE]);
 
-        $userMessage = $this->em->getRepository(UserMessage::class)->findOneBy(
+        $userMessage = $this->em->getRepository(UserMessageEntity::class)->findOneBy(
             [
                 "user" => $user
             ]

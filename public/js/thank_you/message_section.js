@@ -84,10 +84,12 @@ function textAreaIsInvalid() {
 function buttonIsClicked() {
     if (textAreaIsInvalid()) return;
 
+    let dataToSend = JSON.stringify({message: textArea.value});
+
     $.ajax({
         url: "/message",
         method: "POST",
-        data: {message: textArea.value},
+        data: dataToSend,
         success: function(data) {
             data = JSON.parse(data);
 

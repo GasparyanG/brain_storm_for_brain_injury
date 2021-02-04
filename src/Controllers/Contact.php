@@ -17,12 +17,10 @@ class Contact
         $data = json_decode($request->getContent(), true);
 
         try {
-
-            if (!$cookie || count($data) == 0) return $this->errorResponse(UserMessage::invalidArgumentResponse());
+            if (!$cookie || !is_array($data) || count($data) == 0) return $this->errorResponse(UserMessage::invalidArgumentResponse());
         } catch (\Exception $e) {
             return $this->errorResponse(UserMessage::invalidArgumentResponse());
         }
-
 
         $message = (new UserMessage($data))->validate();
         return Response::create(json_encode($message));
