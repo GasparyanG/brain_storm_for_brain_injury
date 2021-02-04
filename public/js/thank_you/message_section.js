@@ -89,6 +89,8 @@ function buttonIsClicked() {
         method: "POST",
         data: {message: textArea.value},
         success: function(data) {
+            data = JSON.parse(data);
+
             if (data.success)
                 successMessage(errorMessages.done);
             else

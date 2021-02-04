@@ -28,6 +28,7 @@ class FieldsEnum
     // ERRORS
     const ERRORS = "errors";
     const MESSAGE = "message";
+    const SUCCESS = "success";
 
     // ----------------------------------- Entity Fields --------------------------------------
     // InjuryInformation

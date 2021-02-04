@@ -32,6 +32,9 @@ class SymbolicConstantsEnum
     const YEAR_MIN = 1920;         // For 100 years old people.
     const YEAR_MAX = 2021;         // Update every year or take dynamically.
 
+    // User Message
+    const MAX_NUMBER_OF_CHARACTERS = 4000;
+
     private static array $pageAndNumber = [
         FieldsEnum::NAME => 0,
         FieldsEnum::AGE => 1,

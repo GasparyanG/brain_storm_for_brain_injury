@@ -68,6 +68,16 @@ abstract class AbstractValidator
         return true;
     }
 
+    protected function stringNotExceeds(string $string, string $fieldName, int $max): bool
+    {
+        if (strlen($string) > $max) {
+            $this->addError(ErrorEnum::MESSAGE_TOO_LONG, $fieldName);
+            return false;
+        }
+
+        return true;
+    }
+
 
     // ----------------------------------- NUMBERS ------------------------------------
     protected function isValidAge(array $assocArray): bool

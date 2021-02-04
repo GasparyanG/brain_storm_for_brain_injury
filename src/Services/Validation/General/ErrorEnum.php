@@ -8,6 +8,9 @@ class ErrorEnum
 {
     // GENERAL
     const NUMBERS_ONLY = "Numbers only";
+    const SOMETHING_WENT_WRONG = "Something went wrong";
+    const MESSAGE_TOO_LONG = "Message is too long";
+    const MESSAGE_IS_REQUIRED = "Message is required";
 
     // NAME
     const NAME = "Name is required";
@@ -41,6 +44,9 @@ class ErrorEnum
     const CANT_TYPE = "Can't type: you already made three choices";
     const SOLID_CONCERN_REQUIRED = "Solid concern is required";
 
+    // --------------------------------- SUCCESS MESSAGES ----------------------------------------
+    const MESSAGE_SEND = "Message received";
+
     private static $isReqiredErrors = [
         FieldsEnum::NAME => self::NAME,
         FieldsEnum::AGE => self::AGE_REQUIRED,
@@ -49,7 +55,8 @@ class ErrorEnum
         FieldsEnum::CONCERNS => self::CONCERNS_REQUIRED,
         FieldsEnum::DATE => self::DATE_REQUIRED,
         FieldsEnum::INJURY_REASON => self::INJURY_REASON_REQUIRED,
-        FieldsEnum::SOLID_CONCERN => self::SOLID_CONCERN_REQUIRED
+        FieldsEnum::SOLID_CONCERN => self::SOLID_CONCERN_REQUIRED,
+        FieldsEnum::MESSAGE => self::MESSAGE_IS_REQUIRED
     ];
 
     private static $numbersOnlyErrors = [
