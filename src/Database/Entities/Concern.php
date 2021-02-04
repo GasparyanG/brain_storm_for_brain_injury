@@ -25,6 +25,12 @@ class Concern
     private $name;
 
     /**
+     * @var null|string
+     * @column(type="string", name="image_name")
+     */
+    private $imageName;
+
+    /**
      * @OneToMany(targetEntity="UserConcern", mappedBy="concern")
      * @JoinColumn(name="concern_id")
      */
@@ -65,6 +71,22 @@ class Concern
     public function setName(string $name): void
     {
         $this->name = $name;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getImageName(): ?string
+    {
+        return $this->imageName;
+    }
+
+    /**
+     * @param string|null $imageName
+     */
+    public function setImageName(?string $imageName): void
+    {
+        $this->imageName = $imageName;
     }
 
     /**
