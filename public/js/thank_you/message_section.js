@@ -27,8 +27,9 @@ function displayButton() {
 }
 
 function updateCharactersLeft() {
+    let numberOfChars = (numberOfAllowedCharacters - textArea.value.length);
     charactersNumberElement.textContent
-        = (numberOfAllowedCharacters - textArea.value.length);
+        = numberOfChars < 0? 0: numberOfChars;
 }
 
 function changeButtonState() {

@@ -72,6 +72,11 @@ class User
     private $injuryInformation;
 
     /**
+     * @OneToOne(targetEntity="UserMessage", mappedBy="user")
+     */
+    private $userMessage;
+
+    /**
      * @OneToMany(targetEntity="UserConcern", mappedBy="user")
      * @JoinColumn(name="user_id")
      */
@@ -224,6 +229,22 @@ class User
     public function setCookie(?string $cookie): void
     {
         $this->cookie = $cookie;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUserMessage()
+    {
+        return $this->userMessage;
+    }
+
+    /**
+     * @param mixed $userMessage
+     */
+    public function setUserMessage($userMessage): void
+    {
+        $this->userMessage = $userMessage;
     }
 
     /**
