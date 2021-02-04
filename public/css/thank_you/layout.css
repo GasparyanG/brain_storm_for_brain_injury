@@ -1,6 +1,11 @@
 :root {
     --margin-top: 2rem;
+
     --margin-left-and-right: 20rem;
+    --md-margin-left-and-right: 10rem;
+    --sm-margin-left-and-right: 5rem;
+    --tn-margin-left-and-right: 2rem;
+
     --section-margin: 3rem;
     --main-section-margin: 5rem;
 }
@@ -30,4 +35,32 @@
 
 #thank_you_section .symptoms_section {
     margin-bottom: var(--main-section-margin);
+}
+
+/* ---------------------------------- RESPONSIVENESS --------------------------------------- */
+@media only screen and (min-width:1301px) and (max-width: 1600px) {
+    #thank_you_section {
+        margin-left: var(--md-margin-left-and-right);
+        margin-right: var(--md-margin-left-and-right);
+    }
+}
+
+@media only screen and (max-width: 1300px) {
+    #thank_you_section {
+        margin-left: var(--sm-margin-left-and-right);
+        margin-right: var(--sm-margin-left-and-right);
+    }
+}
+
+@media only screen and (max-width: 850px) {
+    #thank_you_section .solid_concern_section {
+        flex-direction: column;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    #thank_you_section {
+        margin-left: var(--tn-margin-left-and-right);
+        margin-right: var(--tn-margin-left-and-right);
+    }
 }

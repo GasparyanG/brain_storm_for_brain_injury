@@ -129,3 +129,27 @@
     border-radius: 4px;
     display: inline-block;
 }
+
+/* ------------------------------- RESPONSIVENESS ------------------------------ */
+@media only screen and (max-width: 1300px) {
+    #thank_you_section .contact_email {
+        display: block;
+        margin-top: 1rem;
+    }
+}
+
+@media only screen and (min-width: 351px) and(max-width: 400px) {
+    #thank_you_section .contact_email {
+        font-size: 14px;
+    }
+
+    #thank_you_section .contact_opening {
+        font-size: 15px!important;
+    }
+}
+
+@media only screen and (max-width: 350px) {
+    #thank_you_section .contact_email {
+        font-size: 12px;
+    }
+}

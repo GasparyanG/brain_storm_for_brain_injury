@@ -1,6 +1,11 @@
 :root {
     --img-width: 350px;
     --img-margin: 1rem;
+
+    --sm-img-width: 250px;
+    --sm-img-margin: 0.5rem;
+
+    --tn-img-width: 220px;
 }
 
 /* CARD */
@@ -23,7 +28,7 @@
     margin-top: var(--img-margin);
 }
 
-#thank_you_section .concern_card .img_part img { width: 350px; }
+#thank_you_section .concern_card .img_part img { width: var(--img-width); }
 
 /* Card Name  */
 #thank_you_section .concern_card .name_part {
@@ -51,4 +56,100 @@
 
 #thank_you_section .all_concerns .concern_card:last-child {
     margin-bottom: 0;
+}
+
+/* -------------------------------------- RESPONSIVENESS ------------------------------------ */
+
+@media only screen and (min-width: 501px) and (max-width: 851px) {
+    #thank_you_section .all_concerns {
+        max-width: calc(var(--img-width) + 2*(var(--img-margin)));
+    }
+}
+
+@media only screen and (min-width: 775px) and (max-width: 851px) {
+    #thank_you_section .all_concerns {
+        margin-left: 20%;
+    }
+}
+
+@media only screen and (min-width: 675px) and (max-width: 774px) {
+    #thank_you_section .all_concerns {
+        margin-left: 15%;
+    }
+}
+
+@media only screen and (min-width: 501px) and (max-width: 674px) {
+    #thank_you_section .all_concerns {
+        margin-left: 10%;
+    }
+}
+
+@media only screen and (min-width: 335px) and (max-width: 500px) {
+    #thank_you_section .concern_card {
+        display: inline-block;
+        max-width: calc(var(--sm-img-width) + var(--sm-img-margin)*2);
+        min-width: unset;
+    }
+
+    #thank_you_section .concern_card .img_part img {
+        width: var(--sm-img-width);
+        min-width: unset;
+    }
+
+    #thank_you_section .concern_card .name_part {
+        font-size: 18px;
+    }
+
+    #thank_you_section .concern_card .img_part {
+        margin-left: var(--sm-img-margin);
+        margin-top: var(--sm-img-margin);
+    }
+}
+
+@media only screen and (min-width: 471px) and (max-width: 500px) {
+    #thank_you_section .all_concerns {
+        margin-left: 18%;
+    }
+
+}
+
+@media only screen and (max-width: 335px) {
+    #thank_you_section .concern_card {
+        display: inline-block;
+        max-width: calc(var(--tn-img-width) + var(--sm-img-margin)*2);
+        min-width: unset;
+    }
+
+    #thank_you_section .concern_card .img_part img {
+        width: var(--tn-img-width);
+        min-width: unset;
+    }
+
+    #thank_you_section .concern_card .name_part {
+        font-size: 18px;
+    }
+
+    #thank_you_section .concern_card .img_part {
+        margin-left: var(--sm-img-margin);
+        margin-top: var(--sm-img-margin);
+    }
+}
+
+@media only screen and (min-width: 405px) and (max-width: 470px) {
+    #thank_you_section .all_concerns {
+        margin-left: 13%;
+    }
+}
+
+
+@media only screen and (min-width: 391px) and (max-width: 404px) {
+    #thank_you_section .all_concerns {
+        margin-left: 7%;
+    }
+}
+
+@media only screen and (max-width: 390px) {
+    #thank_you_section .all_concerns {
+        margin-left: 3%;
+    }
 }
