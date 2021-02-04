@@ -1,8 +1,3 @@
-:root {
-    --light-theme: white;
-    --dark-theme: black;
-}
-
 #intro_container .light_background .site_name_section {
     color: var(--dark-theme);
 }
