@@ -85,3 +85,16 @@
     transition-timing-function: ease-out;
     transition-duration: 0.2s;
 }
+
+/* Number of Characters */
+#thank_you_section .text_area_section {
+    position: relative;
+}
+
+#thank_you_section .number_of_characters {
+    position: absolute;
+    right: 0;
+    bottom: 1rem;
+    font-weight: 700;
+    color: rgb(133,133,133);
+}
