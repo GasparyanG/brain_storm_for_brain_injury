@@ -2,7 +2,7 @@
 const hiddenButton = "hidden_button";
 const errorMessageClass = "error_message";
 const successMessageClass = "success_message";
-const numberOfAllowedCharacters = 10;
+const numberOfAllowedCharacters = 4000;
 
 // Elements
 const textArea = document.getElementById("user_message");
@@ -11,7 +11,11 @@ const charactersNumberElement = document.querySelector(".char_number");
 const usageHintElement = document.querySelector(".usage_hint");
 
 const errorMessages = {
-    too_long : "Your message is too long."
+    too_long : "Your message is too long.",
+    something_is_wrong: "Something went wrong, please use email.",
+
+    // Success messages
+    done: "Message received."
 }
 
 function hideButton() {
@@ -84,10 +88,13 @@ function buttonIsClicked() {
         method: "POST",
         data: {message: textArea.value},
         success: function(data) {
-            console.log(data);
+            if (data.success)
+                successMessage(errorMessages.done);
+            else
+                errorMessage(data.message);
         },
         error: function(e) {
-            console.log(e);
+            errorMessage(errorMessages.something_is_wrong);
         }
     })
 }
