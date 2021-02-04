@@ -10,6 +10,7 @@ use App\Database\Entities\User;
 use App\Database\Entities\UserConcern;
 use App\Services\Mailer\EmailVerification;
 use App\Services\Validation\General\AbstractValidator;
+use App\Services\Validation\General\CookieEnum;
 use App\Services\Validation\General\DefaultAssembler;
 use App\Services\Validation\General\DefaultErrorGenerator;
 use App\Services\Validation\General\ErrorEnum;
@@ -388,6 +389,9 @@ class EntityBulkBuilder extends AbstractValidator
         // TODO: Handle unverified email.
         $emailIsVerified = (new EmailVerification($user))->verify();
 
+        // Add cookie for user.
+        $this->addCookie($user);
+
         $regularAssembler = new RegularAssembler();
 
         // Assemble
@@ -399,6 +403,23 @@ class EntityBulkBuilder extends AbstractValidator
             HTTPCommunicationFieldsEnum::SUCCESS => true,
             HTTPCommunicationFieldsEnum::DATA => $regularAssembler->getPartsContainer()
         ];
+    }
+
+    private function addCookie(User $user): void
+    {
+        $generalConfig
+            = json_decode(file_get_contents(self::GENERAL_CONFIG_FILE), true);
+        $cookie = hash($generalConfig[self::HASH_ALGORITHM], $user->getValidationHash());
+        $user->setCookie($cookie);
+
+        try {
+            $this->em->persist($user);
+            $this->em->flush();
+        } catch (ORMException $e) {
+            $this->persistenceError = true;
+        }
+
+        CookieEnum::setUsersCookie($cookie);
     }
 
     private function errorStatus(): bool

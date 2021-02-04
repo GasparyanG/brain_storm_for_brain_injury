@@ -61,6 +61,12 @@ class User
     private $validationHash;
 
     /**
+     * @var null|string
+     * @Column(type="string", name="cookie")
+     */
+    private $cookie;
+
+    /**
      * @OneToOne(targetEntity="InjuryInformation", mappedBy="user")
      */
     private $injuryInformation;
@@ -157,14 +163,6 @@ class User
     }
 
     /**
-     * @return mixed
-     */
-    public function getInjuryInformation()
-    {
-        return $this->injuryInformation;
-    }
-
-    /**
      * @return int
      */
     public function getSignedDate(): int
@@ -210,6 +208,30 @@ class User
     public function setValidationHash(string $validationHash): void
     {
         $this->validationHash = $validationHash;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getCookie(): ?string
+    {
+        return $this->cookie;
+    }
+
+    /**
+     * @param null|string $cookie
+     */
+    public function setCookie(?string $cookie): void
+    {
+        $this->cookie = $cookie;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInjuryInformation()
+    {
+        return $this->injuryInformation;
     }
 
     /**

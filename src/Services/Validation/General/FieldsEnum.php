@@ -33,4 +33,7 @@ class FieldsEnum
     // InjuryInformation
     const USER = "user";
     const EMAIL_ADDRESS = "emailAddress";
+
+    // User
+    const COOKIE = "cookie";
 }
