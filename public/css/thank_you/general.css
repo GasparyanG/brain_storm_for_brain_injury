@@ -2,9 +2,10 @@
     /*  Colors  */
     --backgound-color: #282838;
     --card-background-color: #323549;
+    --card-background-on-hover: #3e415b;
+    --highlighted-card-border: greenyellow;
     --card-color: #FFFFFF;
     --card-border-on-hover: 2px solid beige;
-    --highlighted-card-border: greenyellow;
 }
 
 body {

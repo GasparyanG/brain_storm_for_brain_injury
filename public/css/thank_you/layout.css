@@ -1,6 +1,8 @@
 :root {
     --margin-top: 2rem;
-    --margin-left-and-right: 5rem;
+    --margin-left-and-right: 20rem;
+    --section-margin: 3rem;
+    --main-section-margin: 5rem;
 }
 
 #thank_you_section {
@@ -13,5 +15,19 @@
 /* SOLID CONCERN SECTION */
 #thank_you_section .solid_concern_section {
     display: flex;
-    margin-top: 3rem;
+    margin-top: var(--section-margin);
+}
+
+#thank_you_section .other_concerns_section {
+    margin-top: var(--section-margin);
+}
+
+#thank_you_section .other_concerns {
+    display: flex;
+    justify-content: space-around;
+    margin-top: var(--section-margin);
+}
+
+#thank_you_section .symptoms_section {
+    margin-bottom: var(--main-section-margin);
 }

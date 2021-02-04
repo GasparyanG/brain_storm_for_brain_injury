@@ -12,6 +12,10 @@
     background-color: var(--card-background-color);
     min-width: calc(var(--img-width) + var(--img-margin)*2);
     height: calc((350px + var(--img-margin)*3));
+    transition: 0.2s;
+}
+
+#thank_you_section .solid_concern_card {
     border: solid 3px var(--highlighted-card-border);
 }
 
@@ -31,5 +35,7 @@
 }
 
 #thank_you_section .concern_card:hover {
+    background-color: var(--card-background-on-hover);
     border-color: var(--card-border-on-hover);
+    transition: 0.2s;
 }
