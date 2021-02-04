@@ -1,3 +1,8 @@
+:root {
+    --err-background: rgb(247, 230, 230);
+    --err-color: rgb(177, 51, 28);
+}
+
 /* Email */
 #thank_you_section .contact_section {
     margin-bottom: var(--main-section-margin);
@@ -48,7 +53,7 @@
 
 /* Send Button */
 #thank_you_section .send_message {
-    margin-top: 1rem;
+    margin-right: 1rem;
     background-color: #3C836D;
     color: #FFFFFF;
     width: 100px;
@@ -97,4 +102,20 @@
     bottom: 1rem;
     font-weight: 700;
     color: rgb(133,133,133);
+}
+
+#thank_you_section .interaction_section {
+    margin-top: 1rem;
+    display: flex;
+}
+
+/* Error and Success Message Decoration */
+#thank_you_section .error_message {
+    color: black;
+    background-color: red;
+    opacity: 0.5;
+    padding: 0.5rem;
+    text-align: center;
+    border-radius: 4px;
+    display: inline-block;
 }

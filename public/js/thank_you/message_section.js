@@ -1,11 +1,18 @@
 // Configuration
 const hiddenButton = "hidden_button";
-const numberOfAllowedCharacters = 5000;
+const errorMessageClass = "error_message";
+const successMessageClass = "success_message";
+const numberOfAllowedCharacters = 10;
 
 // Elements
 const textArea = document.getElementById("user_message");
 const sendMessageButton = document.querySelector(".send_message");
 const charactersNumberElement = document.querySelector(".char_number");
+const usageHintElement = document.querySelector(".usage_hint");
+
+const errorMessages = {
+    too_long : "Your message is too long."
+}
 
 function hideButton() {
     sendMessageButton.classList.add(hiddenButton);
@@ -21,6 +28,7 @@ function updateCharactersLeft() {
 }
 
 function changeButtonState() {
+    if (textAreaIsInvalid()) return;
     updateCharactersLeft();
 
     if (textArea.value == "")   // Empty
@@ -29,8 +37,47 @@ function changeButtonState() {
         displayButton();
 }
 
+function emptyUsageHint() {
+    usageHintElement.innerHTML = "";
+}
+
+function errorMessage(message) {
+    emptyUsageHint();
+
+    let divEl = document.createElement("div");
+    divEl.classList.add(errorMessageClass);
+    divEl.innerText = message;
+
+    usageHintElement.appendChild(divEl);
+
+    setTimeout(emptyUsageHint, 5000);
+}
+
+function successMessage(message) {
+    emptyUsageHint();
+
+    let divEl = document.createElement("div");
+    divEl.classList.add(successMessageClass);
+    divEl.innerText = message;
+
+    usageHintElement.appendChild(divEl);
+
+    setTimeout(emptyUsageHint, 5000);
+}
+
+function textAreaIsInvalid() {
+    if (textArea.value == "") {
+        return true;
+    } else if (textArea.value.length > numberOfAllowedCharacters) {
+        errorMessage(errorMessages.too_long);
+        return true;
+    }
+
+    return false;
+}
+
 function buttonIsClicked() {
-    if(textArea.value == "") return;
+    if (textAreaIsInvalid()) return;
 
     $.ajax({
         url: "/message",
