@@ -19,34 +19,26 @@
     <div id="thank_you_section">
         <div class="symptoms_section">
             <div class="acknowledgement_message">
-                <h1 class="greeting_header">Dear {{ user.name }}</h1>
+                <h1 class="greeting_header">Symptoms</h1>
             </div>
             <div class="solid_concern_section">
                 <div class="solid_concern_identification">
-                    You said that <span class="hl_concern">{{ solid_concern.name }}</span> is your greatest concern.
+                    {{ user.name }}, you said that <span class="hl_concern">{{ solid_concern.name }}</span> is your greatest concern.
                     So the highlighted card will provide information on tips for improving
                     <span class="hl_concern">{{ solid_concern.name }}</span> and for where to find more help.
                 </div>
-                <a target="_blank" href="" class="concern_card solid_concern_card">
-                    <div class="img_part">
-                        <img src={{ concerns_directory ~ "/" ~ solid_concern.imageName }} alt="">
-                    </div>
-                    <div class="name_part">
-                        {{ solid_concern.name }}
-                    </div>
-                </a>
-            </div>
-            <div class="other_concerns_section">
-                <div class="sub_header other_concerns_header">
-                    Information to other concerns you have mentioned
-                </div>
+                <div class="all_concerns">
+                    <a target="_blank" href="" class="concern_card solid_concern_card">
+                        <div class="img_part">
+                            <img src={{ concerns_directory ~ "/" ~ solid_concern.imageName }} alt="">
+                        </div>
+                        <div class="name_part">
+                            {{ solid_concern.name }}
+                        </div>
+                    </a>
 
-                <div class="other_concerns">
                     {% for concern in other_concerns %}
                         <a target="_blank" href="" class="concern_card">
-                            <div class="img_part">
-                                <img src={{ concerns_directory ~ "/" ~ concern.imageName }} alt="">
-                            </div>
                             <div class="name_part">
                                 {{ concern.name }}
                             </div>
