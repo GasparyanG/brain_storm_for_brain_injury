@@ -56,6 +56,13 @@
     padding: 0.5rem;
     border-radius: 4px;
     cursor: pointer;
+
+    /* Transition */
+    opacity: 1;
+    transform: translateX(0);
+    transition-property: opacity, transform, display;
+    transition-timing-function: ease-out;
+    transition-duration: 0.2s;
 }
 
 #thank_you_section .send_message:hover {
@@ -68,4 +75,13 @@
     background-color: #05a081;
     transition: 0.2s ease-out;
     transform: translateY(3%);
+}
+
+#thank_you_section .hidden_button {
+    /* Transition */
+    opacity: 0;
+    transform: translateX(100%);
+    transition-property: opacity, transform, display;
+    transition-timing-function: ease-out;
+    transition-duration: 0.2s;
 }
