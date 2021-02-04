@@ -138,6 +138,12 @@
     }
 }
 
+@media only screen and (max-width: 1100px) {
+    #thank_you_section .text_area_section {
+        width: 97%;
+    }
+}
+
 @media only screen and (min-width: 351px) and (max-width: 400px) {
     #thank_you_section .contact_email {
         font-size: 12px;
