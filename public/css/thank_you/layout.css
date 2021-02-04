@@ -1,0 +1,17 @@
+:root {
+    --margin-top: 2rem;
+    --margin-left-and-right: 5rem;
+}
+
+#thank_you_section {
+    /*margin-top: var(--nav-height);*/
+    margin-left: var(--margin-left-and-right);
+    margin-right: var(--margin-left-and-right);
+    margin-top: var(--margin-top);
+}
+
+/* SOLID CONCERN SECTION */
+#thank_you_section .solid_concern_section {
+    display: flex;
+    margin-top: 3rem;
+}

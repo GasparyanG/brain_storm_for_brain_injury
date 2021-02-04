@@ -1,0 +1,22 @@
+#thank_you_section .thank_you_message {
+    width: inherit;
+    display: block;
+    font-size: 20px;
+    text-align: center;
+}
+
+#thank_you_section .greeting_header {
+    text-align: center;
+}
+
+#thank_you_section .solid_concern_identification {
+    font-size: 25px;
+    align-self: center;
+}
+
+/* Highlighted concern */
+#thank_you_section .hl_concern {
+    color: var(--highlighted-card-border);
+    font-style: italic;
+    font-weight: 700;
+}

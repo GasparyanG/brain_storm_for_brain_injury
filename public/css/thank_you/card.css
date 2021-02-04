@@ -1,0 +1,35 @@
+:root {
+    --img-width: 350px;
+    --img-margin: 1rem;
+}
+
+/* CARD */
+#thank_you_section .concern_card {
+    text-decoration: none;
+    color: var(--card-color);
+    display: flex;
+    flex-direction: column;
+    background-color: var(--card-background-color);
+    min-width: calc(var(--img-width) + var(--img-margin)*2);
+    height: calc((350px + var(--img-margin)*3));
+    border: solid 3px var(--highlighted-card-border);
+}
+
+#thank_you_section .concern_card .img_part {
+    margin-left: var(--img-margin);
+    margin-top: var(--img-margin);
+}
+
+#thank_you_section .concern_card .img_part img { width: 350px; }
+
+/* Card Name  */
+#thank_you_section .concern_card .name_part {
+    font-size: 25px;
+    font-weight: 700;
+    text-align: center;
+    margin-top: var(--img-margin)
+}
+
+#thank_you_section .concern_card:hover {
+    border-color: var(--card-border-on-hover);
+}

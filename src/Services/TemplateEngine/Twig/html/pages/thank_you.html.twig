@@ -1,18 +1,34 @@
 {% extends "/general/header.html.twig" %}
 
 {% block payload %}
+    {#  CSS  #}
     <link rel="stylesheet" href="/public/css/thank_you/general.css">
+    <link rel="stylesheet" href="/public/css/thank_you/layout.css">
+
+    {#  Text Decoration  #}
+    <link rel="stylesheet" href="/public/css/thank_you/text_content.css">
+    <link rel="stylesheet" href="/public/css/thank_you/card.css">
+
+
     <div id="thank_you_section">
         <div class="acknowledgement_message">
-
+            <h1 class="greeting_header">Dear {{ user.name }}</h1>
+            <span class="thank_you_message">Thank you for being part of this project, we hope you had fun doing this.</span>
         </div>
         <div class="solid_concern_section">
             <div class="solid_concern_identification">
-
+                You said that <span class="hl_concern">{{ solid_concern.name }}</span> is your greatest concern.
+                So the highlighted card will provide information on tips for improving
+                <span class="hl_concern">{{ solid_concern.name }}</span> and for where to find more help.
             </div>
-            <div class="solid_concern_card">
-
-            </div>
+            <a target="_blank" href="" class="concern_card solid_concern_card">
+                <div class="img_part">
+                    <img src={{ concerns_directory ~ "/" ~ solid_concern.imageName }} alt="">
+                </div>
+                <div class="name_part">
+                    {{ solid_concern.name }}
+                </div>
+            </a>
         </div>
         <div class="other_concerns">
             {#  Loop is required to populate this section with cards  #}

@@ -1,5 +1,6 @@
 /* Design Navigation */
 #nav_bar {
+    display: none;
     width: 100vw;
     height: var(--nav-height);
     position: fixed;

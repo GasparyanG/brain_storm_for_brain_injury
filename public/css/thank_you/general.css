@@ -4,8 +4,10 @@
     --card-background-color: #323549;
     --card-color: #FFFFFF;
     --card-border-on-hover: 2px solid beige;
+    --highlighted-card-border: greenyellow;
 }
 
 body {
     background-color: var(--backgound-color);
+    color: var(--card-color);
 }

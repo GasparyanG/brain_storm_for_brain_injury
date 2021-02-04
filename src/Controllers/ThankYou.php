@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
 class ThankYou
 {
     const CONCERNS_DIR_KEY = "concerns_directory";
-    const CONCERNS_DIR = __DIR__ . "/../../public/images/concerns";
+    const CONCERNS_DIR = "/public/images/concerns";
 
     private EntityManager $em;
 
@@ -63,7 +63,7 @@ class ThankYou
     private function getSolidConcern(User $user): ?Concern
     {
         foreach ($user->getUserConcerns() as $uc)
-            if ($uc->isSolid()) return $uc->getConcern();
+            if ($uc->isStrong()) return $uc->getConcern();
         return null;
     }
 
@@ -71,7 +71,7 @@ class ThankYou
     {
         $concernsToReturn = [];
         foreach ($user->getUserConcerns() as $uc)
-            if (!$uc->isSolid()) $concernsToReturn[] = $uc->getConcern();
+            if (!$uc->isStrong()) $concernsToReturn[] = $uc->getConcern();
 
         return $concernsToReturn;
     }
