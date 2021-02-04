@@ -52,15 +52,28 @@ class ThankYou
                 [
                     "page_title" => "Thank You",
                     self::CONCERNS_DIR_KEY => self::CONCERNS_DIR,
-                    "user" => $user
+                    "user" => $user,
+                    "solid_concern" => $this->getSolidConcern($user),
+                    "other_concerns" => $this->getOtherConcerns($user)
                 ]
             )
         );
     }
 
-    private function getSolidConcern(): ?Concern
+    private function getSolidConcern(User $user): ?Concern
     {
-        
+        foreach ($user->getUserConcerns() as $uc)
+            if ($uc->isSolid()) return $uc->getConcern();
+        return null;
+    }
+
+    private function getOtherConcerns(User $user): array
+    {
+        $concernsToReturn = [];
+        foreach ($user->getUserConcerns() as $uc)
+            if (!$uc->isSolid()) $concernsToReturn[] = $uc->getConcern();
+
+        return $concernsToReturn;
     }
 
     private function unableToRecognizeUser(): Response
