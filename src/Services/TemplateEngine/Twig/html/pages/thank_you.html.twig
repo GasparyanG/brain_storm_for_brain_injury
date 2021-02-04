@@ -2,19 +2,24 @@
 
 {% block payload %}
     {#  CSS  #}
+    {#  General  #}
     <link rel="stylesheet" href="/public/css/thank_you/general.css">
     <link rel="stylesheet" href="/public/css/thank_you/layout.css">
 
     {#  Text Decoration  #}
     <link rel="stylesheet" href="/public/css/thank_you/text_content.css">
+
+    {#  Cards Decoration #}
     <link rel="stylesheet" href="/public/css/thank_you/card.css">
+
+    {#  Contact Section Decoration #}
+    <link rel="stylesheet" href="/public/css/thank_you/contact_section.css">
 
 
     <div id="thank_you_section">
         <div class="symptoms_section">
             <div class="acknowledgement_message">
                 <h1 class="greeting_header">Dear {{ user.name }}</h1>
-                <span class="thank_you_message">Thank you for being part of this project, we hope you had fun doing this.</span>
             </div>
             <div class="solid_concern_section">
                 <div class="solid_concern_identification">
@@ -32,7 +37,7 @@
                 </a>
             </div>
             <div class="other_concerns_section">
-                <div class="other_concerns_header">
+                <div class="sub_header other_concerns_header">
                     Information to other concerns you have mentioned
                 </div>
 
@@ -43,10 +48,32 @@
                                 <img src={{ concerns_directory ~ "/" ~ concern.imageName }} alt="">
                             </div>
                             <div class="name_part">
-                                {{ concern.img_name }}
+                                {{ concern.name }}
                             </div>
                         </a>
                     {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="contact_section">
+            <div class="sub_header">
+                Contact Us
+            </div>
+            <div class="email_section">
+                <div class="contact_opening">
+                    If you have more questions on these concerns, you can email us at:
+                    <a href="mailto:info@brainstormforbraininjury.com" class="contact_email">info@brainstormforbraininjury.com</a>
+                </div>
+            </div>
+            <div class="contact_form">
+                <div class="contact_form_opening">
+                    Or you can leave a message right here:
+                </div>
+                <div class="form_container">
+                    <textarea name="message" id="user_message" placeholder="Type here..."></textarea>
+                </div>
+                <div class="send_message">
+                    Send
                 </div>
             </div>
         </div>

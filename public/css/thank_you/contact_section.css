@@ -1,0 +1,71 @@
+/* Email */
+#thank_you_section .contact_section {
+    margin-bottom: var(--main-section-margin);
+}
+
+#thank_you_section .contact_opening {
+    margin-top: 3rem;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+#thank_you_section .contact_email {
+    background-color: var(--card-background-color);
+    text-decoration: none;
+    color: var(--highlighted-card-border);
+    padding: 1rem;
+    text-align: center;
+    border-radius: 4px;
+    margin-top: 1rem;
+}
+
+#thank_you_section .contact_email:hover {
+    background-color: var(--card-background-on-hover);
+}
+
+/* Form */
+#thank_you_section .contact_form {
+    position: relative;
+    margin-top: var(--margin-top);
+    display: flex;
+    flex-direction: column;
+}
+
+#thank_you_section .contact_form_opening {
+    font-weight: 700;
+}
+
+#user_message {
+    margin-top: 2rem;
+    min-width: 100%;
+    max-width: 100%;
+    height: 200px;
+    background-color: var(--card-background-color);
+    color: var(--card-color);
+    font-weight: 700;
+    padding: 0.5rem;
+}
+
+/* Send Button */
+#thank_you_section .send_message {
+    margin-top: 1rem;
+    background-color: #3C836D;
+    color: #FFFFFF;
+    width: 100px;
+    text-align: center;
+    padding: 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#thank_you_section .send_message:hover {
+    background-color: #05a081;
+    transition: 0.2s;
+    transform: translateY(-2%);
+}
+
+#thank_you_section .send_message:active {
+    background-color: #05a081;
+    transition: 0.2s ease-out;
+    transform: translateY(3%);
+}
