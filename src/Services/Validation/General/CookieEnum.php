@@ -14,6 +14,6 @@ class CookieEnum
 
     public static function setUsersCookie(string $cookie): void
     {
-        setcookie(self::USER_COOKIE_KEY, $cookie, self::USER_COOKIE_EXPIRE);
+        setcookie(self::USER_COOKIE_KEY, $cookie, time()  + self::USER_COOKIE_EXPIRE);
     }
 }
