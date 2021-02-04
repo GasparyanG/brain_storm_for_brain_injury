@@ -34,8 +34,7 @@
     transition-timing-function: ease-out;
 }
 
-#intro_container .bck_1 { background-image: url("/public/images/introduction_page/pexels-creative-vix-9754.jpg") }
-#intro_container .bck_2 { background-image: url("/public/images/introduction_page/pexels-johannes-plenio-1125776.jpg") }
-#intro_container .bck_3 { background-image: url("/public/images/introduction_page/pexels-pixabay-414171.jpg") }
-#intro_container .bck_4 { background-image: url("/public/images/introduction_page/pexels-thiago-japyassu-1563604.jpg") }
+#intro_container .bck_1 { background-image: url("/public/images/introduction_page/walking_difficulties.jpg") }
+#intro_container .bck_2 { background-image: url("/public/images/introduction_page/hand_use_difficulties.jpg") }
+#intro_container .bck_3 { background-image: url("/public/images/introduction_page/headaches.jpg") }
 
