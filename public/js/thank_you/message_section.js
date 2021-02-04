@@ -33,7 +33,6 @@ function updateCharactersLeft() {
 }
 
 function changeButtonState() {
-    if (textAreaIsInvalid()) return;
     updateCharactersLeft();
 
     if (textArea.value == "")   // Empty
