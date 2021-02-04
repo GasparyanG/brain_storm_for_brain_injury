@@ -10,6 +10,7 @@ use App\Database\Entities\User;
 use App\Services\TemplateEngine\Twig\Twig;
 use App\Services\Validation\General\CookieEnum;
 use App\Services\Validation\General\FieldsEnum;
+use App\Services\Validation\General\SymbolicConstantsEnum;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -70,8 +71,10 @@ class ThankYou
     private function getOtherConcerns(User $user): array
     {
         $concernsToReturn = [];
-        foreach ($user->getUserConcerns() as $uc)
+        foreach ($user->getUserConcerns() as $uc) {
+            if ($uc->getConcern()->getId() > SymbolicConstantsEnum::MAX_CONCERN) continue;
             if (!$uc->isStrong()) $concernsToReturn[] = $uc->getConcern();
+        }
 
         return $concernsToReturn;
     }

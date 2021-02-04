@@ -22,16 +22,25 @@
                 <h1 class="greeting_header">Symptoms</h1>
             </div>
             <div class="solid_concern_section">
-                <div class="solid_concern_identification">
-                    {{ user.name }}, you said that <span class="hl_concern">{{ solid_concern.name }}</span> is your greatest concern.
-                    So the highlighted card will provide information on tips for improving
-                    <span class="hl_concern">{{ solid_concern.name }}</span> and for where to find more help.
-                </div>
+                {% if solid_concern.id < 13 %}
+                    <div class="solid_concern_identification">
+                        {{ user.name }}, you said that <span class="hl_concern">{{ solid_concern.name }}</span> is your greatest concern.
+                        So the highlighted card will provide information on tips for improving
+                        <span class="hl_concern">{{ solid_concern.name }}</span> and for where to find more help.
+                    </div>
+                {% else %}
+                    <div class="solid_concern_identification">
+                        {{ user.name }}, you said that <span class="hl_concern">{{ solid_concern.name }}</span> is your greatest concern.
+                        We don't have the description for this concern yet, but we will investigate and will let you know once that description is ready.
+                    </div>
+                {% endif %}
                 <div class="all_concerns">
                     <a target="_blank" href="" class="concern_card solid_concern_card">
-                        <div class="img_part">
-                            <img src={{ concerns_directory ~ "/" ~ solid_concern.imageName }} alt="">
-                        </div>
+                        {% if solid_concern.imageName %}
+                            <div class="img_part">
+                                <img src={{ concerns_directory ~ "/" ~ solid_concern.imageName }} alt="">
+                            </div>
+                        {% endif %}
                         <div class="name_part">
                             {{ solid_concern.name }}
                         </div>
