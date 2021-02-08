@@ -133,28 +133,9 @@ var DateOfInjury = function (_React$Component) {
                     " your brain injury?"
                 )
             );
-            if (this.props.formState.name !== "") label = React.createElement(
-                "label",
-                { className: "input_label", htmlFor: "injury_date" },
-                React.createElement(
-                    "span",
-                    { className: "question_number" },
-                    "  ",
-                    this.props.svgArrow
-                ),
-                React.createElement(
-                    "span",
-                    null,
-                    this.props.formState.name,
-                    ", ",
-                    React.createElement(
-                        "strong",
-                        null,
-                        "when was"
-                    ),
-                    " your brain injury?"
-                )
-            );
+            // if (this.props.formState.name !== "")
+            //     label = (<label className="input_label" htmlFor="injury_date">
+            //         <span className="question_number">  {this.props.svgArrow}</span><span>{this.props.formState.name}, <strong>when was</strong> your brain injury?</span></label>);
 
             var validityElement = this.hintOrAction(CSSClasses.date);
 
@@ -399,28 +380,9 @@ var CauseOfInjury = function (_React$Component2) {
                     " of injury?"
                 )
             );
-            if (this.props.formState.name !== "") label = React.createElement(
-                "label",
-                { className: "input_label", htmlFor: "injury_reason" },
-                React.createElement(
-                    "span",
-                    { className: "question_number" },
-                    "  ",
-                    this.props.svgArrow
-                ),
-                React.createElement(
-                    "span",
-                    null,
-                    this.props.formState.name,
-                    ", what was ",
-                    React.createElement(
-                        "strong",
-                        null,
-                        "the cause"
-                    ),
-                    " of injury?"
-                )
-            );
+            // if (this.props.formState.name !== "")
+            //     label = (<label className="input_label" htmlFor="injury_reason">
+            //         <span className="question_number">  {this.props.svgArrow}</span><span>{this.props.formState.name}, what was <strong>the cause</strong> of injury?</span></label>);
 
             var checkboxItems = [];
             var checkboxItemsSecondColumn = [];

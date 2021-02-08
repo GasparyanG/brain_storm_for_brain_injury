@@ -112,9 +112,9 @@ class DateOfInjury extends React.Component {
     render () {
         let label = (<label className="input_label" htmlFor="injury_date">
             <span className="question_number">  {this.props.svgArrow}</span><span><strong>When was</strong> your brain injury?</span></label>);
-        if (this.props.formState.name !== "")
-            label = (<label className="input_label" htmlFor="injury_date">
-                <span className="question_number">  {this.props.svgArrow}</span><span>{this.props.formState.name}, <strong>when was</strong> your brain injury?</span></label>);
+        // if (this.props.formState.name !== "")
+        //     label = (<label className="input_label" htmlFor="injury_date">
+        //         <span className="question_number">  {this.props.svgArrow}</span><span>{this.props.formState.name}, <strong>when was</strong> your brain injury?</span></label>);
 
         let validityElement = this.hintOrAction(CSSClasses.date);
 
@@ -303,9 +303,9 @@ class CauseOfInjury extends React.Component {
     render () {
         let label = (<label className="input_label" htmlFor="injury_reason">
             <span className="question_number">  {this.props.svgArrow}</span><span>What was <strong>the cause</strong> of injury?</span></label>);
-        if (this.props.formState.name !== "")
-            label = (<label className="input_label" htmlFor="injury_reason">
-                <span className="question_number">  {this.props.svgArrow}</span><span>{this.props.formState.name}, what was <strong>the cause</strong> of injury?</span></label>);
+        // if (this.props.formState.name !== "")
+        //     label = (<label className="input_label" htmlFor="injury_reason">
+        //         <span className="question_number">  {this.props.svgArrow}</span><span>{this.props.formState.name}, what was <strong>the cause</strong> of injury?</span></label>);
 
         let checkboxItems = [];
         let checkboxItemsSecondColumn = [];

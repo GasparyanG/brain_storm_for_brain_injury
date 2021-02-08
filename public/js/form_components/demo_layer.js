@@ -308,28 +308,9 @@ var Location = function (_React$Component3) {
                     "?"
                 )
             );
-            if (this.props.formState.name !== "") label = React.createElement(
-                "label",
-                { className: "input_label", htmlFor: "date_of_birth" },
-                React.createElement(
-                    "span",
-                    { className: "question_number" },
-                    "  ",
-                    this.props.svgArrow
-                ),
-                React.createElement(
-                    "span",
-                    null,
-                    this.props.formState.name,
-                    ", where do you ",
-                    React.createElement(
-                        "strong",
-                        null,
-                        "live"
-                    ),
-                    "?"
-                )
-            );
+            // if (this.props.formState.name !== "")
+            //     label = (<label className="input_label" htmlFor="date_of_birth">
+            //         <span className="question_number">  {this.props.svgArrow}</span><span>{this.props.formState.name}, where do you <strong>live</strong>?</span></label>);
 
             var validityElement = this.hintOrAction(CSSClasses.location);
 
@@ -430,28 +411,9 @@ var Email = function (_React$Component4) {
                     " address?"
                 )
             );
-            if (this.props.formState.name !== "") label = React.createElement(
-                "label",
-                { className: "input_label", htmlFor: "email" },
-                React.createElement(
-                    "span",
-                    { className: "question_number" },
-                    "  ",
-                    this.props.svgArrow
-                ),
-                React.createElement(
-                    "span",
-                    null,
-                    this.props.formState.name,
-                    ", what is your ",
-                    React.createElement(
-                        "strong",
-                        null,
-                        "email"
-                    ),
-                    " address?"
-                )
-            );
+            // if (this.props.formState.name !== "")
+            //     label = (<label className="input_label" htmlFor="email">
+            //         <span className="question_number">  {this.props.svgArrow}</span><span>{this.props.formState.name}, what is your <strong>email</strong> address?</span></label>);
 
             var validityElement = this.hintOrAction(CSSClasses.email);
 
