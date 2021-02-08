@@ -20,7 +20,7 @@
 }
 
 #thank_you_section .solid_concern_card {
-    border: solid 1px var(--highlighted-card-border);
+    border: solid 1px var(--button-background-color);
 }
 
 #thank_you_section .concern_card .img_part {

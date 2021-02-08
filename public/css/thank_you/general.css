@@ -1,7 +1,6 @@
 :root {
     /*  Colors  */
     --card-background-color: #323549;
-    --card-background-on-hover: var(--);
     --highlighted-card-border: var(--button-background-color);
     --card-color: #FFFFFF;
     --card-border-on-hover: 2px solid beige;
