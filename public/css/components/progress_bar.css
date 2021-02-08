@@ -56,7 +56,7 @@
     width: var(--tooltip-width);
     left: calc(((var(--tooltip-width) - 1rem)/2) * -1);
     font-size: 17px;
-    background-color: var(--input-color-active);
+    background-color: var(--button-background-color);
     color: #ffffff;
     padding: 0.2rem;
     border-radius: 4px;
