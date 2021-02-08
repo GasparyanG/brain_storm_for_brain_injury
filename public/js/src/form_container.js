@@ -10,6 +10,7 @@ import {
     validateEmail,
     RequestConfigurations
 } from "./helper_components";
+import {ErrorMessage} from "../form_components/helper_components";
 
 class Form extends React.Component {
     constructor(props) {
@@ -238,7 +239,8 @@ class Form extends React.Component {
             ((this.state.form.concerns.length < SymbolicConstants.min_amount_of_choices)
                 && (this.state.form.concerns_other.length < SymbolicConstants.min_length_of_other_concern))
             // Concerns have error.
-            || this.state.errors.hasOwnProperty(CSSClasses.concerns)
+            || (this.state.errors.hasOwnProperty(CSSClasses.concerns)
+                && this.state.errors[CSSClasses.concerns].message !== DefaultErrorMessages.more_than_three)
         );
     }
 

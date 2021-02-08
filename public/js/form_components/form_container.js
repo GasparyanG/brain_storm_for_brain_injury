@@ -12,6 +12,7 @@ import { Concerns } from "./concerns_layer";
 import { Navigation } from "./navigation_buttons";
 import { ProgressBar } from "./progress_bar";
 import { CSSClasses, DefaultErrorMessages, SymbolicConstants, validateEmail, RequestConfigurations } from "./helper_components";
+import { ErrorMessage } from "../form_components/helper_components";
 
 var Form = function (_React$Component) {
     _inherits(Form, _React$Component);
@@ -199,7 +200,7 @@ var Form = function (_React$Component) {
             // There is no element in 'concerns' array and 'concerns_other' string is empty.
             _this.state.form.concerns.length < SymbolicConstants.min_amount_of_choices && _this.state.form.concerns_other.length < SymbolicConstants.min_length_of_other_concern ||
             // Concerns have error.
-            _this.state.errors.hasOwnProperty(CSSClasses.concerns));
+            _this.state.errors.hasOwnProperty(CSSClasses.concerns) && _this.state.errors[CSSClasses.concerns].message !== DefaultErrorMessages.more_than_three);
         };
 
         _this.progressComputation = function () {

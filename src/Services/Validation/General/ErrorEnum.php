@@ -40,7 +40,13 @@ class ErrorEnum
 
     // CONCERNS
     const CONCERNS_REQUIRED = "At least one concern is required";
+
+    // START
+    // URGENT!!! Make sure that this is synchronized with 'helper_components.js'.
+    // The reason is that this is string is being compared in 'form_container.js'.
     const MORE_THAN_THREE = "Can't choose more than three concerns";
+    // END
+
     const CANT_TYPE = "Can't type: you already made three choices";
     const SOLID_CONCERN_REQUIRED = "Solid concern is required";
 
