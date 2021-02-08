@@ -11,10 +11,10 @@
 /* CARD */
 #thank_you_section .concern_card {
     text-decoration: none;
-    color: var(--card-color);
+    color: var(--choice-color);
     display: flex;
     flex-direction: column;
-    background-color: var(--card-background-color);
+    background-color: var(--choice-background-color);
     min-width: calc(var(--img-width) + var(--img-margin)*2);
     transition: 0.2s;
 }
@@ -40,8 +40,7 @@
 }
 
 #thank_you_section .concern_card:hover {
-    background-color: var(--card-background-on-hover);
-    border-color: var(--card-border-on-hover);
+    background-color: var(--choice-hover-background-color);
     transition: 0.2s;
 }
 

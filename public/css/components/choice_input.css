@@ -1,9 +1,4 @@
 :root {
-    --choice-background-color: rgba(52, 113, 130, 0.1);
-    --choice-color: rgb(52, 113, 130);
-    --choice-shadow-color: rgba(52, 113, 130, 0.8);
-    --choice-hover-background-color: rgba(52, 113, 130, 0.3);
-
     /* Letter box sizes */
     --letter-box-width: 25px;
     --letter-box-height: 25px;

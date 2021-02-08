@@ -1,14 +1,14 @@
 :root {
     /*  Colors  */
-    --backgound-color: #282838;
     --card-background-color: #323549;
-    --card-background-on-hover: #3e415b;
-    --highlighted-card-border: greenyellow;
+    --card-background-on-hover: var(--);
+    --highlighted-card-border: var(--button-background-color);
     --card-color: #FFFFFF;
     --card-border-on-hover: 2px solid beige;
 }
 
 body {
-    background-color: var(--backgound-color);
-    color: var(--card-color);
+    background-image: url("/public/images/default-background.jpeg");
+    background-repeat: repeat;
+    color: rgba(77, 77, 77, 0.7);
 }

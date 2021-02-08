@@ -9,6 +9,12 @@
     --button-background-color: rgb(50, 134, 179);
     --button-on-hover-bck-color: rgb(81, 152, 190);
 
+    /* Choices */
+    --choice-background-color: rgba(52, 113, 130, 0.1);
+    --choice-color: rgb(52, 113, 130);
+    --choice-shadow-color: rgba(52, 113, 130, 0.8);
+    --choice-hover-background-color: rgba(52, 113, 130, 0.3);
+
     /* Font Sizes */
     --input-font-size: 30px;
     --input-sm-font-size: 20px;

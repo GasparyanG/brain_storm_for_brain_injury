@@ -12,6 +12,7 @@
 #thank_you_section .solid_concern_identification {
     font-size: 25px;
     align-self: center;
+    margin-right: 1rem;
 }
 
 /* Highlighted concern */
@@ -32,6 +33,12 @@
     #thank_you_section .solid_concern_identification {
         font-size: 20px;
         margin-bottom: 1rem;
+    }
+}
+
+@media only screen and (max-width: 850px) {
+    #thank_you_section .solid_concern_identification {
+        margin-right: unset;
     }
 }
 
