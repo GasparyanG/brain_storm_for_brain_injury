@@ -1,6 +1,11 @@
 :root {
     --progress-hint-width: 100px;
     --sm-progress-hint-width: 50px;
+
+    --tooltip-width: 150px;
+    --closing-buttons-width: 1rem;
+
+    --sm-tooltip-width: 100px;
 }
 
 #form_container .form_progress_section {
@@ -43,6 +48,21 @@
     color: var(--input-color-active);
 }
 
+/* Title decoration */
+#form_container .close_form[title]:hover::after {
+    content: attr(title);
+    position: absolute;
+    top: 400%;
+    width: var(--tooltip-width);
+    left: calc(((var(--tooltip-width) - 1rem)/2) * -1);
+    font-size: 17px;
+    background-color: var(--input-color-active);
+    color: #ffffff;
+    padding: 0.2rem;
+    border-radius: 4px;
+    text-align: center;
+}
+
 /* ---------------------------------- RESPONSIVENESS ------------------------------------ */
 @media only screen and (max-width: 750px) {
     #form_container .form_progress_section {
@@ -53,6 +73,12 @@
     #form_container .form_progress_amount {
         width: var(--sm-progress-hint-width);
         font-size: 10px;
+    }
+
+    #form_container .close_form[title]:hover::after {
+        width: var(--sm-tooltip-width);
+        left: calc(((var(--sm-tooltip-width) - 1rem)/2) * -1);
+        font-size: 13px;
     }
 }
 

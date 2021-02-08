@@ -15,7 +15,7 @@ class ProgressBar extends React.Component {
 
        return (
            <div className="form_progress_section">
-               <a href="/" className="close_form">
+               <a href="/" className="close_form" title="Quite the form.">
                    &times;
                </a>
                <div className="form_progress_indicator" style={{width: `${progress}%`}}>

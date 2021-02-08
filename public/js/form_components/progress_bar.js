@@ -31,7 +31,7 @@ var ProgressBar = function (_React$Component) {
                 { className: "form_progress_section" },
                 React.createElement(
                     "a",
-                    { href: "/", className: "close_form" },
+                    { href: "/", className: "close_form", title: "Quite the form." },
                     "\xD7"
                 ),
                 React.createElement("div", { className: "form_progress_indicator", style: { width: progress + "%" } }),
