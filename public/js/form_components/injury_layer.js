@@ -48,16 +48,22 @@ var DateOfInjury = function (_React$Component) {
 
             if (e.target.value == "") errors = _this.props.prepareErrors(CSSClasses.date, { message: DefaultErrorMessages.date_required });else if (e.target.classList.contains(CSSClasses.date_month)) {
                 // Validate month
-                if (e.target.value < SymbolicConstants.month_min || e.target.value > SymbolicConstants.month_max) errors = _this.props.prepareErrors(CSSClasses.date, { message: DefaultErrorMessages.date_wrong });else if (e.target.value.length >= 2) {
-                    var dayInput = document.querySelector(".date_day");
-                    dayInput.focus();
-                }
+                if (e.target.value < SymbolicConstants.month_min || e.target.value > SymbolicConstants.month_max) errors = _this.props.prepareErrors(CSSClasses.date, { message: DefaultErrorMessages.date_wrong });
+
+                // Navigate to next date field.
+                else if (e.target.value.length >= 2) {
+                        var dayInput = document.querySelector(".date_day");
+                        dayInput.focus();
+                    }
             } else if (e.target.classList.contains(CSSClasses.date_day)) {
                 //Validate day
-                if (e.target.value < SymbolicConstants.day_min || e.target.value > SymbolicConstants.day_max) errors = _this.props.prepareErrors(CSSClasses.date, { message: DefaultErrorMessages.date_wrong });else if (e.target.value.length >= 2) {
-                    var yearInput = document.querySelector(".date_year");
-                    yearInput.focus();
-                }
+                if (e.target.value < SymbolicConstants.day_min || e.target.value > SymbolicConstants.day_max) errors = _this.props.prepareErrors(CSSClasses.date, { message: DefaultErrorMessages.date_wrong });
+
+                // Navigate to next date field.
+                else if (e.target.value.length >= 2) {
+                        var yearInput = document.querySelector(".date_year");
+                        yearInput.focus();
+                    }
             } else if (e.target.classList.contains(CSSClasses.date_year)) {
                 // Validate year
                 if (e.target.value < SymbolicConstants.year_min || e.target.value > SymbolicConstants.year_max) errors = _this.props.prepareErrors(CSSClasses.date, { message: DefaultErrorMessages.date_wrong });

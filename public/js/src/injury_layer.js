@@ -42,6 +42,8 @@ class DateOfInjury extends React.Component {
             // Validate month
             if (e.target.value < SymbolicConstants.month_min || e.target.value > SymbolicConstants.month_max)
                 errors = this.props.prepareErrors(CSSClasses.date, {message: DefaultErrorMessages.date_wrong});
+
+            // Navigate to next date field.
             else if (e.target.value.length >= 2) {
                 let dayInput = document.querySelector(".date_day");
                 dayInput.focus();
@@ -50,6 +52,8 @@ class DateOfInjury extends React.Component {
             //Validate day
             if (e.target.value < SymbolicConstants.day_min || e.target.value > SymbolicConstants.day_max)
                 errors = this.props.prepareErrors(CSSClasses.date, {message: DefaultErrorMessages.date_wrong});
+
+            // Navigate to next date field.
             else if (e.target.value.length >= 2) {
                 let yearInput = document.querySelector(".date_year");
                 yearInput.focus();

@@ -53,12 +53,20 @@
     transform: skew(-10deg);
 }
 
+#form_container #injury_date_year {
+    width: 70px;
+}
 
 /* -------------------------- RESPONSIVENESS ------------------------------ */
 @media only screen and (max-width: 550px) {
     #form_container .date_section_name {
         font-size: 15px;
     }
+
+    #form_container #injury_date_year {
+        width: 50px;
+    }
+
 
     #form_container .date_input_section .raw_date_input {
         font-size: 20px;
