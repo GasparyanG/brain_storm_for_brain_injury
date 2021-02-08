@@ -11,7 +11,7 @@ import { DateOfInjury, CauseOfInjury } from "./injury_layer";
 import { Concerns } from "./concerns_layer";
 import { Navigation } from "./navigation_buttons";
 import { ProgressBar } from "./progress_bar";
-import { CSSClasses, DefaultErrorMessages, SymbolicConstants, validateEmail, RequestConfigurations } from "./helper_components";
+import { CSSClasses, DefaultErrorMessages, SymbolicConstants, validateEmail, RequestConfigurations, FieldsToFocusOn } from "./helper_components";
 import { ErrorMessage } from "../form_components/helper_components";
 
 var Form = function (_React$Component) {
@@ -178,6 +178,22 @@ var Form = function (_React$Component) {
             _this.setState(items);
         };
 
+        _this.focusOnField = function (layerNumber) {
+            if (layerNumber + 1 > SymbolicConstants.max_number_of_fields) return;
+
+            var fieldId = FieldsToFocusOn[layerNumber + 1];
+
+            var field = document.getElementById(fieldId);
+            if (field) {
+                setTimeout(function () {
+                    return field.focus();
+                }, 1000);
+                if (layerNumber + 1 === SymbolicConstants.max_number_of_fields) setTimeout(function () {
+                    return field.blur();
+                }, 1000);
+            }
+        };
+
         _this.changeToNextLayer = function () {
             if (_this.state.navigation.current_position === _this.state.navigation.max_number_of_pages) return;
 
@@ -188,6 +204,8 @@ var Form = function (_React$Component) {
             for (var i = 0; i < layers.length; i++) {
                 layers[i].style.setProperty("transform", "" + ("translateY(calc(" + currentPosition + "*-" + SymbolicConstants.page_translation_percent + "vh))"));
             }
+
+            _this.focusOnField(currentPosition);
         };
 
         _this.changeToPrevLayer = function () {
@@ -200,6 +218,8 @@ var Form = function (_React$Component) {
             for (var i = 0; i < layers.length; i++) {
                 layers[i].style.setProperty("transform", "" + ("translateY(" + ((currentPosition + 1) * -SymbolicConstants.page_translation_percent + SymbolicConstants.page_translation_percent) + "vh)"));
             }
+
+            _this.focusOnField(currentPosition);
         };
 
         _this.isValidDate = function (form) {

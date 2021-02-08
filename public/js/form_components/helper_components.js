@@ -211,6 +211,7 @@ var SymbolicConstants = {
     max_number_of_pages_human: 7,
     progress_steps: 7,
     progress_steps_with_email: 8,
+    max_number_of_fields: 6, // Need to be synchronized with 'FieldsToFocusOn'.
 
     // Age
     max_age: 150,
@@ -229,6 +230,15 @@ var SymbolicConstants = {
     min_amount_of_choices: 1,
     max_amount_with_other_choice: 2,
     min_length_of_other_concern: 1
+};
+
+var FieldsToFocusOn = {
+    1: "name",
+    2: "age",
+    3: "location",
+    4: "email",
+    5: "injury_date_month",
+    6: "injury_date_year"
 
     // ALWAYS MAKE SURE THIS ERRORS ARE SYNCHRONIZED WITH General/ErrorEnum.php ERRORS
 };var DefaultErrorMessages = {
@@ -279,4 +289,4 @@ var RequestConfigurations = {
     thank_you_url: "thank_you"
 };
 
-export { SubmitButton, RegularButton, ErrorMessage, CSSClasses, validateEmail, debounce, isBrowser, SymbolicConstants, DefaultErrorMessages, RequestConfigurations, eIndexOf, eIncludes };
+export { SubmitButton, RegularButton, ErrorMessage, CSSClasses, validateEmail, debounce, isBrowser, SymbolicConstants, DefaultErrorMessages, RequestConfigurations, eIndexOf, eIncludes, FieldsToFocusOn };

@@ -8,7 +8,8 @@ import {
     DefaultErrorMessages,
     SymbolicConstants,
     validateEmail,
-    RequestConfigurations
+    RequestConfigurations,
+    FieldsToFocusOn
 } from "./helper_components";
 import {ErrorMessage} from "../form_components/helper_components";
 
@@ -206,6 +207,19 @@ class Form extends React.Component {
         this.setState(items);
     }
 
+    focusOnField = (layerNumber) => {
+        if (layerNumber + 1> SymbolicConstants.max_number_of_fields) return;
+
+        let fieldId = FieldsToFocusOn[layerNumber + 1];
+
+        let field = document.getElementById(fieldId);
+        if (field) {
+            setTimeout(() => field.focus(), 1000)
+            if (layerNumber + 1 === SymbolicConstants.max_number_of_fields)
+                setTimeout(() => field.blur(), 1000);
+        }
+    }
+
     changeToNextLayer = () => {
         if (this.state.navigation.current_position === this.state.navigation.max_number_of_pages)
             return;
@@ -218,6 +232,8 @@ class Form extends React.Component {
             layers[i].style.setProperty("transform",
                 `${"translateY(calc("  + currentPosition + "*-" + SymbolicConstants.page_translation_percent + "vh))"}`);
         }
+
+        this.focusOnField(currentPosition);
     }
 
     changeToPrevLayer = () => {
@@ -233,6 +249,8 @@ class Form extends React.Component {
                 `${"translateY("  + (((currentPosition + 1) * -SymbolicConstants.page_translation_percent) 
                     + SymbolicConstants.page_translation_percent) + "vh)"}`);
         }
+
+        this.focusOnField(currentPosition);
     }
 
 

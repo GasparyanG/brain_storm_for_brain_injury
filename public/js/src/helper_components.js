@@ -193,6 +193,7 @@ const SymbolicConstants = {
     max_number_of_pages_human: 7,
     progress_steps: 7,
     progress_steps_with_email: 8,
+    max_number_of_fields: 6,        // Need to be synchronized with 'FieldsToFocusOn'.
 
     // Age
     max_age: 150,
@@ -213,6 +214,14 @@ const SymbolicConstants = {
     min_length_of_other_concern: 1
 }
 
+const FieldsToFocusOn = {
+    1 : "name",
+    2 : "age",
+    3 : "location",
+    4 : "email",
+    5 : "injury_date_month",
+    6 : "injury_date_year"
+}
 
 // ALWAYS MAKE SURE THIS ERRORS ARE SYNCHRONIZED WITH General/ErrorEnum.php ERRORS
 const DefaultErrorMessages = {
@@ -275,5 +284,6 @@ export {
     DefaultErrorMessages,
     RequestConfigurations,
     eIndexOf,
-    eIncludes
+    eIncludes,
+    FieldsToFocusOn
 };
