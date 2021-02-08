@@ -111,6 +111,7 @@
 #form_container .choice_is_made {
     box-shadow: var(--choice-color) 0px 0px 0px 2px inset;
     animation: 0.25s ease 0s 2 normal none running choice_blinking;
+    background-color: var(--choice-hover-background-color);
 }
 
 #form_container .choice_is_made .choice_letter {
