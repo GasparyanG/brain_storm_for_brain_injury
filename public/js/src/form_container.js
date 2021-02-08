@@ -248,11 +248,14 @@ class Form extends React.Component {
         let progress = 0;
         let progressStep =
             Math.ceil(SymbolicConstants.completed_progress/SymbolicConstants.progress_steps);
+        if (this.state.form.email != "")
+            progressStep = Math.ceil(SymbolicConstants.completed_progress/SymbolicConstants.progress_steps_with_email);
 
         progress += !this.stringValues(CSSClasses.name) ? 0 : progressStep;
         progress += !this.stringValues(CSSClasses.age) ? 0 : progressStep;
         progress += !this.stringValues(CSSClasses.location) ? 0 : progressStep;
-        // progress += !validateEmail(this.state.form.email) ? 0 : progressStep;
+        if (this.state.form.email != "")
+            progress += !validateEmail(this.state.form.email) ? 0 : progressStep;
         progress += !this.stringValues(CSSClasses.injury_reason) ? 0 : progressStep;
         progress += !this.isValidDate(this.state.form) ? 0 : progressStep;
         progress += !this.areConcernsValid() ? 0 : progressStep;

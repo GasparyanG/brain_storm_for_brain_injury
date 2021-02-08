@@ -465,6 +465,17 @@ var Email = function (_React$Component4) {
                         "div",
                         { className: "questions" },
                         label,
+                        React.createElement(
+                            "div",
+                            { className: "question_usage_hint" },
+                            "You can leave this field ",
+                            React.createElement(
+                                "strong",
+                                null,
+                                "empty"
+                            ),
+                            "."
+                        ),
                         React.createElement("input", { onChange: this.handleInput, onKeyUp: this.handleEnter, className: "raw_input",
                             name: "email", id: "email", type: "text", defaultValue: this.props.formState.email, placeholder: "example@mail.tld" }),
                         validityElement

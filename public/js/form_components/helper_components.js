@@ -210,6 +210,7 @@ var SymbolicConstants = {
     max_number_of_pages: 6,
     max_number_of_pages_human: 7,
     progress_steps: 7,
+    progress_steps_with_email: 8,
 
     // Age
     max_age: 150,

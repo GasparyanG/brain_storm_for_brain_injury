@@ -20,6 +20,7 @@ use App\Services\Validation\General\RegularAssembler;
 use App\Services\Validation\General\SymbolicConstantsEnum;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\ORMException;
+use Symfony\Component\HttpFoundation\Request;
 
 class EntityBulkBuilder extends AbstractValidator
 {
@@ -41,10 +42,13 @@ class EntityBulkBuilder extends AbstractValidator
      */
     private EntityManager $em;
 
+    private Request $request;
+
     public function __construct(array $assocArrayForm)
     {
         $this->assocArrayForm = $assocArrayForm;
         $this->em = Connection::getEntityManager();
+        $this->request = Request::createFromGlobals();
     }
 
     public function validate(): array
@@ -104,22 +108,25 @@ class EntityBulkBuilder extends AbstractValidator
 
     private function exists(): bool
     {
-        if (
-            !isset($this->form[FieldsEnum::EMAIL]) ||
-            (strlen($this->form[FieldsEnum::EMAIL]) == 0)
-        ) return false;
+        $cookie = $this->request->cookies->get(CookieEnum::USER_COOKIE_KEY);
+        if (!$cookie) return false;
 
-        $user = $this->getUserViaEmail();
+        $user = $this->getUserViaCookie();
 
         if ($user) return true;
         return false;
+    }
+
+    private function emailIsProvided(): bool
+    {
+        return (isset($this->form[FieldsEnum::EMAIL]) && strlen($this->form[FieldsEnum::EMAIL]) > 0);
     }
 
     private function validateUser(): User
     {
         // Validation
         if ($this->toBeUpdated)
-            $user = $this->getUserViaEmail();
+            $user = $this->getUserViaCookie();
         else
             $user = new User();
 
@@ -130,7 +137,9 @@ class EntityBulkBuilder extends AbstractValidator
         if ($this->stringIsNotEmpty($this->form, FieldsEnum::LOCATION))
             $user->setLocation($this->form[FieldsEnum::LOCATION]);
 
-        if (!$this->toBeUpdated && $this->isValidEmailAddress($this->form))
+        if (!$this->emailIsProvided())
+            $user->setEmailAddress(null);
+        else if ($this->isValidEmailAddress($this->form))
             $user->setEmailAddress($this->form[FieldsEnum::EMAIL]);
 
         if ($this->isValidAge($this->form))
@@ -387,7 +396,8 @@ class EntityBulkBuilder extends AbstractValidator
     private function successResponse(User $user): array
     {
         // TODO: Handle unverified email.
-        $emailIsVerified = (new EmailVerification($user))->verify();
+        if ($this->emailIsProvided())
+            $emailIsVerified = (new EmailVerification($user))->verify();
 
         // Add cookie for user.
         $this->addCookie($user);
@@ -453,12 +463,15 @@ class EntityBulkBuilder extends AbstractValidator
     }
 
     // ----------------------------- Accessing Entities -------------------------------------------
-    private function getUserViaEmail(): ?User
+    private function getUserViaCookie(): ?User
     {
+        $cookie = $this->request->cookies->get(CookieEnum::USER_COOKIE_KEY);
+        if (!$cookie) return null;
+
         return $this->em->getRepository(User::class)
             ->findOneBy(
                 [
-                    FieldsEnum::EMAIL_ADDRESS => $this->form[FieldsEnum::EMAIL]
+                    FieldsEnum::COOKIE => $cookie
                 ]
             );
     }

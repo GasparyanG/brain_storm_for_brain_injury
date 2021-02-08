@@ -31,7 +31,7 @@ class User
     private $age;
 
     /**
-     * @var string
+     * @var null|string
      * @Column(type="string", name="email_address")
      */
     private $emailAddress;
@@ -136,17 +136,17 @@ class User
     }
 
     /**
-     * @return string
+     * @return null|string
      */
-    public function getEmailAddress(): string
+    public function getEmailAddress(): ?string
     {
         return $this->emailAddress;
     }
 
     /**
-     * @param string $emailAddress
+     * @param null|string $emailAddress
      */
-    public function setEmailAddress(string $emailAddress): void
+    public function setEmailAddress(?string $emailAddress): void
     {
         $this->emailAddress = $emailAddress;
     }
