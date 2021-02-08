@@ -238,7 +238,7 @@ class Form extends React.Component {
             // There is no element in 'concerns' array and 'concerns_other' string is empty.
             ((this.state.form.concerns.length < SymbolicConstants.min_amount_of_choices)
                 && (this.state.form.concerns_other.length < SymbolicConstants.min_length_of_other_concern))
-            // Concerns have error.
+            // Concerns have error, but it's not related with more than required amount of choices.
             || (this.state.errors.hasOwnProperty(CSSClasses.concerns)
                 && this.state.errors[CSSClasses.concerns].message !== DefaultErrorMessages.more_than_three)
         );
@@ -252,7 +252,7 @@ class Form extends React.Component {
         progress += !this.stringValues(CSSClasses.name) ? 0 : progressStep;
         progress += !this.stringValues(CSSClasses.age) ? 0 : progressStep;
         progress += !this.stringValues(CSSClasses.location) ? 0 : progressStep;
-        progress += !validateEmail(this.state.form.email) ? 0 : progressStep;
+        // progress += !validateEmail(this.state.form.email) ? 0 : progressStep;
         progress += !this.stringValues(CSSClasses.injury_reason) ? 0 : progressStep;
         progress += !this.isValidDate(this.state.form) ? 0 : progressStep;
         progress += !this.areConcernsValid() ? 0 : progressStep;

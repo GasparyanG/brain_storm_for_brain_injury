@@ -199,7 +199,7 @@ var Form = function (_React$Component) {
             return !(
             // There is no element in 'concerns' array and 'concerns_other' string is empty.
             _this.state.form.concerns.length < SymbolicConstants.min_amount_of_choices && _this.state.form.concerns_other.length < SymbolicConstants.min_length_of_other_concern ||
-            // Concerns have error.
+            // Concerns have error, but it's not related with more than required amount of choices.
             _this.state.errors.hasOwnProperty(CSSClasses.concerns) && _this.state.errors[CSSClasses.concerns].message !== DefaultErrorMessages.more_than_three);
         };
 
@@ -210,7 +210,7 @@ var Form = function (_React$Component) {
             progress += !_this.stringValues(CSSClasses.name) ? 0 : progressStep;
             progress += !_this.stringValues(CSSClasses.age) ? 0 : progressStep;
             progress += !_this.stringValues(CSSClasses.location) ? 0 : progressStep;
-            progress += !validateEmail(_this.state.form.email) ? 0 : progressStep;
+            // progress += !validateEmail(this.state.form.email) ? 0 : progressStep;
             progress += !_this.stringValues(CSSClasses.injury_reason) ? 0 : progressStep;
             progress += !_this.isValidDate(_this.state.form) ? 0 : progressStep;
             progress += !_this.areConcernsValid() ? 0 : progressStep;

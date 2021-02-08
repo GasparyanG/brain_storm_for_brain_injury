@@ -366,7 +366,7 @@ var Email = function (_React$Component4) {
         _this4.handleOk = function () {
             // Validation goes here.
 
-            if (_this4.props.errors.hasOwnProperty(CSSClasses.email)) return;
+            // if (this.props.errors.hasOwnProperty(CSSClasses.email)) return;
 
             if (_this4.props.formState[_this4.prev_layer] == "") _this4.props.changeToPrev();else _this4.props.changeToNext();
         };
@@ -383,9 +383,9 @@ var Email = function (_React$Component4) {
             // Check email format here.
             if (e.target.value !== "" && !validateEmail(e.target.value)) {
                 errors = _this4.props.prepareErrors(CSSClasses.email, { message: DefaultErrorMessages.email_wrong_format });
-            } else if (e.target.value !== "") {
+            } else {
                 errors = _this4.props.prepareErrors(CSSClasses.email, false, true);
-            } else errors = _this4.props.prepareErrors(CSSClasses.email, { message: DefaultErrorMessages.email_required });
+            }
 
             _this4.props.updateFormAndError(form, errors);
         };

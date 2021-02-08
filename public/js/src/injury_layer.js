@@ -11,9 +11,9 @@ class DateOfInjury extends React.Component {
         // Dispatch.
         if (this.props.errors.hasOwnProperty(CSSClasses.date)) return;
 
-        if (this.props.formState[this.prev_layer] == "")
-            this.props.changeToPrev()
-        else
+        if (this.props.errors.hasOwnProperty(this.prev_layer)) {
+            this.props.changeToPrev();
+        } else
             this.props.changeToNext();
     }
 

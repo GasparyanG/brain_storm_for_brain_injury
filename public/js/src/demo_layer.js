@@ -243,7 +243,7 @@ class Email extends React.Component {
     handleOk = () => {
         // Validation goes here.
 
-        if (this.props.errors.hasOwnProperty(CSSClasses.email)) return;
+        // if (this.props.errors.hasOwnProperty(CSSClasses.email)) return;
 
         if (this.props.formState[this.prev_layer] == "")
             this.props.changeToPrev()
@@ -263,10 +263,9 @@ class Email extends React.Component {
         // Check email format here.
         if (e.target.value !== "" && !validateEmail(e.target.value)) {
             errors = this.props.prepareErrors(CSSClasses.email, {message: DefaultErrorMessages.email_wrong_format});
-        }else if (e.target.value !== "") {
+        } else {
             errors = this.props.prepareErrors(CSSClasses.email, false, true);
-        } else
-            errors = this.props.prepareErrors(CSSClasses.email, {message: DefaultErrorMessages.email_required});
+        }
 
         this.props.updateFormAndError(form, errors);
     }

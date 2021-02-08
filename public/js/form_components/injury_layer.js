@@ -20,7 +20,9 @@ var DateOfInjury = function (_React$Component) {
             // Dispatch.
             if (_this.props.errors.hasOwnProperty(CSSClasses.date)) return;
 
-            if (_this.props.formState[_this.prev_layer] == "") _this.props.changeToPrev();else _this.props.changeToNext();
+            if (_this.props.errors.hasOwnProperty(_this.prev_layer)) {
+                _this.props.changeToPrev();
+            } else _this.props.changeToNext();
         };
 
         _this.numbersOnly = function (e) {
