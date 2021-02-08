@@ -55,7 +55,8 @@ class ThankYou
                     self::CONCERNS_DIR_KEY => self::CONCERNS_DIR,
                     "user" => $user,
                     "solid_concern" => $this->getSolidConcern($user),
-                    "other_concerns" => $this->getOtherConcerns($user)
+                    "other_concerns" => $this->getOtherConcerns($user),
+                    "max_concern_number" => SymbolicConstantsEnum::MAX_CONCERN
                 ]
             )
         );

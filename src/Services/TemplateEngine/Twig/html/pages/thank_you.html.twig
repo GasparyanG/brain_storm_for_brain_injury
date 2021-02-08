@@ -22,7 +22,7 @@
                 <h1 class="greeting_header">Symptoms</h1>
             </div>
             <div class="solid_concern_section">
-                {% if solid_concern.id < 13 %}
+                {% if solid_concern.id <= max_concern_number %}
                     <div class="solid_concern_identification">
                         {{ user.name }}, you said that <span class="hl_concern">{{ solid_concern.name }}</span> is your greatest concern.
                         So the highlighted card will provide information on tips for improving
