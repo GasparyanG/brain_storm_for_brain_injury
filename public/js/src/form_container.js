@@ -93,6 +93,19 @@ class Form extends React.Component {
         return defaultState;
     }
 
+    navigateToLayer = (navigation) => {
+        if (navigation === "undefined" || navigation == "null" || navigation == null) return;
+        let currentPosition = navigation.current_position;
+
+        if (currentPosition === "undefined" || currentPosition == "null" || currentPosition == null) return;
+
+        const layers = document.querySelectorAll("." + CSSClasses.form_layer);
+        for(let i = 0; i < layers.length; i++) {
+            layers[i].style.setProperty("transform",
+                `${"translateY(calc("  + currentPosition + "*-" + SymbolicConstants.page_translation_percent + "vh))"}`);
+        }
+    }
+
     // Handle submit button press.
     submit = () => {
         self = this;
@@ -104,8 +117,10 @@ class Form extends React.Component {
                 data = JSON.parse(data);
                 if (data.success)
                     window.location.replace(RequestConfigurations.thank_you_url);
-                else
+                else {
                     self.setState(data.data);
+                    self.navigateToLayer(data.data.navigation);
+                }
             },
             error: function(e) {
                 console.error(e);

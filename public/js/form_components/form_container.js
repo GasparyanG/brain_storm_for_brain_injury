@@ -71,6 +71,18 @@ var Form = function (_React$Component) {
             return defaultState;
         };
 
+        _this.navigateToLayer = function (navigation) {
+            if (navigation === "undefined" || navigation == "null" || navigation == null) return;
+            var currentPosition = navigation.current_position;
+
+            if (currentPosition === "undefined" || currentPosition == "null" || currentPosition == null) return;
+
+            var layers = document.querySelectorAll("." + CSSClasses.form_layer);
+            for (var i = 0; i < layers.length; i++) {
+                layers[i].style.setProperty("transform", "" + ("translateY(calc(" + currentPosition + "*-" + SymbolicConstants.page_translation_percent + "vh))"));
+            }
+        };
+
         _this.submit = function () {
             self = _this;
             $.ajax({
@@ -79,7 +91,10 @@ var Form = function (_React$Component) {
                 data: JSON.stringify(_this.state),
                 success: function success(data) {
                     data = JSON.parse(data);
-                    if (data.success) window.location.replace(RequestConfigurations.thank_you_url);else self.setState(data.data);
+                    if (data.success) window.location.replace(RequestConfigurations.thank_you_url);else {
+                        self.setState(data.data);
+                        self.navigateToLayer(data.data.navigation);
+                    }
                 },
                 error: function error(e) {
                     console.error(e);
