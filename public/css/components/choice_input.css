@@ -33,6 +33,7 @@
 }
 
 #form_container .checkbox_column {
+    min-width: 300px;
     width: 48%;
 }
 
@@ -86,6 +87,7 @@
     font-size: 20px;
     border: none;
     outline: none;
+    width: 200px;
 }
 
 #form_container .choice_name {
@@ -192,6 +194,12 @@
 }
 
 /* -------------------------------------------- RESPONSIVENESS -------------------------------------------- */
+
+@media only screen and (max-width: 1300px) {
+    #form_container .checkbox_column {
+        min-width: unset;
+    }
+}
 
 @media only screen and (min-width: 801px) and (max-width: 900px) {
     #form_container .choice_part {
