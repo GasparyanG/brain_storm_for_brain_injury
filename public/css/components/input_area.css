@@ -37,7 +37,7 @@
 #form_container .question_number {
     margin-left: var(--question-number-margin-left);
     white-space: nowrap;
-    align-self: flex-start;
+    align-self: center;
     margin-right: 0.5rem;
     font-weight: 500;
     color: var(--input-color-active);
