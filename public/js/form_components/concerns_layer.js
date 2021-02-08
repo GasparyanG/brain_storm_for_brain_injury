@@ -228,11 +228,11 @@ var Concerns = function (_React$Component) {
             }
 
             var solidChoice = "";
-            if (_this.props.formState.solid_concern == "11") solidChoice = CSSClasses.solid_choice_is_made;
+            if (_this.props.formState.solid_concern == SymbolicConstants.other_concern_number) solidChoice = CSSClasses.solid_choice_is_made;
 
             return React.createElement(
                 "div",
-                { className: "choice_part " + checked, "data-value": "11", onClick: _this.onCheck },
+                { className: "choice_part " + checked, "data-value": SymbolicConstants.other_concern_number, onClick: _this.onCheck },
                 React.createElement(
                     "div",
                     { className: "choice_letter" },
@@ -260,7 +260,8 @@ var Concerns = function (_React$Component) {
                     ),
                     React.createElement(
                         "div",
-                        { onClick: _this.makeSolidChoice, "data-solid_value": "11", className: "solid_choice " + solidChoice },
+                        { onClick: _this.makeSolidChoice, "data-solid_value": SymbolicConstants.other_concern_number,
+                            className: "solid_choice " + solidChoice },
                         "\u2605"
                     )
                 )

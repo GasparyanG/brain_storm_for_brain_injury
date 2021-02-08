@@ -182,6 +182,10 @@ const SymbolicConstants = {
     // Events
     enter_key_code: 13,
 
+    // Concerns
+    other_concern_number: 11,
+    max_number_of_concerns: 10,
+
     // Navigation
     page_translation_percent: 100,
     scroll_delta: -120,

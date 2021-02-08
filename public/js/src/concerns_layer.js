@@ -240,11 +240,11 @@ class Concerns extends React.Component {
         }
 
         let solidChoice = "";
-        if (this.props.formState.solid_concern == "11")
+        if (this.props.formState.solid_concern == SymbolicConstants.other_concern_number)
             solidChoice = CSSClasses.solid_choice_is_made;
 
         return (
-            <div className={"choice_part " + checked} data-value="11" onClick={this.onCheck}>
+            <div className={"choice_part " + checked} data-value={SymbolicConstants.other_concern_number} onClick={this.onCheck}>
                 <div className="choice_letter">K</div>
                 <div className="choice_name">
                     <span className="default_choice_name">Other</span>
@@ -254,7 +254,8 @@ class Concerns extends React.Component {
                 </div>
                 <div className="other_input_interaction">
                     <div className="enabled_other_input hidden" onClick={this.unCheck}>✓</div>
-                    <div onClick={this.makeSolidChoice} data-solid_value="11" className={"solid_choice " + solidChoice}>★</div>
+                    <div onClick={this.makeSolidChoice} data-solid_value={SymbolicConstants.other_concern_number}
+                         className={"solid_choice " + solidChoice}>★</div>
                 </div>
             </div>
         );
