@@ -228,15 +228,15 @@ var Concerns = function (_React$Component) {
             }
 
             var solidChoice = "";
-            if (_this.props.formState.solid_concern == "13") solidChoice = CSSClasses.solid_choice_is_made;
+            if (_this.props.formState.solid_concern == "11") solidChoice = CSSClasses.solid_choice_is_made;
 
             return React.createElement(
                 "div",
-                { className: "choice_part " + checked, "data-value": "13", onClick: _this.onCheck },
+                { className: "choice_part " + checked, "data-value": "11", onClick: _this.onCheck },
                 React.createElement(
                     "div",
                     { className: "choice_letter" },
-                    "M"
+                    "K"
                 ),
                 React.createElement(
                     "div",
@@ -260,7 +260,7 @@ var Concerns = function (_React$Component) {
                     ),
                     React.createElement(
                         "div",
-                        { onClick: _this.makeSolidChoice, "data-solid_value": "14", className: "solid_choice " + solidChoice },
+                        { onClick: _this.makeSolidChoice, "data-solid_value": "11", className: "solid_choice " + solidChoice },
                         "\u2605"
                     )
                 )
@@ -275,8 +275,8 @@ var Concerns = function (_React$Component) {
             concerns: {
                 1: "Fatigue", 2: "Headaches", 3: "Dizziness",
                 4: "Walking difficulties", 5: "Hand or arm difficulties", 6: "Sleeping difficulties",
-                7: "Thinking difficulties", 8: "Mood difficulties", 9: "Speaking difficulties",
-                10: "Depression or anxiety", 11: "Vision problems", 12: "Light or sound sensitivity"
+                7: "Thinking difficulties", 8: "Emotional difficulties", 9: "Speaking difficulties",
+                10: "Vision problems"
             },
 
             other_input_disabled: false
@@ -284,7 +284,7 @@ var Concerns = function (_React$Component) {
 
         _this.letters = {
             1: 'A', 2: 'B', 3: 'C', 4: 'D', 5: 'E', 6: 'F',
-            7: 'G', 8: 'H', 9: 'I', 10: 'J', 11: 'K', 12: 'L'
+            7: 'G', 8: 'H', 9: 'I', 10: 'J'
         };
 
         _this.prev_layer = CSSClasses.injury_reason;
