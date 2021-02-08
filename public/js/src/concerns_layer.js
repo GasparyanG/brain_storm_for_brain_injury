@@ -183,7 +183,7 @@ class Concerns extends React.Component {
 
         return (
             <div key={value + ' ' + key} className={"choice_part " + checked} onClick={this.onCheck} data-value={key}>
-                <div className="choice_letter">{this.letters[key]}</div>
+                {/*<div className="choice_letter">{this.letters[key]}</div>*/}
                 <div className="choice_name">{value}</div>
                 <div onClick={this.makeSolidChoice} data-solid_value={key} className={"solid_choice " + solidChoice}>★</div>
             </div>
@@ -245,7 +245,7 @@ class Concerns extends React.Component {
 
         return (
             <div className={"choice_part " + checked} data-value={SymbolicConstants.other_concern_number} onClick={this.onCheck}>
-                <div className="choice_letter">K</div>
+                {/*<div className="choice_letter">K</div>*/}
                 <div className="choice_name">
                     <span className="default_choice_name">Other</span>
                     <input onChange={this.handleInput} onKeyUp={this.handleEnter}

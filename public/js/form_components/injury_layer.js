@@ -309,11 +309,6 @@ var CauseOfInjury = function (_React$Component2) {
                 { className: "choice_part " + checked, "data-value": "6", onClick: _this2.onCheck },
                 React.createElement(
                     "div",
-                    { className: "choice_letter" },
-                    "F"
-                ),
-                React.createElement(
-                    "div",
                     { className: "choice_name" },
                     React.createElement(
                         "span",
@@ -359,11 +354,6 @@ var CauseOfInjury = function (_React$Component2) {
             return React.createElement(
                 "div",
                 { key: value + ' ' + key, className: "choice_part " + checked, onClick: this.onCheck, "data-value": key },
-                React.createElement(
-                    "div",
-                    { className: "choice_letter" },
-                    this.letters[key]
-                ),
                 React.createElement(
                     "div",
                     { className: "choice_name" },

@@ -213,7 +213,7 @@ class CauseOfInjury extends React.Component {
 
         return (
             <div key={value + ' ' + key} className={"choice_part " + checked} onClick={this.onCheck} data-value={key}>
-                <div className="choice_letter">{this.letters[key]}</div>
+                {/*<div className="choice_letter">{this.letters[key]}</div>*/}
                 <div className="choice_name">{value}</div>
             </div>
         );
@@ -273,7 +273,7 @@ class CauseOfInjury extends React.Component {
 
         return (
             <div className={"choice_part " + checked} data-value="6" onClick={this.onCheck}>
-                <div className="choice_letter">F</div>
+                {/*<div className="choice_letter">F</div>*/}
                 <div className="choice_name">
                     <span className="default_choice_name">Other</span>
                     <input onChange={this.handleInput} onKeyUp={this.handleEnter} id="injury_reason" name="injury_reason" className="choice_other_raw_input hidden" defaultValue={valueToDisplay} type="text" placeholder="Type your answer..."/>

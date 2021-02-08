@@ -163,11 +163,6 @@ var Concerns = function (_React$Component) {
                 { key: value + ' ' + key, className: "choice_part " + checked, onClick: _this.onCheck, "data-value": key },
                 React.createElement(
                     "div",
-                    { className: "choice_letter" },
-                    _this.letters[key]
-                ),
-                React.createElement(
-                    "div",
                     { className: "choice_name" },
                     value
                 ),
@@ -233,11 +228,6 @@ var Concerns = function (_React$Component) {
             return React.createElement(
                 "div",
                 { className: "choice_part " + checked, "data-value": SymbolicConstants.other_concern_number, onClick: _this.onCheck },
-                React.createElement(
-                    "div",
-                    { className: "choice_letter" },
-                    "K"
-                ),
                 React.createElement(
                     "div",
                     { className: "choice_name" },

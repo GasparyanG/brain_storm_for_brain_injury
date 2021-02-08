@@ -62,7 +62,7 @@
     background-color: var(--choice-hover-background-color);
 }
 
-/* Choice letter decoration */
+/* -------------------------------------------- Choice letter decoration -------------------------------- */
 #form_container .choice_letter {
     display: flex;
     margin-right: 1rem;
@@ -87,6 +87,10 @@
     margin-left: 1rem;
     border: none;
     outline: none;
+}
+
+#form_container .choice_name {
+    margin-left: 1rem;
 }
 
 #form_container .other_input_interaction {
@@ -149,10 +153,6 @@
 #form_container .other_input_interaction .enabled_other_input {
     position: static;
 }
-
-
-/* -------------------------------------------- Layout of Concerns -------------------------------------- */
-
 
 
 /* -------------------------------------------- SOLID CHOICE BUTTON -------------------------------------- */
