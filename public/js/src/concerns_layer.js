@@ -28,13 +28,13 @@ class Concerns extends React.Component {
 
         let choiceName = element.querySelector("." + CSSClasses.default_choice_name);
         let choiceOtherInput = element.querySelector("." + CSSClasses.choice_other_raw_input);
-        let choiceLetter = element.querySelector("." + CSSClasses.choice_letter);
+        // let choiceLetter = element.querySelector("." + CSSClasses.choice_letter);
         let checkElement = element.querySelector("." + CSSClasses.enabled_other_input);
-        if (!choiceName || !choiceOtherInput || !choiceLetter) return;
+        if (!choiceName || !choiceOtherInput /*|| !choiceLetter*/) return;
 
         choiceName.classList.toggle(CSSClasses.hidden_element);
         choiceOtherInput.classList.toggle(CSSClasses.hidden_element);
-        choiceLetter.classList.toggle(CSSClasses.hidden_element);
+        // choiceLetter.classList.toggle(CSSClasses.hidden_element);
         checkElement.classList.toggle(CSSClasses.hidden_element);
 
         this.state.other_input_disabled = !checkElement.classList.contains(CSSClasses.hidden_element);
