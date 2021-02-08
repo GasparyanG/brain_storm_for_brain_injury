@@ -107,15 +107,41 @@ class Form extends React.Component {
         }
     }
 
+    activateLoader = () => {
+        let loader = document.getElementById(CSSClasses.loader_section);
+
+        // Display loader
+        loader.classList.remove(CSSClasses.hidden_element);
+
+        // Blur the background.
+        let formContainer = document.getElementById(CSSClasses.form_container);
+        formContainer.classList.add(CSSClasses.blur_background);
+    }
+
+    deactivateLoader = () => {
+        let loader = document.getElementById(CSSClasses.loader_section);
+
+        // Display loader
+        loader.classList.add(CSSClasses.hidden_element);
+
+        // Blur the background.
+        let formContainer = document.getElementById(CSSClasses.form_container);
+        formContainer.classList.remove(CSSClasses.blur_background);
+    }
+
     // Handle submit button press.
     submit = () => {
         self = this;
+
+        this.activateLoader();
         $.ajax({
             url: RequestConfigurations.form_submit_url,
             method: RequestConfigurations.post,
             data: JSON.stringify(this.state),
             success: function(data) {
                 data = JSON.parse(data);
+                self.deactivateLoader();
+
                 if (data.success)
                     window.location.replace(RequestConfigurations.thank_you_url);
                 else {

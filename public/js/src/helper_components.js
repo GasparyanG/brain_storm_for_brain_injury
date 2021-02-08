@@ -159,8 +159,13 @@ const CSSClasses = {
     user_name: "user_name",
     user_age: "user_age",
 
+    // Main layers
+    loader_section: "loader_section",
+    form_container: "form_container",
+
     // Actions
     warning_shake: "warning_shake",
+    blur_background: "blur_background",
 
     // Browsers
     is_chrome: "is_chrome",

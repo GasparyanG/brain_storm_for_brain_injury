@@ -83,14 +83,40 @@ var Form = function (_React$Component) {
             }
         };
 
+        _this.activateLoader = function () {
+            var loader = document.getElementById(CSSClasses.loader_section);
+
+            // Display loader
+            loader.classList.remove(CSSClasses.hidden_element);
+
+            // Blur the background.
+            var formContainer = document.getElementById(CSSClasses.form_container);
+            formContainer.classList.add(CSSClasses.blur_background);
+        };
+
+        _this.deactivateLoader = function () {
+            var loader = document.getElementById(CSSClasses.loader_section);
+
+            // Display loader
+            loader.classList.add(CSSClasses.hidden_element);
+
+            // Blur the background.
+            var formContainer = document.getElementById(CSSClasses.form_container);
+            formContainer.classList.remove(CSSClasses.blur_background);
+        };
+
         _this.submit = function () {
             self = _this;
+
+            _this.activateLoader();
             $.ajax({
                 url: RequestConfigurations.form_submit_url,
                 method: RequestConfigurations.post,
                 data: JSON.stringify(_this.state),
                 success: function success(data) {
                     data = JSON.parse(data);
+                    self.deactivateLoader();
+
                     if (data.success) window.location.replace(RequestConfigurations.thank_you_url);else {
                         self.setState(data.data);
                         self.navigateToLayer(data.data.navigation);
