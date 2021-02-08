@@ -1,29 +1,52 @@
+#intro_container .call_to_action_section {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
 #intro_container .call_to_action {
     text-decoration: none;
     border-radius: 4px;
-    background-color: #3C836D;
-    margin-top: 1rem;
+    background-color: var(--button-background-color);
     padding: 0.5rem;
     color: white;
     font-size: 25px;
     text-align: center;
-    width: 70%;
-    margin-left: 15%;
 }
 
 #intro_container .call_to_action:hover {
-    background-color: #05a081;
+    background-color: var(--button-on-hover-bck-color);
     transition: 0.2s;
     transform: translateY(-2%);
 }
 
 #intro_container .call_to_action:active {
-    background-color: #05a081;
+    background-color: var(--button-on-hover-bck-color);
     transition: 0.2s ease-out;
     transform: translateY(3%);
 }
 
+#intro_container .action_prompt {
+    align-self: center;
+    margin-left: 1rem;
+}
+
+#intro_container .action_prompt .pp_press {
+    font-style: italic;
+}
+
+#intro_container .action_prompt .pp_enter {
+    font-weight: 700;
+}
+
+
 /* -------------------------------- RESPONSIVENESS ---------------------------- */
+
+@media only screen and (max-width: 1200px) {
+    #intro_container .action_prompt {
+        display: none;
+    }
+}
 
 @media only screen and (min-width: 701px) and (max-width: 1200px) {
     #intro_container .call_to_action {

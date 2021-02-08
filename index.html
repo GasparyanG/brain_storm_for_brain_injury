@@ -9,6 +9,7 @@
     <!--  CSS  -->
     <link rel="stylesheet" href="/public/css/general.css">
     <link rel="stylesheet" href="/public/css/introduction/general.css">
+    <link rel="stylesheet" href="/public/css/components/interaction_variables.css">
 
     <!--  Components  -->
     <link rel="stylesheet" href="/public/css/introduction/background_images.css">
@@ -21,13 +22,6 @@
 <body>
 
     <div id="intro_container">
-        <!--    Background    -->
-        <div class="background_section">
-            <div class="background_image dark_background disable_background_image bck_1" data-index="1"></div>
-            <div class="background_image disable_background_image bck_2" data-index="2"></div>
-            <div class="background_image dark_background disable_background_image bck_3" data-index="3"></div>
-        </div>
-
         <!--    Site Name    -->
         <div class="introduction_section">
             <div class="site_name_and_description">
@@ -85,14 +79,20 @@
                 </div>
             </div>
 
-            <a href="/form" class="call_to_action">
-                <span>Start Filling The Form</span>
-            </a>
+            <div class="call_to_action_section">
+                <a href="/form" class="call_to_action">
+                    <span>Start Filling The Form</span>
+                </a>
+                <span class="action_prompt">
+                    <span class="prompt_part pp_press">press</span>
+                    <span class="prompt_part pp_enter">Enter ↵</span>
+                </span>
+            </div>
         </div>
     </div>
 
 
-    <script src="/public/js/introduction_page/background_shuffling.js"></script>
+    <script src="/public/js/introduction_page/call_to_action.js"></script>
     <script src="/public/js/introduction_page/site_name.js"></script>
 </body>
 </html>

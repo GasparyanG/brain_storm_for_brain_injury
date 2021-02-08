@@ -8,12 +8,13 @@
 }
 
 #intro_container .introduction_text {
-    font-size: 20px;
+    font-size: 25px;
     font-style: italic;
+    color: rgba(77, 77, 77, 0.7);
 }
 
 #intro_container .light_background .introduction_text {
-    color: var(--dark-theme);
+    color: rgba(77, 77, 77, 0.7);
 }
 
 #intro_container .dark_background .introduction_text {
@@ -31,6 +32,10 @@
 }
 
 @media only screen and (max-width: 800px) {
+    #intro_container .introduction_text {
+        font-size: 15px;
+    }
+
     #intro_container .introduction_section {
         width: 80%;
         left: 10%;
