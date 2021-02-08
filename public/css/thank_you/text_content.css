@@ -17,7 +17,7 @@
 
 /* Highlighted concern */
 #thank_you_section .hl_concern {
-    color: var(--highlighted-card-border);
+    color: var(--button-background-color);
     font-style: italic;
     font-weight: 700;
 }

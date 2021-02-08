@@ -39,4 +39,7 @@
     /*  Errors  */
     --err-background: rgb(247, 230, 230);
     --err-color: rgb(177, 51, 28);
+
+    /*  Success  */
+    --success-message-bck-color: #05a081;
 }

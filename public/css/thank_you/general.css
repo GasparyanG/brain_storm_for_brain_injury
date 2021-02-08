@@ -1,11 +1,3 @@
-:root {
-    /*  Colors  */
-    --card-background-color: #323549;
-    --highlighted-card-border: var(--button-background-color);
-    --card-color: #FFFFFF;
-    --card-border-on-hover: 2px solid beige;
-}
-
 body {
     background-image: url("/public/images/default-background.jpeg");
     background-repeat: repeat;
