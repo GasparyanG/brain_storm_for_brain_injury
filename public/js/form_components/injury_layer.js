@@ -310,7 +310,7 @@ var CauseOfInjury = function (_React$Component2) {
                 React.createElement(
                     "div",
                     { className: "choice_letter" },
-                    "N"
+                    "F"
                 ),
                 React.createElement(
                     "div",
@@ -419,8 +419,9 @@ var CauseOfInjury = function (_React$Component2) {
             );
 
             var checkboxItems = [];
+            var checkboxItemsSecondColumn = [];
             for (var key in this.state.concerns) {
-                checkboxItems.push(this.createCheckbox(key));
+                if (key <= 3) checkboxItems.push(this.createCheckbox(key));else checkboxItemsSecondColumn.push(this.createCheckbox(key));
             }
 
             var otherInput = this.otherInputRendering();
@@ -439,8 +440,17 @@ var CauseOfInjury = function (_React$Component2) {
                         React.createElement(
                             "div",
                             { className: "choices_section" },
-                            checkboxItems,
-                            otherInput
+                            React.createElement(
+                                "div",
+                                { className: "checkbox_column" },
+                                checkboxItems
+                            ),
+                            React.createElement(
+                                "div",
+                                { className: "checkbox_column" },
+                                checkboxItemsSecondColumn,
+                                otherInput
+                            )
                         ),
                         validityElement
                     )

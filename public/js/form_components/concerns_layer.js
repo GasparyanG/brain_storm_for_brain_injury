@@ -300,8 +300,9 @@ var Concerns = function (_React$Component) {
         value: function render() {
             // Prepare Checkbox array
             var checkboxItems = [];
+            var checkboxItemsSecondColumn = [];
             for (var key in this.state.concerns) {
-                checkboxItems.push(this.createCheckbox(key));
+                if (key <= 6) checkboxItems.push(this.createCheckbox(key));else checkboxItemsSecondColumn.push(this.createCheckbox(key));
             }
 
             var otherInput = this.otherInputRendering();
@@ -383,8 +384,17 @@ var Concerns = function (_React$Component) {
                             React.createElement(
                                 "div",
                                 { className: "choices_section" },
-                                checkboxItems,
-                                otherInput
+                                React.createElement(
+                                    "div",
+                                    { className: "checkbox_column" },
+                                    checkboxItems
+                                ),
+                                React.createElement(
+                                    "div",
+                                    { className: "checkbox_column" },
+                                    checkboxItemsSecondColumn,
+                                    otherInput
+                                )
                             ),
                             validityElement
                         )

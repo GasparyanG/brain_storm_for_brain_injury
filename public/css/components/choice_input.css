@@ -32,6 +32,10 @@
     justify-content: space-between;
 }
 
+#form_container .checkbox_column {
+    width: 48%;
+}
+
 #form_container .choice_part {
     position: relative;
     display: flex;
@@ -47,7 +51,7 @@
     padding: 4px;
     transition-duration: 0.1s;
     transition-timing-function: ease-out;
-    width: 48%;
+    width: 100%;
     cursor: pointer;
     opacity: 1;
     margin-bottom: 1rem;
@@ -146,6 +150,11 @@
     position: static;
 }
 
+
+/* -------------------------------------------- Layout of Concerns -------------------------------------- */
+
+
+
 /* -------------------------------------------- SOLID CHOICE BUTTON -------------------------------------- */
 #form_container .solid_choice {
     position: absolute;
@@ -187,7 +196,6 @@
 @media only screen and (min-width: 801px) and (max-width: 900px) {
     #form_container .choice_part {
         font-size: 15px;
-        width: 47%;
     }
 
     #form_container .choice_other_raw_input {
@@ -210,9 +218,12 @@
         border-bottom: 2px dashed blueviolet;
     }
 
+    #form_container .checkbox_column {
+        width: 90%;
+    }
+
     #form_container .choice_part {
         font-size: 15px;
-        width: 90%;
     }
 
     #form_container .choice_other_raw_input {

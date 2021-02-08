@@ -9,7 +9,7 @@ class Concerns extends React.Component {
                 1: "Fatigue",                   2: "Headaches",                     3: "Dizziness",
                 4: "Walking difficulties",      5: "Hand or arm difficulties",      6: "Sleeping difficulties",
                 7: "Thinking difficulties",     8: "Emotional difficulties",        9: "Speaking difficulties",
-                10: "Vision problems",
+                10: "Vision problems"
             },
 
             other_input_disabled: false
@@ -271,8 +271,12 @@ class Concerns extends React.Component {
     render () {
         // Prepare Checkbox array
         const checkboxItems = [];
+        const checkboxItemsSecondColumn = [];
         for (let key in this.state.concerns) {
-            checkboxItems.push(this.createCheckbox(key));
+            if (key <= 6)
+                checkboxItems.push(this.createCheckbox(key));
+            else
+                checkboxItemsSecondColumn.push(this.createCheckbox(key));
         }
 
         const otherInput = this.otherInputRendering();
@@ -296,8 +300,13 @@ class Concerns extends React.Component {
                                 Check <strong>up to three</strong> and <strong>star (★)</strong> the most troubling one.
                             </div>
                             <div className="choices_section">
-                                {checkboxItems}
-                                {otherInput}
+                                <div className="checkbox_column">
+                                    {checkboxItems}
+                                </div>
+                                <div className="checkbox_column">
+                                    {checkboxItemsSecondColumn}
+                                    {otherInput}
+                                </div>
                             </div>
                             {validityElement}
                         </div>

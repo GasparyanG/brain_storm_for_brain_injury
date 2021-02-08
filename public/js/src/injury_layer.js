@@ -273,7 +273,7 @@ class CauseOfInjury extends React.Component {
 
         return (
             <div className={"choice_part " + checked} data-value="6" onClick={this.onCheck}>
-                <div className="choice_letter">N</div>
+                <div className="choice_letter">F</div>
                 <div className="choice_name">
                     <span className="default_choice_name">Other</span>
                     <input onChange={this.handleInput} onKeyUp={this.handleEnter} id="injury_reason" name="injury_reason" className="choice_other_raw_input hidden" defaultValue={valueToDisplay} type="text" placeholder="Type your answer..."/>
@@ -296,8 +296,12 @@ class CauseOfInjury extends React.Component {
                 <span className="question_number">  {this.props.svgArrow}</span><span>{this.props.formState.name}, what was <strong>the cause</strong> of injury?</span></label>);
 
         let checkboxItems = [];
+        let checkboxItemsSecondColumn = [];
         for (let key in this.state.concerns) {
-            checkboxItems.push(this.createCheckbox(key));
+            if (key <= 3)
+                checkboxItems.push(this.createCheckbox(key));
+            else
+                checkboxItemsSecondColumn.push(this.createCheckbox(key));
         }
 
         const otherInput = this.otherInputRendering();
@@ -309,8 +313,13 @@ class CauseOfInjury extends React.Component {
                     <div className="questions">
                         {label}
                         <div className="choices_section">
-                            {checkboxItems}
-                            {otherInput}
+                            <div className="checkbox_column">
+                                {checkboxItems}
+                            </div>
+                            <div className="checkbox_column">
+                                {checkboxItemsSecondColumn}
+                                {otherInput}
+                            </div>
                         </div>
                         {validityElement}
                     </div>
