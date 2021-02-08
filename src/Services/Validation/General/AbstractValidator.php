@@ -64,6 +64,11 @@ abstract class AbstractValidator
             return false;
         }
 
+        if (!filter_var($assocArray[FieldsEnum::EMAIL], FILTER_VALIDATE_EMAIL)) {
+            $this->addError(ErrorEnum::EMAIL_WRONG_FORMAT, FieldsEnum::EMAIL);
+            return false;
+        }
+
         // TODO: Implement email address validation.
         return true;
     }

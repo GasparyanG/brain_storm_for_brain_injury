@@ -206,12 +206,17 @@ var Form = function (_React$Component) {
         _this.progressComputation = function () {
             var progress = 0;
             var progressStep = Math.ceil(SymbolicConstants.completed_progress / SymbolicConstants.progress_steps);
+
+            // Consider email as required if and only if email field contains some content.
             if (_this.state.form.email != "") progressStep = Math.ceil(SymbolicConstants.completed_progress / SymbolicConstants.progress_steps_with_email);
 
             progress += !_this.stringValues(CSSClasses.name) ? 0 : progressStep;
             progress += !_this.stringValues(CSSClasses.age) ? 0 : progressStep;
             progress += !_this.stringValues(CSSClasses.location) ? 0 : progressStep;
+
+            // Consider email as required if and only if email field contains some content.
             if (_this.state.form.email != "") progress += !validateEmail(_this.state.form.email) ? 0 : progressStep;
+
             progress += !_this.stringValues(CSSClasses.injury_reason) ? 0 : progressStep;
             progress += !_this.isValidDate(_this.state.form) ? 0 : progressStep;
             progress += !_this.areConcernsValid() ? 0 : progressStep;

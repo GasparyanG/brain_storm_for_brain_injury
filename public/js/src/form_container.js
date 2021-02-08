@@ -248,14 +248,19 @@ class Form extends React.Component {
         let progress = 0;
         let progressStep =
             Math.ceil(SymbolicConstants.completed_progress/SymbolicConstants.progress_steps);
+
+        // Consider email as required if and only if email field contains some content.
         if (this.state.form.email != "")
             progressStep = Math.ceil(SymbolicConstants.completed_progress/SymbolicConstants.progress_steps_with_email);
 
         progress += !this.stringValues(CSSClasses.name) ? 0 : progressStep;
         progress += !this.stringValues(CSSClasses.age) ? 0 : progressStep;
         progress += !this.stringValues(CSSClasses.location) ? 0 : progressStep;
+
+        // Consider email as required if and only if email field contains some content.
         if (this.state.form.email != "")
             progress += !validateEmail(this.state.form.email) ? 0 : progressStep;
+
         progress += !this.stringValues(CSSClasses.injury_reason) ? 0 : progressStep;
         progress += !this.isValidDate(this.state.form) ? 0 : progressStep;
         progress += !this.areConcernsValid() ? 0 : progressStep;
@@ -311,6 +316,7 @@ class Form extends React.Component {
                     changeToNext={this.changeToNext} changeToPrev={this.changeToPrev} errors={this.state.errors}
                     prepareErrors={this.prepareErrors_b} prepareForm={this.prepareForm_b} updateFormAndError={this.updateFormAndError_b}/>
 
+                {/*  NAVIGATION SECTION  */}
                 <Navigation submit={this.submit_b} navigation={this.state.navigation} progressComputation={this.progressComputation_b} changeToNext={this.changeToNext}
                         changeToPrev={this.changeToPrev}/>
             </div>
