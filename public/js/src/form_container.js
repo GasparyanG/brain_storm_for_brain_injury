@@ -214,9 +214,9 @@ class Form extends React.Component {
 
         let field = document.getElementById(fieldId);
         if (field) {
-            setTimeout(() => field.focus(), 1000)
+            setTimeout(() => field.focus(), 500)
             if (layerNumber + 1 === SymbolicConstants.max_number_of_fields)
-                setTimeout(() => field.blur(), 1000);
+                setTimeout(() => field.blur(), 500);
         }
     }
 

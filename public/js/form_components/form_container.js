@@ -187,10 +187,10 @@ var Form = function (_React$Component) {
             if (field) {
                 setTimeout(function () {
                     return field.focus();
-                }, 1000);
+                }, 500);
                 if (layerNumber + 1 === SymbolicConstants.max_number_of_fields) setTimeout(function () {
                     return field.blur();
-                }, 1000);
+                }, 500);
             }
         };
 
