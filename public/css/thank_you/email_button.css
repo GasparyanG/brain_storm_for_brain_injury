@@ -58,3 +58,28 @@
     margin-top: var(--button_margin-top);
     display: flex;
 }
+
+
+/* -------------------------------- RESPONSIVENESS ---------------------------------- */
+@media only screen and (max-width: 550px) {
+    #thank_you_section .raw_button {
+        font-size: 10px;
+        min-height: 30px;
+        width: 30px;
+        padding: 2px 4px;
+    }
+
+    .action_prompt {
+        font-size: 15px;
+    }
+}
+
+@media only screen and (max-width: 1250px) {
+    .action_prompt {
+        display: none;
+    }
+
+    #thank_you_section .raw_button {
+        margin-right: 1rem;
+    }
+}

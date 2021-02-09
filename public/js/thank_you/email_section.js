@@ -7,7 +7,7 @@ const emailButton = document.querySelector(".email_button");
 // CONFIGURATIONS
 const EmailMessages = {
     email_wrong_format: "Wrong email format",
-    success: "Thank You! Now, you will get a message to verify your email.",
+    success: "Thank You! Now you will get a message to verify your email.",
 }
 
 const actionBoxIsDisabled = "action_box_disabled";
