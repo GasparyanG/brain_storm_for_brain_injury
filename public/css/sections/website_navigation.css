@@ -33,10 +33,12 @@
     text-align: center;
     justify-content: center;
     width: 100%;
+    transition: background-color 1s;
 }
 
 #nav_bar .nav_item:hover {
     background-color: var(--choice-background-color);
+    transition: background-color 1s;
 }
 
 /* --------------------------------------- RESPONSIVENESS -------------------------------------------  */
@@ -47,5 +49,11 @@
 
     #nav_bar .nav_logo img {
         width: 200px;
+    }
+}
+
+@media only screen and (min-width: 800px) and (max-width: 900px) {
+    #nav_bar .nav_item {
+        font-size: 15px;
     }
 }
