@@ -37,8 +37,11 @@ class RoutingMiddleware implements MiddlewareInterface
             // Handle Request to Thank You Page
             $r->addRoute(Request::METHOD_GET, "/thank-you", ["ThankYou", "get"]);
 
-            // Handle Request for Email validation
+            // Handle Request for Email Validation
             $r->addRoute(Request::METHOD_GET, "/email_verification/{validation_hash}", ["EmailVerification", "verify"]);
+
+            // Handle POST Request for Email Verification
+            $r->addRoute(Request::METHOD_POST, "/email_verification", ["EmailVerification", "verifyPost"]);
 
             // Handle Request for Contact Plain Message
             $r->addRoute(Request::METHOD_POST, "/message", ["Contact", "plainMessage"]);

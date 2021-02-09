@@ -46,4 +46,9 @@ class EmailVerification
 
         return Response::create("Verified.");
     }
+
+    public function verifyPost(Request $req): Response
+    {
+        return Response::create(json_encode(["success" => true]));
+    }
 }

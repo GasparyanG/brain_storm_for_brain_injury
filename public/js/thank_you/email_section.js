@@ -2,6 +2,7 @@ const emailInputField = document.getElementById("email");
 const actionBox = document.querySelector(".action_box");
 const notificationBox = document.querySelector(".notification_box");
 const notificationAndAction = document.querySelector(".notification_and_action");
+const emailButton = document.querySelector(".email_button");
 
 // CONFIGURATIONS
 const EmailMessages = {
@@ -81,14 +82,36 @@ function emailValidation(e) {
     reverseOrder();
 }
 
-
-function sendEmail(e) {
+function handleEnterKeyForEmail(e) {
     if (e.keyCode !== 13) return;
-    if (!validateEmail(e.target.value)) invalidMeasures();
-
-    // Send Ajax POST Request.
+    sendEmail(e);
 }
 
-// Adding events.
+function sendEmail(e) {
+    if (!validateEmail(e.target.value)) invalidMeasures();
+
+    let emailData = {"email" : e.target.value};
+
+    $.ajax({
+        url: "/email_verification",
+        method: "POST",
+        data: JSON.stringify(emailData),
+        success: function (data) {
+            if (data.success) {
+                validMeasures();
+                displayEmailSuccess(EmailMessages.success);
+            } else {
+                invalidMeasures();
+                reverseOrder();
+            }
+        },
+        error: function (e) {
+            console.error(e);
+        }
+    })
+}
+
+// Adding Events
 emailInputField.addEventListener("input", emailValidation);
-emailInputField.addEventListener("keyup", sendEmail);
+emailInputField.addEventListener("keyup", handleEnterKeyForEmail);
+emailButton.addEventListener("click", sendEmail);
