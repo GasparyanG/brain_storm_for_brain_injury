@@ -2,6 +2,10 @@
     display: none;
 }
 
+.blur_payload {
+    filter: blur(10px);
+}
+
 @media only screen and (max-width: 750px) {
     #nav_bar .burger_menu {
         position: relative;
@@ -43,6 +47,8 @@
         transition-timing-function: ease-out;
         transition-property: transform;
         transition-duration: .2s;
+        z-index: 3;
+        box-shadow: -0.2px 0px 5px 0.1px black;
     }
 
     #nav_bar .navigation_components .nav_items_opened {
