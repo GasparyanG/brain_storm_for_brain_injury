@@ -18,8 +18,11 @@
 
     {#  Email Section Decoration #}
     <link rel="stylesheet" href="/public/css/thank_you/email_section.css">
+    <link rel="stylesheet" href="/public/css/thank_you/email_button.css">
 
     <div id="thank_you_section">
+
+        {# SYMPTOMS SECTION #}
         <div class="symptoms_section">
             <div class="acknowledgement_message">
                 <h1 class="greeting_header">Symptoms</h1>
@@ -60,13 +63,15 @@
             </div>
         </div>
 
+
+        {# EMAIL SECTION #}
         <div class="email_notification_section">
             <div class="sub_header">
                 Email
             </div>
             <div class="reasons_to_provide_email">
                 <div class="reasons_header">
-                    We saw that you didn't verify your email address yet and we would like to let you know why it's better for you to do so.
+                    We noticed that you didn't verify your email address yet and we would like to let you know why it's better for you to do so.
                 </div>
                 <ul class="bullet_points">
                     <li class="bullet_point">
@@ -87,13 +92,24 @@
                     </li>
                 </ul>
                 <div class="email_updating_section">
-                    <label class="input_label" for="email">
-                        <span>What is your <strong>email</strong> address?</span></label>
-                    <input class="raw_input" name="email" id="email" type="text" placeholder="example@mail.tld"/>
+                    <div>
+                        <label class="input_label" for="email">
+                            <span>What is your <strong>email</strong> address?</span></label>
+                        <input class="raw_input" name="email" id="email" type="text" placeholder="example@mail.tld"/>
+                    </div>
+                    <div class="action_box action_box_disabled">
+                        <input class="raw_button" type="button" value="OK"/>
+                        <span class="action_prompt">
+                            <span class="prompt_part pp_press">press</span>
+                            <span class="prompt_part pp_enter">Enter ↵</span>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
 
+
+        {# CONTACT SECTION #}
         <div class="contact_section">
             <div class="sub_header">
                 Contact Us
@@ -135,4 +151,5 @@
 
     {#  Vanilla JS  #}
     <script src="/public/js/thank_you/message_section.js"></script>
+    <script src="/public/js/thank_you/email_section.js"></script>
 {% endblock %}
