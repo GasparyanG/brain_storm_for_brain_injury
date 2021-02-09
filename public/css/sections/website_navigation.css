@@ -52,7 +52,7 @@
     }
 }
 
-@media only screen and (min-width: 750px) and (max-width: 900px) {
+@media only screen and (min-width: 401px) and (max-width: 900px) {
     #nav_bar .navigation_components {
         width: 90%;
         margin-left: 5%;
@@ -60,5 +60,12 @@
 
     #nav_bar .nav_item {
         font-size: 15px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    #nav_bar .navigation_components {
+        width: 96%;
+        margin-left: 2%;
     }
 }

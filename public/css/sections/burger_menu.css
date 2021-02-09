@@ -39,14 +39,14 @@
         flex-direction: column;
         position: absolute;
         height: calc(100vh - var(--sm-nav-height));
-        transform: translate(120%);
+        transform: translate(135%);
         transition-timing-function: ease-out;
         transition-property: transform;
         transition-duration: .2s;
     }
 
     #nav_bar .navigation_components .nav_items_opened {
-        transform: translate(20%);
+        transform: translate(40%);
         transition-timing-function: ease-out;
         transition-property: transform;
         transition-duration: .2s;
