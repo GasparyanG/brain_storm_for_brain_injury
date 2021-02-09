@@ -6,6 +6,9 @@ namespace App\Controllers;
 
 use App\Database\Connection;
 use App\Database\Entities\User;
+use App\Services\Validation\Form\UserEmail;
+use App\Services\Validation\General\CookieEnum;
+use App\Services\Validation\General\ErrorEnum;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\ORMException;
 use Symfony\Component\HttpFoundation\Request;
@@ -49,6 +52,22 @@ class EmailVerification
 
     public function verifyPost(Request $req): Response
     {
-        return Response::create(json_encode(["success" => true]));
+        $cookie = $req->cookies->get(CookieEnum::USER_COOKIE_KEY);
+        $data = json_decode($req->getContent(), true);
+
+        try {
+            if (!$cookie || !is_array($data) || count($data) == 0)
+                return $this->errorResponse(UserEmail::errorResponse(ErrorEnum::WRONG_INFORMATION));
+        } catch (\Exception $e) {
+            return $this->errorResponse(UserEmail::errorResponse(ErrorEnum::WRONG_INFORMATION));
+        }
+
+        $message = (new UserEmail($data))->validate();
+        return Response::create(json_encode($message));
+    }
+
+    public function errorResponse(array $data): Response
+    {
+        return Response::create(json_encode($data));
     }
 }

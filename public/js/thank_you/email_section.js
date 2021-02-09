@@ -68,9 +68,13 @@ function validMeasures() {
     clearNotificationContainer();                                       // Remove error message.
 }
 
-function invalidMeasures() {
+function invalidMeasures(isMessage = false, message = "") {
     hideEmailSendButton();                                              // Hide button.
-    displayEmailError(EmailMessages.email_wrong_format);                // Display error.
+
+    if (!isMessage)
+        displayEmailError(EmailMessages.email_wrong_format);            // Display error.
+    else
+        displayEmailError(message);
 }
 
 // Functions to Handle Events.
@@ -88,25 +92,27 @@ function handleEnterKeyForEmail(e) {
 }
 
 function sendEmail(e) {
-    if (!validateEmail(e.target.value)) invalidMeasures();
+    if (!validateEmail(emailInputField.value)) invalidMeasures();
 
-    let emailData = {"email" : e.target.value};
+    let emailData = {"email" : emailInputField.value};
 
     $.ajax({
         url: "/email_verification",
         method: "POST",
         data: JSON.stringify(emailData),
         success: function (data) {
+            data = JSON.parse(data);
+
             if (data.success) {
                 validMeasures();
                 displayEmailSuccess(EmailMessages.success);
             } else {
-                invalidMeasures();
+                invalidMeasures(true, data.message);
                 reverseOrder();
             }
         },
-        error: function (e) {
-            console.error(e);
+        error: function (err) {
+            console.error(err);
         }
     })
 }

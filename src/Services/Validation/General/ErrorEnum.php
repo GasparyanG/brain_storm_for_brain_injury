@@ -11,6 +11,8 @@ class ErrorEnum
     const SOMETHING_WENT_WRONG = "Something went wrong";
     const MESSAGE_TOO_LONG = "Message is too long";
     const MESSAGE_IS_REQUIRED = "Message is required";
+    const UNABLE_TO_IDENTIFY = "Unable to identify you";
+    const WRONG_INFORMATION = "Wrong information is provided";
 
     // NAME
     const NAME = "Name is required";
@@ -24,6 +26,7 @@ class ErrorEnum
 
     // Email
     const EMAIL_REQUIRED = "Email is required";
+    const WRONG_EMAIL = "Wrong email address";
     const EMAIL_WRONG_FORMAT = "Wrong email format";
 
     // DATE AND TIME
