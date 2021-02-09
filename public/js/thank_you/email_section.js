@@ -1,8 +1,10 @@
+const emailNotificationSection = document.querySelector(".email_notification_section");
 const emailInputField = document.getElementById("email");
 const actionBox = document.querySelector(".action_box");
 const notificationBox = document.querySelector(".notification_box");
 const notificationAndAction = document.querySelector(".notification_and_action");
 const emailButton = document.querySelector(".email_button");
+const loaderElement = document.querySelector(".loader_wrapper");
 
 // CONFIGURATIONS
 const EmailMessages = {
@@ -91,17 +93,30 @@ function handleEnterKeyForEmail(e) {
     sendEmail(e);
 }
 
+function makeBlur() {
+    loaderElement.classList.remove("hidden");
+    emailNotificationSection.classList.add("blur_background");
+}
+
+function makeClear() {
+    loaderElement.classList.add("hidden");
+    emailNotificationSection.classList.remove("blur_background");
+}
+
 function sendEmail(e) {
     if (!validateEmail(emailInputField.value)) invalidMeasures();
 
     let emailData = {"email" : emailInputField.value};
 
+    makeBlur();
     $.ajax({
         url: "/email_verification",
         method: "POST",
         data: JSON.stringify(emailData),
         success: function (data) {
             data = JSON.parse(data);
+
+            makeClear();
 
             if (data.success) {
                 validMeasures();

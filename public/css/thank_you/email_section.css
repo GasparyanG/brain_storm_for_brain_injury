@@ -1,5 +1,6 @@
 #thank_you_section .email_notification_section {
     margin-bottom: var(--main-section-margin);
+    position: relative;
 }
 
 
