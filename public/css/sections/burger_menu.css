@@ -1,0 +1,50 @@
+#nav_bar .burger_menu {
+    display: none;
+}
+
+@media only screen and (max-width: 750px) {
+    #nav_bar .burger_menu {
+        cursor: pointer;
+        display: block;
+    }
+
+    #nav_bar .burger_menu .burger_layer {
+        width: 23px;
+        height: 2px;
+        background-color: white;
+        display: block;
+        margin-bottom: 0.4rem;
+    }
+
+    #nav_bar .burger_menu .burger_layer:last-child {
+        margin-bottom: unset;
+    }
+
+    #nav_bar .nav_items .nav_item {
+        margin-top: 2rem;
+        color: rgba(77, 77, 77, 0.7);
+        height: unset;
+    }
+
+    #nav_bar .navigation_components .nav_items {
+        justify-content: unset;
+        top: 0;
+        background-color: white;
+        margin-top: var(--sm-nav-height);
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        height: calc(100vh - var(--sm-nav-height));
+        transform: translate(120%);
+        transition-timing-function: ease-out;
+        transition-property: transform;
+        transition-duration: 0.5s;
+    }
+
+    #nav_bar .navigation_components .nav_items_opened {
+        transform: translate(20%);
+        transition-timing-function: ease-out;
+        transition-property: transform;
+        transition-duration: .5s;
+    }
+}
