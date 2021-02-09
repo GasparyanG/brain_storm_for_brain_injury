@@ -1,12 +1,15 @@
 const emailInputField = document.getElementById("email");
 const actionBox = document.querySelector(".action_box");
 const notificationBox = document.querySelector(".notification_box");
+const notificationAndAction = document.querySelector(".notification_and_action");
 
 // CONFIGURATIONS
 const EmailMessages = {
     email_wrong_format: "Wrong email format",
     success: "Got it!",
 }
+
+const actionBoxIsDisabled = "action_box_disabled";
 
 // Helper functions.
 function validateEmail(email) {
@@ -19,12 +22,19 @@ function clearNotificationContainer() {
     notificationBox.innerHTML = "";
 }
 
+function reverseOrder() {
+    if(actionBox.classList.contains(actionBoxIsDisabled))
+        notificationAndAction.style.setProperty("flex-direction", "column-reverse");
+    else
+        notificationAndAction.style.setProperty("flex-direction", "row");
+}
+
 function displayEmailSendButton() {
-    actionBox.classList.remove("action_box_disabled");
+    actionBox.classList.remove(actionBoxIsDisabled);
 }
 
 function hideEmailSendButton() {
-    actionBox.classList.add("action_box_disabled");
+    actionBox.classList.add(actionBoxIsDisabled);
 }
 
 function displayEmailError(message) {
@@ -64,8 +74,11 @@ function invalidMeasures() {
 
 // Functions to Handle Events.
 function emailValidation(e) {
-    if (validateEmail(e.target.value)) validMeasures();
+    if (e.target.value === "") clearNotificationContainer();
+    else if (validateEmail(e.target.value)) validMeasures();
     else invalidMeasures();
+
+    reverseOrder();
 }
 
 

@@ -1,5 +1,4 @@
 #thank_you_section .action_box {
-    margin-top: var(--button_margin-top);
     transform: translateY(0);
     opacity: 1;
     transition-property: transform, opacity;
@@ -51,4 +50,10 @@
 
 #thank_you_section .raw_button:hover {
     background-color: var(--button-on-hover-bck-color);
+}
+
+/* -------------------------- Notification section ----------------------------- */
+#thank_you_section .notification_and_action {
+    margin-top: var(--button_margin-top);
+    display: flex;
 }
