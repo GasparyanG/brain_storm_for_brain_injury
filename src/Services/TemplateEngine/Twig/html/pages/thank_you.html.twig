@@ -31,7 +31,7 @@
                 {% if solid_concern.id <= max_concern_number %}
                     <div class="solid_concern_identification">
                         {{ user.name }}, you said that <span class="hl_concern">{{ solid_concern.name }}</span> is your greatest concern.
-                        So the highlighted card will provide information on tips for improving
+                        The highlighted card will provide information on tips for improving
                         <span class="hl_concern">{{ solid_concern.name }}</span> and for where to find more help.
                     </div>
                 {% else %}
@@ -62,6 +62,7 @@
                 </div>
             </div>
         </div>
+
 
 
         {# EMAIL SECTION #}
@@ -97,16 +98,21 @@
                             <span>What is your <strong>email</strong> address?</span></label>
                         <input class="raw_input" name="email" id="email" type="text" placeholder="example@mail.tld"/>
                     </div>
-                    <div class="action_box action_box_disabled">
-                        <input class="raw_button" type="button" value="OK"/>
-                        <span class="action_prompt">
+                    <div class="notification_and_action">
+                        <div class="action_box action_box_disabled">
+                            <input class="raw_button" type="button" value="OK"/>
+                            <span class="action_prompt">
                             <span class="prompt_part pp_press">press</span>
                             <span class="prompt_part pp_enter">Enter ↵</span>
                         </span>
+                        </div>
+                        <div class="notification_box">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
 
 
         {# CONTACT SECTION #}
