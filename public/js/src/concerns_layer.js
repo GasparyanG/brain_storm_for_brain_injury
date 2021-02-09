@@ -6,10 +6,10 @@ class Concerns extends React.Component {
         super(props);
         this.state = {
             concerns: {
-                1: "Fatigue",                   2: "Headaches",                     3: "Dizziness",
-                4: "Walking difficulties",      5: "Hand or arm difficulties",      6: "Sleeping difficulties",
-                7: "Thinking difficulties",     8: "Emotional difficulties",        9: "Speaking difficulties",
-                10: "Vision problems"
+                1: "Fatigue",                   2: "Headaches",
+                3: "Walking difficulties",      4: "Hand or arm difficulties",      5: "Sleeping difficulties",
+                6: "Thinking difficulties",     7: "Emotional difficulties",        8: "Speaking difficulties",
+                9: "Vision problems"
             },
 
             other_input_disabled: false
@@ -17,7 +17,7 @@ class Concerns extends React.Component {
 
         this.letters = {
             1: 'A', 2: 'B', 3: 'C', 4: 'D', 5: 'E', 6: 'F',
-            7: 'G', 8: 'H', 9: 'I', 10: 'J'
+            7: 'G', 8: 'H', 9: 'I'
         }
 
         this.prev_layer = CSSClasses.injury_reason;
@@ -245,7 +245,7 @@ class Concerns extends React.Component {
 
         return (
             <div className={"choice_part " + checked} data-value={SymbolicConstants.other_concern_number} onClick={this.onCheck}>
-                {/*<div className="choice_letter">K</div>*/}
+                {/*<div className="choice_letter">J</div>*/}
                 <div className="choice_name">
                     <span className="default_choice_name">Other</span>
                     <input onChange={this.handleInput} onKeyUp={this.handleEnter}
@@ -273,7 +273,7 @@ class Concerns extends React.Component {
         const checkboxItems = [];
         const checkboxItemsSecondColumn = [];
         for (let key in this.state.concerns) {
-            if (key <= 6)
+            if (key <= SymbolicConstants.max_items_per_column)
                 checkboxItems.push(this.createCheckbox(key));
             else
                 checkboxItemsSecondColumn.push(this.createCheckbox(key));

@@ -264,10 +264,10 @@ var Concerns = function (_React$Component) {
 
         _this.state = {
             concerns: {
-                1: "Fatigue", 2: "Headaches", 3: "Dizziness",
-                4: "Walking difficulties", 5: "Hand or arm difficulties", 6: "Sleeping difficulties",
-                7: "Thinking difficulties", 8: "Emotional difficulties", 9: "Speaking difficulties",
-                10: "Vision problems"
+                1: "Fatigue", 2: "Headaches",
+                3: "Walking difficulties", 4: "Hand or arm difficulties", 5: "Sleeping difficulties",
+                6: "Thinking difficulties", 7: "Emotional difficulties", 8: "Speaking difficulties",
+                9: "Vision problems"
             },
 
             other_input_disabled: false
@@ -275,7 +275,7 @@ var Concerns = function (_React$Component) {
 
         _this.letters = {
             1: 'A', 2: 'B', 3: 'C', 4: 'D', 5: 'E', 6: 'F',
-            7: 'G', 8: 'H', 9: 'I', 10: 'J'
+            7: 'G', 8: 'H', 9: 'I'
         };
 
         _this.prev_layer = CSSClasses.injury_reason;
@@ -292,7 +292,7 @@ var Concerns = function (_React$Component) {
             var checkboxItems = [];
             var checkboxItemsSecondColumn = [];
             for (var key in this.state.concerns) {
-                if (key <= 6) checkboxItems.push(this.createCheckbox(key));else checkboxItemsSecondColumn.push(this.createCheckbox(key));
+                if (key <= SymbolicConstants.max_items_per_column) checkboxItems.push(this.createCheckbox(key));else checkboxItemsSecondColumn.push(this.createCheckbox(key));
             }
 
             var otherInput = this.otherInputRendering();

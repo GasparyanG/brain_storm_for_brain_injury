@@ -188,8 +188,8 @@ const SymbolicConstants = {
     enter_key_code: 13,
 
     // Concerns
-    other_concern_number: 11,
-    max_number_of_concerns: 10,
+    other_concern_number: 10,
+    max_number_of_concerns: 9,
 
     // Navigation
     page_translation_percent: 100,
@@ -199,6 +199,7 @@ const SymbolicConstants = {
     progress_steps: 7,
     progress_steps_with_email: 8,
     max_number_of_fields: 6,        // Need to be synchronized with 'FieldsToFocusOn'.
+    max_items_per_column: 5,
 
     // Age
     max_age: 150,
