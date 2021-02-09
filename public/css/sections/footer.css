@@ -1,0 +1,57 @@
+#footer {
+    background-color: var(--choice-hover-background-color);
+    height: 150px;
+}
+
+#footer .footer_components {
+    width: 70%;
+    margin-left: 15%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: inherit;
+}
+
+#footer .logo_section .all_rights {
+    margin-top: 1rem;
+    margin-left: 1.2rem;
+    font-weight: 700;
+}
+
+#footer .contact_email {
+    background-color: var(--choice-background-color);
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--choice-color);
+    padding: 1rem;
+    text-align: center;
+    border-radius: 4px;
+    margin-top: 1rem;
+}
+
+#footer .contact_email:hover {
+    background-color: var(--choice-hover-background-color);
+}
+
+#footer .about_app .about_us {
+    display: flex;
+    flex-direction: column;
+}
+
+#footer .about_app .about_us .about_item {
+    font-weight: 700;
+    text-decoration: none;
+    color: inherit;
+    margin-bottom: 1rem;
+    transition: transform 0.1s;
+}
+
+#footer .about_app .about_us .about_item:last-child {
+    margin-bottom: unset;
+}
+
+#footer .about_app .about_us .about_item:hover {
+    color: var(--button-background-color);
+    transform: translateY(-3%);
+    transition: transform 0.1s;
+}
