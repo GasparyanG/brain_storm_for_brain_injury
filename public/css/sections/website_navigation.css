@@ -1,17 +1,42 @@
 /* Design Navigation */
 #nav_bar {
-    display: none;
-    width: 100vw;
     height: var(--nav-height);
-    position: fixed;
-    background-color: var(--nav-background-color);
+    background-color: var(--choice-hover-background-color);
 }
 
-#nav_bar .nav_logo {
-    text-align: center;
-    width: inherit;
+#nav_bar .navigation_components {
     height: inherit;
-    margin-top: 0.5rem;
+    width: 70%;
+    margin-left: 15%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+#nav_bar .nav_items {
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-left: 1rem;
+}
+
+#nav_bar .nav_item {
+    height: inherit;
+    text-decoration: none;
+    color: white;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+}
+
+#nav_bar .nav_item:hover {
+    background-color: var(--choice-background-color);
 }
 
 /* --------------------------------------- RESPONSIVENESS -------------------------------------------  */
