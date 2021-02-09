@@ -34,12 +34,13 @@
     text-align: center;
     justify-content: center;
     width: 100%;
-    transition: background-color 1s;
+    transition: background-color 0.3s;
 }
 
 #nav_bar .nav_item:hover {
     background-color: var(--choice-background-color);
-    transition: background-color 1s;
+    color: var(--button-on-hover-bck-color);
+    transition: background-color 0.3s;
 }
 
 /* --------------------------------------- RESPONSIVENESS -------------------------------------------  */
