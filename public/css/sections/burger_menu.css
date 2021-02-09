@@ -4,8 +4,11 @@
 
 @media only screen and (max-width: 750px) {
     #nav_bar .burger_menu {
+        position: relative;
         cursor: pointer;
         display: block;
+        width: 25px;
+        height: 25px;
     }
 
     #nav_bar .burger_menu .burger_layer {
@@ -14,6 +17,7 @@
         background-color: white;
         display: block;
         margin-bottom: 0.4rem;
+        transition: transform 0.2s;
     }
 
     #nav_bar .burger_menu .burger_layer:last-child {
@@ -38,13 +42,31 @@
         transform: translate(120%);
         transition-timing-function: ease-out;
         transition-property: transform;
-        transition-duration: 0.5s;
+        transition-duration: .2s;
     }
 
     #nav_bar .navigation_components .nav_items_opened {
         transform: translate(20%);
         transition-timing-function: ease-out;
         transition-property: transform;
-        transition-duration: .5s;
+        transition-duration: .2s;
+    }
+
+    #nav_bar .nav_items_opened + .burger_menu .first_layer {
+        position: absolute;
+        transform: rotate(45deg);
+        transition: transform .2s;
+        top: 50%;
+    }
+
+    #nav_bar .nav_items_opened + .burger_menu .second_layer {
+        position: absolute;
+        transform: rotate(-45deg);
+        transition: transform .2s;
+        top: 50%;
+    }
+
+    #nav_bar .nav_items_opened + .burger_menu .third_layer {
+        display: none;
     }
 }
