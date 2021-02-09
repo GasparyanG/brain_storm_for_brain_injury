@@ -95,9 +95,15 @@
                     </ul>
                     <div class="email_updating_section">
                         <div>
-                            <label class="input_label" for="email">
-                                <span>What is your <strong>email</strong> address?</span></label>
-                            <input class="raw_input" name="email" id="email" type="text" placeholder="example@mail.tld"/>
+                            {% if user.emailAddress == "" %}
+                                <label class="input_label" for="email">
+                                    <span>What is your <strong>email</strong> address?</span></label>
+                                <input class="raw_input" name="email" id="email" type="text" placeholder="example@mail.tld"/>
+                            {% else %}
+                                <label class="input_label" for="email">
+                                    <span>Is this your <strong>email</strong> address?</span></label>
+                                <input class="raw_input" name="email" id="email" value={{ user.emailAddress }} type="text" placeholder="example@mail.tld"/>
+                            {% endif %}
                         </div>
                         <div class="notification_and_action">
                             <div class="action_box action_box_disabled">
