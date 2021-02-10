@@ -14,8 +14,8 @@
     height: 450px;
     background-color: var(--choice-background-color);
     width: 30%;
-    margin-left: 1rem;
-    margin-bottom: 1rem;
+    margin-left: .3rem;
+    margin-bottom: .3rem;
     transition: background-color .5s;
 }
 
