@@ -7,7 +7,11 @@
     <div id="not_found_container">
         <div class="not_found_wrapper">
             <div class="not_found_message">
-                <span class="error_message">Not Found</span> <span class="error_code">404</span>
+                {% if no_user %}
+                    <span class="error_message">Access Denied</span>
+                {% else %}
+                    <span class="error_message">Not Found</span> <span class="error_code">404</span>
+                {% endif %}
             </div>
             <div class="call_to_action_section">
                 <a href="/form" class="call_to_action">

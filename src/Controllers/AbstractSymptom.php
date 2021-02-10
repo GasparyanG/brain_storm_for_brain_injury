@@ -56,7 +56,8 @@ abstract class AbstractSymptom
         return Response::create(
             (new Twig())->render("/pages/not_found.html.twig",
                 [
-                    "page_title" => "Not Found"
+                    "page_title" => "Access  Denied",
+                    "no_user" => true
                 ]
             )
         );
