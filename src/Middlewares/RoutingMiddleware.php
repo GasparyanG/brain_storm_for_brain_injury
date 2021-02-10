@@ -31,8 +31,15 @@ class RoutingMiddleware implements MiddlewareInterface
             // Handle Form Submission.
             $r->addRoute(Request::METHOD_POST, "/form", ["Form", "submit"]);
 
+            // ------------------------------- SYMPTOMS ------------------------------------------------ //
+
             // Handle Requests to Symptoms
+            $r->addRoute(Request::METHOD_GET, "/symptoms", ["Symptom", "getCollection"]);
+
+            // Handle Request to Headaches
             $r->addRoute(Request::METHOD_GET, "/symptoms/headaches", ["Symptom", "getHeadaches"]);
+
+            // ------------------------------- END OF SYMPTOMS ----------------------------------------- //
 
             // Handle Request to Thank You Page
             $r->addRoute(Request::METHOD_GET, "/thank-you", ["ThankYou", "get"]);

@@ -20,4 +20,15 @@ class Symptom
             )
         );
     }
+
+    public function getCollection(Request $req): Response
+    {
+        return Response::create(
+            (new Twig())->render("pages/symptom_collection.html.twig",
+                [
+                    "page_title" => "Symptoms"
+                ]
+            )
+        );
+    }
 }
