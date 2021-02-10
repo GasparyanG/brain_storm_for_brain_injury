@@ -15,33 +15,16 @@ use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class ThankYou
+class ThankYou extends AbstractSymptom
 {
     const CONCERNS_DIR_KEY = "concerns_directory";
     const CONCERNS_DIR = "/public/images/concerns";
 
-    private EntityManager $em;
-
-    public function __construct()
-    {
-        $this->em = Connection::getEntityManager();
-    }
-
     public function get(Request $req): Response
     {
+        if (!$this->userExists($req)) return $this->unableToRecognizeUser();
+
         $cookies = $req->cookies;
-        if (!$cookies->get(CookieEnum::USER_COOKIE_KEY))
-            return $this->unableToRecognizeUser();
-        else {
-            $user = $this->em->getRepository(User::class)->findOneBy(
-                [
-                    FieldsEnum::COOKIE => $cookies->get(CookieEnum::USER_COOKIE_KEY)
-                ]
-            );
-
-            if (!$user) return $this->unableToRecognizeUser();
-        }
-
         $user = $this->em->getRepository(User::class)->findOneBy(
             [
                 FieldsEnum::COOKIE => $cookies->get(CookieEnum::USER_COOKIE_KEY)
@@ -78,10 +61,5 @@ class ThankYou
         }
 
         return $concernsToReturn;
-    }
-
-    private function unableToRecognizeUser(): Response
-    {
-        return Response::create("Unable to recognize you.");
     }
 }

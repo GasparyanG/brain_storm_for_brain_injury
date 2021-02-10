@@ -26,8 +26,7 @@ abstract class AbstractSymptom
     protected function userExists(Request $request): bool
     {
         $cookies = $request->cookies;
-        if (!$cookies->get(CookieEnum::USER_COOKIE_KEY))
-            return false;
+        if (!$cookies->get(CookieEnum::USER_COOKIE_KEY)) return false;
 
         $user = $this->em->getRepository(User::class)->findOneBy(
             [
@@ -35,7 +34,7 @@ abstract class AbstractSymptom
             ]
         );
 
-        if (!$user) false;
+        if (!$user) return false;
 
         return true;
     }
