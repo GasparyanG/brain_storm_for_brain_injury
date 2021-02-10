@@ -9,14 +9,14 @@
         <div class="large_header"> Symptoms </div>
         <div class="symptoms_collection">
             {% for symptom in symptoms %}
-                <div class="symptom_card">
+                <a class="symptom_card" href={{ "/symptoms/" ~ symptom.url }} >
                     <div class="img_section"
                          style="background-image: url({{ concerns_directory ~ "/" ~ symptom.imageName }})">
                     </div>
                     <div class="about_symptom">
                         <span class="symptom_name">{{ symptom.name }}</span>
                     </div>
-                </div>
+                </a>
             {% endfor %}
         </div>
     </div>

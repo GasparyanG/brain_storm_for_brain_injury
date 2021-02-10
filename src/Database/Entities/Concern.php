@@ -42,6 +42,12 @@ class Concern
      */
     private $userConcerns;
 
+    /**
+     * @var null|string
+     * @Column(type="string", name="url")
+     */
+    private $url;
+
     public function __construct()
     {
         $this->userConcerns = new ArrayCollection();
@@ -109,6 +115,22 @@ class Concern
     public function setDescribed(?bool $described): void
     {
         $this->described = $described;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getUrl(): ?string
+    {
+        return $this->url;
+    }
+
+    /**
+     * @param string|null $url
+     */
+    public function setUrl(?string $url): void
+    {
+        $this->url = $url;
     }
 
     /**
