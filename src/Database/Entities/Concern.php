@@ -26,9 +26,15 @@ class Concern
 
     /**
      * @var null|string
-     * @column(type="string", name="image_name")
+     * @Column(type="string", name="image_name")
      */
     private $imageName;
+
+    /**
+     * @var null|bool
+     * @Column(type="boolean", name="described")
+     */
+    private $described;
 
     /**
      * @OneToMany(targetEntity="UserConcern", mappedBy="concern")
@@ -87,6 +93,22 @@ class Concern
     public function setImageName(?string $imageName): void
     {
         $this->imageName = $imageName;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getDescribed(): ?bool
+    {
+        return $this->described;
+    }
+
+    /**
+     * @param bool|null $described
+     */
+    public function setDescribed(?bool $described): void
+    {
+        $this->described = $described;
     }
 
     /**

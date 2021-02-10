@@ -37,4 +37,7 @@ class FieldsEnum
 
     // User
     const COOKIE = "cookie";
+
+    // Concern
+    const DESCRIBED = "described";
 }

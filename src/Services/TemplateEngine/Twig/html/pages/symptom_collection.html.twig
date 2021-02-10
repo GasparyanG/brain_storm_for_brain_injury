@@ -1,5 +1,12 @@
 {% extends "/general/header.html.twig" %}
 
 {% block payload %}
-
+    <div class="large_header"> Symptoms </div>
+    <div class="symptoms_collection">
+        {% for symptom in symptoms %}
+            <div class="symptom_card">
+                {{ symptom.name }}
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}
