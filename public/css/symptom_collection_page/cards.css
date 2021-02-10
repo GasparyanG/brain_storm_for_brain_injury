@@ -16,7 +16,7 @@
     width: 30%;
     margin-left: 1rem;
     margin-bottom: 1rem;
-    transition: .5s;
+    transition: background-color .5s;
 }
 
 #symptoms_collection_container .about_symptom {
@@ -29,7 +29,8 @@
 #symptoms_collection_container .symptom_card:hover {
     background-color: var(--choice-hover-background-color);
     color: var(--button-background-color);
-    transition: .5s;
+    transition: background-color .5s;
+    box-shadow: 0px 0.2px 5px 0.1px black;
 }
 
 /* ------------------------- RESPONSIVENESS ------------------------------ */
