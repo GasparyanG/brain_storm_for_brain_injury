@@ -3,6 +3,10 @@
     --color: rgba(77, 77, 77, 0.7);
     --font-family: "Karla", sans-serif;
 
+    /* Sections */
+    --footer-height: 150px;
+    --sm-footer-height: 500px;
+
     /* Colors */
     --input-color: #C7D9DD;
     --input-color-active: rgb(52, 113, 130);

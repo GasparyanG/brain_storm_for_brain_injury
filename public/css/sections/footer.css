@@ -1,6 +1,6 @@
 #footer {
     background-color: var(--choice-hover-background-color);
-    height: 150px;
+    height: var(--footer-height);
     color: var(--color);
 }
 
@@ -66,7 +66,7 @@
 
 @media only screen and (max-width: 1000px) {
     #footer {
-        height: 500px;
+        height: var(--sm-footer-height);
     }
 
     #footer .footer_components {
