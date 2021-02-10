@@ -40,7 +40,8 @@ class Symptom
             (new Twig())->render("pages/symptom_collection.html.twig",
                 [
                     "page_title" => "Symptoms",
-                    "symptoms" => $symptoms
+                    "symptoms" => $symptoms,
+                    ThankYou::CONCERNS_DIR_KEY => ThankYou::CONCERNS_DIR,
                 ]
             )
         );

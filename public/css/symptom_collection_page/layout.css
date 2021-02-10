@@ -1,0 +1,39 @@
+#symptoms_collection_container {
+    color: var(--color);
+    margin-top: 2rem;
+    width: 70%;
+    margin-left: 15%;
+}
+
+#symptoms_collection_container .large_header {
+    text-align: center;
+    font-size: 25px;
+    font-weight: 700;
+
+}
+
+#symptoms_collection_container .symptoms_collection {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+/* -------------------------------------- RESPONSIVENESS -------------------------------------- */
+
+@media only screen and (min-width: 751px) and (max-width: 1400px) {
+    #symptoms_collection_container {
+        width: 90%;
+        margin-left: 5%;
+    }
+}
+
+@media only screen and (max-width: 750px) {
+    #symptoms_collection_container {
+        width: 96%;
+        margin-left: 2%;
+    }
+}
+

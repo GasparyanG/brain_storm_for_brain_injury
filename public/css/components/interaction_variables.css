@@ -1,4 +1,7 @@
 :root {
+    /* General */
+    --color: rgba(77, 77, 77, 0.7);
+
     /* Colors */
     --input-color: #C7D9DD;
     --input-color-active: rgb(52, 113, 130);
