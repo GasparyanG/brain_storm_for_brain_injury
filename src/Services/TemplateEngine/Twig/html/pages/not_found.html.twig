@@ -6,7 +6,21 @@
 
     <div id="not_found_container">
         <div class="not_found_wrapper">
-            <span class="error_message">Not Found</span> <span class="error_code">404</span>
+            <div class="not_found_message">
+                <span class="error_message">Not Found</span> <span class="error_code">404</span>
+            </div>
+            <div class="call_to_action_section">
+                <a href="/form" class="call_to_action">
+                    <span>Go to Form</span>
+                </a>
+                <span class="action_prompt">
+                    <span class="prompt_part pp_press">press</span>
+                    <span class="prompt_part pp_enter">Enter ↵</span>
+                </span>
+            </div>
         </div>
     </div>
+
+    {# Vanilla JS #}
+    <script src="/public/js/introduction_page/call_to_action.js"></script>
 {% endblock %}
