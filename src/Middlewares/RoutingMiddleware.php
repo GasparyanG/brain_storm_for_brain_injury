@@ -60,7 +60,7 @@ class RoutingMiddleware implements MiddlewareInterface
 
 		switch ($routeInfo[0]) {
 		    case FastRoute\Dispatcher::NOT_FOUND:
-		        return Response::create((new Twig())->render("not_found_page.html.twig", ["not_home" => true]));
+		        return Response::create((new Twig())->render("/pages/not_found.html.twig", ["not_home" => true]));
 		        break;
 		    case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
 		        $allowedMethods = $routeInfo[1];

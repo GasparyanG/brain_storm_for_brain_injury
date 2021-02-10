@@ -1,0 +1,10 @@
+{% extends "/general/header.html.twig" %}
+
+{% block payload %}
+    {# CSS goes here #}
+    <link rel="stylesheet" href="/public/css/pages/not_found.css">
+
+    <div id="not_found_container">
+        <span class="error_message">Not Found</span> <span class="error_code">404</span>
+    </div>
+{% endblock %}
