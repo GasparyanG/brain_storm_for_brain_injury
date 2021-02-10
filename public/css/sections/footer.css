@@ -1,6 +1,7 @@
 #footer {
     background-color: var(--choice-hover-background-color);
     height: 150px;
+    color: var(--color);
 }
 
 #footer .footer_components {
