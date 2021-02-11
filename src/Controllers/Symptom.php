@@ -62,6 +62,19 @@ class Symptom extends AbstractSymptom
         );
     }
 
+    public function getThinkingDifficulties(Request $req): Response
+    {
+        if (!$this->userExists($req)) return $this->unableToRecognizeUser();
+
+        return Response::create(
+            (new Twig())->render("pages/thinking_difficulties.html.twig",
+                [
+                    "page_title" => "Thinking Difficulties"
+                ]
+            )
+        );
+    }
+
     public function getCollection(Request $req): Response
     {
         if (!$this->userExists($req)) return $this->unableToRecognizeUser();

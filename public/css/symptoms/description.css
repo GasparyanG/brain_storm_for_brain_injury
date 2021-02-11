@@ -78,6 +78,13 @@
     margin-top: 1rem;
 }
 
+.guiding {
+    color: var(--color);
+    font-style: italic;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
 /* ----------------------------------------- RESPONSIVENESS --------------------------------------------- */
 @media only screen and (max-width: 650px) {
     .symptom_section .description_section {

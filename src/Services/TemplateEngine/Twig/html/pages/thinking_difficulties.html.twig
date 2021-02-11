@@ -1,0 +1,284 @@
+{% extends "/pages/symptoms.html.twig" %}
+
+{% block symptom %}
+    <div class="introduction_to_symptom">
+        {#  TODO: Provide link to the video, thus making video section rendered dynamically.  #}
+        <div class="title_section"><span class="title">{{ page_title }}</span></div>
+        <div class="video_section">
+            <iframe
+                    src="https://www.youtube.com/embed/ChaL6eMp1F4" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+
+    {#  Description Section  #}
+    <div class="description_section">
+        <div class="description_part main_point">
+            Thinking difficulties (often called cognitive difficulties) are common after brain injury. Attention, memory, processing speed, and executive functioning are some of the most common cognitive areas affected by traumatic brain injury.
+            <br><br>
+            If you struggle with attention, you don’t get the information into your brain.  Your attention is like the information door.  If the door is not open, the information will not get in.
+            <br><br>
+            Short term memory is usually more impacted than long term memory after brain injury.  You might be able to remember an event from a few years ago, but struggle with remembering what you had for breakfast.
+        </div>
+
+        <div class="description_part">
+            <div id="after-brain-injury" class="bullet_opening">
+                <a href="#after-brain-injury" class="header_indicator">&#x23;</a> <strong>After brain injury</strong>, a person’s ability to process and understand information often slows down, resulting in <strong>the following problems</strong>:
+            </div>
+            <ul class="bullet_points">
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Taking longer to grasp what others are saying
+                    </div>
+                </li>
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Taking more time to follow directions
+                    </div>
+                </li>
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Being slower to react
+                    </div>
+                </li>
+            </ul>
+
+            <div id="executive-functioning-difficulties" class="bullet_opening">
+                <a href="#executive-functioning-difficulties" class="header_indicator">&#x23;</a>
+                Any kind of injury to the brain can lead to <strong>executive functioning difficulties</strong>.
+                Executive function is the manager of the brain, the conductor, the leader.
+                People with brain injury from trauma, stroke, or cerebral palsy might have executive functioning difficulties.
+                Here are <strong>some common</strong> executive functioning difficulties:
+            </div>
+            <ul class="bullet_points">
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Initiation is the ability to begin a task or activity. Someone with initiation struggles may seem unmotivated and can't get started doing things
+                    </div>
+                </li>
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Planning and organizing difficulties can make it hard to complete tasks.  You might not be able to complete or turn in homework.  Planning a meal or an outing would be difficult.
+                    </div>
+                </li>
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Inhibition or impulse control may be lacking. You know you should not say something nasty, but you do it anyway. A child might run into the street, even when they know better.
+                    </div>
+                </li>
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Emotional control difficulties might lead you to have emotional outbursts even when you don’t want to.
+                    </div>
+                </li>
+            </ul>
+
+            <div id="what-can-i-do" class="bullet_opening">
+                <a href="#what-can-i-do" class="header_indicator">&#x23;</a> <strong>What can I do</strong> to help thinking difficulties?
+            </div>
+            <div class="paragraph">
+                To improve your thinking, you need to practice it.  We improve by practicing.  Practicing a little each day is the best way to improve your abilities in anything.  Also, practice the tasks you want to learn.  If you want to read better, practice reading.  If you want to relearn how to cook, practice cooking.
+            </div>
+
+            <div class="guiding">
+                We will give you a few things to help different areas of cognition.  But much more can be done to help.  At the end, we will tell you who can help you.
+            </div>
+
+            <div id="improve-attention-problems" class="bullet_opening">
+                <a href="#improve-attention-problems" class="header_indicator">&#x23;</a> Improve <strong>attention</strong> problems:
+            </div>
+            <ul class="bullet_points">
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Place your full attention on what you are trying to understand. Decrease distractions.
+                    </div>
+                </li>
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Allow more time to think about the information.
+                    </div>
+                </li>
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Ask people to repeat themselves or speak more slowly.
+                    </div>
+                </li>
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Practice attending.
+                    </div>
+                </li>
+            </ul>
+
+            <div id="improve-memory-problems" class="bullet_opening">
+                <a href="#improve-memory-problems" class="header_indicator">&#x23;</a> Improve <strong>memory</strong> problems:
+            </div>
+            <ul class="bullet_points">
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Plan and schedule your day.
+                    </div>
+                </li>
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Stay organized and have a set location for keeping things.
+                    </div>
+                </li>
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Use memory aids such as notebooks, calendars, daily schedules, lists, and computer reminders.
+                    </div>
+                </li>
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Practice learning new information.
+                    </div>
+                </li>
+            </ul>
+
+            <div id="improve-planning-and-organizing" class="bullet_opening">
+                <a href="#improve-planning-and-organizing" class="header_indicator">&#x23;</a> Improve <strong>planning and organizing</strong>:
+            </div>
+            <ul class="bullet_points">
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Use a planner.
+                    </div>
+                </li>
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Make a list of things that need to be done..
+                    </div>
+                </li>
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Break down activities into smaller steps.
+                    </div>
+                </li>
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Practice planning, such as a trip to the store.
+                    </div>
+                </li>
+            </ul>
+
+            <div id="improve-initiation" class="bullet_opening">
+                <a href="#improve-initiation" class="header_indicator">&#x23;</a> Improve <strong>initiation</strong>:
+            </div>
+            <ul class="bullet_points">
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Break down big tasks into small steps.
+                    </div>
+                </li>
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Plan and schedule the task ahead of time.
+                    </div>
+                </li>
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Reward yourself once the task is done.
+                    </div>
+                </li>
+            </ul>
+
+            <div id="who-can-help" class="bullet_opening">
+                <a href="#who-can-help" class="header_indicator">&#x23;</a> <strong>Who can help</strong> improve cognitive abilities?
+            </div>
+            <ul class="bullet_points">
+                <li class="bullet_point">
+                    <div class="sub_opening">
+                        Speech therapist
+                    </div>
+                    <div class="sub_content">
+                        A speech therapist trained in cognitive rehabilitation can help you improve your cognitive skills and guide you in planning and scheduling your day.  They provide cognitive therapy.
+                    </div>
+                </li>
+                <li class="bullet_point">
+                    <div class="sub_opening">
+                        Neuropsychologist
+                    </div>
+                    <div class="sub_content">
+                        A neuropsychologist can give tests to outline strengths and difficulties with thinking.  This can help guide cognitive therapy.  Some neuropsychologists will also provide cognitive therapy.
+                    </div>
+                </li>
+                <li class="bullet_point">
+                    <div class="sub_opening">
+                        Physiatrists
+                    </div>
+                    <div class="sub_content">
+                        Physiatrists (doctors specializing in Physical Medicine and Rehabilitation) can help guide you with cognitive difficulties.  They can help determine why you might  be having difficulties and help you find providers to help.   Some physiatrists treat patients with brain injury and other physiatrists treat musculoskeletal conditions like back pain.  Be sure that the physiatrist you see treats brain injury survivors.
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
