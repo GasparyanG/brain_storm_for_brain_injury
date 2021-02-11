@@ -1,9 +1,13 @@
+:root {
+    --video-shadow: 0px 0.2px 5px 0.1px black;
+}
+
 .symptom_section {
     overflow-x: hidden;
 }
 
 .symptom_section .video_section {
-    box-shadow: 0px 0.2px 5px 0.1px black;
+    box-shadow: var(--video-shadow);
     height: 50vh;
     width: 50vw;
 }
@@ -12,6 +16,30 @@
     height: inherit;
     width: inherit;
 }
+
+.symptom_section .relative_container {
+    position: relative;
+    height: calc(50vh + 100px + 1rem);
+}
+
+#payload .symptom_section .video-translated {
+    position: absolute;
+    bottom: 0;
+    height: 100px;
+    width: 200px;
+    box-shadow: var(--video-shadow);
+}
+
+.symptom_section .videos_container {
+    height: inherit;
+    width: inherit;
+}
+
+.symptom_section .video {
+    width: inherit;
+    height: inherit;
+}
+
 /* ------------------------------------ RESPONSIVENESS --------------------------------------------*/
 
 @media only screen and (min-width: 1201px) and (max-width: 1400px) {
