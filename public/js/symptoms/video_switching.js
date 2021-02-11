@@ -21,7 +21,6 @@ function prepareSecondaryInnerContent(secondary, Iframe) {
 function swapVideos(secondary, primary) {
     let primaryIFrame = primary.querySelector("iframe");
     primaryIFrame = primaryIFrame.cloneNode(true);
-    console.log(primaryIFrame);
 
     let secondaryIFrame = secondary.querySelector("iframe");
 

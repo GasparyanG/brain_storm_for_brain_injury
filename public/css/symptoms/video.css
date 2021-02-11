@@ -61,12 +61,27 @@
         height: 40vh;
         width: 40vw;
     }
+
+    .symptom_section .relative_container {
+        height: calc(40vh + 100px + 1rem);
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    #payload .symptom_section .video-translated {
+        margin-left: 1rem;
+    }
 }
 
 @media only screen and (min-width: 751px) and (max-width: 1200px) {
     .symptom_section .video_section {
         height: 60vh;
         width: 100vw;
+        margin-bottom: 2rem;
+    }
+
+    .symptom_section .relative_container {
+        height: calc(60vh + 100px + 1rem);
         margin-bottom: 2rem;
     }
 }
@@ -77,12 +92,22 @@
         width: 100vw;
         margin-bottom: 2rem;
     }
+
+    .symptom_section .relative_container {
+        height: calc(40vh + 100px + 1rem);
+        margin-bottom: 2rem;
+    }
 }
 
 @media only screen and (max-width: 650px){
     .symptom_section .video_section {
         height: 30vh;
         width: 100vw;
+        margin-bottom: 2rem;
+    }
+
+    .symptom_section .relative_container {
+        height: calc(30vh + 100px + 1rem);
         margin-bottom: 2rem;
     }
 }
