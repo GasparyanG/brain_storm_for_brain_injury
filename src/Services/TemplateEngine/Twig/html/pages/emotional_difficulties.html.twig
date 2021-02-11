@@ -1,0 +1,289 @@
+{% extends "/pages/symptoms.html.twig" %}
+
+{% block symptom %}
+    <div class="introduction_to_symptom">
+        {#  TODO: Provide link to the video, thus making video section rendered dynamically.  #}
+        <div class="title_section"><span class="title">{{ page_title }}</span></div>
+        <div class="video_section">
+            <iframe
+                    src="https://www.youtube.com/embed/ptUuoMAWYIk" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+
+    {#  Description Section  #}
+    <div class="description_section">
+        <div class="description_part main_point">
+            Any injury to the brain can lead to emotional difficulties.  A brain injury survivor may have irritability, mood swings, anxiety or depression.
+        </div>
+
+        <div class="description_part">
+            <div id="survivors-may-have" class="bullet_opening">
+                <a href="#survivors-may-have" class="header_indicator">&#x23;</a> Here are some of them:
+            </div>
+            <ul class="bullet_points">
+                <li class="bullet_point">
+                    <div class="sub_opening">
+                        Irritability
+                    </div>
+                    <div class="sub_content">
+                        Often brain injury survivors feel irritable.  They may have a short fuse and have temper outbursts.  They may yell, use bad language, throw things, slam doors, slam fists into walls, or threaten or hurt others. They may have mood swings, being happy one moment and upset the next. This can be caused by injury to the part of the brain that controls emotions. A person is more likely to irritable when tired or overwhelmed.
+                    </div>
+                </li>
+                <li class="bullet_point">
+                    <div class="sub_opening">
+                        Anxiety
+                    </div>
+                    <div class="sub_content">
+                        Anxiety is intense, excessive, and persistent worry and fear about everyday situations. Fast heart rate, rapid breathing, sweating, and feeling tired may occur. Often people with anxiety may feel anxious without exactly knowing why. After a brain injury certain situations are more likely to lead to anxiety.  These include being in crowded places,  being rushed, or having a sudden change in plans.
+                        <br><br>
+                        Some people may have sudden the onset of anxiety that can be overwhelming. This is a panic attack.
+                    </div>
+                </li>
+                <li class="bullet_point">
+                    <div class="sub_opening">
+                        Depression
+                    </div>
+                    <div class="sub_content">
+                        Depression is a mood disorder that leads to a persistent feeling of sadness and loss of interest or pleasure in life. It affects how you feel, think and behave and can lead to a variety of emotional and physical problems. Feelings of sadness, frustration and loss are common after brain injury. If these feelings become overwhelming or interfere with recovery, the person may have depression. Depression can also lead to trouble sleeping, fatigue, difficulty thinking, or thoughts of suicide.
+                        <br><br>
+                        Depression can come from struggling to adjust to loss and change in roles.  It may also occur if a brain injury affects parts of the brain that control emotions.
+                    </div>
+                </li>
+            </ul>
+
+            <div id="how-family-can-help" class="bullet_opening">
+                <a href="#how-family-can-help" class="header_indicator">&#x23;</a> What <strong>family members and others</strong> can do to help::
+            </div>
+
+            <div class="sub-sub-header"><strong>Irritability or temper outbursts:</strong></div>
+
+            <ul class="bullet_points">
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Remain calm if an emotional outburst occurs, avoid reacting emotionally yourself.
+                    </div>
+                </li>
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Take the person to a quiet area to help calm.
+                    </div>
+                </li>
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Acknowledge feelings and give the person a chance to talk about feelings.
+                    </div>
+                </li>
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Gently redirect attention to a different topic or activity.
+                    </div>
+                </li>
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Let the injured person know that it is not acceptable to yell at, threaten or hurt others. Refuse to talk when the person is yelling or throwing a temper tantrum.
+                    </div>
+                </li>
+            </ul>
+
+            <div class="sub-sub-header"><strong>Anxiety:</strong></div>
+
+            <ul class="bullet_points">
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Reduce demands and unnecessary stresses that may be causing anxiety.
+                    </div>
+                </li>
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Provide reassurance to help calm the person.
+                    </div>
+                </li>
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Allow the person to talk about feelings of anxiety.
+                    </div>
+                </li>
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Keep life structured and predictable.
+                    </div>
+                </li>
+            </ul>
+
+            <div id="what-can-be-done" class="bullet_opening">
+                <a href="#what-can-be-done" class="header_indicator">&#x23;</a>What can be done about it?
+            </div>
+            <ul class="bullet_points">
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Fortunately, this situation often improves in the first few months after injury, and people often return to a more normal emotional balance and expression.
+                    </div>
+                </li>
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        If you are having problems controlling your emotions, it is important to talk to a physician or psychologist to find out the cause and get help with treatment.
+                    </div>
+                </li>
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Counseling for the family can be reassuring and allow them to cope better on a daily basis.
+                    </div>
+                </li>
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Several medications may help improve or stabilize mood. You should consult a physician familiar with the emotional problems caused by brain injury.
+                    </div>
+                </li>
+            </ul>
+
+            <div id="what-can-be-done-anxiety" class="bullet_opening">
+                <a href="#what-can-be-done-anxiety" class="header_indicator">&#x23;</a>What can be done about <strong>anxiety</strong>?
+            </div>
+            <div class="paragraph">
+                Anxiety can be helped by certain medications, by psychotherapy (counseling) from a mental health professional who is familiar with TBI, or a combination of medications and counseling.
+            </div>
+
+            <div id="what-can-be-done-depression" class="bullet_opening">
+                <a href="#what-can-be-done-depression" class="header_indicator">&#x23;</a>What can be done about <strong>depression</strong>?
+            </div>
+            <ul class="bullet_points">
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Anti-depressant medications, psychotherapy (counseling) from a mental health professional who is familiar with TBI, or a combination of the two, can help most people who have depression.
+                    </div>
+                </li>
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Aerobic exercise and structured activities during each day can sometimes help reduce depression.
+                    </div>
+                </li>
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Depression is not a sign of weakness, and it is not anyone’s fault. Depression is an illness. A person cannot get over depression by simply wishing it away, using more willpower or “toughening up.”
+                    </div>
+                </li>
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        It is best to get treatment early to prevent needless suffering. Don’t wait.
+                    </div>
+                </li>
+            </ul>
+
+            <div id="who-can-help" class="bullet_opening">
+                <a href="#who-can-help" class="header_indicator">&#x23;</a><strong>Who can help</strong> with emotional difficulties in brain injury survivors?
+            </div>
+            <ul class="bullet_points">
+                <li class="bullet_point">
+                    <div class="sub_opening">
+                        Psychologist
+                    </div>
+                    <div class="sub_content">
+                        A psychologist or other mental health professional familiar with brain injury can provide counseling for the survivor.  This person can give the survivor strategies to help calm and give the family members suggestions for how to help the survivor during episodes of emotional difficulty.  It is important for this person to have an understanding of the cognitive struggles in brain injury.
+                    </div>
+                </li>
+                <li class="bullet_point">
+                    <div class="sub_opening">
+                        Psychiatrist
+                    </div>
+                    <div class="sub_content">
+                        A psychiatrist can prescribe medications for depression, anxiety or mood difficulties
+                    </div>
+                </li>
+                <li class="bullet_point">
+                    <div class="sub_opening">
+                        Speech therapist
+                    </div>
+                    <div class="sub_content">
+                        A speech therapist trained in cognitive rehabilitation can help you improve cognitive skills and guide you in planning and scheduling your day.  This can help with emotional difficulties.
+                    </div>
+                </li>
+                <li class="bullet_point">
+                    <div class="sub_opening">
+                        Neuropsychologist
+                    </div>
+                    <div class="sub_content">
+                        A neuropsychologist can give tests to outline strengths and difficulties with thinking and emotions.  This can help guide emotional  therapy.  Some neuropsychologists will also emotional guidance.
+                    </div>
+                </li>
+                <li class="bullet_point">
+                    <div class="sub_opening">
+                        Physiatrists
+                    </div>
+                    <div class="sub_content">
+                        Physiatrists (doctors specializing in Physical Medicine and Rehabilitation) can help guide you with emotional  difficulties. They can help determine why you mightbe having difficulties and help you find providers to help.   Some physiatrists treat patients with brain injury and other physiatrists treat musculoskeletal conditions like back pain.  Be sure that the physiatrist you see treats brain injury survivors.
+                    </div>
+                </li>
+                <li class="bullet_point">
+                    <div class="sub_opening">
+                        Primary care physicians
+                    </div>
+                    <div class="sub_content">
+                        Primary care physicians can help you find a mental health professional and prescribe medications for depression, anxiety or mood difficulties.
+                    </div>
+                </li>
+                <li class="bullet_point">
+                    <div class="sub_opening">
+                        Exercise guide
+                    </div>
+                    <div class="sub_content">
+                        An exercise guide.  Exercise can help a lot with emotional difficulties.  Talk to your doctor if you are just starting to exercise to assure you are doing it safely.
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+{% endblock %}

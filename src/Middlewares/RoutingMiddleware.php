@@ -42,8 +42,11 @@ class RoutingMiddleware implements MiddlewareInterface
             // Handle Request to Fatigue
             $r->addRoute(Request::METHOD_GET, "/symptoms/fatigue", ["Symptom", "getFatigue"]);
 
-            // Handle Request to Fatigue
+            // Handle Request to Speaking Difficulties
             $r->addRoute(Request::METHOD_GET, "/symptoms/speaking-difficulties", ["Symptom", "getSpeakingDifficulties"]);
+
+            // Handle Request to Emotional Difficulties
+            $r->addRoute(Request::METHOD_GET, "/symptoms/emotional-difficulties", ["Symptom", "getEmotionalDifficulties"]);
 
             // ------------------------------- END OF SYMPTOMS ----------------------------------------- //
 

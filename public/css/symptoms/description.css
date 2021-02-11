@@ -74,6 +74,10 @@
     margin-top: 1rem;
 }
 
+.sub-sub-header {
+    margin-top: 1rem;
+}
+
 /* ----------------------------------------- RESPONSIVENESS --------------------------------------------- */
 @media only screen and (max-width: 650px) {
     .symptom_section .description_section {

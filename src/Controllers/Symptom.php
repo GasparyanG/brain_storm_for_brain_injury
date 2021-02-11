@@ -43,7 +43,20 @@ class Symptom extends AbstractSymptom
         return Response::create(
             (new Twig())->render("pages/speaking_difficulties.html.twig",
                 [
-                    "page_title" => "Speaking Problems"
+                    "page_title" => "Speaking Difficulties"
+                ]
+            )
+        );
+    }
+
+    public function getEmotionalDifficulties(Request $req): Response
+    {
+        if (!$this->userExists($req)) return $this->unableToRecognizeUser();
+
+        return Response::create(
+            (new Twig())->render("pages/emotional_difficulties.html.twig",
+                [
+                    "page_title" => "Emotional Difficulties"
                 ]
             )
         );
