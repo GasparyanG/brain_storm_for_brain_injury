@@ -3,8 +3,7 @@
 }
 
 .symptom_section .video_section {
-    border: solid 30px var(--nav-background-color);
-    border-radius: 26px;
+    box-shadow: 0px 0.2px 5px 0.1px black;
     height: 50vh;
     width: 50vw;
 }
@@ -17,8 +16,6 @@
 
 @media only screen and (min-width: 1201px) and (max-width: 1400px) {
     .symptom_section .video_section {
-        border: solid 20px var(--nav-background-color);
-        border-radius: 20px;
         height: 40vh;
         width: 40vw;
     }
@@ -26,8 +23,6 @@
 
 @media only screen and (min-width: 751px) and (max-width: 1200px) {
     .symptom_section .video_section {
-        border: unset;
-        border-radius: unset;
         height: 60vh;
         width: 100vw;
         margin-bottom: 2rem;
@@ -36,8 +31,6 @@
 
 @media only screen and (min-width: 651px) and (max-width: 751px){
     .symptom_section .video_section {
-        border: unset;
-        border-radius: unset;
         height: 40vh;
         width: 100vw;
         margin-bottom: 2rem;
@@ -46,8 +39,6 @@
 
 @media only screen and (max-width: 650px){
     .symptom_section .video_section {
-        border: unset;
-        border-radius: unset;
         height: 30vh;
         width: 100vw;
         margin-bottom: 2rem;

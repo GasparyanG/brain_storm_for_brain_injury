@@ -1,4 +1,5 @@
 .symptom_section .introduction_to_symptom {
+    color: var(--color);
     margin-top: 25vh;
     display: flex;
     flex-direction: row;
@@ -30,7 +31,7 @@
 
 @media only screen and (max-width: 1200px) {
     .symptom_section .introduction_to_symptom {
-        margin-top: var(--sm-nav-height);
+        margin-top: unset;
         flex-direction: column-reverse;
         justify-content: center;
         align-items: center;
