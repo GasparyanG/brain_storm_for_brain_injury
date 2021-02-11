@@ -12,6 +12,15 @@
     width: 50vw;
 }
 
+/* Concern Image */
+.concern-image {
+    background-position: center;
+    background-size: cover;
+    height: inherit;
+    width: inherit;
+    background-repeat: no-repeat;
+}
+
 .symptom_section .video_section iframe {
     height: inherit;
     width: inherit;
