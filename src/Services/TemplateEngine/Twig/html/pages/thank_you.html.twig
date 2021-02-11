@@ -42,7 +42,7 @@
                     </div>
                 {% endif %}
                 <div class="all_concerns">
-                    {% if solic_concern.id <= max_concern_number %}
+                    {% if solid_concern.described %}
                         <a target="_blank" class="concern_card solid_concern_card" href={{ "/symptoms/" ~ solid_concern.url }}>
                             {% if solid_concern.imageName %}
                                 <div class="img_part">

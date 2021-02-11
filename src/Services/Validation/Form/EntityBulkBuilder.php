@@ -292,6 +292,16 @@ class EntityBulkBuilder extends AbstractValidator
         $this->addError(ErrorEnum::SOLID_CONCERN_REQUIRED, FieldsEnum::SOLID_CONCERN);
     }
 
+    private function isStrongOtherConcern(Concern $concern): bool
+    {
+        if ($concern->getId() <= SymbolicConstantsEnum::MAX_CONCERN) return false;                          // Regular concern
+        if ($this->form[FieldsEnum::SOLID_CONCERN] <= SymbolicConstantsEnum::MAX_CONCERN) return false;     // Regular concern
+        if (!isset($this->form[FieldsEnum::CONCERN_OTHER]) || strlen($this->form[FieldsEnum::CONCERN_OTHER]) == 0)
+            return false;                                                                                   // Other Concern doesn't specified
+
+        return true;
+    }
+
     private function createAndPersistUserConcern(User $user, Concern $concern): void
     {
         $userConcern = new UserConcern();
@@ -302,6 +312,11 @@ class EntityBulkBuilder extends AbstractValidator
             && $this->form[FieldsEnum::SOLID_CONCERN] == $concern->getId()) {
 
             // Mention that solid concern is found.
+            $userConcern->setStrong(true);
+            $this->solidConcern = true;
+        } else if (isset($this->form[FieldsEnum::SOLID_CONCERN])
+            && $this->isStrongOtherConcern($concern)) { // Consider other concern as well.
+
             $userConcern->setStrong(true);
             $this->solidConcern = true;
         } else
