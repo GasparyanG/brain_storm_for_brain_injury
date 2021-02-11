@@ -1,0 +1,105 @@
+{% extends "/pages/symptoms.html.twig" %}
+
+{% block symptom %}
+    <div class="introduction_to_symptom">
+        {#  TODO: Provide link to the video, thus making video section rendered dynamically.  #}
+        <div class="title_section"><span class="title">{{ page_title }}</span></div>
+        <div class="video_section">
+            <iframe
+                    src="https://www.youtube.com/embed/J3cGY58x5JM" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+
+    {#  Description Section  #}
+    <div class="description_section">
+        <div class="description_part main_point">
+            Injury to the brain can cause difficulty walking and even moving.  People with brain injury related to trauma, stroke, cerebral palsy and other causes may have difficulty walking. Depending on the extent of the injury, walking difficulties can vary from mild to severe.  A mild injury may lead to slightly decreased balance.   A more moderate injury may lead to the need to use an assistive device such as a walker.  With a severe injury, a person might not be able to walk at all, requiring a wheelchair.
+            <br><br>
+            Walking difficulties can be caused by weakness, decreased balance, spasticity, decreased sensation, or poor vision.
+        </div>
+
+        <div class="description_part">
+            <div id="after-brain-injury" class="bullet_opening">
+                <a href="#after-brain-injury" class="header_indicator">&#x23;</a> There is <strong>much you can do</strong> to improve walking after a brain injury.  Here are things <strong>you can do</strong> to help:
+            </div>
+            <ul class="bullet_points">
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Strengthen weak muscles
+                    </div>
+                </li>
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Use an assistive device such as a cane or walker
+                    </div>
+                </li>
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Stretch tight muscles
+                    </div>
+                </li>
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Use an ankle foot orthosis
+                    </div>
+                </li>
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Use Botox or Dysport injections for spasticity
+                    </div>
+                </li>
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Practice walking
+                    </div>
+                </li>
+            </ul>
+
+            <div class="guiding">
+                To improve in any task, including walking, practice is extremely important.  In the next section you will find people who can help you know what to practice.  But practicing each day at home is the most important thing you can do to improve.
+            </div>
+
+            <div id="who-can-help" class="bullet_opening">
+                <a href="#who-can-help" class="header_indicator">&#x23;</a> <strong>Who can help</strong> me walk or move better?
+            </div>
+            <ul class="bullet_points">
+                <li class="bullet_point">
+                    <div class="sub_opening">
+                        Physiatrists
+                    </div>
+                    <div class="sub_content">
+                        Physiatrists (doctors specializing in Physical Medicine and Rehabilitation) can help with figuring out how to help you walk or move better.  A physiatrist can determine why you are having walking difficulties.  Is it weakness, spasticity, decreased balance or another issue.   He or she can then give you exercises, prescribe therapy, give injections for spasticity, prescribe a brace or determine if surgery might be helpful. Some physiatrists treat patients with brain injury and other physiatrists treat musculoskeletal conditions like back pain.  Be sure that the physiatrist you see treats brain injury survivors.
+                    </div>
+                </li>
+                <li class="bullet_point">
+                    <div class="sub_opening">
+                        Physical therapists
+                    </div>
+                    <div class="sub_content">
+                        Physical therapists help people improve their ability to walk and move after a brain injury.  The goal of treatment with a physical therapist after brain injury is to improve your strength, balance, coordination and flexibility.  They provide functional exercises so that you can improve control over your body as you move. They can give you a set of exercises to practice each day at home.
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}

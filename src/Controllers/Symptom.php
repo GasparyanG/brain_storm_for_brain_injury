@@ -88,6 +88,19 @@ class Symptom extends AbstractSymptom
         );
     }
 
+    public function getWalkingDifficulties(Request $req): Response
+    {
+        if (!$this->userExists($req)) return $this->unableToRecognizeUser();
+
+        return Response::create(
+            (new Twig())->render("pages/walking_difficulties.html.twig",
+                [
+                    "page_title" => "Walking Difficulties"
+                ]
+            )
+        );
+    }
+
     public function getCollection(Request $req): Response
     {
         if (!$this->userExists($req)) return $this->unableToRecognizeUser();
