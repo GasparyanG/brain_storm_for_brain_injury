@@ -503,7 +503,7 @@ class EntityBulkBuilder extends AbstractValidator
 
     private function deleteUserConcerns(User $user): void
     {
-        $userConcerns = $this->em->getRepository(UserConcern::class)->findAll(
+        $userConcerns = $this->em->getRepository(UserConcern::class)->findBy(
             [
                 FieldsEnum::USER => $user
             ]
