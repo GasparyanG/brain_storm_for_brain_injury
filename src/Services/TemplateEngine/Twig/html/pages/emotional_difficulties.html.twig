@@ -4,11 +4,25 @@
     <div class="introduction_to_symptom">
         {#  TODO: Provide link to the video, thus making video section rendered dynamically.  #}
         <div class="title_section"><span class="title">{{ page_title }}</span></div>
-        <div class="video_section">
-            <iframe
-                    src="https://www.youtube.com/embed/ptUuoMAWYIk" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-            </iframe>
+        <div class="relative_container">
+            <div class="video_section">
+                <div class="videos_container">
+                    <div class="video main-video">
+                        <iframe
+                                src="https://www.youtube.com/embed/ptUuoMAWYIk" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video video-translated">
+                        <div class="video-wrapper">
+                            <div class="extra-layer"></div>
+                            <iframe src="https://www.youtube.com/embed/DxWOq8Wc1S8" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
