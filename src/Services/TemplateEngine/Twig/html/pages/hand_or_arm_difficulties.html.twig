@@ -1,0 +1,108 @@
+{% extends "/pages/symptoms.html.twig" %}
+
+{% block symptom %}
+    <div class="introduction_to_symptom">
+        {#  TODO: Provide link to the video, thus making video section rendered dynamically.  #}
+        <div class="title_section"><span class="title">{{ page_title }}</span></div>
+        <div class="video_section">
+            <iframe
+                    src="https://www.youtube.com/embed/0C8giHfixGM" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+
+    {#  Description Section  #}
+    <div class="description_section">
+        <div class="description_part main_point">
+            Brain injuries from any cause can lead to weakness or poor coordination in your arms or hands.  Hands are important.  We use them all the time. I just ate my breakfast with my right hand.  I am typing this article with both hands.  I used both hands and arms to get dressed.  So if you have weakness in one or both hands, life can be more difficult.
+        </div>
+
+        <div class="description_part">
+            <div class="paragraph">
+                Depending on the extent of the injury, hand and arm weakness can vary from mild to severe. A mild injury may lead to slightly decreased coordination, perhaps making typing a little more difficult.  An injury on one side of the brain can lead to weakness on the opposite side of the body, with difficulty using the hand on that side.  This is called hemiparesis and is the typical pattern of weakness after a stroke.  A severe injury may lead to weakness and difficulty using both hands.
+            </div>
+            <div id="after-brain-injury" class="bullet_opening">
+                <a href="#after-brain-injury" class="header_indicator">&#x23;</a> There are things <strong>you can do to improve</strong> hand and arm use after a brain injury.  Here are things you can do to improve:
+            </div>
+            <ul class="bullet_points">
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Strengthen weak muscles
+                    </div>
+                </li>
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Stretch tight muscles
+                    </div>
+                </li>
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Use a hand or wrist brace
+                    </div>
+                </li>
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Use assistive devices
+                    </div>
+                </li>
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Use Botox or Dysport injections for spasticity
+                    </div>
+                </li>
+                <li class="bullet_point bullet_point_with_arrow">
+                    <span class="list_arrow">
+                        <svg height="10" width="11"><path d="M7.586 5L4.293 1.707 5.707.293 10.414 5 5.707 9.707 4.293 8.293z"></path><path d="M8 4v2H0V4z"></path></svg>
+                    </span>
+                    <div class="sub_content">
+                        Practice using your hands every day
+                    </div>
+                </li>
+            </ul>
+
+            <div class="guiding">
+                To improve in anything we do, practice is extremely important.  In the next section you will find people who can help you know what to practice.  But practicing each day at home is the most important thing you can do to improve.
+            </div>
+
+            <div id="who-can-help" class="bullet_opening">
+                <a href="#who-can-help" class="header_indicator">&#x23;</a> <strong>Who can help</strong> me improve my hand use?
+            </div>
+            <ul class="bullet_points">
+                <li class="bullet_point">
+                    <div class="sub_opening">
+                        Occupational therapists
+                    </div>
+                    <div class="sub_content">
+                        Occupational therapists help people improve their ability to use their arms and hands.  They help people regain independence in their daily living skills, such as eating, dressing, and bathing.  They can help you relearn to type, to cook.  They can help you be more successful at school or  work.
+                        <br><br>
+                        Occupational therapists help you strengthen weak muscles or improve coordination.  They also help you find adaptive devices to make tasks easier.  Items such as a built up spoon, a reacher for dressing, a pen grip, or elastic shoe laces can make life easier.  There are so many inexpensive devices available to help.  Occupational therapists are experts in knowing what devices can help.
+                    </div>
+                </li>
+                <li class="bullet_point">
+                    <div class="sub_opening">
+                        Physiatrists
+                    </div>
+                    <div class="sub_content">
+                        Physiatrists (doctors specializing in Physical Medicine and Rehabilitation) can help with figuring out how to help improve your hand use.  A physiatrist can determine why you are having hand or arm difficulties.  Is it weakness, spasticity, decreased coordination, pain, or another issue.   He or she can then give you exercises, prescribe therapy, give injections for spasticity, prescribe a brace or determine if surgery might be helpful. Some physiatrists treat patients with brain injury and other physiatrists treat musculoskeletal conditions like back pain.  Be sure that the physiatrist you see treats brain injury survivors.
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}

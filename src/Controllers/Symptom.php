@@ -75,6 +75,19 @@ class Symptom extends AbstractSymptom
         );
     }
 
+    public function getHandOrArmDifficulties(Request $req): Response
+    {
+        if (!$this->userExists($req)) return $this->unableToRecognizeUser();
+
+        return Response::create(
+            (new Twig())->render("pages/hand_or_arm_difficulties.html.twig",
+                [
+                    "page_title" => "Difficulty Using Hands and Arms"
+                ]
+            )
+        );
+    }
+
     public function getCollection(Request $req): Response
     {
         if (!$this->userExists($req)) return $this->unableToRecognizeUser();
