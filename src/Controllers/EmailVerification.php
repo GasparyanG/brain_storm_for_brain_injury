@@ -48,7 +48,7 @@ class EmailVerification
         }
 
         $this->updateCookieExpiration($user);
-        return Response::create("Verified.");
+        return Response::create("Your email address is verified.");
     }
 
     private function updateCookieExpiration(User $user): void
