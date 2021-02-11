@@ -114,6 +114,19 @@ class Symptom extends AbstractSymptom
         );
     }
 
+    public function getVisionDifficulties(Request $req): Response
+    {
+        if (!$this->userExists($req)) return $this->unableToRecognizeUser();
+
+        return Response::create(
+            (new Twig())->render("pages/vision_difficulties.html.twig",
+                [
+                    "page_title" => "Vision Difficulties"
+                ]
+            )
+        );
+    }
+
     public function getCollection(Request $req): Response
     {
         if (!$this->userExists($req)) return $this->unableToRecognizeUser();
