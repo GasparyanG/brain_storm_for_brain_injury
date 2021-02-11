@@ -23,6 +23,19 @@ class Symptom extends AbstractSymptom
         );
     }
 
+    public function getFatigue(Request $req): Response
+    {
+        if (!$this->userExists($req)) return $this->unableToRecognizeUser();
+
+        return Response::create(
+            (new Twig())->render("pages/fatigue.html.twig",
+                [
+                    "page_title" => "Fatigue"
+                ]
+            )
+        );
+    }
+
     public function getCollection(Request $req): Response
     {
         if (!$this->userExists($req)) return $this->unableToRecognizeUser();

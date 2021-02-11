@@ -1,0 +1,103 @@
+{% extends "/pages/symptoms.html.twig" %}
+
+{% block symptom %}
+    <div class="introduction_to_symptom">
+        {#  TODO: Provide link to the video, thus making video section rendered dynamically.  #}
+        <div class="title_section"><span class="title">{{ page_title }}</span></div>
+        <div class="video_section">
+            <iframe
+                    src="https://www.youtube.com/embed/cXUK41VcFGw" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+
+    {#  Description Section  #}
+    <div class="description_section">
+        <div class="description_part main_point">
+            After any injury to the brain, many people have fatigue.
+            Fatigue is one of the most common symptoms after a brain injury and can make life much more difficult.
+            Cognitive fatigue is especially common. After a brain injury it takes extra effort to think.
+            Even common tasks take more concentration.  This is tiring and may lead to headaches, irritability or frustration.
+            You may even feel overwhelmed.  When we are fatigued, we do not function as well at home, at work, or even in conversations.
+            <br>
+            <br>
+            Physical fatigue is also common after a brain injury.
+            Muscle weakness may worsen physical fatigue. You might feel like you just can’t get moving.
+            Walking may be more difficult.
+        </div>
+
+        <div class="description_part">
+            <div id="why-does-cognitive-fatigue-happen" class="bullet_opening">
+                <a href="#why-does-cognitive-fatigue-happen" class="header_indicator">&#x23;</a> Why does <strong>cognitive fatigue</strong> happen?
+            </div>
+            <div class="paragraph">
+                Before a brain injury, small areas of the brain are active for most tasks.
+                After brain injury, parts of the brain are damaged.
+                Larger areas need to take over for the damaged area.
+                This is less efficient and the brain uses more energy to do the same tasks.
+            </div>
+
+            <div id="how-to-prevent" class="bullet_opening">
+                <a href="#how-to-prevent" class="header_indicator">&#x23;</a> How can I <strong>prevent</strong> fatigue after brain injury?
+            </div>
+            <div class="paragraph">
+                Living with brain injury can be tough.  After a brain injury, you want to get back to your previous life and do what you did before the injury.  It is frustrating to feel like you cannot do as much as you did.  So you push to do more.
+                <br><br>
+                But if you push your brain too hard after an injury, it shuts down or short circuits.  You cannot focus, you become irritable and make more mistakes.
+                <br><br>
+                Your brain is like a battery.  Batteries need to be recharged.  If we do not recharge a battery, it stops working.  Your brain needs to be recharged.
+                <br><br>
+                <strong>So what is the best way to recharge your brain after an injury?</strong>
+                <br><br>
+                The best way is to take brain breaks.  This means stopping what you are doing and taking a break.  Go to a quiet place and do not think too hard.  Taking a break for about 5 minutes every hour is often a good amount.  But it is best to find what works for you.
+                <br><br>
+                Also, try not to do too much.  Plan your day ahead of time.  Plan what you know you can handle and schedule your breaks into the plan.
+                <br><br>
+                It is important to stimulate your brain after an injury.  It helps with recovery.  But it is a balancing act.  Your brain needs stimulation, but it also needs rest.  As you continue to recover, you will likely be able to do more in a day.  But avoid doing too much too soon.  It can set you back. Slowly returning to activity is the best way to promote recovery.
+                <br><br>
+                Your body will usually signal you when you are doing too much. For most people this means that they start feeling overwhelmed, have headaches, or feel confused.  Watch your body for these signals so that you learn how to pace yourself.  If you overdo it and feel entirely overwhelmed, it can help a lot to stop what you are doing and take a nap.
+                <br><br>
+                Of course, getting enough sleep will also help prevent fatigue.  Setting a regular schedule can  help with sleep.  Going to bed and getting up at the same time each day is one of the most important things you can do to help your sleep.
+            </div>
+
+            <div id="who-can-help" class="bullet_opening">
+                <a href="#who-can-help" class="header_indicator">&#x23;</a> <strong>Who can help</strong> me with fatigue?
+            </div>
+            <ul class="bullet_points">
+                <li class="bullet_point">
+                    <div class="sub_opening">
+                        Primary care doctors
+                    </div>
+                    <div class="sub_content">
+                        Primary care doctors can help with sleep.  They can give you more suggestions for improving sleep.
+                    </div>
+                </li>
+                <li class="bullet_point">
+                    <div class="sub_opening">
+                        Physiatrists
+                    </div>
+                    <div class="sub_content">
+                        Physiatrists (doctors specializing in Physical Medicine and Rehabilitation) can help guide you with fatigue management and give you suggestions for your sleep.  Some physiatrists treat patients with brain injury and other physiatrists treat musculoskeletal conditions like back pain.  Be sure that the physiatrist you see treats brain injury survivors.
+                    </div>
+                </li>
+                <li class="bullet_point">
+                    <div class="sub_opening">
+                        Speech therapists
+                    </div>
+                    <div class="sub_content">
+                        Speech therapists (cognitive therapists) who work with brain injury survivors can help you set up a daily schedule to help your recovery and prevent fatigue.
+                    </div>
+                </li>
+                <li class="bullet_point">
+                    <div class="sub_opening">
+                        Sleep medicine doctors
+                    </div>
+                    <div class="sub_content">
+                        Sleep medicine doctors can assess your sleeping difficulties and give you suggestions for improving.
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}

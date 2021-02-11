@@ -8,6 +8,7 @@
 }
 
 .symptom_section .description_section .main_point {
+    color: var(--color);
     font-style: italic;
     font-size: 40px;
 }
@@ -66,6 +67,11 @@
     cursor: pointer;
     color: inherit;
     text-decoration: unset;
+}
+
+/* Paragraph */
+.paragraph {
+    margin-top: 1rem;
 }
 
 /* ----------------------------------------- RESPONSIVENESS --------------------------------------------- */
