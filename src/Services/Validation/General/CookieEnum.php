@@ -10,7 +10,7 @@ class CookieEnum
     const USER_COOKIE_KEY = "user_cookie";
 
     // Expiration Time
-    const USER_COOKIE_EXPIRE = 60 * 60 * 24 * 2;    // Two days.
+    const USER_COOKIE_EXPIRE = 60 * 60 * 24 * 30 * 6;    // Half Year.
 
     public static function setUsersCookie(string $cookie): void
     {

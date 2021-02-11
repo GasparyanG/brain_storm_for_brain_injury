@@ -47,7 +47,14 @@ class EmailVerification
             return Response::create("Verification failed.");
         }
 
+        $this->updateCookieExpiration($user);
         return Response::create("Verified.");
+    }
+
+    private function updateCookieExpiration(User $user): void
+    {
+        $cookie = $user->getCookie();
+        CookieEnum::setUsersCookie($cookie);
     }
 
     public function verifyPost(Request $req): Response
