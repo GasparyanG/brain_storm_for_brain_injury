@@ -30,6 +30,20 @@
     box-shadow: var(--video-shadow);
 }
 
+#payload .video-translated .video-wrapper {
+    position: relative;
+    height: inherit;
+    width: inherit;
+}
+
+#payload .video-translated .video-wrapper .extra-layer {
+    position: absolute;
+    height: inherit;
+    width: inherit;
+    z-index: 2;
+    cursor: pointer;
+}
+
 .symptom_section .videos_container {
     height: inherit;
     width: inherit;
