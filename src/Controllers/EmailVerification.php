@@ -54,7 +54,7 @@ class EmailVerification
     private function updateCookieExpiration(User $user): void
     {
         $cookie = $user->getCookie();
-        CookieEnum::setUsersCookie($cookie);
+        CookieEnum::setUsersCookie($cookie, true);
     }
 
     public function verifyPost(Request $req): Response
