@@ -42,19 +42,27 @@
                     </div>
                 {% endif %}
                 <div class="all_concerns">
-                    <a target="_blank" href="" class="concern_card solid_concern_card">
-                        {% if solid_concern.imageName %}
-                            <div class="img_part">
-                                <img src={{ concerns_directory ~ "/" ~ solid_concern.imageName }} alt="">
+                    {% if solic_concern.id <= max_concern_number %}
+                        <a target="_blank" class="concern_card solid_concern_card" href={{ "/symptoms/" ~ solid_concern.url }}>
+                            {% if solid_concern.imageName %}
+                                <div class="img_part">
+                                    <img src={{ concerns_directory ~ "/" ~ solid_concern.imageName }} alt="">
+                                </div>
+                            {% endif %}
+                            <div class="name_part">
+                                {{ solid_concern.name }}
                             </div>
-                        {% endif %}
-                        <div class="name_part">
-                            {{ solid_concern.name }}
+                        </a>
+                    {% else %}
+                        <div class="concern_card solid_concern_card">
+                            <div class="name_part">
+                                {{ solid_concern.name }}
+                            </div>
                         </div>
-                    </a>
+                    {% endif %}
 
                     {% for concern in other_concerns %}
-                        <a target="_blank" href="" class="concern_card">
+                        <a target="_blank" class="concern_card" href={{ "/symptoms/" ~ concern.url }}>
                             <div class="name_part">
                                 {{ concern.name }}
                             </div>
