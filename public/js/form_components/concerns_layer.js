@@ -197,6 +197,12 @@ var Concerns = function (_React$Component) {
             var starElement = e.target.parentNode.parentElement.querySelector("." + CSSClasses.solid_choice);
             starElement.classList.remove(CSSClasses.solid_choice_is_made);
 
+            if (_this.props.formState.solid_concern == SymbolicConstants.other_concern_number) {
+                var form = _this.props.prepareForm(CSSClasses.solid_concern, "");
+                form[CSSClasses.concerns_other] = "";
+                _this.props.updateFormAndError(form, _this.props.errors);
+            }
+
             _this.state.other_input_disabled = false;
         };
 
