@@ -142,9 +142,10 @@ class Form extends React.Component {
                 data = JSON.parse(data);
                 self.deactivateLoader();
 
-                if (data.success)
+                if (data.success) {
+                    self.updateStorage();
                     window.location.replace(RequestConfigurations.thank_you_url);
-                else {
+                } else {
                     self.setState(data.data);
                     self.navigateToLayer(data.data.navigation);
                 }
