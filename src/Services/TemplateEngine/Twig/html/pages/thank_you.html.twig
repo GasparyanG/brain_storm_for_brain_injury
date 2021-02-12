@@ -115,7 +115,13 @@
                             {% endif %}
                         </div>
                         <div class="notification_and_action">
-                            <div class="action_box action_box_disabled">
+                            {% if user.emailAddress == "" %}
+                                {% set action_box_state = 'action_box_disabled' %}
+                            {% else %}
+                                {% set action_box_state = '' %}
+                            {% endif %}
+
+                            <div class="{{ "action_box " ~ action_box_state }}">
                                 <input class="email_button raw_button" type="button" value="OK"/>
                                 <span class="action_prompt">
                                     <span class="prompt_part pp_press">press</span>
