@@ -225,6 +225,8 @@ var Concerns = function (_React$Component) {
             var solidChoice = "";
             if (_this.props.formState.solid_concern == SymbolicConstants.other_concern_number) solidChoice = CSSClasses.solid_choice_is_made;
 
+            solidChoice = solidChoice === "" && _this.props.formState.solid_concern !== "" ? solidChoice + " hidden" : solidChoice;
+
             return React.createElement(
                 "div",
                 { className: "choice_part " + checked, "data-value": SymbolicConstants.other_concern_number, onClick: _this.onCheck },

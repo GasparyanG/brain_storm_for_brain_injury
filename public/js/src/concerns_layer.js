@@ -243,6 +243,9 @@ class Concerns extends React.Component {
         if (this.props.formState.solid_concern == SymbolicConstants.other_concern_number)
             solidChoice = CSSClasses.solid_choice_is_made;
 
+        solidChoice = solidChoice === "" && this.props.formState.solid_concern !== ""
+            ? solidChoice + " hidden": solidChoice;
+
         return (
             <div className={"choice_part " + checked} data-value={SymbolicConstants.other_concern_number} onClick={this.onCheck}>
                 {/*<div className="choice_letter">J</div>*/}
