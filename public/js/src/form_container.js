@@ -236,6 +236,7 @@ class Form extends React.Component {
 
     focusOnField = (layerNumber) => {
         if (layerNumber + 1> SymbolicConstants.max_number_of_fields) return;
+        if (window.innerWidth < SymbolicConstants.max_width_for_focus) return;
 
         let fieldId = FieldsToFocusOn[layerNumber + 1];
 

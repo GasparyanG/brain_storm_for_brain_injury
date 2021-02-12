@@ -217,7 +217,10 @@ const SymbolicConstants = {
     max_amount_of_choices: 3,
     min_amount_of_choices: 1,
     max_amount_with_other_choice: 2,
-    min_length_of_other_concern: 1
+    min_length_of_other_concern: 1,
+
+    // Dimensions
+    max_width_for_focus: 1100
 }
 
 const FieldsToFocusOn = {
