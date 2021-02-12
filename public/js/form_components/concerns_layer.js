@@ -102,7 +102,7 @@ var Concerns = function (_React$Component) {
             element.classList.toggle(CSSClasses.choice_is_made);
             var solidChoice = element.querySelector("." + CSSClasses.solid_choice);
             if (solidChoice.classList.contains(CSSClasses.solid_choice_is_made)) {
-                _this.makeSolidChoiceElement(solidChoice);
+                _this.makeSolidChoiceElement(solidChoice, concerns, true);
             }
         };
 
@@ -122,20 +122,32 @@ var Concerns = function (_React$Component) {
             starEl.classList.add(CSSClasses.hidden_element);
         };
 
-        _this.makeSolidChoiceElement = function (element) {
+        _this.updateConcerns = function (form, concerns) {
+            form[CSSClasses.concerns] = concerns;
+            return form;
+        };
+
+        _this.makeSolidChoiceElement = function (element, concerns) {
+            var withConcerns = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
             if (!element.classList.contains(CSSClasses.solid_choice)) return;
             element.classList.toggle(CSSClasses.solid_choice_is_made);
 
+            var form = void 0;
+            var errors = void 0;
+
             // Update state about solid choice.
             if (element.classList.contains(CSSClasses.solid_choice_is_made)) {
-                var errors = _this.props.prepareErrors(CSSClasses.solid_concern, false, true); // Remove error.
-                var form = _this.props.prepareForm(CSSClasses.solid_concern, element.dataset.solid_value);
-                _this.props.updateFormAndError(form, errors);
+                errors = _this.props.prepareErrors(CSSClasses.solid_concern, false, true); // Remove error.
+                form = _this.props.prepareForm(CSSClasses.solid_concern, element.dataset.solid_value);
             } else {
-                var _errors = _this.props.prepareErrors(CSSClasses.solid_concern, { message: DefaultErrorMessages.solid_concern_required }); // Add error.
-                var _form = _this.props.prepareForm(CSSClasses.solid_concern, "");
-                _this.props.updateFormAndError(_form, _errors);
+                errors = _this.props.prepareErrors(CSSClasses.solid_concern, { message: DefaultErrorMessages.solid_concern_required }); // Add error.
+                form = _this.props.prepareForm(CSSClasses.solid_concern, "");
             }
+
+            if (withConcerns) _this.updateConcerns(form, concerns);
+
+            _this.props.updateFormAndError(form, errors);
 
             // Update solid choice button for other elements.
             var choices = document.querySelectorAll(".concerns ." + CSSClasses.choice_is_made);
@@ -145,7 +157,7 @@ var Concerns = function (_React$Component) {
         };
 
         _this.makeSolidChoice = function (e) {
-            _this.makeSolidChoiceElement(e.target);
+            _this.makeSolidChoiceElement(e.target, false, false);
         };
 
         _this.createCheckbox = function (key) {

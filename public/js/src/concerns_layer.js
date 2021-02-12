@@ -118,7 +118,7 @@ class Concerns extends React.Component {
         element.classList.toggle(CSSClasses.choice_is_made);
         let solidChoice = element.querySelector("." + CSSClasses.solid_choice);
         if (solidChoice.classList.contains(CSSClasses.solid_choice_is_made)) {
-            this.makeSolidChoiceElement(solidChoice);
+            this.makeSolidChoiceElement(solidChoice, concerns, true);
         }
     }
 
@@ -138,21 +138,32 @@ class Concerns extends React.Component {
         starEl.classList.add(CSSClasses.hidden_element);
     }
 
-    makeSolidChoiceElement = (element) => {
+    updateConcerns = (form, concerns) => {
+        form[CSSClasses.concerns] = concerns;
+        return form;
+    }
+
+    makeSolidChoiceElement = (element, concerns, withConcerns = false) => {
         if (!element.classList.contains(CSSClasses.solid_choice)) return;
         element.classList.toggle(CSSClasses.solid_choice_is_made);
 
+        let form;
+        let errors;
+
         // Update state about solid choice.
         if (element.classList.contains(CSSClasses.solid_choice_is_made)) {
-            let errors = this.props.prepareErrors(CSSClasses.solid_concern, false, true); // Remove error.
-            let form = this.props.prepareForm(CSSClasses.solid_concern, element.dataset.solid_value);
-            this.props.updateFormAndError(form, errors);
+            errors = this.props.prepareErrors(CSSClasses.solid_concern, false, true); // Remove error.
+            form = this.props.prepareForm(CSSClasses.solid_concern, element.dataset.solid_value);
         } else {
-            let errors = this.props.prepareErrors(CSSClasses.solid_concern,
+            errors = this.props.prepareErrors(CSSClasses.solid_concern,
                 {message: DefaultErrorMessages.solid_concern_required}); // Add error.
-            let form = this.props.prepareForm(CSSClasses.solid_concern, "");
-            this.props.updateFormAndError(form, errors);
+            form = this.props.prepareForm(CSSClasses.solid_concern, "");
         }
+
+        if (withConcerns)
+            this.updateConcerns(form, concerns);
+
+        this.props.updateFormAndError(form, errors);
 
         // Update solid choice button for other elements.
         let choices = document.querySelectorAll(".concerns ." + CSSClasses.choice_is_made);
@@ -165,7 +176,7 @@ class Concerns extends React.Component {
     }
 
     makeSolidChoice = (e) => {
-        this.makeSolidChoiceElement(e.target);
+        this.makeSolidChoiceElement(e.target, false, false);
     }
 
     createCheckbox = (key) => {
