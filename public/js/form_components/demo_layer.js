@@ -430,11 +430,11 @@ var Email = function (_React$Component4) {
                         React.createElement(
                             "div",
                             { className: "question_usage_hint" },
-                            "You can leave this field ",
+                            "This is ",
                             React.createElement(
                                 "strong",
                                 null,
-                                "empty"
+                                "optional"
                             ),
                             "."
                         ),

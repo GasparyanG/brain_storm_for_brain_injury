@@ -300,7 +300,7 @@ class Email extends React.Component {
                     <div className="questions">
                         {label}
                         <div className="question_usage_hint">
-                            You can leave this field <strong>empty</strong>.
+                            This is <strong>optional</strong>.
                         </div>
                         <input onChange={this.handleInput} onKeyUp={this.handleEnter} className="raw_input"
                                name="email" id="email" type="text" defaultValue={this.props.formState.email} placeholder="example@mail.tld"/>
