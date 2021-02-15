@@ -8,7 +8,7 @@
 }
 
 #intro_container .introduction_text {
-    font-size: 25px;
+    font-size: 35px;
     font-style: italic;
     color: rgba(77, 77, 77, 0.7);
 }
@@ -22,6 +22,12 @@
 }
 
 /* ----------------------------- RESPONSIVENESS ------------------------------- */
+@media only screen and (min-width: 801px) and (max-width: 1050px) {
+    #intro_container .introduction_text {
+        font-size: 30px;
+    }
+}
+
 @media only screen and (min-width: 801px) and (max-width: 1100px) {
     #intro_container .introduction_section {
         width: 70%;
@@ -31,15 +37,23 @@
     }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (min-width: 501px) and (max-width: 800px) {
     #intro_container .introduction_text {
-        font-size: 15px;
+        font-size: 25px;
     }
+}
 
+@media only screen and (max-width: 800px) {
     #intro_container .introduction_section {
         width: 80%;
         left: 10%;
         top: 50%;
         transform: translateY(-50%);
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    #intro_container .introduction_text {
+        font-size: 20px;
     }
 }
