@@ -64,15 +64,26 @@
     }
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (min-width: 601px) and (max-width: 1000px) {
+    #footer {
+        height: var(--md-footer-height);
+    }
+}
+
+@media only screen and (max-width: 600px) {
     #footer {
         height: var(--sm-footer-height);
     }
+}
+
+@media only screen  and (max-width: 1000px) {
 
     #footer .footer_components {
         flex-direction: column;
     }
 }
+
+
 
 @media only screen and (min-width: 550px) and (max-width: 1000px) {
     #footer .about_app .about_us {

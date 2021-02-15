@@ -2,7 +2,13 @@
     min-height: calc(100vh - var(--nav-height) - var(--footer-height));
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (min-width: 601px) and (max-width: 1000px) {
+    #payload {
+        min-height: calc(100vh - var(--sm-nav-height) - var(--md-footer-height));
+    }
+}
+
+@media only screen and (max-width: 600px) {
     #payload {
         min-height: calc(100vh - var(--sm-nav-height) - var(--sm-footer-height));
     }

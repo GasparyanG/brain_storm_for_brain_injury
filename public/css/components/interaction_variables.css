@@ -5,7 +5,8 @@
 
     /* Sections */
     --footer-height: 150px;
-    --sm-footer-height: 500px;
+    --md-footer-height: 500px;
+    --sm-footer-height: 300px;
 
     /* Colors */
     --input-color: #C7D9DD;
