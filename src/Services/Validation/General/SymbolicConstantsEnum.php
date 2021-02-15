@@ -25,6 +25,7 @@ class SymbolicConstantsEnum
     const MAX_CONCERN_CHOICES = 3;
 
     // Date
+    const DEFAULT_DAY = 1;
     const DAY_MIN = 1;
     const DAY_MAX = 31;
     const MONTH_MAX = 12;

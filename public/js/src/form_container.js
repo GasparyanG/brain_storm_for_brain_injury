@@ -73,7 +73,6 @@ class Form extends React.Component {
                 concerns: [],
                 solid_concern: "",
                 concerns_other: "",
-                injury_date_day: "",
                 injury_date_month: "",
                 injury_date_year: "",
                 injury_reason: ""
@@ -235,7 +234,7 @@ class Form extends React.Component {
     }
 
     focusOnField = (layerNumber) => {
-        if (layerNumber + 1> SymbolicConstants.max_number_of_fields) return;
+        if (layerNumber + 1 > SymbolicConstants.max_number_of_fields) return;
         if (window.innerWidth < SymbolicConstants.max_width_for_focus) return;
 
         let fieldId = FieldsToFocusOn[layerNumber + 1];
@@ -285,7 +284,6 @@ class Form extends React.Component {
     // VALIDATION
     isValidDate = (form) => {
         return !(form[CSSClasses.injury_date_month] < SymbolicConstants.month_min || form[CSSClasses.injury_date_month] > SymbolicConstants.month_max)
-            && !(form[CSSClasses.injury_date_day] < SymbolicConstants.day_min || form[CSSClasses.injury_date_day] > SymbolicConstants.day_max)
             && !(form[CSSClasses.injury_date_year] < SymbolicConstants.year_min || form[CSSClasses.injury_date_year] > SymbolicConstants.year_max);
     }
 

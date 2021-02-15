@@ -101,18 +101,17 @@ abstract class AbstractValidator
 
     protected function isValidDateMDY(array $assocArray, string &$date): bool
     {
-        if (!$this->isValidNumericValue($assocArray, FieldsEnum::INJURY_DATE_DAY)
-            || !$this->isValidNumericValue($assocArray, FieldsEnum::INJURY_DATE_MONTH)
+        if (!$this->isValidNumericValue($assocArray, FieldsEnum::INJURY_DATE_MONTH)
             || !$this->isValidNumericValue($assocArray, FieldsEnum::INJURY_DATE_YEAR)) {
             $this->addError(ErrorEnum::FILL_DATE_ENTIRELY, FieldsEnum::DATE);
             return false;
         }
 
-        $day = $assocArray[FieldsEnum::INJURY_DATE_DAY];
+        $day = SymbolicConstantsEnum::DEFAULT_DAY;              // Day is always static.
         $month = $assocArray[FieldsEnum::INJURY_DATE_MONTH];
         $year = $assocArray[FieldsEnum::INJURY_DATE_YEAR];
 
-        if (!$this->isValidDay($day) || !$this->isValidMonth($month) || !$this->isValidYear($year)) {
+        if (!$this->isValidMonth($month) || !$this->isValidYear($year)) {
             $this->addError(ErrorEnum::DATE_WRONG, FieldsEnum::DATE);
             return false;
         }

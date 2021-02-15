@@ -50,7 +50,6 @@ var Form = function (_React$Component) {
                     concerns: [],
                     solid_concern: "",
                     concerns_other: "",
-                    injury_date_day: "",
                     injury_date_month: "",
                     injury_date_year: "",
                     injury_reason: ""
@@ -253,7 +252,7 @@ var Form = function (_React$Component) {
         };
 
         _this.isValidDate = function (form) {
-            return !(form[CSSClasses.injury_date_month] < SymbolicConstants.month_min || form[CSSClasses.injury_date_month] > SymbolicConstants.month_max) && !(form[CSSClasses.injury_date_day] < SymbolicConstants.day_min || form[CSSClasses.injury_date_day] > SymbolicConstants.day_max) && !(form[CSSClasses.injury_date_year] < SymbolicConstants.year_min || form[CSSClasses.injury_date_year] > SymbolicConstants.year_max);
+            return !(form[CSSClasses.injury_date_month] < SymbolicConstants.month_min || form[CSSClasses.injury_date_month] > SymbolicConstants.month_max) && !(form[CSSClasses.injury_date_year] < SymbolicConstants.year_min || form[CSSClasses.injury_date_year] > SymbolicConstants.year_max);
         };
 
         _this.stringValues = function (field) {

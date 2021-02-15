@@ -52,15 +52,6 @@ var DateOfInjury = function (_React$Component) {
 
                 // Navigate to next date field.
                 else if (e.target.value.length >= 2) {
-                        var dayInput = document.querySelector(".date_day");
-                        dayInput.focus();
-                    }
-            } else if (e.target.classList.contains(CSSClasses.date_day)) {
-                //Validate day
-                if (e.target.value < SymbolicConstants.day_min || e.target.value > SymbolicConstants.day_max) errors = _this.props.prepareErrors(CSSClasses.date, { message: DefaultErrorMessages.date_wrong });
-
-                // Navigate to next date field.
-                else if (e.target.value.length >= 2) {
                         var yearInput = document.querySelector(".date_year");
                         yearInput.focus();
                     }
@@ -80,11 +71,6 @@ var DateOfInjury = function (_React$Component) {
                 if (e.target.classList.contains("date_month")) {
                     // Validate month
                     _this.handleInput(e);
-                    var dayInput = document.querySelector(".date_day");
-                    dayInput.focus();
-                } else if (e.target.classList.contains("date_day")) {
-                    //Validate day
-                    _this.handleInput(e);
                     var yearInput = document.querySelector(".date_year");
                     yearInput.focus();
                 } else if (e.target.classList.contains("date_year")) {
@@ -96,7 +82,7 @@ var DateOfInjury = function (_React$Component) {
         };
 
         _this.validateInput = function () {
-            return !(_this.props.formState.injury_date_day == "" || _this.props.formState.injury_date_month == "" || _this.props.formState.injury_date_year == "");
+            return !(_this.props.formState.injury_date_month == "" || _this.props.formState.injury_date_year == "");
         };
 
         _this.hintOrAction = function (field) {
@@ -165,17 +151,6 @@ var DateOfInjury = function (_React$Component) {
                                     ),
                                     React.createElement("input", { onChange: this.handleInput, onKeyUp: this.handleEnter, defaultValue: this.props.formState.injury_date_month,
                                         id: "injury_date_month", name: "injury_date_month", className: "raw_date_input date_month", type: "text" })
-                                ),
-                                React.createElement(
-                                    "div",
-                                    { className: "date_input_part date_input_part_dash date_input_day" },
-                                    React.createElement(
-                                        "label",
-                                        { htmlFor: "injury_date_day", className: "date_section_name" },
-                                        "Day"
-                                    ),
-                                    React.createElement("input", { onChange: this.handleInput, onKeyUp: this.handleEnter, defaultValue: this.props.formState.injury_date_day,
-                                        id: "injury_date_day", name: "injury_date_day", className: "raw_date_input date_day", type: "text" })
                                 ),
                                 React.createElement(
                                     "div",
