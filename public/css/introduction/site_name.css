@@ -65,6 +65,12 @@
 
 
 /* ------------------------------ RESPONSIVENESS ------------------------------------------- */
+@media only screen and (min-width: 1601px) and (max-width: 1750px) {
+    #intro_container .site_name_section {
+        font-size: 27px;
+    }
+}
+
 @media only screen and (min-width: 1500px) and (max-width: 1600px) {
     #intro_container .site_name_section {
         font-size: 25px;
