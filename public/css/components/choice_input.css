@@ -153,8 +153,15 @@
 
 
 /* -------------------------------------------- SOLID CHOICE BUTTON -------------------------------------- */
+@keyframes jumping_star {
+    from {transform: scale(1.2); box-shadow: 0px 0.2px 5px 0.1px black;}
+    to {transform: scale(1); box-shadow: unset;}
+}
+
+
 #form_container .solid_choice {
     position: absolute;
+    text-align: center;
     right: 1rem;
     font-size: 1.5rem;
     cursor: pointer;
@@ -162,6 +169,7 @@
     z-index: 2;
     width: var(--sc-box-width);
     height: var(--sc-box-height);
+    animation: jumping_star 1s infinite;
 }
 
 #form_container .choice_is_made .solid_choice {
@@ -170,6 +178,7 @@
 
 #form_container .choice_is_made .solid_choice_is_made {
     color: greenyellow;
+    animation: unset;
 }
 
 /* Input area's star */
