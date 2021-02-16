@@ -154,7 +154,7 @@
 
 /* -------------------------------------------- SOLID CHOICE BUTTON -------------------------------------- */
 @keyframes jumping_star {
-    from {transform: scale(1.2); box-shadow: 0px 0.2px 5px 0.1px black;}
+    from {transform: scale(1.2); box-shadow: 0 0.2px 5px 0.1px black;}
     to {transform: scale(1); box-shadow: unset;}
 }
 
@@ -173,7 +173,9 @@
 }
 
 #form_container .choice_is_made .solid_choice {
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #form_container .choice_is_made .solid_choice_is_made {
@@ -188,7 +190,9 @@
 }
 
 #form_container .choice_is_made .other_input_interaction .solid_choice {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: static;
     margin-left: auto;;
 }
